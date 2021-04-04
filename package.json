@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "nnecec.github.io",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "Deep Dive into JavaScript, and React.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "nnecec <nnecec@outlook.com>",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
@@ -19,13 +19,15 @@
     "gatsby-plugin-sharp": "^3.0.0",
     "gatsby-remark-copy-linked-files": "^3.0.0",
     "gatsby-remark-images": "^4.0.0",
+    "gatsby-remark-mermaid": "^2.1.0",
     "gatsby-remark-prismjs": "^4.0.0",
     "gatsby-remark-responsive-iframe": "^3.0.0",
     "gatsby-remark-smartypants": "^3.0.0",
     "gatsby-source-filesystem": "^3.0.0",
-    "gatsby-transformer-remark": "^3.0.0",
+    "gatsby-transformer-remark": "^3.2.0",
     "gatsby-transformer-sharp": "^3.0.0",
     "prismjs": "^1.23.0",
+    "puppeteer": "^8.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
@@ -35,7 +37,7 @@
   "devDependencies": {
     "prettier": "2.2.1"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://nnecec.gatsbyjs.io/",
   "keywords": [
     "gatsby"
   ],
@@ -43,7 +45,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git@github.com:nnecec/nnecec.github.io.git"
   },
   "scripts": {
     "build": "gatsby build",
@@ -51,7 +53,6 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "clean": "gatsby clean"
   }
 }

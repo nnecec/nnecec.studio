@@ -2,9 +2,9 @@ module.exports = {
   siteMetadata: {
     title: `nnecec.github.io`,
     author: {
-      name: `nnecec`
+      name: `nnecec`,
     },
-    description: `Dive deep into everything.`,
+    description: `Deep Dive into JavaScript, and React.`,
     siteUrl: `https://nnececgithubio.gatsbyjs.io/`,
     social: {
       twitter: `nnecec_cn`,
@@ -30,6 +30,12 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: 'gatsby-remark-mermaid',
+            options: {
+              theme: 'neutral'
+            }
+          },
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -111,13 +117,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `nnecec.github.io`,
+        name: `nnecec`,
         short_name: `nnecec`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#fbe548`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/gatsby-icon.jpg`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,
