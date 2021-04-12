@@ -125,15 +125,25 @@ registrationNameDependencies = {
 
 经过 `listenToAllSupportedEvents` 方法处理后，任何在根节点内触发的被当前运行环境支持的事件，都会对应的事件的监听函数。以 `click` 事件为例：
 
-```mermaid
-graph TD
-dispatchEvent[dispatchEvent 通过根节点触发事件]
-dispatchEvent --> attemptToDispatchEvent[attemptToDispatchEvent 获取目标DOM]
-attemptToDispatchEvent --> dispatchEventForPluginEventSystem[dispatchEventForPluginEventSystem]
-dispatchEventForPluginEventSystem --> dispatchEventsForPlugins[dispatchEventsForPlugins]
-dispatchEventsForPlugins --> extractEvents[extractEvents 获取事件队列 listeners]
-accumulateSinglePhaseListeners[accumulateSinglePhaseListeners<br/>获取触发本次事件的 fiber 节点并依次查找直到根节点<br>获取每个节点上的 onClick 方法 并添加到 listeners 队列] --> extractEvents
-extractEvents --> processDispatchQueueItemsInOrder[processDispatchQueueItemsInOrder]
-processDispatchQueueItemsInOrder --> executeDispatch[executeDispatch]
-executeDispatch --> invokeGuardedCallback["func.apply(context, funcArgs)"<br/>调用 listeners 队列中的 onClick 方法]
+```dot
+digraph graphname {
+  node [shape=box];
+  dispatchEvent [label="通过根节点触发事件，调用dispatchEvent"];
+  attemptToDispatchEvent [label="通过 attemptToDispatchEvent 获取目标DOM"];
+  dispatchEventForPluginEventSystem [label="dispatchEventForPluginEventSystem"];
+  dispatchEventsForPlugins [label="dispatchEventsForPlugins"];
+  extractEvents [label="extractEvents 获取事件队列 listeners"];
+  accumulateSinglePhaseListeners [label="accumulateSinglePhaseListeners \n获取触发本次事件的fiber节点并依次查找直到根节点\n获取每个节点上的onClick方法并添加到listeners队列"];
+  processDispatchQueueItemsInOrder [label="processDispatchQueueItemsInOrder"];
+  invokeGuardedCallback [label="调用listeners队列中的onClick方法"];
+
+  dispatchEvent -> attemptToDispatchEvent;
+  attemptToDispatchEvent -> dispatchEventForPluginEventSystem;
+  dispatchEventForPluginEventSystem ->  dispatchEventsForPlugins;
+  dispatchEventsForPlugins ->  extractEvents;
+  accumulateSinglePhaseListeners -> extractEvents;
+  extractEvents -> processDispatchQueueItemsInOrder;
+  processDispatchQueueItemsInOrder -> executeDispatch;
+  executeDispatch -> invokeGuardedCallback;
+}
 ```

@@ -30,12 +30,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          {
-            resolve: 'gatsby-remark-mermaid',
-            options: {
-              theme: 'neutral'
-            }
-          },
+          'gatsby-remark-graphviz',
           {
             resolve: `gatsby-remark-images`,
             options: {
