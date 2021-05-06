@@ -41,7 +41,9 @@ class App extends React.Component {
 
 在[Demo](https://codesandbox.io/s/quizzical-beaver-51zjr)中可以看到在 React 中创建 `ClassComponent` 并声明方法的几种情况。
 
-可以看到，在没有显示绑定 `this` 的情况下报错了，打印 `this` 可以看到它指向的是全局对象 `window`。
+可以看到，事件调用的方法没有显示绑定 `this` 的情况下报错了，打印 `this` 可以看到它指向的是全局对象 `window`。
+
+但是如果在不是给事件调用的方法中打印 `this` 是可以正常打印出当前 `this` 指向的实例的。
 
 在 [React 文档](https://zh-hans.reactjs.org/docs/handling-events.html)中关于方法的处理有提到：
 
@@ -52,7 +54,7 @@ class App extends React.Component {
 > 1. 可以使用 class fields 正确的绑定回调函数。
 > 2. 可以在回调中使用箭头函数。
 
-所以在 React 中，使用 this 需要注意它的指向问题。
+所以在 React 中，当方法提供给事件调用时，使用 this 需要注意它的指向问题。
 
 ## 2. React 的合成事件
 
@@ -62,7 +64,9 @@ class App extends React.Component {
 
 ## 3. JavaScript 函数工作原理
 
-在 JavaScript 中，`this` 有以下几种绑定方式：
+可以在[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)中看到关于 `this` 的详细介绍。
+
+下面进行一下总结。在 JavaScript 中，`this` 有以下几种绑定方式：
 
 1. 默认绑定
 2. 隐式绑定
@@ -75,7 +79,7 @@ class App extends React.Component {
 
 ### 3.2 隐式绑定
 
-当函数引 用有上下文对象时，隐式绑定会把函数调用中的 `this` 绑定到这个上下文对象。例如：
+当函数引用有上下文对象时，隐式绑定会把函数调用中的 `this` 绑定到这个上下文对象。例如：
 
 ```js
 var obj = {
