@@ -139,8 +139,8 @@ digraph graphname {
 
   dispatchEvent -> attemptToDispatchEvent;
   attemptToDispatchEvent -> dispatchEventForPluginEventSystem;
-  dispatchEventForPluginEventSystem ->  dispatchEventsForPlugins;
-  dispatchEventsForPlugins ->  extractEvents;
+  dispatchEventForPluginEventSystem -> dispatchEventsForPlugins;
+  dispatchEventsForPlugins -> extractEvents;
   accumulateSinglePhaseListeners -> extractEvents;
   extractEvents -> processDispatchQueueItemsInOrder;
   processDispatchQueueItemsInOrder -> executeDispatch;
