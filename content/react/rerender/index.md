@@ -5,4 +5,4 @@ tags: ["Deep Dive", "React"]
 description: "React 中的重新渲染"
 ---
 
-## 基本概念
+## 概念

@@ -5,7 +5,7 @@ module.exports = {
       name: `nnecec`,
     },
     description: `Deep Dive into JavaScript, and React.`,
-    siteUrl: `https://nnececgithubio.gatsbyjs.io/`,
+    siteUrl: `https://nnecec-github-io.vercel.app`,
     social: {
       twitter: `nnecec_cn`,
     },
@@ -123,8 +123,6 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-gatsby-cloud`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }

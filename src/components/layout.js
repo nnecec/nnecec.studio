@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { Link } from "gatsby"
 
 const Layout = ({ location, title, children }) => {
@@ -27,7 +27,10 @@ const Layout = ({ location, title, children }) => {
       <footer>
         © {new Date().getFullYear()}, Built with
         {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
+        <a href="https://www.gatsbyjs.com">Gatsby</a>,
+        Source Code at 
+        {` `}
+        <a href="https://github.com/nnecec/nnecec.github.io">Github</a>.
       </footer>
     </div>
   )

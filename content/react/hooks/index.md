@@ -5,7 +5,7 @@ tags: ["Deep Dive", "React"]
 description: "hooks 的概念是什么？它以什么样的形态存在于 React 中？"
 ---
 
-## 基本概念
+## 定义
 
 在[官方文档](https://zh-hans.reactjs.org/docs/hooks-intro.html)中可以查阅 hooks 的介绍和规则。
 

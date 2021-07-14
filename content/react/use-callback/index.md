@@ -17,42 +17,42 @@ description: "useCallback 和它的一切。"
 
 ```ts
 function mountCallback<T>(callback: T, deps: Array<mixed> | void | null): T {
-  const hook = mountWorkInProgressHook();
-  const nextDeps = deps === undefined ? null : deps;
-  hook.memoizedState = [callback, nextDeps];
-  return callback;
+  const hook = mountWorkInProgressHook()
+  const nextDeps = deps === undefined ? null : deps
+  hook.memoizedState = [callback, nextDeps]
+  return callback
 }
 
 function updateCallback<T>(callback: T, deps: Array<mixed> | void | null): T {
-  const hook = updateWorkInProgressHook();
-  const nextDeps = deps === undefined ? null : deps;
-  const prevState = hook.memoizedState;
+  const hook = updateWorkInProgressHook()
+  const nextDeps = deps === undefined ? null : deps
+  const prevState = hook.memoizedState
   if (prevState !== null) {
     if (nextDeps !== null) {
-      const prevDeps: Array<mixed> | null = prevState[1];
+      const prevDeps: Array<mixed> | null = prevState[1]
       if (areHookInputsEqual(nextDeps, prevDeps)) {
-        return prevState[0];
+        return prevState[0]
       }
     }
   }
-  hook.memoizedState = [callback, nextDeps];
-  return callback;
+  hook.memoizedState = [callback, nextDeps]
+  return callback
 }
 
 function areHookInputsEqual(
   nextDeps: Array<mixed>,
-  prevDeps: Array<mixed> | null,
+  prevDeps: Array<mixed> | null
 ) {
   if (prevDeps === null) {
-    return false;
+    return false
   }
   for (let i = 0; i < prevDeps.length && i < nextDeps.length; i++) {
     if (is(nextDeps[i], prevDeps[i])) {
-      continue;
+      continue
     }
-    return false;
+    return false
   }
-  return true;
+  return true
 }
 ```
 
@@ -71,16 +71,14 @@ function areHookInputsEqual(
 当方法需要传递给子组件，如果不使用 `useCallback` 缓存，相当于每次都是声明了一个新的 function，对于子组件来说，这个方法的变更会导致 `props` 发生变更。所以为了优化不必要的渲染，使用 `useCallback` 储存需要向子组件传递的方法。
 
 ```js
-function App(){
-  const [title, setTitle] = useState('title')
+function App() {
+  const [title, setTitle] = useState("title")
 
-  const sayTitle = useCallback(()=>{
+  const sayTitle = useCallback(() => {
     console.log(title)
   }, [title])
 
-  return (
-    <Button onClick={sayTitle}>say</Button>
-  )
+  return <Button onClick={sayTitle}>say</Button>
 }
 ```
 
@@ -91,16 +89,16 @@ function App(){
 我们使用 `useCallback`，本质上是希望它能够缓存方法，但是 `useCallback` 有第二个参数: `deps`。`deps` 的变更同样会导致 function 缓存失效，那么如果 `deps` 总是变化，缓存就一直无法起作用了。
 
 ```js
-function App(){
-  const [title, setTitle] = useState('title')
+function App() {
+  const [title, setTitle] = useState("title")
 
-  const sayTitle = useCallback(()=>{
+  const sayTitle = useCallback(() => {
     console.log(title)
   }, [title])
 
   return (
     <div>
-      <Input onChange={(value) => setTitle(value)}/>
+      <Input onChange={value => setTitle(value)} />
       <Button onClick={sayTitle}>say</Button>
     </div>
   )
@@ -118,7 +116,7 @@ function useState() {
   let count = 0
   const increment = () => {
     count += 1
-    console.log(count) // 1
+    console.log(count) // increment console.log
   }
 
   return [count, increment]
@@ -137,38 +135,41 @@ function app() {
 
   return {
     increment,
-    callback
+    callback,
   }
 }
 
 const { increment, callback } = app()
 
-
 callback() // 0
-increment()
+increment() // 1
 callback() // 0
 ```
 
-通过上例，可以看得出方法如果缓存，则一直保持对声明时的引用。
+上面我们用类似 React API 的方式实现了一个闭包的例子。可以看得出方法如果缓存，则一直保持声明时对外部变量的引用，行为与[闭包](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures)一致。
+
+### 使用“不变”的依赖来解决 `useCallback` 无法按预期缓存的问题
+
+#### 使用 `useRef`
 
 在[Hooks FAQ](https://reactjs.org/docs/hooks-faq.html#how-to-read-an-often-changing-value-from-usecallback)中给出了，需要设置依赖又需要设置缓存时的解决方案。
 
 ```js
-function App(){
-  const [title, setTitle] = useState('title')
-  const inputRef = useRef('')
+function App() {
+  const [title, setTitle] = useState("title")
+  const inputRef = useRef("")
 
-  const sayTitle = useCallback(()=>{
+  const sayTitle = useCallback(() => {
     console.log(inputRef.current)
   }, [inputRef])
 
-  useEffect(()=>{
+  useEffect(() => {
     inputRef.current = title
   }, [title])
 
   return (
     <div>
-      <Input onChange={(value) => setTitle(value)}/>
+      <Input onChange={value => setTitle(value)} />
       <Button onClick={sayTitle}>say</Button>
     </div>
   )
@@ -180,31 +181,46 @@ function App(){
 ```js
 function useRefCallback(fn, dependencies) {
   const ref = useRef(() => {
-    throw new Error('Cannot call an event handler while rendering.');
-  });
+    throw new Error("Cannot call an event handler while rendering.")
+  })
 
   useEffect(() => {
-    ref.current = fn;
-  }, [fn, ...dependencies]);
+    ref.current = fn
+  }, [fn, ...dependencies])
 
   return useCallback(() => {
-    const fn = ref.current;
-    return fn();
-  }, [ref]);
+    const fn = ref.current
+    return fn()
+  }, [ref])
 }
 
-function App(){
-  const [title, setTitle] = useState('title')
+function App() {
+  const [title, setTitle] = useState("title")
 
-  const sayTitle = useRefCallback(()=>{
+  const sayTitle = useRefCallback(() => {
     console.log(title)
   }, [title])
 
   return (
     <div>
-      <Input onChange={(value) => setTitle(value)}/>
+      <Input onChange={value => setTitle(value)} />
       <Button onClick={sayTitle}>say</Button>
     </div>
   )
 }
 ```
+
+#### 使用 `useReducer` 的 `dispatch`
+
+官方还提到了一种使用[useReducer 生成 dispatch](https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down)的方案来传递方法，并且由于 `dispatch` 的“不变”性，向子组件传递的 `dispatch` 不会导致子组件渲染。
+
+我们可以在[`useReducer` 的 `update` 阶段的源码可以看到如何获取 `dispatch` 的](/react/use-state-reducer)：
+
+```ts
+// ...
+const dispatch: Dispatch<A> = (queue.dispatch: any);
+return [hook.memoizedState, dispatch];
+// ...
+```
+
+在 `update` 阶段，从 fiber 上获取了之前缓存的 `dispatch`，所以 `dispatch` 是不会发生变化的。
