@@ -1,9 +1,7 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { Bio, Layout, Tag, SEO } from "../components"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -55,9 +53,9 @@ const BlogIndex = ({ data, location }) => {
                     itemProp="description"
                   />
                 </section>
-                <footer>
-                  {post.frontmatter.tags?.map(tag => (<small className="tag">{tag}</small>))}
-                </footer>
+                <div className="footer">
+                  {post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}
+                </div>
               </article>
             </li>
           )

@@ -1,20 +1,12 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-export const Tag = ({ tag, totalCount }) => {
+export const Tag = ({ children }) => {
 
   return (
-    <span>
-      #{tag} {totalCount}
+    <span className="tag">
+      {children}
     </span>
-  )
-}
-
-export const Tags = ({ tags }) => {
-  return (
-    <div>
-      {tags.map(({ tag, totalCount }) => <Tag tag={tag} totalCount={totalCount}></Tag>)}
-    </div>
   )
 }
 
