@@ -96,7 +96,7 @@ function App() {
     console.log(title)
   }, [title])
 
-  return (
+  return (  
     <div>
       <Input onChange={value => setTitle(value)} />
       <Button onClick={sayTitle}>say</Button>
