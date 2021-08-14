@@ -21,7 +21,7 @@ const BlogPostTemplate = ({ data, location }) => {
       >
         <header>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <p>上次更新: {post.frontmatter.date}</p>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -40,6 +40,7 @@ const BlogPostTemplate = ({ data, location }) => {
             justifyContent: `space-between`,
             listStyle: `none`,
             padding: 0,
+            fontSize: 14
           }}
         >
           <li>
@@ -81,7 +82,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MM DD, YYYY")
         description
       }
     }

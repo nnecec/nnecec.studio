@@ -5,11 +5,13 @@ tags: ["React"]
 description: "commit 阶段源码详解"
 ---
 
-## commitRoot
+## 概述
+
+在 commit 阶段，React 已经确定了所有节点的信息，并将遍历所有节点，处理任务，调度更新，将最终结果渲染到页面上。
+
+## 源码
 
 React 的 `commit` 阶段入口方法就是 `commitRoot`，具体实现在 `commitRootImpl`
-
-## main process
 
 ```ts
 function commitRootImpl(root, renderPriorityLevel) {
