@@ -1,7 +1,7 @@
 ---
-title: "Intro: Rust"
+title: "Induction: Rust"
 date: "2021-08-17"
-tags: ["Intro", "Rust"]
+tags: ["Induction", "Rust"]
 description: "从前端开发者的视角进入 Rust 的世界"
 ---
 

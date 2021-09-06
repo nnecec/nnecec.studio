@@ -55,7 +55,6 @@ export function requestUpdateLane(fiber: Fiber): Lane {
 
 在接下来通过 `scheduleUpdateOnFiber` 方法调用 [Scheduler](/react/scheduler) 进入由调度器控制的调度工作。
 
-在更新过程中有两种 `lane`，一种是创建 `update` 时的优先级，被标记在 fiber 上，另一种称为 `renderLanes` ，通过 `getNextLanes` 方法返回当前渲染会处理的优先级合集 `lanes`。
+在更新过程中有两种 `lane`，一种是创建 `update` 时的优先级，被标记在 fiber 上，另一种称为 `renderLanes` ，通过 `getNextLanes` 方法返回当前渲染会处理的最高优先级的更新 `lane`。
 
 当 `renderLanes` 包括 `updateLane` 则认为该 `update` 在本次更新中满足优先级应该被处理。
-
