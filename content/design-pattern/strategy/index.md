@@ -1,8 +1,8 @@
 ---
-title: "Design Pattern: Strategy 策略模式"
+title: "Design Pattern: Strategy"
 date: "2021-09-06"
 tags: ["Design Pattern"]
-description: "策略模式"
+description: "2. 策略模式"
 ---
 
 ## 定义

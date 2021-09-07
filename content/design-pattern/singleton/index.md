@@ -2,7 +2,7 @@
 title: "Design Pattern: Singleton"
 date: "2021-09-06"
 tags: ["Design Pattern"]
-description: "单例模式"
+description: "1. 单例模式"
 ---
 
 ## 定义
