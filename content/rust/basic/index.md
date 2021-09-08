@@ -137,3 +137,22 @@ console.log(rect1)
 let rect1 = Rectangle { width: 30, height: 50 };
 println!("rect1 is {:?}", rect1);
 ```
+
+### 枚举
+
+```ts
+enum IpAddrKind {
+  v4,
+  v6,
+}
+
+const IP1 = IpAddrKind.v4
+```
+
+```rust
+enum IpAddrKind {
+  V4,
+  V6,
+}
+let four = IpAddrKind::V4;
+```
