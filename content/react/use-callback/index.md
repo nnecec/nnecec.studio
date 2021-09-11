@@ -58,7 +58,7 @@ function areHookInputsEqual(
 
 `useCallback` 的实现相对比较简单，在 `mount` 阶段，将方法和依赖储存在 `hook.memoizedState` 上。在 `update` 阶段，如果存在依赖，则遍历依赖数组使用 `Object.is` 进行一个个对比，如果有不同的则更新之前已经储存的缓存，如果依赖都没有发生变更，则复用缓存里的方法。
 
-## 场景
+## 现实案例
 
 ### 什么时候使用 `useCallback`
 
