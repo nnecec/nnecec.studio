@@ -5,4 +5,3 @@ tags: ["Induction", "TypeScript"]
 description: "TypeScript 复杂类型的使用介绍与案例总结"
 ---
 
-## 

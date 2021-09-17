@@ -1,3 +1,3 @@
 # nnecec.github.io
 
-About JavaScript and React.
+Dive deep into JavaScript and React.

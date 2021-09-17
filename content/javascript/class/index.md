@@ -5,6 +5,5 @@ tags: ["Deep Dive", "JavaScript"]
 description: "class "
 ---
 
-## 1. 关于 class
+## 概念
 
-在 React 中，class 是用于写组件的一种方式。

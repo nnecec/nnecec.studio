@@ -4,7 +4,7 @@ module.exports = {
     author: {
       name: `nnecec`,
     },
-    description: `Deep Dive into JavaScript, and React.`,
+    description: `Dive Deep into JavaScript, and React.`,
     siteUrl: `https://nnecec-github-io.vercel.app`,
     social: {
       twitter: `nnecec_cn`,
@@ -122,7 +122,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-offline`,
   ],
 }

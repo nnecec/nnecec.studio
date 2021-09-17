@@ -1,6 +1,5 @@
 {
   "name": "nnecec.github.io",
-  "private": true,
   "description": "Deep Dive into JavaScript, and React.",
   "version": "0.1.0",
   "author": "nnecec <nnecec@outlook.com>",
@@ -10,7 +9,6 @@
   "dependencies": {
     "gatsby": "^3.13.0",
     "gatsby-plugin-feed": "^3.13.0",
-    "gatsby-plugin-gatsby-cloud": "^3.1.0",
     "gatsby-plugin-google-analytics": "^3.13.0",
     "gatsby-plugin-image": "^1.13.0",
     "gatsby-plugin-manifest": "^3.13.0",
@@ -31,12 +29,12 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "sharp": "^0.29.0",
+    "sharp": "^0.29.1",
     "typeface-merriweather": "^1.1.13",
     "typeface-montserrat": "^1.1.13"
   },
   "devDependencies": {
-    "prettier": "^2.3.2"
+    "prettier": "^2.4.1"
   },
   "homepage": "https://nnecec.gatsbyjs.io/",
   "keywords": [
