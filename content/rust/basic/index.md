@@ -78,7 +78,7 @@ const user1: User = {
   sign_in_count: 1,
 }
 
-console.log(user.email)
+console.log(user1.email)
 
 const user2: User = {
   ...user1,
@@ -155,4 +155,13 @@ enum IpAddrKind {
   V6,
 }
 let four = IpAddrKind::V4;
+
+//
+enum IpAddr {
+  V4(u8, u8, u8, u8),
+  V6(String),
+}
+let four = IpAddr::V4(String::from(127, 0, 0, 1));
+let six = IpAddr::V6(String::from("::1"));
 ```
+
