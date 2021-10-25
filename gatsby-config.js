@@ -105,6 +105,8 @@ module.exports = {
               }
             `,
             output: "/rss.xml",
+            title: "nnecec's blog",
+            link: "http://nnecec-github-io.vercel.app/",
           },
         ],
       },
@@ -123,5 +125,6 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-offline`,
+    `gatsby-plugin-postcss`
   ],
 }

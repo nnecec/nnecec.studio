@@ -1,11 +1,17 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import { Bio, Layout, Tag, SEO } from "../components"
+import { Bio, Layout, Tag, SEO, Button, Space } from "../components"
 
-const BlogIndex = ({ data, location }) => {
+const BlogIndex = ({ data, location, ...props }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
+
+  const { currentPage, numPages } = props.pageContext
+  const isFirst = currentPage === 1
+  const isLast = currentPage === numPages
+  const prevPage = currentPage - 1 === 1 ? '/' : `/${(currentPage - 1)}`
+  const nextPage = `/${(currentPage + 1)}`
 
   if (posts.length === 0) {
     return (
@@ -61,6 +67,27 @@ const BlogIndex = ({ data, location }) => {
           )
         })}
       </ol>
+      <Space>
+        {!isFirst && (
+          <Link to={prevPage} rel="prev">
+            <Button>←</Button>
+          </Link>
+        )}
+        {Array.from({ length: numPages }, (_, i) => (
+
+          <Link
+            key={i}
+            to={`/${i === 0 ? '' : i + 1}`}
+          >
+            <Button active={i + 1 === currentPage}>{i + 1}</Button>
+          </Link>
+        ))}
+        {!isLast && (
+          <Link to={nextPage} rel="next">
+            <Button>→</Button>
+          </Link>
+        )}
+      </Space>
     </Layout>
   )
 }
@@ -68,13 +95,17 @@ const BlogIndex = ({ data, location }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC },
+      limit: $limit
+      skip: $skip
+    ) {
       nodes {
         excerpt
         fields {

@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 16px;
+    @apply leading-normal;
+    font-family: "SF Pro SC", "SF Pro Display", "SF Pro Icons", "PingFang SC",
+      "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply mb-8;
+  }
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  h3 {
+    @apply text-2xl;
+  }
+  h4 {
+    @apply text-xl;
+  }
+  h5 {
+    @apply text-lg;
+  }
+  p {
+    @apply leading-normal;
+    @apply mb-8;
+    @apply p-0;
+  }
+  ul,
+  ol {
+    @apply mx-0;
+    @apply p-0;
+    @apply mb-8;
+    list-style-position: outside;
+    list-style-image: none;
+    @apply leading-normal;
+    @apply list-disc;
+  }
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
+  ul li,
+  ol li {
+    @apply pl-0;
+    @apply mb-4;
+  }
+
+  li > p {
+    @apply mb-4;
+  }
+
+  li *:last-child {
+    @apply mb-0;
+  }
+
+  li > ul {
+    @apply ml-8;
+    @apply mt-4;
+  }
+
+  blockquote {
+    color: var(--color-text-light);
+    @apply -ml-6;
+    @apply mr-8;
+    @apply pl-6;
+    @apply border-l-2;
+    @apply border-solid;
+    @apply text-lg;
+    font-style: italic;
+    @apply mb-8;
+  }
+
+  blockquote > :last-child {
+    @apply mb-0;
+  }
+
+  blockquote > ul,
+  blockquote > ol {
+    list-style-position: inside;
+  }
+  a {
+    @apply text-primary;
+  }
+}
