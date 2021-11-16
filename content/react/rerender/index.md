@@ -1,8 +1,8 @@
 ---
 title: "Deep Dive: rerender"
-date: "2021-08-15"
+date: "2021-11-11"
 tags: ["Deep Dive", "React"]
-description: "React 中的重新渲染"
+description: "React 中的状态更新"
 ---
 
 ## 概念
@@ -16,6 +16,8 @@ description: "React 中的重新渲染"
 - useReducer
 
 ### 流程
+
+对于上述触发更新的方法，大体流程如下：
 
 ```dot
 digraph graphname {
@@ -39,6 +41,8 @@ digraph graphname {
 
 ### 创建更新
 
+#### this.setState
+
 ```ts
 // this.setState -> this.updater.enqueueSetState
 enqueueSetState(inst, payload, callback) {
@@ -48,6 +52,11 @@ enqueueSetState(inst, payload, callback) {
   enqueueUpdate(fiber, update, lane);
   const root = scheduleUpdateOnFiber(fiber, lane, eventTime);
 }
+```
+
+#### this.forceUpdate
+
+```ts
 // this.forceUpdate -> this.updater.enqueueForceUpdate
 enqueueForceUpdate(inst, callback) {
   const update = createUpdate(eventTime, lane);
@@ -56,6 +65,11 @@ enqueueForceUpdate(inst, callback) {
   enqueueUpdate(fiber, update, lane);
   const root = scheduleUpdateOnFiber(fiber, lane, eventTime);
 }
+```
+
+#### useState/useReducer
+
+```ts
 // useState/useReducer -> setState -> dispatchAction
 function dispatchAction<S, A>(
   fiber: Fiber,
@@ -88,7 +102,9 @@ function dispatchAction<S, A>(
 }
 ```
 
-可以看到，所有的状态更新方法，有一个一样的过程是：创建 `update`，使用 `scheduleUpdateOnFiber` 调度更新。
+可以看到，所有的状态更新方法，有一个一样的过程是：创建 `update`，根据不同方法打上不同的标记，然后调用 `scheduleUpdateOnFiber` 进入调度更新，即 `reconciliation` 和 `commit`。
+
+#### scheduleUpdateOnFiber
 
 ```ts
 export function scheduleUpdateOnFiber(
@@ -118,13 +134,15 @@ export function scheduleUpdateOnFiber(
 }
 ```
 
-`scheduleUpdateOnFiber` 根据任务[优先级](/react/lane)，决定本次调度使用 `concurrent` 模式还是 `sync`，然后通过 `perform` 方法循环调用 [beginWork](/react/conciliation) 开始 `conciliation` 的工作。
+`scheduleUpdateOnFiber` 根据任务[优先级](/react/lane)，决定本次调度使用 `concurrent` 模式还是 `sync`，然后通过 `performSyncWorkOnRoot/ensureRootIsScheduled` 方法循环调用 [beginWork](/react/conciliation) 开始 `conciliation` 的工作。
 
 ### 处理更新(updateQueue)
 
-在 `beginWork` 中，在 `ClassComponent`, `HostRoot`, `FunctionComponent` 的情况下才会出现以上 5 种产生 `Update` 的方法。在前两种情况下，都会调用 `processUpdateQueue` 根据优先级生成更新。
+通过上述步骤，确定了待更新实例 `Update`。在后续的 `beginWork` 中，在 `ClassComponent`, `HostRoot`, `FunctionComponent` 的情况下才会出现以上 5 种产生 `Update` 的方法。
 
 #### 对于 ClassComponent 和 HostRoot
+
+在这两种情况下，都会调用 `processUpdateQueue` 根据优先级生成 Update，并将 Update 更新到 fiber 上。
 
 ```ts
 export function processUpdateQueue<State>(
@@ -285,5 +303,132 @@ export function processUpdateQueue<State>(
     workInProgress.lanes = newLanes;
     workInProgress.memoizedState = newState; // 将最终结果赋值给 memoizedState
   }
+}
+```
+
+#### 对于 FunctionComponent
+
+在 FunctionComponent 中，状态是记录在 hooks 中的。
+
+```ts
+function updateReducer<S, I, A>(
+  reducer: (S, A) => S,
+  initialArg: I,
+  init?: I => S,
+): [S, Dispatch<A>] {
+  const hook = updateWorkInProgressHook();
+  const queue = hook.queue;
+
+  if (queue === null) {
+    throw new Error(
+      'Should have a queue. This is likely a bug in React. Please file an issue.',
+    );
+  }
+
+  queue.lastRenderedReducer = reducer;
+
+  const current: Hook = (currentHook: any);
+
+  let baseQueue = current.baseQueue;
+
+  const pendingQueue = queue.pending;
+  if (pendingQueue !== null) {
+    if (baseQueue !== null) {
+      const baseFirst = baseQueue.next;
+      const pendingFirst = pendingQueue.next;
+      baseQueue.next = pendingFirst;
+      pendingQueue.next = baseFirst;
+    }
+    current.baseQueue = baseQueue = pendingQueue;
+    queue.pending = null;
+  }
+
+  if (baseQueue !== null) {
+    const first = baseQueue.next;
+    let newState = current.baseState;
+
+    let newBaseState = null;
+    let newBaseQueueFirst = null;
+    let newBaseQueueLast = null;
+    let update = first;
+    do {
+      const updateLane = update.lane;
+      if (!isSubsetOfLanes(renderLanes, updateLane)) {
+        const clone: Update<S, A> = {
+          lane: updateLane,
+          action: update.action,
+          hasEagerState: update.hasEagerState,
+          eagerState: update.eagerState,
+          next: (null: any),
+        };
+        if (newBaseQueueLast === null) {
+          newBaseQueueFirst = newBaseQueueLast = clone;
+          newBaseState = newState;
+        } else {
+          newBaseQueueLast = newBaseQueueLast.next = clone;
+        }
+        currentlyRenderingFiber.lanes = mergeLanes(
+          currentlyRenderingFiber.lanes,
+          updateLane,
+        );
+        markSkippedUpdateLanes(updateLane);
+      } else {
+
+        if (newBaseQueueLast !== null) {
+          const clone: Update<S, A> = {
+            lane: NoLane,
+            action: update.action,
+            hasEagerState: update.hasEagerState,
+            eagerState: update.eagerState,
+            next: (null: any),
+          };
+          newBaseQueueLast = newBaseQueueLast.next = clone;
+        }
+
+        if (update.hasEagerState) {
+          newState = ((update.eagerState: any): S);
+        } else {
+          const action = update.action;
+          newState = reducer(newState, action);
+        }
+      }
+      update = update.next;
+    } while (update !== null && update !== first);
+
+    if (newBaseQueueLast === null) {
+      newBaseState = newState;
+    } else {
+      newBaseQueueLast.next = (newBaseQueueFirst: any);
+    }
+
+    if (!is(newState, hook.memoizedState)) {
+      markWorkInProgressReceivedUpdate();
+    }
+
+    hook.memoizedState = newState;
+    hook.baseState = newBaseState;
+    hook.baseQueue = newBaseQueueLast;
+
+    queue.lastRenderedState = newState;
+  }
+
+  const lastInterleaved = queue.interleaved;
+  if (lastInterleaved !== null) {
+    let interleaved = lastInterleaved;
+    do {
+      const interleavedLane = interleaved.lane;
+      currentlyRenderingFiber.lanes = mergeLanes(
+        currentlyRenderingFiber.lanes,
+        interleavedLane,
+      );
+      markSkippedUpdateLanes(interleavedLane);
+      interleaved = ((interleaved: any).next: Update<S, A>);
+    } while (interleaved !== lastInterleaved);
+  } else if (baseQueue === null) {
+    queue.lanes = NoLanes;
+  }
+
+  const dispatch: Dispatch<A> = (queue.dispatch: any);
+  return [hook.memoizedState, dispatch];
 }
 ```

@@ -1,6 +1,6 @@
 ---
 title: "Deep Dive: fiber"
-date: "2021-07-14"
+date: "2021-11-02"
 tags: ["Deep Dive", "React"]
 description: "Fiber 是什么"
 ---
@@ -15,7 +15,7 @@ description: "Fiber 是什么"
 
 ## 理解
 
-我认为 Fiber 是数据结构与功能函数组成的一种能够支持 React 特定功能，如可中断更新的架构，
+我认为 Fiber 是数据结构与功能函数组成的一种能够支持 React 特定功能，如可中断更新的架构。在 fiber 实例节点中，记录了该节点的所有信息，以及与其他节点的关系。React 通过这种数据结构达到了描述页面的目的，同时将动态信息保存在节点上，从而实现类似生命周期、Diff 更新等功能。
 
 ## 源码
 
@@ -89,7 +89,6 @@ export type Fiber = {
 
 fiber 的 `tag` 等属性记录了该 fiber 的节点信息，然后通过 `return`, `child`, `sibling` 将各个 fiber 连接起来，形成了页面的节点树的结构。
 
-在 fiber 的状态属性 `memoizedProps`, `memoizedState`, `updateQueue` 记录了节点当前的状态数据，从结构上看也是大量使用的链表的数据结构。
+在 fiber 的状态属性 `memoizedProps`, `memoizedState`, `updateQueue` 记录了节点当前的状态数据，从结构上看也是大量使用链表这种数据结构。
 
-链表的数据结构在 Fiber 中使用的好处是，链表可以方便的在任意节点插入/删除，也可以很好的支持异步特性。
-
+链表的数据结构在 Fiber 中使用的好处是，链表可以方便的在任意节点插入/删除，也可以很好的支持异步特性。同时，不会像数组一样需要大量连续的内存空间，对性能友好。
