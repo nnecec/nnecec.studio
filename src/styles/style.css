@@ -1,5 +1,12 @@
 /* CSS Custom Properties Definitions */
 @import url("rc-switch/assets/index.css");
+.rc-switch {
+  background-color: #000;
+  border-color: #666;
+}
+.rc-switch-inner {
+  top: 2px;
+}
 
 :root {
   --maxWidth-none: "none";
@@ -73,12 +80,6 @@ html {
 
 .global-wrapper[data-is-root-path="true"] .bio {
   margin-bottom: var(--spacing-20);
-}
-
-.global-header {
-  margin-bottom: var(--spacing-12);
-  display: flex;
-  justify-content: space-between;
 }
 
 .main-heading {

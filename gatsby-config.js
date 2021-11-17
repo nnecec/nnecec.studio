@@ -10,6 +10,7 @@ module.exports = {
       twitter: `nnecec_cn`,
     },
   },
+  jsxRuntime: "automatic",
   plugins: [
     `gatsby-plugin-image`,
     {

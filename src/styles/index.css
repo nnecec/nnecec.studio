@@ -6,8 +6,11 @@
   html {
     font-size: 16px;
     @apply leading-normal;
-    font-family: "SF Pro SC", "SF Pro Display", "SF Pro Icons", "PingFang SC",
-      "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  }
+  body {
+    @apply bg-white dark:bg-gray-800;
+    @apply text-gray-800 dark:text-gray-100 dark:text-opacity-80;
+    @apply transition-colors;
   }
   h1,
   h2,
@@ -32,20 +35,13 @@
     @apply text-lg;
   }
   p {
-    @apply leading-normal;
-    @apply mb-8;
-    @apply p-0;
-    @apply tracking-wide;
+    @apply leading-normal mb-8 p-0 tracking-wide;
   }
   ul,
   ol {
-    @apply mx-0;
-    @apply p-0;
-    @apply mb-8;
+    @apply mx-0 p-0 mb-8 leading-normal list-disc;
     list-style-position: outside;
     list-style-image: none;
-    @apply leading-normal;
-    @apply list-disc;
   }
   ul {
     @apply list-disc;
@@ -55,8 +51,7 @@
   }
   ul li,
   ol li {
-    @apply pl-0;
-    @apply mb-2;
+    @apply pl-0 mb-2;
   }
 
   li > p {
@@ -67,21 +62,15 @@
     @apply mb-0;
   }
 
-  li > ul, li > ol {
-    @apply ml-4;
-    @apply mt-2;
+  li > ul,
+  li > ol {
+    @apply ml-4 mt-2;
   }
 
   blockquote {
     color: var(--color-text-light);
-    @apply -ml-6;
-    @apply mr-8;
-    @apply pl-6;
-    @apply border-l-2;
-    @apply border-solid;
-    @apply text-lg;
+    @apply ml-6 mr-8 pl-6 border-l-2 border-solid text-lg mb-8;
     font-style: italic;
-    @apply mb-8;
   }
 
   blockquote > :last-child {
@@ -93,6 +82,7 @@
     list-style-position: inside;
   }
   a {
-    @apply text-primary;
+    /* @apply text-primary; */
+    @apply font-semibold hover:underline hover:text-blue-500;
   }
 }
