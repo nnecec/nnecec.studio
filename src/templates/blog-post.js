@@ -4,7 +4,7 @@ import { Bio, Layout, SEO, Tag, Toc } from "../components"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
-  console.log(post)
+
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
 

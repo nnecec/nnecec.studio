@@ -24,7 +24,7 @@ export const Layout = ({ location, title, children }) => {
     <div className="global-wrapper" data-is-root-path={isRootPath}>
       <header className="mb-16 flex justify-between items-center">
         <div>{header}</div>
-        <div><ThemeSwitch /></div>
+        {typeof window !== "undefined" && <div><ThemeSwitch /></div>}
       </header>
       <main>{children}</main>
       <footer className="py-8">

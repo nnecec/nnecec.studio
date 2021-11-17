@@ -8,7 +8,7 @@ export const ThemeSwitch = () => {
     return localStorage.getItem('theme')
   }
 
-  const isPrefersDark = useMemo(() => window.matchMedia('(prefers-color-scheme: dark)').matches, [])
+  const isPrefersDark = useMemo(() => window.matchMedia('(prefers-color-scheme: dark)').matches, [window])
   const [currentTheme, setCurrentTheme] = useState(getTheme() || (isPrefersDark ? 'dark' : 'light'))
 
   useEffect(() => {
