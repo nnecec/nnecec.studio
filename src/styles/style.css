@@ -137,6 +137,18 @@ html {
   margin-right: var(--spacing-1);
 }
 
+.blog-post .anchors {
+  position: fixed;
+  top: auto;
+  right: 5vw;
+  margin-left: 36px;
+  max-width: 260px;
+}
+.blog-post .anchors ul {
+  list-style: none;
+  font-size: 14px;
+}
+
 .blog-post-nav ul {
   margin: var(--spacing-0);
 }
@@ -165,5 +177,10 @@ html {
   ul,
   ol {
     list-style-position: inside;
+  }
+}
+@media (max-width: calc(800px + 260px)) {
+  .blog-post .anchors {
+    display: none;
   }
 }

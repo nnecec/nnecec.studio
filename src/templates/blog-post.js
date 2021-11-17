@@ -1,10 +1,10 @@
-import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import { Bio, Layout, SEO, Tag } from "../components"
+import { Bio, Layout, SEO, Tag, Toc } from "../components"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
+  console.log(post)
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
 
@@ -26,6 +26,7 @@ const BlogPostTemplate = ({ data, location }) => {
           </div>
           <p>上次更新: {post.frontmatter.date}</p>
         </header>
+        {!!post.tableOfContents && <Toc toc={post.tableOfContents} />}
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
@@ -83,6 +84,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      tableOfContents
       frontmatter {
         title
         date(formatString: "MM月DD日, YYYY")

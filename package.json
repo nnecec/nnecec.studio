@@ -16,6 +16,7 @@
     "gatsby-plugin-offline": "^5.1.2",
     "gatsby-plugin-react-helmet": "^5.0.0",
     "gatsby-plugin-sharp": "^4.1.2",
+    "gatsby-remark-autolink-headers": "^5.2.0",
     "gatsby-remark-copy-linked-files": "^5.0.0",
     "gatsby-remark-graphviz": "^4.0.0",
     "gatsby-remark-images": "^6.1.1",
