@@ -19,12 +19,13 @@ const BlogPostTemplate = ({ data, location }) => {
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
+        <header className="mb-12">
+          <h1>{post.frontmatter.title}</h1>
           <div>
-            {post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}
+            <div className="text-sm mb-2">上次更新: {post.frontmatter.date}</div>
+            <div>{post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}</div>
           </div>
-          <p>上次更新: {post.frontmatter.date}</p>
+
         </header>
         {!!post.tableOfContents && <Toc toc={post.tableOfContents} />}
         <section
@@ -87,7 +88,7 @@ export const pageQuery = graphql`
       tableOfContents
       frontmatter {
         title
-        date(formatString: "MM月DD日, YYYY")
+        date(formatString: "YYYY年MM月DD日")
         description
         tags
         status

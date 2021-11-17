@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Link, graphql } from "gatsby"
 
 import { Bio, Layout, Tag, SEO, Button, Space } from "../components"
@@ -112,7 +111,7 @@ export const pageQuery = graphql`
           slug
         }
         frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+          date(formatString: "YYYY年MM月DD日")
           title
           description
           tags
