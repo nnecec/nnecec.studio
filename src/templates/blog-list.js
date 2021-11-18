@@ -29,7 +29,6 @@ const BlogIndex = ({ data, location, ...props }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
-      <Bio />
 
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
@@ -48,7 +47,7 @@ const BlogIndex = ({ data, location, ...props }) => {
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
-                  <small>{post.frontmatter.date}</small>
+                  <small>最后更新：{post.frontmatter.date}</small>
                 </header>
                 <section>
                   <p
@@ -87,6 +86,9 @@ const BlogIndex = ({ data, location, ...props }) => {
           </Link>
         )}
       </Space>
+
+      <Bio className="my-12" />
+
     </Layout>
   )
 }

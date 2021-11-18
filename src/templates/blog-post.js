@@ -22,7 +22,7 @@ const BlogPostTemplate = ({ data, location }) => {
         <header className="mb-12">
           <h1>{post.frontmatter.title}</h1>
           <div>
-            <div className="text-sm mb-2">上次更新: {post.frontmatter.date}</div>
+            <div className="text-sm mb-2">最后更新: {post.frontmatter.date}</div>
             <div>{post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}</div>
           </div>
 

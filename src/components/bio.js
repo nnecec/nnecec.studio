@@ -5,11 +5,11 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import cls from 'classnames'
 
-export const Bio = () => {
+export const Bio = ({ className }) => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       site {
@@ -30,10 +30,10 @@ export const Bio = () => {
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const { author, social, description } = data.site.siteMetadata
   return (
-    <div className="bio">
+    <div className={cls('bio', 'flex', className)}>
       <StaticImage
-        className="bio-avatar"
         layout="fixed"
+        className="rounded-full mr-4"
         formats={["AUTO", "WEBP", "AVIF"]}
         src="../images/profile-pic.jpg"
         width={50}
@@ -41,15 +41,15 @@ export const Bio = () => {
         quality={95}
         alt="Profile picture"
       />
-      {author?.name && (
-        <div>
+      {
+        author?.name && (
           <div>
-            <strong>{author.name}</strong> {author?.summary || null}
+            <strong className="text-lg">{author.name}</strong> {author?.summary || null}
             <div>{description}</div>
           </div>
-        </div>
 
-      )}
-    </div>
+        )
+      }
+    </div >
   )
 }
