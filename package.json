@@ -42,7 +42,7 @@
     "postcss": "^8.3.11",
     "prettier": "^2.4.1"
   },
-  "homepage": "http://nnecec-github-io.vercel.app/",
+  "homepage": "http://nnecec.vercel.app/",
   "keywords": [
     "gatsby",
     "react",

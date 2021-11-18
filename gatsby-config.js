@@ -1,13 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `nnecec.github.io`,
+    title: `nnecec's space`,
     author: {
       name: `nnecec`,
     },
     description: `Dive Deep into JavaScript, and React.`,
-    siteUrl: `https://nnecec-github-io.vercel.app`,
+    siteUrl: `https://nnecec.vercel.app`,
     social: {
       twitter: `nnecec_cn`,
+      github: `nnecec`
     },
   },
   jsxRuntime: "automatic",
@@ -108,7 +109,7 @@ module.exports = {
             `,
             output: "/rss.xml",
             title: "nnecec's blog",
-            link: "http://nnecec-github-io.vercel.app/",
+            link: "http://nnecec.vercel.app/",
           },
         ],
       },

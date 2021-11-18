@@ -1,5 +1,4 @@
 # nnecec.github.io
 
-[Home](http://nnecec-github-io.vercel.app/)
-
-Dive deep into JavaScript and React.
+- [Home](https://nnecec.vercel.app/)
+  Dive deep into JavaScript and React.

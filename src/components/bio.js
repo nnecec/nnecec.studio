@@ -20,6 +20,7 @@ export const Bio = ({ className }) => {
           }
           social {
             twitter
+            github
           }
           description
         }
@@ -44,8 +45,16 @@ export const Bio = ({ className }) => {
       {
         author?.name && (
           <div>
-            <strong className="text-lg">{author.name}</strong> {author?.summary || null}
-            <div>{description}</div>
+            <div className="text-lg font-semibold mb-1">{author.name} <span className="text-xs">{description}</span></div>
+            <div className="text-sm flex gap-2">
+              <a href={`https://github.com/${social?.github || ``}`} target="_blank">
+                Github
+              </a>
+              <a href={`https://twitter.com/${social?.twitter || ``}`} target="_blank">
+                Twitter
+              </a>
+            </div>
+
           </div>
 
         )
