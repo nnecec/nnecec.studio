@@ -1,5 +1,5 @@
 ---
-title: "Process of React: reconciliation"
+title: "React 的 Reconciliation 阶段"
 date: "2021-11-02"
 tags: ["React"]
 description: "reconciliation 阶段做了哪些事情"

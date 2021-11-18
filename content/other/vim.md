@@ -1,5 +1,5 @@
 ---
-title: "Introduction: Vim 模式使用 VSCode"
+title: "Vim 模式使用 VSCode"
 date: "2021-11-02"
 tags: ["Introduction"]
 description: "~"

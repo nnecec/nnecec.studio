@@ -55,6 +55,7 @@
   --fontSize-5: 2.074rem;
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
+  --anchors-width: 299px;
 }
 
 /* HTML elements */
@@ -142,7 +143,7 @@ html {
   top: auto;
   right: 5vw;
   margin-left: 36px;
-  max-width: 260px;
+  width: var(--anchors-width);
 }
 .blog-post .anchors ul {
   list-style: none;
@@ -169,7 +170,7 @@ html {
     list-style-position: inside;
   }
 }
-@media (max-width: calc(800px + 260px)) {
+@media (max-width: calc(800px + var(--anchors-width))) {
   .blog-post .anchors {
     display: none;
   }

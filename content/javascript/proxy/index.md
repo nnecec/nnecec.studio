@@ -1,5 +1,5 @@
 ---
-title: "Introduction: Proxy, Reflect"
+title: "Proxy, Reflect"
 date: "2021-10-20"
 tags: ["Deep Dive", "JavaScript"]
 status: 1

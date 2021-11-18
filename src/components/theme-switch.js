@@ -4,29 +4,21 @@ import sun from '../images/sun.png'
 import moon from '../images/moon.png'
 
 export const ThemeSwitch = () => {
-  const getTheme = () => {
-    return localStorage.getItem('theme')
-  }
-
-  const isPrefersDark = useMemo(() => window.matchMedia('(prefers-color-scheme: dark)').matches, [window])
-  const [currentTheme, setCurrentTheme] = useState(getTheme() || (isPrefersDark ? 'dark' : 'light'))
+  const [currentTheme, setCurrentTheme] = useState(null)
 
   useEffect(() => {
-    const html = document.querySelector('html')
-    html.classList = currentTheme === 'dark' ? 'dark' : 'light'
+    setCurrentTheme(window.__theme)
+    window.__onThemeChange = () => {
+      setCurrentTheme(window.__theme);
+    };
   }, [currentTheme])
-
-  const setTheme = (theme) => {
-    localStorage.setItem('theme', theme)
-    setCurrentTheme(theme)
-
-  }
 
   return <Switch
     checked={currentTheme === 'dark'}
     onChange={checked => {
-      const theme = checked ? 'dark' : 'light'
-      setTheme(theme)
+      window.__setPreferredTheme(
+        checked ? 'dark' : 'light'
+      )
     }}
     checkedChildren={<img
       src={moon}

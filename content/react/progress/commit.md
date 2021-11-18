@@ -1,5 +1,5 @@
 ---
-title: "Process of React: commit"
+title: "React 的 Commit 阶段"
 date: "2021-07-23"
 tags: ["React"]
 description: "React 的 commit 阶段详解"
