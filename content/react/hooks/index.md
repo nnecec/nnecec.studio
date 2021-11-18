@@ -1,8 +1,8 @@
 ---
-title: "Deep Dive: hooks"
+title: "理解 hooks 基础"
 date: "2021-07-11"
 tags: ["Deep Dive", "React"]
-description: "hooks 的概念是什么？它以什么样的形态存在于 React 中？"
+description: "hooks 以什么样的形态存在于 React 中？"
 ---
 
 ## 定义

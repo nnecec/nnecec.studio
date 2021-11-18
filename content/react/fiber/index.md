@@ -1,8 +1,8 @@
 ---
-title: "Deep Dive: fiber"
+title: "Fiber 概念"
 date: "2021-11-02"
 tags: ["Deep Dive", "React"]
-description: "Fiber 是什么"
+description: "Fiber 的理解及源码浅析"
 ---
 
 ## 概念

@@ -1,5 +1,5 @@
 ---
-title: "Deep Dive: lane"
+title: "React 优先级控制：Lane"
 date: "2021-08-15"
 tags: ["Deep Dive", "React"]
 description: "React 异步渲染中的优先级"

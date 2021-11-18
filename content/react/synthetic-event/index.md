@@ -1,5 +1,5 @@
 ---
-title: "Deep Dive: SyntheticEvent"
+title: "React 合成事件：SyntheticEvent"
 date: "2021-04-04"
 tags: ["Deep Dive", "React"]
 description: "合成事件"

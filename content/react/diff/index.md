@@ -1,8 +1,8 @@
 ---
-title: "Deep Dive: Virtual DOM and Diff"
+title: "Virtual DOM 和 Diff 解读"
 date: "2021-08-08"
 tags: ["Deep Dive", "React"]
-description: "virtual DOM 和 Diff 算法"
+description: "理解 Virtual DOM 和 Diff 算法"
 ---
 
 ## 概念

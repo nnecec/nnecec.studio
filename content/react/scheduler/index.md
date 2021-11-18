@@ -1,8 +1,8 @@
 ---
-title: "Deep Dive: Scheduler"
+title: "React 更新调度机制：Scheduler"
 date: "2021-03-18"
 tags: ["Deep Dive", "React"]
-description: "React 中的调度器"
+description: "React 如何控制不同优先级的调度"
 ---
 
 ## 概念
