@@ -165,3 +165,32 @@ let four = IpAddr::V4(String::from(127, 0, 0, 1));
 let six = IpAddr::V6(String::from("::1"));
 ```
 
+### 模块
+
+```ts
+//  导入 Result
+import { Result } from "./result"
+import { Result as IoResult } from "./result2"
+
+// 导入 模块
+import * as fmt from "./fmt"
+```
+
+```rust
+//  导入模块下的 Result
+use std::fmt::Result;
+use std::io::Result as IoResult;
+
+fn function1() -> Result {
+    // --snip--
+}
+
+// 导入模块
+use std::fmt;
+use std::io;
+
+fn function1() -> fmt::Result {
+    // --snip--
+}
+
+```

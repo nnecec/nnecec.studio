@@ -119,14 +119,14 @@ html {
   margin-right: var(--spacing-1);
 }
 
-.blog-post .anchors {
+.anchors {
   position: fixed;
   top: auto;
   right: 5vw;
   margin-left: 36px;
   width: var(--anchors-width);
 }
-.blog-post .anchors ul {
+.anchors ul {
   list-style: none;
   font-size: 14px;
 }
@@ -152,7 +152,7 @@ html {
   }
 }
 @media (max-width: calc(800px + var(--anchors-width))) {
-  .blog-post .anchors {
+  .anchors {
     display: none;
   }
 }

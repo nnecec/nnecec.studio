@@ -39,6 +39,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.0",
     "gatsby-plugin-postcss": "^5.2.0",
+    "gatsby-plugin-vercel": "^1.0.3",
     "postcss": "^8.3.11",
     "prettier": "^2.4.1"
   },
