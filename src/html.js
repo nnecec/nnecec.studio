@@ -13,6 +13,7 @@ export default function HTML(props) {
         />
         {props.headComponents}
       </head>
+
       <body {...props.bodyAttributes}>
         <script
           dangerouslySetInnerHTML={{

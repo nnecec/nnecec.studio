@@ -1,5 +1,5 @@
 ---
-title: "Induction: Rust"
+title: "Induction: Rust (WIP)"
 date: "2021-08-17"
 tags: ["Induction", "Rust"]
 description: "从前端开发者的视角进入 Rust 的世界"
@@ -193,4 +193,111 @@ fn function1() -> fmt::Result {
     // --snip--
 }
 
+```
+
+### 数组
+
+```ts
+const nums = [1, 2, 3]
+```
+
+```rust
+let mut v = Vec::new();
+v.push(5);
+
+let v = vec![1, 2, 3];
+let third: &i32 = &v[2];
+for i in &mut v {
+    *i += 50;
+}
+
+enum SpreadsheetCell {
+    Int(i32),
+    Float(f64),
+    Text(String),
+}
+
+let row = vec![
+    SpreadsheetCell::Int(3),
+    SpreadsheetCell::Text(String::from("blue")),
+    SpreadsheetCell::Float(10.12),
+];
+```
+
+### 字符串集合
+
+```rust
+let mut s = String::from("foo");
+s.push_str("bar");
+
+let s1 = String::from("Hello, ");
+let s2 = String::from("world!");
+let s3 = s1 + &s2; // 注意 s1 被移动了，不能继续使用
+
+let s1 = String::from("tic");
+let s2 = String::from("tac");
+let s3 = String::from("toe");
+let s = format!("{}-{}-{}", s1, s2, s3);
+
+
+for c in "नमस्ते".chars() {
+    println!("{}", c);
+}
+
+```
+
+### Hash Map
+
+```rust
+// 构建
+use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+scores.insert(String::from("Blue"), 10);
+scores.insert(String::from("Yellow"), 50);
+// or
+let teams  = vec![String::from("Blue"), String::from("Yellow")];
+let initial_scores = vec![10, 50];
+let scores: HashMap<_, _> = teams.iter().zip(initial_scores.iter()).collect();
+
+// 访问
+let team_name = String::from("Blue");
+let score = scores.get(&team_name);
+
+// 遍历
+for (key, value) in &scores {
+    println!("{}: {}", key, value);
+}
+
+// 更新
+scores.insert(String::from("Blue"), 25);
+scores.entry(String::from("Blue")).or_insert(50); // 没有 Blue 值时更新为50
+```
+
+### 错误处理
+
+类似 try..catch
+
+```rust
+use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let f = File::open("hello.txt");
+
+    let f = match f {
+        Ok(file) => file,
+        Err(error) => match error.kind() {
+            ErrorKind::NotFound => match File::create("hello.txt") {
+                Ok(fc) => fc,
+                Err(e) => panic!("Problem creating the file: {:?}", e),
+            },
+            other_error => panic!("Problem opening the file: {:?}", other_error),
+        },
+    };
+
+    // or
+    let f = File::open("hello.txt").unwrap(); // return OK value
+    let f = File::open("hello.txt").expect("Failed to open hello.txt"); // return Err value
+}
 ```

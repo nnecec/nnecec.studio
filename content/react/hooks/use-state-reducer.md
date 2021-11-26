@@ -25,7 +25,7 @@ const [count, dispatchCount] = useReducer(countReducer, 0)
 
 ## 源码
 
-在我们对[hooks](/react/hooks)的解读中，解释了 hooks 的状态是如何记录并获取的。
+在我们对[hooks](/react/hooks/basic)的解读中，解释了 hooks 的状态是如何记录并获取的。
 
 在看这部分源码前，我们带着几个问题：
 

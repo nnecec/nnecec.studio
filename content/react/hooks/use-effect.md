@@ -92,7 +92,7 @@ function updateEffectImpl(fiberFlags, hookFlags, create, deps): void {
 }
 ```
 
-在 `update` 阶段，代码逻辑类似 [useCallback](/react/use-callback)，通过检查依赖是否变更来决定是否更新缓存的方法。可以看到`update` 阶段比 `mount` 阶段多了 `destroy` 参数，`destroy` 参数是为了在不需要更新时，保留来自于上一个 `effect` 方法的 `destroy`。如果需要更新，在更新的同时也会打上 `HookHasEffect` 标记。
+在 `update` 阶段，代码逻辑类似 [useCallback](/react/hooks/use-callback)，通过检查依赖是否变更来决定是否更新缓存的方法。可以看到`update` 阶段比 `mount` 阶段多了 `destroy` 参数，`destroy` 参数是为了在不需要更新时，保留来自于上一个 `effect` 方法的 `destroy`。如果需要更新，在更新的同时也会打上 `HookHasEffect` 标记。
 
 ```ts
 function pushEffect(tag, create, destroy, deps) {

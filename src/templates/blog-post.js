@@ -28,7 +28,8 @@ const BlogPostTemplate = ({ data, location }) => {
 
         </header>
         {!!post.tableOfContents && <Toc toc={post.tableOfContents} />}
-        <section
+        <article
+          className="prose prose-blue"
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
@@ -91,7 +92,6 @@ export const pageQuery = graphql`
         date(formatString: "YYYY年MM月DD日")
         description
         tags
-        status
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

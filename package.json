@@ -7,6 +7,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.4.1",
     "classnames": "^2.3.1",
     "gatsby": "^4.2.0",
     "gatsby-plugin-feed": "^4.2.0",
@@ -24,7 +25,7 @@
     "gatsby-remark-responsive-iframe": "^5.2.0",
     "gatsby-remark-smartypants": "^5.2.0",
     "gatsby-source-filesystem": "^4.2.0",
-    "gatsby-transformer-remark": "^5.1.4",
+    "gatsby-transformer-remark": "^5.2.0",
     "gatsby-transformer-sharp": "^4.2.0",
     "prismjs": "^1.25.0",
     "rc-switch": "^3.2.2",
@@ -38,10 +39,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
+    "eslint-config-react-app": "^6.0.0",
     "gatsby-plugin-postcss": "^5.2.0",
     "gatsby-plugin-vercel": "^1.0.3",
-    "postcss": "^8.3.11",
-    "prettier": "^2.4.1"
+    "postcss": "^8.4.1",
+    "prettier": "^2.5.0"
   },
   "homepage": "http://nnecec.vercel.app/",
   "keywords": [

@@ -127,24 +127,3 @@ export default function compose(...funcs) {
 ### bindActionCreators
 
 [API](https://redux.js.org/api/bindactioncreators)
-
-## React Redux
-
-首先仍然是了解一下基本使用方式，由于代码量比较大这里贴出[quick-start](https://react-redux.js.org/tutorials/quick-start)
-
-### Provider
-
-首先要提供给 `Provider` 一个合法的 store 实例，Provider 是一个 `Context.Provider`，其值为
-
-```js
-{
-  store, subscription
-}
-```
-
-store 是传给 Provider 的 `store props`，`subscription` 则通过 `createSubscription(store)` 方法生成。
-
-### connect
-
-[API](https://react-redux.js.org/api/connect)
-

@@ -21,13 +21,13 @@ description: "深入 React 源码阅读推荐"
 3. [lane](/react/lane): React 如何实现优先级策略
 4. [位运算](/react/bitwise-operators): 位运算在 React 中的实践
 5. hooks
-   1. [useState, useReducer](/react/use-state-reducer)
-   2. [useMemo](/react/use-memo)
-   3. [useCallback](/react/use-callback)
-   4. [useRef](/react/use-ref)
-   5. [useEffect](/react/use-effect)
-   6. [useContext](/react/use-context)
-   7. [useTransition](/react/use-transition)
+   1. [useState, useReducer](/react/hooks/use-state-reducer)
+   2. [useMemo](/react/hooks/use-memo)
+   3. [useCallback](/react/hooks/use-callback)
+   4. [useRef](/react/hooks/use-ref)
+   5. [useEffect](/react/hooks/use-effect)
+   6. [useContext](/react/hooks/use-context)
+   7. [useTransition](/react/hooks/use-transition)
 
 ## React 生态
 

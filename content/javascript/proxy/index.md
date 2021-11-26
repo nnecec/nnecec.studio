@@ -2,7 +2,6 @@
 title: "Proxy, Reflect"
 date: "2021-10-20"
 tags: ["Deep Dive", "JavaScript"]
-status: 1
 description: "介绍 Proxy 和 Reflect 的常见使用方式"
 ---
 

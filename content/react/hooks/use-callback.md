@@ -218,7 +218,7 @@ function App() {
 
 官方还提到了一种使用[useReducer 生成 dispatch](https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down)的方案来传递方法，并且由于 `dispatch` 的“不变”性，向子组件传递的 `dispatch` 不会导致子组件渲染。
 
-我们可以在[`useReducer` 的 `update` 阶段的源码可以看到如何获取 `dispatch` 的](/react/use-state-reducer)：
+我们可以在[`useReducer` 的 `update` 阶段的源码可以看到如何获取 `dispatch` 的](/react/hooks/use-state-reducer)：
 
 ```ts
 // ...

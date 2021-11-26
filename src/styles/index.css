@@ -39,7 +39,7 @@
   }
   ul,
   ol {
-    @apply mx-0 p-0 mb-8 leading-normal list-disc;
+    @apply mx-0 p-0 mb-8 leading-normal;
     list-style-position: outside;
     list-style-image: none;
   }
