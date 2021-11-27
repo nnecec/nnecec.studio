@@ -2,6 +2,8 @@ import { Link, graphql } from "gatsby"
 
 import { Bio, Layout, Tag, SEO, Button, Space } from "../components"
 
+const SEO_TITLE = "所有文章"
+
 const BlogIndex = ({ data, location, ...props }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
@@ -15,7 +17,7 @@ const BlogIndex = ({ data, location, ...props }) => {
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
-        <SEO title="All posts" />
+        <SEO title={SEO_TITLE} />
         <Bio />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the
@@ -28,7 +30,7 @@ const BlogIndex = ({ data, location, ...props }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
+      <SEO title={SEO_TITLE} />
 
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {

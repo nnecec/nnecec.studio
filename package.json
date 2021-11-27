@@ -42,7 +42,7 @@
     "eslint-config-react-app": "^6.0.0",
     "gatsby-plugin-postcss": "^5.2.0",
     "gatsby-plugin-vercel": "^1.0.3",
-    "postcss": "^8.4.1",
+    "postcss": "^8.4.3",
     "prettier": "^2.5.0"
   },
   "homepage": "http://nnecec.vercel.app/",

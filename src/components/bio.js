@@ -45,7 +45,7 @@ export const Bio = ({ className }) => {
       {
         author?.name && (
           <div>
-            <div className="text-lg font-semibold mb-1">{author.name} <span className="text-xs">{description}</span></div>
+            <div className="text-lg font-semibold mb-1">{author.name} <sup className="text-xs">{description}</sup></div>
             <div className="text-sm flex gap-2">
               <a href={`https://github.com/${social?.github || ``}`} target="_blank">
                 Github

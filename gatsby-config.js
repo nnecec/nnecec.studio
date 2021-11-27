@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `nnecec's space`,
+    title: `nnecec's aircraft`,
     author: {
       name: `nnecec`,
     },
-    description: `Dive Deep into JavaScript, and React.`,
+    description: `前端深入不浅出指北 🧐`,
     siteUrl: `https://nnecec.vercel.app`,
     social: {
       twitter: `nnecec_cn`,
