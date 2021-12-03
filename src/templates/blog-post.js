@@ -1,15 +1,15 @@
 import { Link, graphql } from "gatsby"
 
 import { Bio, Layout, SEO, Tag, Toc } from "../components"
+import arrow from '../images/arrow-up-right.svg'
 
-const BlogPostTemplate = ({ data, location }) => {
+const BlogPostTemplate = ({ data, location, ...rest }) => {
   const post = data.markdownRemark
-
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+  const { title, repositoryUrl } = data.site.siteMetadata
   const { previous, next } = data
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={title}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
@@ -22,7 +22,10 @@ const BlogPostTemplate = ({ data, location }) => {
         <header className="mb-12">
           <h1>{post.frontmatter.title}</h1>
           <div>
-            <div className="text-sm mb-2">最后更新: {post.frontmatter.date}</div>
+            <div className="text-sm mb-2">
+              最后更新: {post.frontmatter.date}
+              {/* <a href={`${repositoryUrl}/issues`} target="_blank">反馈错误 <img src={arrow} className="inline-block" width="10px" /> </a> */}
+            </div>
             <div>{post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}</div>
           </div>
 
@@ -34,6 +37,7 @@ const BlogPostTemplate = ({ data, location }) => {
           itemProp="articleBody"
         />
         <hr />
+
         <footer className="py-8">
           <Bio />
         </footer>
@@ -80,6 +84,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        repositoryUrl
       }
     }
     markdownRemark(id: { eq: $id }) {

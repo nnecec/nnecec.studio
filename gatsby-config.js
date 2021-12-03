@@ -6,6 +6,7 @@ module.exports = {
     },
     description: `前端深入不浅出指北 🧐`,
     siteUrl: `https://nnecec.vercel.app`,
+    repositoryUrl: `https://github.com/nnecec/nnecec.github.io`,
     social: {
       twitter: `nnecec_cn`,
       github: `nnecec`

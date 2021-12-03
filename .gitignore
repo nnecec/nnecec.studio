@@ -75,3 +75,6 @@ yarn-error.log
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# obsidian
+**/.obsidian
