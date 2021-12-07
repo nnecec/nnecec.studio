@@ -43,7 +43,7 @@
     "gatsby-plugin-postcss": "^5.3.0",
     "gatsby-plugin-vercel": "^1.0.3",
     "postcss": "^8.4.4",
-    "prettier": "^2.5.0"
+    "prettier": "^2.5.1"
   },
   "homepage": "http://nnecec.vercel.app/",
   "keywords": [

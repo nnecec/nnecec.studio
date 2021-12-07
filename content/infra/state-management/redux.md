@@ -1,5 +1,5 @@
 ---
-title: "redux, react-redux 源码解读"
+title: "Redux 源码解读"
 date: "2021-10-12"
 tags: ["Deep Dive", "React", "state-management"]
 description: "redux 和 react-redux 的源码解读"

@@ -301,3 +301,9 @@ fn main() {
     let f = File::open("hello.txt").expect("Failed to open hello.txt"); // return Err value
 }
 ```
+
+### 泛型
+
+```rust
+
+```

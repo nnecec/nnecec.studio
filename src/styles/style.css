@@ -119,18 +119,6 @@ html {
   margin-right: var(--spacing-1);
 }
 
-.anchors {
-  position: fixed;
-  top: auto;
-  right: 5vw;
-  margin-left: 36px;
-  width: var(--anchors-width);
-}
-.anchors ul {
-  list-style: none;
-  font-size: 14px;
-}
-
 .blog-post-nav ul {
   margin: var(--spacing-0);
 }
@@ -151,8 +139,18 @@ html {
     list-style-position: inside;
   }
 }
-@media (max-width: calc(800px + var(--anchors-width))) {
+
+.anchors ul {
+  list-style: none;
+  font-size: 14px;
+}
+
+@media (min-width: 1200px) {
   .anchors {
-    display: none;
+    position: fixed;
+    top: auto;
+    right: 5vw;
+    margin-left: 36px;
+    width: var(--anchors-width);
   }
 }
