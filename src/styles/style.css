@@ -152,5 +152,6 @@ html {
     right: 5vw;
     margin-left: 36px;
     width: var(--anchors-width);
+    padding: 40px;
   }
 }

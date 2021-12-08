@@ -3,7 +3,7 @@ export const Toc = (props) => {
   return (
     <nav
       dangerouslySetInnerHTML={{ __html: toc }}
-      className="anchors p-8"
+      className="anchors"
     />
   )
 }

@@ -118,12 +118,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `nnecec`,
-        short_name: `nnecec`,
+        name: `nnecec's aircraft`,
+        short_name: `aircraft`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#fbe548`,
-        display: `minimal-ui`,
+        display: `standalone`,
         icon: `src/images/gatsby-icon.jpg`, // This path is relative to the root of the site.
       },
     },

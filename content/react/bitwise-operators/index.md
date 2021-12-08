@@ -5,11 +5,11 @@ tags: ["Introduction", "React"]
 description: "位运算在 React 中的实践"
 ---
 
-## 位运算在 React 中的使用
+## 位运算符
+
+在该[文章](https://github.com/camsong/blog/issues/9)中我们可以了解，JavaScript 数字精度的问题是由于数据以二进制的形式储存在计算机中。对二进制数据的计算即为位运算符。
 
 在整个 React 源码中，都穿插了位运算的痕迹，以及 `ReactFiberLane.js` 文件中
-
-## API 解读
 
 ### [按位与 &](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_AND)
 
@@ -107,9 +107,11 @@ export function higherPriorityLane(a: Lane, b: Lane) {
 
 ## 其他位操作符
 
-### [左移<<](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Left_shift)
+### [左移<<](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Left_shift) [右移>>](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Right_shift)
 
 左移操作符 (<<) 将第一个操作数向左移动指定位数，左边超出的位数将会被清除，右边将会补零。
+
+右移操作符 (<<) 是左移的逆运算，也就是原数右边（和上面左移相同位置）为基准，整体向右移动，右边超出的位数将会被清除，左边将会补零。
 
 ```ts
 const a = 5 // 00000000000000000000000000000101
@@ -117,4 +119,14 @@ const b = 2 // 00000000000000000000000000000010
 
 console.log(a << b) // 00000000000000000000000000010100
 // expected output: 20
+
+const a = 5 //  00000000000000000000000000000101
+const b = 2 //  00000000000000000000000000000010
+const c = -5 // -00000000000000000000000000000101
+
+console.log(a >> b) //  00000000000000000000000000000001
+// expected output: 1
+
+console.log(c >> b) // -00000000000000000000000000000010
+// expected output: -2
 ```
