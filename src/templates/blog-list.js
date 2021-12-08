@@ -44,11 +44,11 @@ const BlogIndex = ({ data, location, ...props }) => {
                 itemType="http://schema.org/Article"
               >
                 <header>
-                  <h2>
+                  <h3>
                     <Link to={post.fields.slug} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
-                  </h2>
+                  </h3>
                   <small>最后更新：{post.frontmatter.date}</small>
                 </header>
                 <section>

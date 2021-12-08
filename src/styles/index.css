@@ -11,14 +11,14 @@
     @apply bg-white dark:bg-gray-800;
     @apply text-gray-800 dark:text-gray-100 dark:text-opacity-80;
     @apply transition-colors;
-    @apply break-normal;
+    @apply break-words;
   }
   h1,
   h2,
   h3,
   h4,
   h5 {
-    @apply mb-8;
+    @apply mt-8 mb-6;
   }
   h1 {
     @apply text-4xl;
@@ -83,7 +83,6 @@
     list-style-position: inside;
   }
   a {
-    /* @apply text-primary; */
-    @apply font-semibold hover:underline hover:text-blue-500;
+    @apply font-semibold hover:text-primary focus:text-primary;
   }
 }

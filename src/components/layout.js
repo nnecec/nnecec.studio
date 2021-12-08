@@ -11,9 +11,7 @@ export const Layout = ({ location, title, children }) => {
         <Link to="/">{title}</Link>
       </h1>
     }
-    return <Link className="header-link-home" to="/">
-      {title}
-    </Link>
+    return <h5><Link to="/">{title}</Link></h5>
   }, [location.pathname])
 
   return (

@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     colors: {
       ...defaultTheme.colors,
-      primary: defaultTheme.colors.coolGray,
+      primary: 'var(--primary-color)'
     },
     extend: {
       fontFamily: {
