@@ -1,5 +1,7 @@
 {
   "files.exclude": {
-    "**/.yarn": true,
+    ".cache": true,
+    ".yarn": true,
+    "public": true
   }
 }

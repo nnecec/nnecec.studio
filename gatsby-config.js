@@ -122,9 +122,18 @@ module.exports = {
         short_name: `aircraft`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#fbe548`,
         display: `standalone`,
         icon: `src/images/gatsby-icon.jpg`, // This path is relative to the root of the site.
+        "user_preferences": {
+          "color_scheme_dark": {
+            "theme_color": "rgba(31, 41, 55)",
+            "background_color": "rgba(31, 41, 55)"
+          },
+          "color_scheme_light": {
+            "theme_color": "#fff",
+            "background_color": "#fff"
+          }
+        }
       },
     },
     `gatsby-plugin-react-helmet`,
