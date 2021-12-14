@@ -54,10 +54,6 @@ html {
   @apply mx-1;
 }
 
-.blog-post-nav ul {
-  margin: var(--spacing-0);
-}
-
 .gatsby-highlight {
   margin-bottom: var(--spacing-8);
 }
@@ -75,17 +71,5 @@ html {
 }
 
 .anchors ul {
-  list-style: none;
-  font-size: 14px;
-}
-
-@media (min-width: 1200px) {
-  .anchors {
-    position: fixed;
-    top: auto;
-    right: 5vw;
-    margin-left: 36px;
-    width: var(--anchors-width);
-    padding: 40px;
-  }
+  @apply list-none;
 }

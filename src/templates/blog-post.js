@@ -30,19 +30,21 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
           </div>
 
         </header>
-        {!!post.tableOfContents && <Toc toc={post.tableOfContents} />}
-        <article
-          className="prose prose-blue"
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
+        <div className="relative">
+          {!!post.tableOfContents && <Toc className="text-sm fixed z-20 top-[20rem] right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto hidden xl:block" toc={post.tableOfContents} />}
+          <article
+            className="prose prose-blue "
+            dangerouslySetInnerHTML={{ __html: post.html }}
+            itemProp="articleBody"
+          />
+        </div>
         <hr />
 
         <footer className="py-8">
           <Bio />
         </footer>
       </article>
-      <nav className="blog-post-nav">
+      <nav>
         <ul
           style={{
             display: `flex`,

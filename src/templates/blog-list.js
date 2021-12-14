@@ -37,20 +37,20 @@ const BlogIndex = ({ data, location, ...props }) => {
           const title = post.frontmatter.title || post.fields.slug
 
           return (
-            <li key={post.fields.slug}>
+            <li key={post.fields.slug} className="mb-4 overflow-hidden">
               <article
                 itemScope
                 itemType="http://schema.org/Article"
               >
                 <header>
-                  <h3>
+                  <h3 className="mb-2">
                     <Link to={post.fields.slug} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h3>
                   <small>最后更新：{post.frontmatter.date}</small>
                 </header>
-                <section className="mb-4">
+                <section className="my-4">
                   <p
                     dangerouslySetInnerHTML={{
                       __html: post.frontmatter.description || post.excerpt,
