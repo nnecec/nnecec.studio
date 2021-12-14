@@ -23,7 +23,9 @@ export const Layout = ({ location, title, children }) => {
       <main>{children}</main>
       <footer className="py-8 text-sm">
         © {new Date().getFullYear()} Built with <a href="https://www.gatsbyjs.com">Gatsby</a>,
-        Code at <a href="https://github.com/nnecec/nnecec.github.io">Github</a>.
+        Code at <a href="https://github.com/nnecec/nnecec.github.io"
+          className="after:content-['↗']"
+          target="_blank" referrerPolicy="no-referrer">Github</a>.
       </footer>
     </div>
   )

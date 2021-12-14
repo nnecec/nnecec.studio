@@ -9,7 +9,7 @@ description: "IoC, DI, DDD, RPC 等等都是什么？"
 
 ## IoC 控制反转, DI 依赖注入
 
-- https://segmentfault.com/a/1190000008626680
+- https://segmentfault.com/a/1190000023650518
 
 ## DDD 领域驱动模型
 

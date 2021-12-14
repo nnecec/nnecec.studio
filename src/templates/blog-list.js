@@ -39,7 +39,6 @@ const BlogIndex = ({ data, location, ...props }) => {
           return (
             <li key={post.fields.slug}>
               <article
-                className="post-list-item"
                 itemScope
                 itemType="http://schema.org/Article"
               >
@@ -51,7 +50,7 @@ const BlogIndex = ({ data, location, ...props }) => {
                   </h3>
                   <small>最后更新：{post.frontmatter.date}</small>
                 </header>
-                <section>
+                <section className="mb-4">
                   <p
                     dangerouslySetInnerHTML={{
                       __html: post.frontmatter.description || post.excerpt,
@@ -59,7 +58,7 @@ const BlogIndex = ({ data, location, ...props }) => {
                     itemProp="description"
                   />
                 </section>
-                <div className="footer">
+                <div className="">
                   {post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}
                 </div>
               </article>

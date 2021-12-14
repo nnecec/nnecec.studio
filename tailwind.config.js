@@ -1,31 +1,22 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const { fontFamily } = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}"],
-  mode: 'jit',
-  darkMode: 'class', // or 'media' or 'class'
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: 'class',
   theme: {
-    colors: {
-      ...defaultTheme.colors,
-      primary: 'var(--primary-color)'
-    },
     extend: {
+      colors: {
+        primary: 'var(--primary-color)',
+        'primary-dark': 'var(--primary-dark-color)'
+      },
       fontFamily: {
         sans: [
           "SF Pro SC", "SF Pro Display", "SF Pro Icons", "PingFang SC", "Helvetica Neue",
           "Helvetica", "Arial", 'sans-serif', 'Optimistic Display', '-apple-system',
-          ...defaultTheme.fontFamily.sans,
+          ...fontFamily.sans,
         ],
-        mono: ['"Source Code Pro"', ...defaultTheme.fontFamily.mono],
+        mono: ['"Source Code Pro"', ...fontFamily.mono],
       },
     },
   },
-  variants: {
-    extend: {
-
-    },
-  },
-  plugins: [
-    // require('@tailwindcss/typography'),
-  ],
 }

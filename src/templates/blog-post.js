@@ -24,7 +24,7 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
           <div>
             <div className="text-sm mb-2">
               最后更新: {post.frontmatter.date}
-              {/* <a href={`${repositoryUrl}/issues`} target="_blank">反馈错误 <img src={arrow} className="inline-block" width="10px" /> </a> */}
+              {/* <a href={`${repositoryUrl}/issues`} target="_blank" referrerPolicy="no-referrer">反馈错误 <img src={arrow} className="inline-block" width="10px" /> </a> */}
             </div>
             <div>{post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}</div>
           </div>

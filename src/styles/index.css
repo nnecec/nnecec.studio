@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 @layer base {
   html {
@@ -8,10 +9,9 @@
     @apply leading-normal;
   }
   body {
-    @apply bg-white dark:bg-gray-800;
-    @apply text-gray-800 dark:text-gray-100 dark:text-opacity-80;
-    @apply transition-colors;
-    @apply break-words;
+    @apply bg-zinc-50 dark:bg-zinc-800
+    text-zinc-800 dark:text-zinc-100 dark:text-opacity-80
+    transition-colors break-words;
   }
   h1,
   h2,
@@ -69,9 +69,7 @@
   }
 
   blockquote {
-    color: var(--color-text-light);
-    @apply ml-6 mr-8 pl-6 border-l-2 border-solid text-lg mb-8;
-    font-style: italic;
+    @apply m-6 pl-6 border-l-4 border-zinc-200 italic;
   }
 
   blockquote > :last-child {
@@ -82,7 +80,8 @@
   blockquote > ol {
     list-style-position: inside;
   }
+
   a {
-    @apply font-semibold hover:text-primary focus:text-primary;
+    @apply font-semibold no-underline dark:text-blue-400 text-blue-800 hover:text-primary-dark dark:hover:text-primary focus:text-primary;
   }
 }

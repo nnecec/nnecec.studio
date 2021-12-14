@@ -1,10 +1,10 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Switch from 'rc-switch'
 import sun from '../images/sun.png'
 import moon from '../images/moon.png'
 
 export const ThemeSwitch = () => {
-  const [currentTheme, setCurrentTheme] = useState(null)
+  const [currentTheme, setCurrentTheme] = useState(window.__theme ?? null)
 
   useEffect(() => {
     setCurrentTheme(window.__theme)

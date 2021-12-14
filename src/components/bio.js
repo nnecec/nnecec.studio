@@ -47,10 +47,10 @@ export const Bio = ({ className }) => {
           <div>
             <div className="text-lg font-semibold mb-1">{author.name} <sup className="text-xs">{description}</sup></div>
             <div className="text-sm flex gap-2">
-              <a href={`https://github.com/${social?.github || ``}`} target="_blank">
+              <a href={`https://github.com/${social?.github || ``}`} target="_blank" referrerPolicy="no-referrer">
                 Github
               </a>
-              <a href={`https://twitter.com/${social?.twitter || ``}`} target="_blank">
+              <a href={`https://twitter.com/${social?.twitter || ``}`} target="_blank" referrerPolicy="no-referrer">
                 Twitter
               </a>
             </div>
