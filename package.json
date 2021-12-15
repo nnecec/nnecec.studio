@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
-    "eslint-config-react-app": "^6.0.0",
     "gatsby-plugin-postcss": "^5.4.0",
     "gatsby-plugin-vercel": "^1.0.3",
     "postcss": "^8.4.5",

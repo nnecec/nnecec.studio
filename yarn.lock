@@ -11247,7 +11247,6 @@ __metadata:
     "@tailwindcss/typography": ^0.5.0
     autoprefixer: ^10.4.0
     classnames: ^2.3.1
-    eslint-config-react-app: ^6.0.0
     gatsby: ^4.4.0
     gatsby-plugin-feed: ^4.4.0
     gatsby-plugin-google-analytics: ^4.4.0

@@ -22,16 +22,20 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
         <header className="mb-12">
           <h1>{post.frontmatter.title}</h1>
           <div>
-            <div className="text-sm mb-2">
+            <div className="text-sm mb-2 flex justify-between">
               最后更新: {post.frontmatter.date}
-              {/* <a href={`${repositoryUrl}/issues`} target="_blank" referrerPolicy="no-referrer">反馈错误 <img src={arrow} className="inline-block" width="10px" /> </a> */}
+              <a className="after:content-['↗']" href={`${repositoryUrl}/issues`} target="_blank" referrerPolicy="no-referrer">反馈错误 </a>
             </div>
             <div>{post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}</div>
           </div>
 
         </header>
         <div className="relative">
-          {!!post.tableOfContents && <Toc className="text-sm fixed z-20 top-[20rem] right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto hidden xl:block" toc={post.tableOfContents} />}
+          {!!post.tableOfContents &&
+            <Toc
+              className="text-sm z-20 top-[20rem] right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto xl:fixed"
+              toc={post.tableOfContents}
+            />}
           <article
             className="prose prose-blue "
             dangerouslySetInnerHTML={{ __html: post.html }}
