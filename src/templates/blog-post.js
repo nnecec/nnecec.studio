@@ -1,7 +1,6 @@
 import { Link, graphql } from "gatsby"
 
-import { Bio, Layout, SEO, Tag, Toc } from "../components"
-import arrow from '../images/arrow-up-right.svg'
+import { Bio, Layout, SEO, Tag, Toc, Icon } from "../components"
 
 const BlogPostTemplate = ({ data, location, ...rest }) => {
   const post = data.markdownRemark
@@ -24,7 +23,7 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
           <div>
             <div className="text-sm mb-2 flex justify-between">
               最后更新: {post.frontmatter.date}
-              <a className="after:content-['↗']" href={`${repositoryUrl}/issues`} target="_blank" referrerPolicy="no-referrer">反馈错误 </a>
+              <a href={`${repositoryUrl}/issues`} target="_blank" referrerPolicy="no-referrer">反馈<Icon.LinkExternal /></a>
             </div>
             <div>{post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}</div>
           </div>

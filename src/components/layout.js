@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { Link } from "gatsby"
 import { ThemeSwitch } from './theme-switch'
+import { Icon } from '.'
 
 export const Layout = ({ location, title, children }) => {
   const Header = () => useMemo(() => {
@@ -23,9 +24,7 @@ export const Layout = ({ location, title, children }) => {
       <main>{children}</main>
       <footer className="py-8 text-sm">
         © {new Date().getFullYear()} Built with <a href="https://www.gatsbyjs.com">Gatsby</a>,
-        Code at <a href="https://github.com/nnecec/nnecec.github.io"
-          className="after:content-['↗']"
-          target="_blank" referrerPolicy="no-referrer">Github</a>.
+        Code at <a href="https://github.com/nnecec/nnecec.github.io" target="_blank" referrerPolicy="no-referrer">Github<Icon.LinkExternal /></a>.
       </footer>
     </div>
   )
