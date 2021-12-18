@@ -4,6 +4,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: 'class',
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
       colors: {
         primary: 'var(--primary-color)',
@@ -19,4 +22,7 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

@@ -36,7 +36,6 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
               toc={post.tableOfContents}
             />}
           <article
-            className="prose prose-blue "
             dangerouslySetInnerHTML={{ __html: post.html }}
             itemProp="articleBody"
           />
@@ -60,15 +59,15 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+              <Link className="before:content-['_↽']" to={previous.fields.slug} rel="prev">
+                {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+              <Link className="after:content-['_⇁']" to={next.fields.slug} rel="next">
+                {next.frontmatter.title}
               </Link>
             )}
           </li>

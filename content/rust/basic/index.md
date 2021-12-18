@@ -27,11 +27,11 @@ let b = "world" // error
 ```rust
 // Rust
 const MAX: u32 = 10000;
-let mut a: i32 = 0;
+let mut a: i32 = -1;
 a = 1;
 
 let b = "hello";
-let b = "world"; // it's ok
+let b = "world"; // ok
 ```
 
 ### 条件语句与循环
@@ -54,8 +54,6 @@ let b = "world"; // it's ok
 | 数组类型  | [i32; 5]                                                            | number[]                                                 |
 | 函数      | fn say_name(name: &str, count: i8) -> &str {}                       | function sayName(name: string, count: number): string {} |
 | never     | !                                                                   | never                                                    |
-
-### 所有权
 
 ### struct(class/interface)
 
@@ -169,48 +167,40 @@ let six = IpAddr::V6(String::from("::1"));
 
 ```ts
 //  导入 Result
-import { Result } from "./result"
+import { Result } from "./utils/result"
 import { Result as IoResult } from "./result2"
 
 // 导入 模块
-import * as fmt from "./fmt"
+import * as fmt from "fmt"
 ```
 
 ```rust
-//  导入模块下的 Result
-use std::fmt::Result;
-use std::io::Result as IoResult;
-
-fn function1() -> Result {
-    // --snip--
-}
+// 绝对路径下的Result
+mod crate::result;
+// 相对路径下的Result
+mod result2;
 
 // 导入模块
 use std::fmt;
-use std::io;
-
-fn function1() -> fmt::Result {
-    // --snip--
-}
-
 ```
 
 ### 数组
 
 ```ts
-const nums = [1, 2, 3]
+const nums1 = [1, 2, 3]
 ```
 
 ```rust
-let mut v = Vec::new();
-v.push(5);
+let mut nums = Vec::new();
+nums.push(5);
 
-let v = vec![1, 2, 3];
+let nums1 = vec![1, 2, 3];
 let third: &i32 = &v[2];
 for i in &mut v {
     *i += 50;
 }
 
+// 类型不同
 enum SpreadsheetCell {
     Int(i32),
     Float(f64),
@@ -232,7 +222,7 @@ s.push_str("bar");
 
 let s1 = String::from("Hello, ");
 let s2 = String::from("world!");
-let s3 = s1 + &s2; // 注意 s1 被移动了，不能继续使用
+let s3 = s1 + &s2; // s1 被移动了，不能继续使用
 
 let s1 = String::from("tic");
 let s2 = String::from("tac");
@@ -307,3 +297,13 @@ fn main() {
 ```rust
 
 ```
+
+## Rust 特有
+
+### 借用与所有权(ownership)
+
+1. Rust 中的每一个值都有一个被称为其 所有者（owner）的变量。
+2. 值在任一时刻有且只有一个所有者。
+3. 当所有者（变量）离开作用域，这个值将被丢弃。
+
+### 闭包
