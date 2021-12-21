@@ -124,10 +124,11 @@ module.exports = {
         background_color: `#ffffff`,
         display: `standalone`,
         icon: `src/images/gatsby-icon.jpg`, // This path is relative to the root of the site.
+        "theme_color": "#1c1917",
         "user_preferences": {
           "color_scheme_dark": {
-            "theme_color": "rgba(31, 41, 55)",
-            "background_color": "rgba(31, 41, 55)"
+            "theme_color": "#27272a",
+            "background_color": "#27272a"
           },
           "color_scheme_light": {
             "theme_color": "#fff",
