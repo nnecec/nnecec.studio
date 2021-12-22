@@ -1,11 +1,11 @@
-import { Link, graphql } from "gatsby"
+import { Link, graphql } from 'gatsby'
 
-import { Bio, Layout, Tag, SEO, Button, Space } from "../components"
+import { Bio, Layout, Tag, SEO, Button, Space } from '../components'
 
-const SEO_TITLE = "所有文章"
+const SEO_TITLE = '所有文章'
 
 const BlogIndex = ({ data, location, ...props }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+  const siteTitle = data.site.siteMetadata?.title || 'Title'
   const posts = data.allMarkdownRemark.nodes
 
   const { currentPage, numPages } = props.pageContext
@@ -19,11 +19,7 @@ const BlogIndex = ({ data, location, ...props }) => {
       <Layout location={location} title={siteTitle}>
         <SEO title={SEO_TITLE} />
         <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
+        <p>空</p>
       </Layout>
     )
   }
@@ -32,7 +28,7 @@ const BlogIndex = ({ data, location, ...props }) => {
     <Layout location={location} title={siteTitle}>
       <SEO title={SEO_TITLE} />
 
-      <ol style={{ listStyle: `none` }}>
+      <ol style={{ listStyle: 'none' }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
 
@@ -53,13 +49,13 @@ const BlogIndex = ({ data, location, ...props }) => {
                 <section className="my-4">
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
+                      __html: post.frontmatter.description || post.excerpt
                     }}
                     itemProp="description"
                   />
                 </section>
                 <div className="">
-                  {post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}
+                  {post.frontmatter.tags?.map(tag => (<Tag key={tag}>{tag}</Tag>))}
                 </div>
               </article>
             </li>

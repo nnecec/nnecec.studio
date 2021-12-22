@@ -11,21 +11,6 @@
 :root {
   --primary-color: theme("colors.yellow.300");
   --primary-dark-color: theme("colors.yellow.400");
-  --spacing-px: "1px";
-  --spacing-0: 0;
-  --spacing-1: 0.25rem;
-  --spacing-2: 0.5rem;
-  --spacing-3: 0.75rem;
-  --spacing-4: 1rem;
-  --spacing-5: 1.25rem;
-  --spacing-6: 1.5rem;
-  --spacing-8: 2rem;
-  --spacing-10: 2.5rem;
-  --spacing-12: 3rem;
-  --spacing-16: 4rem;
-  --spacing-20: 5rem;
-  --spacing-24: 6rem;
-  --spacing-32: 8rem;
   --anchors-width: 299px;
 }
 
@@ -45,9 +30,9 @@ html {
 /* Custom classes */
 
 .global-wrapper {
-  margin: 0 auto;
-  max-width: 42rem;
-  padding: var(--spacing-10) var(--spacing-5);
+  @apply py-10 px-5;
+  @apply mx-auto;
+  @apply max-w-2xl;
 }
 
 .blog-post a {
@@ -55,7 +40,7 @@ html {
 }
 
 .gatsby-highlight {
-  margin-bottom: var(--spacing-8);
+  @apply mb-8;
 }
 
 .icon {
@@ -77,4 +62,15 @@ html {
 
 .anchors ul {
   @apply list-none;
+}
+.anchors ul * {
+  @apply my-0;
+}
+.anchors ul p,
+.anchors ul a {
+  @apply break-normal truncate;
+  @apply text-xs;
+}
+.anchors ul p {
+  @apply my-2;
 }

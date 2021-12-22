@@ -1,20 +1,19 @@
-import * as React from 'react';
-import cn from 'classnames';
+import * as React from 'react'
+import cn from 'classnames'
 
-export function Button({
+export function Button ({
   children,
   onClick,
   active = false,
   className,
-  style,
+  style
 }) {
-
   return (
     <button
       style={style}
       onMouseDown={(evt) => {
-        evt.preventDefault();
-        evt.stopPropagation();
+        evt.preventDefault()
+        evt.stopPropagation()
       }}
       onClick={onClick}
       className={cn(
@@ -23,5 +22,5 @@ export function Button({
       )}>
       {children}
     </button>
-  );
+  )
 }

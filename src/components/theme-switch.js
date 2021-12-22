@@ -9,8 +9,8 @@ export const ThemeSwitch = () => {
   useEffect(() => {
     setCurrentTheme(window.__theme)
     window.__onThemeChange = () => {
-      setCurrentTheme(window.__theme);
-    };
+      setCurrentTheme(window.__theme)
+    }
   }, [currentTheme])
 
   return <Switch

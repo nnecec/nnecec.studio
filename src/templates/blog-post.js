@@ -1,6 +1,6 @@
-import { Link, graphql } from "gatsby"
+import { Link, graphql } from 'gatsby'
 
-import { Bio, Layout, SEO, Tag, Toc, Icon } from "../components"
+import { Bio, Layout, SEO, Tag, Toc, Icon } from '../components'
 
 const BlogPostTemplate = ({ data, location, ...rest }) => {
   const post = data.markdownRemark
@@ -20,12 +20,13 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
       >
         <header className="mb-12">
           <h1>{post.frontmatter.title}</h1>
-          <div>
-            <div className="text-sm mb-2 flex justify-between">
+          <div className="text-sm flex flex-col gap-2">
+            <div className="flex justify-between">
               最后更新: {post.frontmatter.date}
-              <a href={`${repositoryUrl}/issues`} target="_blank" referrerPolicy="no-referrer">反馈<Icon.LinkExternal /></a>
+              <a href={`${repositoryUrl}/issues`} target="_blank" referrerPolicy="no-referrer" rel="noreferrer">反馈<Icon.LinkExternal /></a>
             </div>
-            <div>{post.frontmatter.tags?.map(tag => (<Tag>{tag}</Tag>))}</div>
+            <div>{post.frontmatter.tags?.map(tag => (<Tag key={tag}>{tag}</Tag>))}</div>
+            <div>版权声明: 署名-非商业性使用-禁止演绎 3.0 国际（<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" referrerPolicy="no-referrer" rel="noreferrer">CC BY-NC-ND 3.0</a>）</div>
           </div>
 
         </header>
@@ -49,10 +50,10 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
       <nav>
         <ul
           style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            listStyle: 'none',
             padding: 0,
             fontSize: 14
           }}

@@ -7,9 +7,11 @@ description: "从了解@formily/reactive源码洞悉reactive的原理"
 
 ## 前言
 
-首先从[官方文档](https://reactive.formilyjs.org/zh-CN/guide)认识一下`@formily/reactive`，了解基本使用的方法。
+首先可以从[官方文档](https://reactive.formilyjs.org/zh-CN/guide)和[Formily 的 Reactive 的经验汇总](https://blog.fishedee.com/2021/07/13/Formily%E7%9A%84Reactive%E7%9A%84%E7%BB%8F%E9%AA%8C%E6%B1%87%E6%80%BB/)认识一下`@formily/reactive`，了解常规使用方法。作者在文档中其实概括了 reactive 的基本概念：
 
 > reaction 在响应式编程模型中，它就相当于是可订阅对象的订阅者，它接收一个 tracker 函数，这个函数在执行的时候，如果函数内部有对 observable 对象中的某个属性进行读操作(依赖收集)，那当前 reaction 就会与该属性进行一个绑定(依赖追踪)，知道该属性在其他地方发生了写操作，就会触发 tracker 函数重复执行。
+
+[可能是 MobX Plus 的响应式状态管理方案](https://zhuanlan.zhihu.com/p/369682733)这篇文章也写的很好，作者非常详细阐述了`@formily/reactive`的特点并与`mobx`进行了对比，可以带着这些特点去源码里看看是如何实现的。
 
 ## 基本流程解析
 

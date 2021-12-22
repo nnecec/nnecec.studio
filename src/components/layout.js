@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Link } from "gatsby"
+import { Link } from 'gatsby'
 import { ThemeSwitch } from './theme-switch'
 import { Icon } from '.'
 
@@ -19,12 +19,12 @@ export const Layout = ({ location, title, children }) => {
     <div className="global-wrapper">
       <header className="mb-16 flex justify-between items-center">
         <Header />
-        {typeof window !== "undefined" && <div><ThemeSwitch /></div>}
+        {typeof window !== 'undefined' && <div><ThemeSwitch /></div>}
       </header>
       <main>{children}</main>
       <footer className="py-8 text-sm">
         © {new Date().getFullYear()} Built with <a href="https://www.gatsbyjs.com">Gatsby</a>,
-        Code at <a href="https://github.com/nnecec/nnecec.github.io" target="_blank" referrerPolicy="no-referrer">Github<Icon.LinkExternal /></a>.
+        Code at <a href="https://github.com/nnecec/nnecec.github.io" target="_blank" referrerPolicy="no-referrer" rel="noreferrer">Github<Icon.LinkExternal /></a>.
       </footer>
     </div>
   )

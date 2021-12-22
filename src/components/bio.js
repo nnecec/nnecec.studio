@@ -5,8 +5,8 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import { useStaticQuery, graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { useStaticQuery, graphql } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
 import cls from 'classnames'
 
 export const Bio = ({ className }) => {
@@ -35,7 +35,7 @@ export const Bio = ({ className }) => {
       <StaticImage
         layout="fixed"
         className="rounded-full mr-4"
-        formats={["AUTO", "WEBP", "AVIF"]}
+        formats={['AUTO', 'WEBP', 'AVIF']}
         src="../images/profile-pic.jpg"
         width={50}
         height={50}
@@ -47,10 +47,10 @@ export const Bio = ({ className }) => {
           <div>
             <div className="text-lg font-semibold mb-1">{author.name} <sup className="text-xs">{description}</sup></div>
             <div className="text-sm flex gap-2">
-              <a href={`https://github.com/${social?.github || ``}`} target="_blank" referrerPolicy="no-referrer">
+              <a href={`https://github.com/${social?.github || ''}`} target="_blank" rel="noreferrer">
                 Github
               </a>
-              <a href={`https://twitter.com/${social?.twitter || ``}`} target="_blank" referrerPolicy="no-referrer">
+              <a href={`https://twitter.com/${social?.twitter || ''}`} target="_blank" rel="noreferrer">
                 Twitter
               </a>
             </div>

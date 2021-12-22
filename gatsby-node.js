@@ -1,11 +1,11 @@
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const path = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const blogPost = path.resolve('./src/templates/blog-post.js')
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -27,7 +27,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (result.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      'There was an error loading your blog posts',
       result.errors
     )
     return
@@ -49,8 +49,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         context: {
           id: post.id,
           previousPostId,
-          nextPostId,
-        },
+          nextPostId
+        }
       })
     })
   }
@@ -59,14 +59,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const numPages = Math.ceil(posts.length / postsPerPage)
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      path: i === 0 ? `/` : `/${i + 1}`,
-      component: path.resolve("./src/templates/blog-list.js"),
+      path: i === 0 ? '/' : `/${i + 1}`,
+      component: path.resolve('./src/templates/blog-list.js'),
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,
         numPages,
-        currentPage: i + 1,
-      },
+        currentPage: i + 1
+      }
     })
   })
 }
@@ -74,13 +74,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === 'MarkdownRemark') {
     const value = createFilePath({ node, getNode })
 
     createNodeField({
-      name: `slug`,
+      name: 'slug',
       node,
-      value,
+      value
     })
   }
 }

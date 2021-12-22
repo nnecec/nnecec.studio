@@ -5,46 +5,54 @@ tags: ["Deep Dive", "React"]
 description: "React Redux 源码解析"
 ---
 
-> v8.0.0-beta
+> 当时版本：v8.0.0-beta
 
-首先是基于使用方式来看各个组件的源码，由于代码量比较大这里贴出官网的 [quick-start](https://react-redux.js.org/tutorials/quick-start)
+首先是基于了解基本使用方式的程度，来看各个组件的源码，由于代码量比较大这里贴出官网的 [quick-start](https://react-redux.js.org/tutorials/quick-start)
 
 ## Provider
 
 首先要提供给 `Provider` 一个合法的 store 实例，Provider 是一个 `Context.Provider`，`props` 上的 `store` 值为
 
 ```jsx
-value = {
+// value 属性存储的值
+{
   store,
   subscription,
 }
 ```
 
-store 是传给 Provider 的 `store props`，`subscription` 则通过 `createSubscription(store)` 方法生成。
+`store` 是传给 `Provider` 的 `store props`，`subscription` 则通过 `createSubscription(store)` 方法生成。
 
-在 Provider 内部使用 Redux 的组件有两种接入的方法：
+在 `Provider` 内使用 `Redux` 数据的组件有两种接入的方法：
 
-1. 使用 connect 返回包装后的高阶函数
-2. 在 FunctionComponent 内使用 useSelector, useDispatch
+1. 使用 `connect` 返回包装后的高阶组件
+2. 在 `FunctionComponent` 内使用 `useSelector`, `useDispatch` 获取 `store` 及 `dispatch`
 
 ## connect
 
-首先看一下第一种方法， 先了解一下 connect 的[API](https://react-redux.js.org/api/connect)。
+> https://github.com/reduxjs/react-redux/blob/449b84c668/src/components/connect.tsx#L461
+
+先了解一下 `connect` 的[API](https://react-redux.js.org/api/connect)。
 
 ```ts
-function connect(mapStateToProps?, mapDispatchToProps?, mergeProps?, options?)
+function connect(
+  mapStateToProps?,
+  mapDispatchToProps?,
+  mergeProps?,
+  options?
+) {}
 
 connect(mapState, null, mergeProps, options)(Component)
 ```
 
-connect 对包裹的 Component 做了如下操作：
+`connect()(Component)` 对包裹的 `Component` 做了如下操作：
 
-- 生成一个新的高阶组件
-- 将第一个小括号内的配置作为参数提供给 connect 返回的闭包方法 `wrapWithConnect`
+- 生成一个新的组件
+- 将第一个小括号内的配置作为参数提供给 `connect` 返回的闭包方法 `wrapWithConnect`
 - `wrapWithConnect` 将计算后的 `actualChildProps` 提供给 `WrappedComponent`
 - 将 Component 的静态方法复制到新的组件上(hoist-non-react-statics 过滤 React 原生属性)
 
-经过这些步骤，将被 connect 的 `Component` 包装成一个 订阅 store 的 `NewComponent`。
+经过这些步骤，将被 `connect` 的 `Component` 包装成一个 订阅 `store` 的 `NewComponent`。
 
 ### mapStateToProps, mapDispatchToProps
 
@@ -53,18 +61,20 @@ connect 对包裹的 Component 做了如下操作：
 ```js
 const mapStateToProps = (state, ownProps) => {
   return {
-    role: state.user,
+    user: state.common.user,
     addressList: state.common.addressList,
+    productList: state.product.list
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getAddressList: () => dispatch(getAddressList()),
+    getProductList: () => dispatch(getProductList())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage)
 ```
 
 这些配置在 `connect` 会经过下列处理
@@ -77,19 +87,19 @@ const initMapStateToProps = match(
 )!
 ```
 
-第二个参数是方法数组 `factories` ，match 将第一个参数作为 `factories` 每个方法的参数进行调用，如果有返回值则直接返回。
+第二个参数是方法数组 `factories` ，`match` 将第一个参数作为 `factories` 每个方法的参数进行调用，如果有返回值则直接返回计算结果。
 
 > initMapStateToProps -> factories[1](mapStateToProps) -> whenMapStateToPropsIsFunction(mapStateToProps) -> initProxySelector
 
-同理 initMapDispatchToProps, initMergeProps 最后也是被赋值为 initProxySelector。
+同理 `initMapDispatchToProps`, `initMergeProps` 最后也是被赋值为 `initProxySelector`。
 
-接下来进入到 wrapWithConnect 方法
+先把该环节跳过，后面会回头来看这个结果的作用。接下来进入到 `wrapWithConnect` 方法
 
 ### wrapWithConnect
 
 在 connect 中，主要的逻辑实现在这个 `wrapWithConnect` 方法中。
 
-该方法经过下列处理：
+该方法经过下列处理，返回了经过包装的 `ConnectFunction` 组件，`ConnectFunction` 的组件实现是用户定义的 `Component`，但 `ConnectFunction` 中最终混入了 `Connect` 的逻辑以完成订阅 `store` 的功能。
 
 ```ts
 const wrapWithConnect: AdvancedComponentDecorator<

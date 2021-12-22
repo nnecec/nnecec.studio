@@ -1,7 +1,6 @@
 {
   "files.exclude": {
     ".cache": true,
-    ".yarn": true,
     "public": true
   }
 }

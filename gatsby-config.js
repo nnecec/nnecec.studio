@@ -1,68 +1,68 @@
 module.exports = {
   siteMetadata: {
-    title: `nnecec's aircraft`,
+    title: 'nnecec\'s aircraft',
     author: {
-      name: `nnecec`,
+      name: 'nnecec'
     },
-    description: `前端深入不浅出指北 🧐`,
-    siteUrl: `https://nnecec.vercel.app`,
-    repositoryUrl: `https://github.com/nnecec/nnecec.github.io`,
+    description: '前端深入不浅出指北 🧐',
+    siteUrl: 'https://nnecec.vercel.app',
+    repositoryUrl: 'https://github.com/nnecec/nnecec.github.io',
     social: {
-      twitter: `nnecec_cn`,
-      github: `nnecec`
-    },
+      twitter: 'nnecec_cn',
+      github: 'nnecec'
+    }
   },
-  jsxRuntime: "automatic",
+  jsxRuntime: 'automatic',
   plugins: [
-    `gatsby-plugin-image`,
+    'gatsby-plugin-image',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content`,
-        name: `article`,
-      },
+        name: 'article'
+      }
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
+        name: 'images',
+        path: `${__dirname}/src/images`
+      }
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           'gatsby-remark-graphviz',
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 630,
-            },
+              maxWidth: 630
+            }
           },
           {
-            resolve: `gatsby-remark-responsive-iframe`,
+            resolve: 'gatsby-remark-responsive-iframe',
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
+              wrapperStyle: 'margin-bottom: 1.0725rem'
+            }
           },
-          `gatsby-remark-autolink-headers`,
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-        ],
-      },
+          'gatsby-remark-autolink-headers',
+          'gatsby-remark-prismjs',
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-smartypants'
+        ]
+      }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: `UA-139865049-1`,
-      },
+        trackingId: 'UA-139865049-1'
+      }
     },
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: 'gatsby-plugin-feed',
       options: {
         query: `
           {
@@ -85,7 +85,7 @@ module.exports = {
                   date: node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
+                  custom_elements: [{ 'content:encoded': node.html }]
                 })
               })
             },
@@ -108,38 +108,38 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
+            output: '/rss.xml',
             title: "nnecec's blog",
-            link: "http://nnecec.vercel.app/",
-          },
-        ],
-      },
+            link: 'http://nnecec.vercel.app/'
+          }
+        ]
+      }
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `nnecec's aircraft`,
-        short_name: `aircraft`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        display: `standalone`,
-        icon: `src/images/gatsby-icon.jpg`, // This path is relative to the root of the site.
-        "theme_color": "#1c1917",
-        "user_preferences": {
-          "color_scheme_dark": {
-            "theme_color": "#27272a",
-            "background_color": "#27272a"
+        name: 'nnecec\'s aircraft',
+        short_name: 'aircraft',
+        start_url: '/',
+        background_color: '#ffffff',
+        display: 'standalone',
+        icon: 'src/images/gatsby-icon.jpg', // This path is relative to the root of the site.
+        theme_color: '#1c1917',
+        user_preferences: {
+          color_scheme_dark: {
+            theme_color: '#27272a',
+            background_color: '#27272a'
           },
-          "color_scheme_light": {
-            "theme_color": "#fff",
-            "background_color": "#fff"
+          color_scheme_light: {
+            theme_color: '#fff',
+            background_color: '#fff'
           }
         }
-      },
+      }
     },
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-postcss`,
-    `gatsby-plugin-vercel`
-  ],
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-offline',
+    'gatsby-plugin-postcss',
+    'gatsby-plugin-vercel'
+  ]
 }
