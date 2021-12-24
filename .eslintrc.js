@@ -5,7 +5,6 @@ module.exports = {
     node: true
   },
   extends: [
-    'plugin:markdown/recommended',
     'plugin:react/recommended',
     'standard'
   ],
@@ -14,7 +13,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true
     },
-    ecmaVersion: 12,
+    ecmaVersion: 'latest',
     sourceType: 'module'
   },
   plugins: [
@@ -27,6 +26,7 @@ module.exports = {
     __PATH_PREFIX__: true,
     __BASE_PATH__: true // this will rarely, if ever, be used by consumers
   },
+  ignorePatterns: ['contents/**/*.md'],
   rules: {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',

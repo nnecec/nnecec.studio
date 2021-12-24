@@ -21,19 +21,19 @@
     @apply mt-8 mb-6;
   }
   h1 {
-    @apply text-3xl font-bold;
+    @apply text-4xl font-bold;
   }
   h2 {
-    @apply text-2xl font-semibold;
+    @apply text-3xl font-semibold;
   }
   h3 {
-    @apply text-xl font-semibold;
+    @apply text-2xl font-semibold;
   }
   h4 {
-    @apply text-lg font-medium;
+    @apply text-xl font-medium;
   }
   h5 {
-    @apply font-medium;
+    @apply text-lg font-medium;
   }
   p {
     @apply text-base leading-normal mb-8 p-0 tracking-wide;
@@ -52,11 +52,11 @@
   }
   ul li,
   ol li {
-    @apply pl-0 mb-2;
+    @apply pl-0 mb-4;
   }
 
   li > p {
-    @apply mb-2;
+    @apply mb-4;
   }
 
   li *:last-child {

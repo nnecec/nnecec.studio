@@ -33,7 +33,7 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
         <div className="relative">
           {!!post.tableOfContents &&
             <Toc
-              className="text-sm z-20 top-[20rem] right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 px-8 overflow-y-auto xl:fixed"
+              className="text-sm z-20 top-[20rem] right-[max(0px,calc(50%-46rem))] w-[19.5rem] py-6 px-4 overflow-y-auto xl:fixed max-h-[600px]"
               toc={post.tableOfContents}
             />}
           <article

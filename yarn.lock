@@ -6414,17 +6414,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-markdown@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "eslint-plugin-markdown@npm:2.2.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Feslint-plugin-markdown%2Fdownload%2Feslint-plugin-markdown-2.2.1.tgz"
-  dependencies:
-    mdast-util-from-markdown: ^0.8.5
-  peerDependencies:
-    eslint: ">=6.0.0"
-  checksum: 68be3ac504f0bef6a50b092b4a6d46188e4be713c9fa18dcab2a5dff577714c71b5064219214db8324629f36128f1f13e2d5ba55ef2f053fb48fb65576db9c66
-  languageName: node
-  linkType: hard
-
 "eslint-plugin-node@npm:^11.1.0":
   version: 11.1.0
   resolution: "eslint-plugin-node@npm:11.1.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Feslint-plugin-node%2Fdownload%2Feslint-plugin-node-11.1.0.tgz"
@@ -6480,6 +6469,30 @@ __metadata:
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
   checksum: db1ce303b597ede0bc8873d3f575b05873b06a058162c80f76604c9096eee8f72f299d7f849a86ac2e59f269c196575e6bcfb1ef9d7cbb23f533d081bcc15ea0
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-react@npm:^7.28.0":
+  version: 7.28.0
+  resolution: "eslint-plugin-react@npm:7.28.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Feslint-plugin-react%2Fdownload%2Feslint-plugin-react-7.28.0.tgz"
+  dependencies:
+    array-includes: ^3.1.4
+    array.prototype.flatmap: ^1.2.5
+    doctrine: ^2.1.0
+    estraverse: ^5.3.0
+    jsx-ast-utils: ^2.4.1 || ^3.0.0
+    minimatch: ^3.0.4
+    object.entries: ^1.1.5
+    object.fromentries: ^2.0.5
+    object.hasown: ^1.1.0
+    object.values: ^1.1.5
+    prop-types: ^15.7.2
+    resolve: ^2.0.0-next.3
+    semver: ^6.3.0
+    string.prototype.matchall: ^4.0.6
+  peerDependencies:
+    eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
+  checksum: 90293d0fd53bb1f735ffd32141cdd211fb1120c9f7bbe5342f9e923261a39e52a2b2575d4e46c9cd77d257f42db4a99b8b339689fc5b5c1c26048929f69b1784
   languageName: node
   linkType: hard
 
@@ -10727,7 +10740,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdast-util-from-markdown@npm:^0.8.0, mdast-util-from-markdown@npm:^0.8.5":
+"mdast-util-from-markdown@npm:^0.8.0":
   version: 0.8.5
   resolution: "mdast-util-from-markdown@npm:0.8.5::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fmdast-util-from-markdown%2Fdownload%2Fmdast-util-from-markdown-0.8.5.tgz"
   dependencies:
@@ -11534,10 +11547,9 @@ __metadata:
     eslint: ^8.5.0
     eslint-config-standard: ^16.0.3
     eslint-plugin-import: ^2.25.3
-    eslint-plugin-markdown: ^2.2.1
     eslint-plugin-node: ^11.1.0
     eslint-plugin-promise: ^6.0.0
-    eslint-plugin-react: ^7.27.1
+    eslint-plugin-react: ^7.28.0
     gatsby: ^4.4.0
     gatsby-plugin-feed: ^4.4.0
     gatsby-plugin-google-analytics: ^4.4.0

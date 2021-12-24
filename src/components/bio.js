@@ -31,7 +31,7 @@ export const Bio = ({ className }) => {
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const { author, social, description } = data.site.siteMetadata
   return (
-    <div className={cls('bio', 'flex', className)}>
+    <div className={cls('bio', 'flex', 'p-8', className)}>
       <StaticImage
         layout="fixed"
         className="rounded-full mr-4"

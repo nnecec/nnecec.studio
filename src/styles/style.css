@@ -32,7 +32,7 @@ html {
 .global-wrapper {
   @apply py-10 px-5;
   @apply mx-auto;
-  @apply max-w-2xl;
+  @apply max-w-3xl;
 }
 
 .blog-post a {

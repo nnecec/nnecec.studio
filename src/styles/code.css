@@ -56,11 +56,23 @@ pre[class*="language-"] ::selection {
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-  border-radius: 0.2em;
   border-color: currentColor;
   color: currentColor;
   padding: 0.15em 0.2em 0.05em;
   white-space: normal;
+  position: relative;
+  display: inline-block;
+}
+:not(pre) > code[class*="language-"]::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  opacity: 0.15;
+  content: '';
+  border-radius: 0.3em;
 }
 
 .token.attr-name {
