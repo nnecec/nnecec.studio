@@ -7,10 +7,10 @@ description: "从前端开发者的视角进入 Rust 的世界"
 
 ## 学习资料
 
-- [Rust 程序设计语言 简体中文版](https://kaisery.github.io/trpl-zh-cn/title-page.html)
+- [Rust 程序设计语言 简体中文版](https://rustwiki.org/zh-CN/book)
 - [通过例子学 Rust 中文版](https://rustwiki.org/zh-CN/rust-by-example/index.html)
 
-## 对比
+## 简单对比
 
 ### 声明变量
 
@@ -305,5 +305,15 @@ fn main() {
 1. Rust 中的每一个值都有一个被称为其 所有者（owner）的变量。
 2. 值在任一时刻有且只有一个所有者。
 3. 当所有者（变量）离开作用域，这个值将被丢弃。
+
+& 借用
+
+```rust
+// 可变引用
+let mut s = String::from("hello");
+
+let r1 = &mut s;
+```
+
 
 ### 闭包

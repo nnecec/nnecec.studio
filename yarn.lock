@@ -2946,12 +2946,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.8.0":
-  version: 5.8.0
-  resolution: "@typescript-eslint/eslint-plugin@npm:5.8.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Feslint-plugin%2Fdownload%2F%40typescript-eslint%2Feslint-plugin-5.8.0.tgz"
+"@typescript-eslint/eslint-plugin@npm:^5.8.1":
+  version: 5.8.1
+  resolution: "@typescript-eslint/eslint-plugin@npm:5.8.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Feslint-plugin%2Fdownload%2F%40typescript-eslint%2Feslint-plugin-5.8.1.tgz"
   dependencies:
-    "@typescript-eslint/experimental-utils": 5.8.0
-    "@typescript-eslint/scope-manager": 5.8.0
+    "@typescript-eslint/experimental-utils": 5.8.1
+    "@typescript-eslint/scope-manager": 5.8.1
     debug: ^4.3.2
     functional-red-black-tree: ^1.0.1
     ignore: ^5.1.8
@@ -2964,7 +2964,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 96a21a3e19baf57e30c97953e35832b1f4e135c865b2dfd5afe53772bd08556b9ad724e55696dce9acf471553ab66ae45737e82abba6c15152f79a47d2d9f055
+  checksum: 9e5b5c1e22563fc0a31f1b916cea8b059b6dd218ccbf809b7453e4563065781e4544a6d5ce4cbf60b40394f2604e925d10cafd468a4dd0f490e75775267839a0
   languageName: node
   linkType: hard
 
@@ -2984,19 +2984,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/experimental-utils@npm:5.8.0":
-  version: 5.8.0
-  resolution: "@typescript-eslint/experimental-utils@npm:5.8.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fexperimental-utils%2Fdownload%2F%40typescript-eslint%2Fexperimental-utils-5.8.0.tgz"
+"@typescript-eslint/experimental-utils@npm:5.8.1":
+  version: 5.8.1
+  resolution: "@typescript-eslint/experimental-utils@npm:5.8.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fexperimental-utils%2Fdownload%2F%40typescript-eslint%2Fexperimental-utils-5.8.1.tgz"
   dependencies:
     "@types/json-schema": ^7.0.9
-    "@typescript-eslint/scope-manager": 5.8.0
-    "@typescript-eslint/types": 5.8.0
-    "@typescript-eslint/typescript-estree": 5.8.0
+    "@typescript-eslint/scope-manager": 5.8.1
+    "@typescript-eslint/types": 5.8.1
+    "@typescript-eslint/typescript-estree": 5.8.1
     eslint-scope: ^5.1.1
     eslint-utils: ^3.0.0
   peerDependencies:
     eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-  checksum: c97798bcc3332331a75661e073d38783ee4882803b0247db76df851bc8594c9b7e23fb9de28aa212c331b18ff2e8c23657ae1b9b994eeec528214fcf8d81e9fb
+  checksum: 15c17a7b7a45a9e1ebf537e6d6221e423c8f5114c0a517265698745b9a4ae965487ef7856a0b1ee64cbda8db641a9204270fda88398ab1d7013256e0ccbd3e75
   languageName: node
   linkType: hard
 
@@ -3017,20 +3017,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^5.8.0":
-  version: 5.8.0
-  resolution: "@typescript-eslint/parser@npm:5.8.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fparser%2Fdownload%2F%40typescript-eslint%2Fparser-5.8.0.tgz"
+"@typescript-eslint/parser@npm:^5.8.1":
+  version: 5.8.1
+  resolution: "@typescript-eslint/parser@npm:5.8.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fparser%2Fdownload%2F%40typescript-eslint%2Fparser-5.8.1.tgz"
   dependencies:
-    "@typescript-eslint/scope-manager": 5.8.0
-    "@typescript-eslint/types": 5.8.0
-    "@typescript-eslint/typescript-estree": 5.8.0
+    "@typescript-eslint/scope-manager": 5.8.1
+    "@typescript-eslint/types": 5.8.1
+    "@typescript-eslint/typescript-estree": 5.8.1
     debug: ^4.3.2
   peerDependencies:
     eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 138b1d20a6c204fdd0c93295b4ec667caf6036e74bfeae0b80cfe14c4d50761bb9f469b30d320d2d85757a1b98c2ae7f30d9a788a293afc1ea10b9f3d9fbc8f7
+  checksum: bb1702851ff0ade16a50789c517155557ad7e9b8e5e9c4553aad52fedbc8f94acaade1dc5ba12a96b54a13a68dfea13955ab885aad97cf3c526a8b90880bd8a3
   languageName: node
   linkType: hard
 
@@ -3044,13 +3044,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:5.8.0":
-  version: 5.8.0
-  resolution: "@typescript-eslint/scope-manager@npm:5.8.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fscope-manager%2Fdownload%2F%40typescript-eslint%2Fscope-manager-5.8.0.tgz"
+"@typescript-eslint/scope-manager@npm:5.8.1":
+  version: 5.8.1
+  resolution: "@typescript-eslint/scope-manager@npm:5.8.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fscope-manager%2Fdownload%2F%40typescript-eslint%2Fscope-manager-5.8.1.tgz"
   dependencies:
-    "@typescript-eslint/types": 5.8.0
-    "@typescript-eslint/visitor-keys": 5.8.0
-  checksum: 15f365a491c096104d3279617522375b6084117ac21e52cf04935a1cce192d730785a1e47afd8a8ca9aa907f1f9cd34793610406ce93447addf6854cdfa830f3
+    "@typescript-eslint/types": 5.8.1
+    "@typescript-eslint/visitor-keys": 5.8.1
+  checksum: d9254018d723aff32fc512b7292737b154367198ab58e0faf814b4ce77d4de20552ed1678f2639b35e480eb5594eb9d5f1d34360885f5e4d80ca8e5a9ccf666c
   languageName: node
   linkType: hard
 
@@ -3061,10 +3061,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:5.8.0":
-  version: 5.8.0
-  resolution: "@typescript-eslint/types@npm:5.8.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Ftypes%2Fdownload%2F%40typescript-eslint%2Ftypes-5.8.0.tgz"
-  checksum: eda7a2c4620fd0cd56a81af6f44d8de96eb5912dda69907cd422e3fb5845b45c004a2c50f1896b6573b70f41f175208434d13dd744ea23aec2094ba916578a81
+"@typescript-eslint/types@npm:5.8.1":
+  version: 5.8.1
+  resolution: "@typescript-eslint/types@npm:5.8.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Ftypes%2Fdownload%2F%40typescript-eslint%2Ftypes-5.8.1.tgz"
+  checksum: f9809c2c0f523841adeeb66410911f10492d3df7a912bc3d72304f4edbc5b5cb1a3f5f2a6ded20e8b524cc18e92d2a735fb8b96570e75df669061182932200ef
   languageName: node
   linkType: hard
 
@@ -3086,12 +3086,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/typescript-estree@npm:5.8.0":
-  version: 5.8.0
-  resolution: "@typescript-eslint/typescript-estree@npm:5.8.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Ftypescript-estree%2Fdownload%2F%40typescript-eslint%2Ftypescript-estree-5.8.0.tgz"
+"@typescript-eslint/typescript-estree@npm:5.8.1":
+  version: 5.8.1
+  resolution: "@typescript-eslint/typescript-estree@npm:5.8.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Ftypescript-estree%2Fdownload%2F%40typescript-eslint%2Ftypescript-estree-5.8.1.tgz"
   dependencies:
-    "@typescript-eslint/types": 5.8.0
-    "@typescript-eslint/visitor-keys": 5.8.0
+    "@typescript-eslint/types": 5.8.1
+    "@typescript-eslint/visitor-keys": 5.8.1
     debug: ^4.3.2
     globby: ^11.0.4
     is-glob: ^4.0.3
@@ -3100,7 +3100,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 67f51754d1dea9eafc8d052b67a2d7a3b20e20d97de03fc49615fe70d0373323619dfa5986a8e71cb9b2ec6079fb050049100763b5dbadae52b30c7d11c57ebd
+  checksum: e3cfbd088f1e0104b5b38fcc6e400a0d0e72395694406357e478369c4df532aa2accfe2ee77c71854ca9a04e0e3cddbed86388334805c91ca4241b032cbb6d20
   languageName: node
   linkType: hard
 
@@ -3114,13 +3114,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/visitor-keys@npm:5.8.0":
-  version: 5.8.0
-  resolution: "@typescript-eslint/visitor-keys@npm:5.8.0::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fvisitor-keys%2Fdownload%2F%40typescript-eslint%2Fvisitor-keys-5.8.0.tgz"
+"@typescript-eslint/visitor-keys@npm:5.8.1":
+  version: 5.8.1
+  resolution: "@typescript-eslint/visitor-keys@npm:5.8.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fvisitor-keys%2Fdownload%2F%40typescript-eslint%2Fvisitor-keys-5.8.1.tgz"
   dependencies:
-    "@typescript-eslint/types": 5.8.0
+    "@typescript-eslint/types": 5.8.1
     eslint-visitor-keys: ^3.0.0
-  checksum: 03a349d4a577aa128b27d13a16e6e365d18e6aa9f297bc2a632bc2ddae8cfed9cb66c227f87fde9924e9f8a58c40c41df6f537016d037a05fe1908bfa0839d18
+  checksum: 46567678718a227b34a255a3606e1a2c5190a470dc9493d4c175f57566d2c16b88780fb273ca44f22cab06d45d87b25371215e93b88ac10a475877bd64bdfece
   languageName: node
   linkType: hard
 
@@ -3828,6 +3828,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"autoprefixer@npm:^10.4.1":
+  version: 10.4.1
+  resolution: "autoprefixer@npm:10.4.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fautoprefixer%2Fdownload%2Fautoprefixer-10.4.1.tgz"
+  dependencies:
+    browserslist: ^4.19.1
+    caniuse-lite: ^1.0.30001294
+    fraction.js: ^4.1.2
+    normalize-range: ^0.1.2
+    picocolors: ^1.0.0
+    postcss-value-parser: ^4.2.0
+  peerDependencies:
+    postcss: ^8.1.0
+  bin:
+    autoprefixer: bin/autoprefixer
+  checksum: 96527cd62b88e44ad3949fd2dedcc771ece8818d0bfffffdffd9aa87e409e4c5c00cf0cda1ebe1dc75910a62052d33a7628adf3c13a1763ba7677c027250f88c
+  languageName: node
+  linkType: hard
+
 "axe-core@npm:^4.3.5":
   version: 4.3.5
   resolution: "axe-core@npm:4.3.5::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Faxe-core%2Fdownload%2Faxe-core-4.3.5.tgz"
@@ -4304,6 +4322,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"browserslist@npm:^4.19.1":
+  version: 4.19.1
+  resolution: "browserslist@npm:4.19.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fbrowserslist%2Fdownload%2Fbrowserslist-4.19.1.tgz"
+  dependencies:
+    caniuse-lite: ^1.0.30001286
+    electron-to-chromium: ^1.4.17
+    escalade: ^3.1.1
+    node-releases: ^2.0.1
+    picocolors: ^1.0.0
+  bin:
+    browserslist: cli.js
+  checksum: c0777fd483691638fd6801e16c9d809e1d65f6d2b06db2e806654be51045cbab1452a89841a2c5caea2cbe19d621b4f1d391cffbb24512aa33280039ab345875
+  languageName: node
+  linkType: hard
+
 "buffer-equal@npm:0.0.1":
   version: 0.0.1
   resolution: "buffer-equal@npm:0.0.1::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fbuffer-equal%2Fdownload%2Fbuffer-equal-0.0.1.tgz"
@@ -4514,6 +4547,13 @@ __metadata:
   version: 1.0.30001286
   resolution: "caniuse-lite@npm:1.0.30001286::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fcaniuse-lite%2Fdownload%2Fcaniuse-lite-1.0.30001286.tgz"
   checksum: 04de4742552d4aeb713677b40693d9ac1fbd259573e0ff739565278bcecb6f398f3227546a4e930f4d5cf95b61458f4a53c9c1f90f5b0c4f6063b32e4c54b89e
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001294":
+  version: 1.0.30001294
+  resolution: "caniuse-lite@npm:1.0.30001294::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Fcaniuse-lite%2Fdownload%2Fcaniuse-lite-1.0.30001294.tgz"
+  checksum: 4e22649ef83781afbe6c81d6112ceac23c3ba29f91597ca1c14d323d5bfb646571edeb17436e76a29b07c8e9d75468655a2098a3e13dcc1438db47ff46fbb3ad
   languageName: node
   linkType: hard
 
@@ -7274,7 +7314,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fraction.js@npm:^4.1.1":
+"fraction.js@npm:^4.1.1, fraction.js@npm:^4.1.2":
   version: 4.1.2
   resolution: "fraction.js@npm:4.1.2::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Ffraction.js%2Fdownload%2Ffraction.js-4.1.2.tgz"
   checksum: a67eff2b599cb6546b77ce9c913bd0cccd646e1a525c793ba4e0bf5a399fc403f379227fca83423a6ea79d01e35c2f2b0f141ffa1d09e41377041268a53fb150
@@ -11540,9 +11580,9 @@ __metadata:
   resolution: "nnecec.github.io@workspace:."
   dependencies:
     "@tailwindcss/typography": ^0.5.0
-    "@typescript-eslint/eslint-plugin": ^5.8.0
-    "@typescript-eslint/parser": ^5.8.0
-    autoprefixer: ^10.4.0
+    "@typescript-eslint/eslint-plugin": ^5.8.1
+    "@typescript-eslint/parser": ^5.8.1
+    autoprefixer: ^10.4.1
     classnames: ^2.3.1
     eslint: ^8.5.0
     eslint-config-standard: ^16.0.3
@@ -11578,7 +11618,7 @@ __metadata:
     react-dom: ^17.0.2
     react-helmet: ^6.1.0
     sharp: ^0.29.3
-    tailwindcss: ^3.0.7
+    tailwindcss: ^3.0.8
     typescript: ^4.5.4
   languageName: unknown
   linkType: soft
@@ -15285,9 +15325,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.0.7":
-  version: 3.0.7
-  resolution: "tailwindcss@npm:3.0.7::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Ftailwindcss%2Fdownload%2Ftailwindcss-3.0.7.tgz"
+"tailwindcss@npm:^3.0.8":
+  version: 3.0.8
+  resolution: "tailwindcss@npm:3.0.8::__archiveUrl=https%3A%2F%2Fregistry.npmmirror.com%2Ftailwindcss%2Fdownload%2Ftailwindcss-3.0.8.tgz"
   dependencies:
     arg: ^5.0.1
     chalk: ^4.1.2
@@ -15316,7 +15356,7 @@ __metadata:
   bin:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
-  checksum: 0b33d7c6a0860fae22bce9efbbd990ac635e1fc1a616eaca9ca5e7d3ed78c6efed5ca10ebcc186289cf731ece0769329eef715ca2cb641134550780e6ae39b39
+  checksum: 7a3215e2d9e121d5cf465cede3204c02740792659200e87b0c0344fea3092415581eedf0ccf70e79bc9270396a8aac9e049566e372f10ce646e15e196273e35e
   languageName: node
   linkType: hard
 

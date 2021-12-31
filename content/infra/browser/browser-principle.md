@@ -1,5 +1,5 @@
 ---
-title: "浏览器基本原理(WIP)"
+title: "浏览器基本原理"
 date: "2021-12-19"
 tags: ["Introduction"]
 description: "全面理解浏览器基本原理"
