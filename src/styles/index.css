@@ -35,9 +35,6 @@
   h5 {
     @apply text-lg font-medium;
   }
-  p {
-    @apply text-base leading-normal mb-8 p-0 tracking-wide;
-  }
   ul,
   ol {
     @apply mx-0 p-0 mb-8 leading-normal;

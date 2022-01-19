@@ -37,6 +37,7 @@ const BlogIndex = ({ data, location, ...props }) => {
               <article
                 itemScope
                 itemType="http://schema.org/Article"
+                className="heti"
               >
                 <header>
                   <h3 className="mb-2">

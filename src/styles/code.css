@@ -58,17 +58,17 @@ pre[class*="language-"] ::selection {
 :not(pre) > code[class*="language-"] {
   border-color: currentColor;
   color: currentColor;
-  padding: 0.15em 0.2em 0.05em;
+  padding: 0.1em 0.3em 0.15em;
   white-space: normal;
   position: relative;
   display: inline-block;
 }
 :not(pre) > code[class*="language-"]::before {
   position: absolute;
-  top: 0;
+  top: 5%;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 90%;
   background-color: currentColor;
   opacity: 0.15;
   content: '';

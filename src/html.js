@@ -11,6 +11,7 @@ export default function HTML (props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css"></link>
         {props.headComponents}
       </head>
 
@@ -56,6 +57,7 @@ export default function HTML (props) {
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
         {props.postBodyComponents}
+
       </body>
     </html>
   )

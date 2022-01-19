@@ -7,7 +7,7 @@ description: "React 异步渲染中的优先级"
 
 ## 概念
 
-React 之前使用 `expirationTime` 用作标记优先级，后来切换到了 `lane`，开发者在[pull request](https://github.com/facebook/react/pull/18796)中解释了相关的概念。
+React 早期的实现中使用了 `expirationTime` 用作标记优先级，后来切换到了 `lane`，开发者在[pull request](https://github.com/facebook/react/pull/18796)中解释了相关的差别。
 
 同时，也有开发者对 React 团队没解释清楚的地方发起了[提问](https://github.com/facebook/react/issues/19804)。
 

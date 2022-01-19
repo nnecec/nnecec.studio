@@ -39,10 +39,6 @@ html {
   @apply mx-1;
 }
 
-.gatsby-highlight {
-  @apply mb-8;
-}
-
 .icon {
   display: inline-block;
   user-select: none;

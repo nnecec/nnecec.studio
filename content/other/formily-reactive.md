@@ -23,7 +23,9 @@ description: "从了解@formily/reactive源码洞悉reactive的原理"
 - RawProxy: `{Obj: ProxyObj}` 映射，方便查找 Proxy 数据
 - RawNode: `{Obj: DataNode}` 映射，Node 上记录了 Raw 的路径、值等信息
 
-首先检查 ProxyRaw 中有没有该值，如果有说明已经处理过了，可以直接返回。如果没有时，通过`buildDataTree`将该`obj` 存入`RawNode`中。此时数据为：
+变量的劫持都记录在这些全局变量中，所以我们需要保证同一个应用中，使用的是同一份 reactive 的代码。目前 yarn 安装 node_modules 其实是存在多个依赖版本的问题，就会导致预期外的情况发生。
+
+首先检查 ProxyRaw 中有没有该值，如果有说明已经处理过了，可以直接返回。如果没有时，通过`buildDataTree`将该 obj 存入`RawNode`中。此时数据为：
 
 ```js
 // RawNode
@@ -36,7 +38,7 @@ description: "从了解@formily/reactive源码洞悉reactive的原理"
 }
 ```
 
-对于 `PlainObject` 和 `Array` 类型，会再调用`createNormalProxy`，对于`Map`,`Set`类型会调用`createCollectionProxy` 处理成 ProxyObj，否则直接返回。
+对于 `PlainObject` 和 `Array` 类型，会再调用`createNormalProxy`，对于`Map`,`Set`类型会调用`createCollectionProxy`处理成 ProxyObj，否则直接返回。
 
 在这两个创建方法中将`obj`通过`Proxy`生成`proxyObj`，存入`ProxyRaw`和`RawProxy`，并返回了`proxyObj`，此时内部数据为：
 
