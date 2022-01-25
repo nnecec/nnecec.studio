@@ -14,7 +14,7 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
         description={post.frontmatter.description || post.excerpt}
       />
       <article
-        className="blog-post heti"
+        className="blog-post"
         itemScope
         itemType="http://schema.org/Article"
       >
@@ -30,7 +30,7 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
           </div>
 
         </header>
-        <div className="relative">
+        <div className="relative  my-8">
           {!!post.tableOfContents &&
             <Toc
               className="text-sm z-20 top-[20rem] right-[max(0px,calc(50%-46rem))] w-[19.5rem] py-6 px-4 overflow-y-auto xl:fixed max-h-[600px]"
@@ -39,11 +39,12 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
           <article
             dangerouslySetInnerHTML={{ __html: post.html }}
             itemProp="articleBody"
+            className="heti"
           />
         </div>
         <hr />
 
-        <footer className="py-8">
+        <footer>
           <Bio />
         </footer>
       </article>

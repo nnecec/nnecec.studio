@@ -13,6 +13,10 @@
   --primary-dark-color: theme("colors.yellow.400");
   --anchors-width: 299px;
 }
+.heti,
+.heti--sans {
+  font-family: inherit;
+}
 
 /* HTML elements */
 
