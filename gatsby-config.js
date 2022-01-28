@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'nnecec\'s aircraft',
+    title: "nnecec's aircraft",
     author: {
       name: 'nnecec'
     },
@@ -33,7 +33,7 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          'gatsby-remark-graphviz',
+          'gatsby-remark-mermaid',
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -118,7 +118,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'nnecec\'s aircraft',
+        name: "nnecec's aircraft",
         short_name: 'aircraft',
         start_url: '/',
         background_color: '#ffffff',

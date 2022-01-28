@@ -13,26 +13,30 @@ export const ThemeSwitch = () => {
     }
   }, [currentTheme])
 
-  return <Switch
-    checked={currentTheme === 'dark'}
-    onChange={checked => {
-      window.__setPreferredTheme(
-        checked ? 'dark' : 'light'
-      )
-    }}
-    checkedChildren={<img
-      src={moon}
-      width="16"
-      height="16"
-      role="presentation"
-      style={{ pointerEvents: 'none' }}
-    />}
-    unCheckedChildren={<img
-      src={sun}
-      width="16"
-      height="16"
-      role="presentation"
-      style={{ pointerEvents: 'none' }}
-    />}
-  ></Switch >
+  return (
+    <Switch
+      checked={currentTheme === 'dark'}
+      onChange={checked => {
+        window.__setPreferredTheme(checked ? 'dark' : 'light')
+      }}
+      checkedChildren={
+        <img
+          src={moon}
+          width="16"
+          height="16"
+          role="presentation"
+          style={{ pointerEvents: 'none' }}
+        />
+      }
+      unCheckedChildren={
+        <img
+          src={sun}
+          width="16"
+          height="16"
+          role="presentation"
+          style={{ pointerEvents: 'none' }}
+        />
+      }
+    ></Switch>
+  )
 }

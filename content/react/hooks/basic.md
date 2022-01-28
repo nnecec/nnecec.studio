@@ -19,20 +19,13 @@ description: "hooks 以什么样的形态存在于 React 中？"
 
 在调度节点渲染的方法中，当遇到节点类型为 `FunctionComponent` 时，会通过 `renderWithHooks` 方法计算得出新节点的页面信息。
 
-```dot
-digraph graphname {
-  node [shape=box];
-  beginWork [label="<beginWork>调度渲染每个 fiber 节点"];
-  updateFunctionComponent [label="<updateFunctionComponent>调度更新FunctionComponent"];
-  renderWithHooks [label="<renderWithHooks>计算获取新的节点信息，\n并在方法内部根据当前mount/update阶段设定\nReactCurrentDispatcher.current的指向"];
-  component [label="<Component(props)>调用组件方法获取children\n当执行到 hook(如 useState(initialState)) 时，其实相当于调用\n ReactCurrentDispatcher.current.useState(initialState)"];
-  hook [label="<ReactCurrentDispatcher.current.useXxx(..)>调用对应hook方法，\n计算新的hook状态并存储到hook.memoizedState上"];
-
-  beginWork -> updateFunctionComponent;
-  updateFunctionComponent -> renderWithHooks;
-  renderWithHooks -> component
-  component -> hook
-}
+```mermaid
+graph TD
+beginWork[beginWork 调度渲染每个 fiber 节点]
+beginWork --> updateFunctionComponent[updateFunctionComponent 调度更新FunctionComponent]
+updateFunctionComponent --> renderWithHooks[renderWithHooks 计算获取新的节点信息<br/>并在方法内部根据当前mount或update阶段设定<br/>ReactCurrentDispatcher.current的指向]
+renderWithHooks --> component["Component(props) 调用组件方法获取children<br/>当执行到 hook(如 useState(initialState))时其实相当于调用<br/> ReactCurrentDispatcher.current.useState(initialState)"]
+component --> hook["ReactCurrentDispatcher.current.useXxx(...) 调用对应hook方法<br/>计算新的hook状态并存储到hook.memoizedState上"]
 ```
 
 下面看一个相对比较简单的 `useRef` 方法的源码：
@@ -58,7 +51,7 @@ function mountWorkInProgressHook(): Hook {
     baseQueue: null,
     queue: null,
 
-    next: null,
+    next: null
   }
 
   if (workInProgressHook === null) {
@@ -113,7 +106,7 @@ function updateWorkInProgressHook(): Hook {
       baseQueue: currentHook.baseQueue,
       queue: currentHook.queue,
 
-      next: null,
+      next: null
     }
 
     if (workInProgressHook === null) {

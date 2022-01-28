@@ -73,7 +73,7 @@ const user1: User = {
   email: "someone@example.com",
   username: "someusername123",
   active: true,
-  sign_in_count: 1,
+  sign_in_count: 1
 }
 
 console.log(user1.email)
@@ -81,7 +81,7 @@ console.log(user1.email)
 const user2: User = {
   ...user1,
   email: "another@example.com",
-  username: "anotherusername567",
+  username: "anotherusername567"
 }
 
 user1.say_name = () => {
@@ -141,7 +141,7 @@ println!("rect1 is {:?}", rect1);
 ```ts
 enum IpAddrKind {
   v4,
-  v6,
+  v6
 }
 
 const IP1 = IpAddrKind.v4
@@ -314,6 +314,5 @@ let mut s = String::from("hello");
 
 let r1 = &mut s;
 ```
-
 
 ### 闭包

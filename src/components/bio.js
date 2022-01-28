@@ -34,7 +34,7 @@ export const Bio = ({ className }) => {
     <div className={cls('bio', 'flex', 'p-8', className)}>
       <StaticImage
         layout="fixed"
-        className="rounded-full mr-4"
+        className="mr-4 rounded-full"
         formats={['AUTO', 'WEBP', 'AVIF']}
         src="../images/profile-pic.jpg"
         width={50}
@@ -42,23 +42,29 @@ export const Bio = ({ className }) => {
         quality={95}
         alt="Profile picture"
       />
-      {
-        author?.name && (
-          <div>
-            <div className="text-lg font-semibold mb-1">{author.name} <sup className="text-xs">{description}</sup></div>
-            <div className="text-sm flex gap-2">
-              <a href={`https://github.com/${social?.github || ''}`} target="_blank" rel="noreferrer">
-                Github
-              </a>
-              <a href={`https://twitter.com/${social?.twitter || ''}`} target="_blank" rel="noreferrer">
-                Twitter
-              </a>
-            </div>
-
+      {author?.name && (
+        <div>
+          <div className="mb-1 text-lg font-semibold">
+            {author.name} <sup className="text-xs">{description}</sup>
           </div>
-
-        )
-      }
-    </div >
+          <div className="flex gap-2 text-sm">
+            <a
+              href={`https://github.com/${social?.github || ''}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Github
+            </a>
+            <a
+              href={`https://twitter.com/${social?.twitter || ''}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Twitter
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
   )
 }

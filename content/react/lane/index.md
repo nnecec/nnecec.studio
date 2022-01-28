@@ -51,7 +51,7 @@ export function requestUpdateLane(fiber: Fiber): Lane {
 }
 ```
 
-在获取到 `lane` 后，会给本次[创建的update](/react/rerender)标记上该 `lane`，这样就对不同情况下创建的 `update` 标记了不同的优先级。
+在获取到 `lane` 后，会给本次[创建的 update](/react/rerender)标记上该 `lane`，这样就对不同情况下创建的 `update` 标记了不同的优先级。
 
 在接下来通过 `scheduleUpdateOnFiber` 方法调用 [Scheduler](/react/scheduler) 进入由调度器控制的调度工作。
 

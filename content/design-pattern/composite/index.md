@@ -101,25 +101,25 @@ var MacroCommand = function () {
       for (var i = 0, command; (command = this.commandsList[i++]); ) {
         command.execute()
       }
-    },
+    }
   }
 }
 
 const openAcCommand = {
   execute: function () {
     console.log("打开空调")
-  },
+  }
 }
 const openTvCommand = {
   execute: function () {
     console.log("打开电视")
-  },
+  }
 }
 
 const openSoundCommand = {
   execute: function () {
     console.log("打开音响")
-  },
+  }
 }
 
 const macroCommand1 = MacroCommand()
@@ -131,19 +131,19 @@ macroCommand1.add(openSoundCommand)
 const closeDoorCommand = {
   execute: function () {
     console.log("关门")
-  },
+  }
 }
 
 const openPcCommand = {
   execute: function () {
     console.log("开电脑")
-  },
+  }
 }
 
 const openQQCommand = {
   execute: function () {
     console.log("登录QQ")
-  },
+  }
 }
 
 const macroCommand2 = MacroCommand()

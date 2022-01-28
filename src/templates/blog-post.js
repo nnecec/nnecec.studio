@@ -20,22 +20,45 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
       >
         <header className="mb-12">
           <h1>{post.frontmatter.title}</h1>
-          <div className="text-sm flex flex-col gap-2">
+          <div className="flex flex-col gap-2 text-sm">
             <div className="flex justify-between">
               最后更新: {post.frontmatter.date}
-              <a href={`${repositoryUrl}/issues`} target="_blank" referrerPolicy="no-referrer" rel="noreferrer">反馈<Icon.LinkExternal /></a>
+              <a
+                href={`${repositoryUrl}/issues`}
+                target="_blank"
+                referrerPolicy="no-referrer"
+                rel="noreferrer"
+              >
+                反馈
+                <Icon.LinkExternal />
+              </a>
             </div>
-            <div>{post.frontmatter.tags?.map(tag => (<Tag key={tag}>{tag}</Tag>))}</div>
-            <div>版权声明: 署名-非商业性使用-禁止演绎 3.0 国际（<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" referrerPolicy="no-referrer" rel="noreferrer">CC BY-NC-ND 3.0</a>）</div>
+            <div>
+              {post.frontmatter.tags?.map(tag => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
+            </div>
+            <div>
+              版权声明: 署名-非商业性使用-禁止演绎 3.0 国际（
+              <a
+                href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"
+                target="_blank"
+                referrerPolicy="no-referrer"
+                rel="noreferrer"
+              >
+                CC BY-NC-ND 3.0
+              </a>
+              ）
+            </div>
           </div>
-
         </header>
         <div className="relative  my-8">
-          {!!post.tableOfContents &&
+          {!!post.tableOfContents && (
             <Toc
-              className="text-sm z-20 top-[20rem] right-[max(0px,calc(50%-46rem))] w-[19.5rem] py-6 px-4 overflow-y-auto xl:fixed max-h-[600px]"
+              className="top-[20rem] right-[max(0px,calc(50%-46rem))] z-20 max-h-[600px] w-[19.5rem] overflow-y-auto py-6 px-4 text-sm xl:fixed"
               toc={post.tableOfContents}
-            />}
+            />
+          )}
           <article
             dangerouslySetInnerHTML={{ __html: post.html }}
             itemProp="articleBody"
@@ -61,14 +84,22 @@ const BlogPostTemplate = ({ data, location, ...rest }) => {
         >
           <li>
             {previous && (
-              <Link className="before:content-['_↽']" to={previous.fields.slug} rel="prev">
+              <Link
+                className="before:content-['_↽']"
+                to={previous.fields.slug}
+                rel="prev"
+              >
                 {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link className="after:content-['_⇁']" to={next.fields.slug} rel="next">
+              <Link
+                className="after:content-['_⇁']"
+                to={next.fields.slug}
+                rel="next"
+              >
                 {next.frontmatter.title}
               </Link>
             )}

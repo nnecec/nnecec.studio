@@ -295,7 +295,7 @@ function allSettled(iterable) {
       function (value) {
         values[i] = {
           status: "fulfilled",
-          value,
+          value
         }
         if (++settled === len && !called) {
           called = true
@@ -305,7 +305,7 @@ function allSettled(iterable) {
       function (reason) {
         values[i] = {
           status: "rejected",
-          reason,
+          reason
         }
         if (++settled === len && !called) {
           called = true

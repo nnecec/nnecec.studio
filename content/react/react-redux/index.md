@@ -277,7 +277,7 @@ const overriddenContextValue = useMemo(() => {
 
   return {
     ...contextValue,
-    subscription,
+    subscription
   } as ReactReduxContextValue
 }, [didStoreComeFromProps, contextValue, subscription])
 
@@ -370,7 +370,7 @@ export function createSubscription(store: any, parentSub?: Subscription) {
     isSubscribed,
     trySubscribe,
     tryUnsubscribe,
-    getListeners: () => listeners,
+    getListeners: () => listeners
   }
 
   return subscription

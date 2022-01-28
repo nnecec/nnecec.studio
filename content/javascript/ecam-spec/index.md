@@ -12,7 +12,7 @@ description: "以查看Module及Number为例了解如何阅读 ECMAScript 规范
    1. Syntax Error 语法错误
       - 重复的模块引入声明
       - 重复的导出声明
-      - 
+      -
 
 ## 参考
 

@@ -175,7 +175,7 @@ var uploadManager = (function () {
       uploadDatabase[id] = {
         fileName: fileName,
         fileSize: fileSize,
-        dom: dom,
+        dom: dom
       }
 
       return flyWeightObj
@@ -185,7 +185,7 @@ var uploadManager = (function () {
       for (var i in uploadData) {
         flyWeightObj[i] = uploadData[i]
       }
-    },
+    }
   }
 })()
 var UploadFactory = (function () {
@@ -198,7 +198,7 @@ var UploadFactory = (function () {
       }
 
       return (createdFlyWeightObjs[uploadType] = new Upload(uploadType))
-    },
+    }
   }
 })()
 

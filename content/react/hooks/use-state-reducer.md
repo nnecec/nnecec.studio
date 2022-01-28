@@ -99,11 +99,14 @@ function mountReducer<S, I, A>(
 对比 `mountState` 和 `mountReducer` 可以看到，区别仅仅是 `计算 initialState` 和 `reducer`。根据 `useState` 的文档，它的参数是一个值或者方法，在源码的处理中，遇到值则直接返回，遇到方法则返回执行结果。
 
 对于 <使用 useReducer 实现 useState> 这种问题，可以给出如下答案:
+
 >
+
 ```ts
-function useMyState (initialState) {
- const reducer = (state, action) =typeof action ==='function'? action(state): action
- return useReducer(reducer, initialState)
+function useMyState(initialState) {
+  const reducer = ((state, action) =
+    typeof action === "function" ? action(state) : action)
+  return useReducer(reducer, initialState)
 }
 ```
 
@@ -125,7 +128,7 @@ function updateReducer<S, I, A>(
   const queue = hook.queue;
 
   queue.lastRenderedReducer = reducer;
-  
+
   // 省略
 
   const dispatch: Dispatch<A> = (queue.dispatch: any);

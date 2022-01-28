@@ -4,10 +4,7 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: [
-    'plugin:react/recommended',
-    'standard'
-  ],
+  extends: ['plugin:react/recommended', 'standard'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -16,11 +13,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: [
-    'graphql',
-    'react',
-    '@typescript-eslint'
-  ],
+  plugins: ['graphql', 'react', '@typescript-eslint'],
   globals: {
     graphql: true,
     __PATH_PREFIX__: true,

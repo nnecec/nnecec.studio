@@ -52,7 +52,7 @@ const strategies = {
   },
   B: function (salary) {
     return salary * 2
-  },
+  }
 }
 const calculateBonus = (level, salary) => {
   return strategies[level](salary)
@@ -83,7 +83,7 @@ const strategies = {
     if (!/(^1[3|5|8][0-9]{9}$)/.test(value)) {
       return errorMsg
     }
-  },
+  }
 }
 
 class Validator {
@@ -124,26 +124,26 @@ var validate = function () {
   validator.add(registerForm.userName, [
     {
       strategy: "isNonEmpty",
-      errorMsg: "用户名不能为空",
+      errorMsg: "用户名不能为空"
     },
     {
       strategy: "minLength:6",
-      errorMsg: "用户名长度不能小于10位",
-    },
+      errorMsg: "用户名长度不能小于10位"
+    }
   ])
 
   validator.add(registerForm.password, [
     {
       strategy: "minLength:6",
-      errorMsg: "密码长度不能小于6位",
-    },
+      errorMsg: "密码长度不能小于6位"
+    }
   ])
 
   validator.add(registerForm.phoneNumber, [
     {
       strategy: "isMobile",
-      errorMsg: "手机号码格式不正确",
-    },
+      errorMsg: "手机号码格式不正确"
+    }
   ])
 
   var errorMsg = validator.start()

@@ -19,22 +19,14 @@ description: "如何触发 React 中的状态更新，如何将更新提交给�
 
 对于上述触发更新的方法，大体流程如下：
 
-```dot
-digraph graphname {
-  node [shape=box];
-  setState [label="触发更新"];
-  createUpdate [label="创建 Update 对象"];
-  fromFiberToRoot [label="从触发更新的 fiber 向上遍历到 root"];
-  scheduled [label="<ensureRootIsScheduled> 调度更新"];
-  perform [label="调用 performSyncWorkOnRoot 或 performConcurrentWorkOnRoot"];
-  commit [label="提交更新"];
-
-  setState -> createUpdate;
-  createUpdate -> fromFiberToRoot;
-  fromFiberToRoot -> scheduled
-  scheduled -> perform
-  perform -> commit
-}
+```mermaid
+graph TD
+setState["通过 setState forceUpdate 等触发更新"]
+setState --> createUpdate["创建 Update 对象"]
+createUpdate --> fromFiberToRoot["从触发更新的 fiber 向上遍历到 root 节点"]
+fromFiberToRoot --> scheduled["通过 ensureRootIsScheduled 调度更新"]
+scheduled --> perform["调用 performSyncWorkOnRoot 或 performConcurrentWorkOnRoot"]
+perform --> commit["提交更新"]
 ```
 
 ## 源码

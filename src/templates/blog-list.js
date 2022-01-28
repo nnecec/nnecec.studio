@@ -11,8 +11,8 @@ const BlogIndex = ({ data, location, ...props }) => {
   const { currentPage, numPages } = props.pageContext
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
-  const prevPage = currentPage - 1 === 1 ? '/' : `/${(currentPage - 1)}`
-  const nextPage = `/${(currentPage + 1)}`
+  const prevPage = currentPage - 1 === 1 ? '/' : `/${currentPage - 1}`
+  const nextPage = `/${currentPage + 1}`
 
   if (posts.length === 0) {
     return (
@@ -56,7 +56,9 @@ const BlogIndex = ({ data, location, ...props }) => {
                   />
                 </section>
                 <div className="">
-                  {post.frontmatter.tags?.map(tag => (<Tag key={tag}>{tag}</Tag>))}
+                  {post.frontmatter.tags?.map(tag => (
+                    <Tag key={tag}>{tag}</Tag>
+                  ))}
                 </div>
               </article>
             </li>
@@ -70,11 +72,7 @@ const BlogIndex = ({ data, location, ...props }) => {
           </Link>
         )}
         {Array.from({ length: numPages }, (_, i) => (
-
-          <Link
-            key={i}
-            to={`/${i === 0 ? '' : i + 1}`}
-          >
+          <Link key={i} to={`/${i === 0 ? '' : i + 1}`}>
             <Button active={i + 1 === currentPage}>{i + 1}</Button>
           </Link>
         ))}
@@ -86,7 +84,6 @@ const BlogIndex = ({ data, location, ...props }) => {
       </Space>
 
       <Bio className="my-12" />
-
     </Layout>
   )
 }
@@ -94,14 +91,14 @@ const BlogIndex = ({ data, location, ...props }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query ($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
       }
     }
     allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC },
+      sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
     ) {

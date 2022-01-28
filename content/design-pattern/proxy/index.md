@@ -57,7 +57,7 @@ var myImage = (function () {
   return {
     setSrc: function (src) {
       imgNode.src = src
-    },
+    }
   }
 })()
 
@@ -70,7 +70,7 @@ var proxyImage = (function () {
     setSrc: function (src) {
       myImage.setSrc("file:// /C:/Users/svenzeng/Desktop/loading.gif")
       img.src = src
-    },
+    }
   }
 })()
 

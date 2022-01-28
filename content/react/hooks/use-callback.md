@@ -70,17 +70,17 @@ function areHookInputsEqual(
 
 - 当方法需要传递给子组件，如果不使用 `useCallback` 缓存，相当于每次都是声明了一个新的 function，对于子组件来说，这个方法的变更会导致 `props` 发生变更。所以为了优化不必要的渲染，使用 `useCallback` 储存需要向子组件传递的方法。
 
-   ```js
-   function App() {
-     const [title, setTitle] = useState("title")
+  ```js
+  function App() {
+    const [title, setTitle] = useState("title")
 
-     const sayTitle = useCallback(() => {
-       console.log(title)
-     }, [title])
+    const sayTitle = useCallback(() => {
+      console.log(title)
+    }, [title])
 
-     return <Button onClick={sayTitle}>say</Button>
-   }
-   ```
+    return <Button onClick={sayTitle}>say</Button>
+  }
+  ```
 
 - 当我们在使用 `Button` 组件时，同样也是向 `onClick` 方法传递了一个 `function`。在这种情况下，如果只有一个 `Button`，那使用 `function` 或 `useCallback` 声明整体性能差别不大。但如果给一个长列表使用，那么对于重新渲染的性能 `useCallback` 要优于 `function` 直接声明。
 
@@ -139,7 +139,7 @@ function app() {
 
   return {
     increment,
-    callback,
+    callback
   }
 }
 

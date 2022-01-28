@@ -47,7 +47,7 @@ function updateMemo<T>(
 }
 ```
 
- `useMemo` 的实现相对是比较简单。在 `mount` 阶段调用第一个参数方法生成计算结果，并缓存到 `fiber.memoizedState` 上。在 `update` 阶段，对比是否有 `deps` 且 `deps` 是否变化，如果没有变化则使用缓存的值，如果变化了则重新计算。
+`useMemo` 的实现相对是比较简单。在 `mount` 阶段调用第一个参数方法生成计算结果，并缓存到 `fiber.memoizedState` 上。在 `update` 阶段，对比是否有 `deps` 且 `deps` 是否变化，如果没有变化则使用缓存的值，如果变化了则重新计算。
 
 ## 用法
 

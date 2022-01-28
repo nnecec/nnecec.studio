@@ -1,6 +1,6 @@
 import cls from 'classnames'
 
-export const Toc = (props) => {
+export const Toc = props => {
   const { toc, className } = props
   return (
     <nav
