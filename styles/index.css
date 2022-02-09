@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+@layer base {
+  html {
+    font-size: 16px;
+    @apply leading-normal;
+  }
+  body {
+    @apply break-words bg-zinc-50
+    text-zinc-800 transition-colors dark:bg-zinc-800
+    dark:text-zinc-100 dark:text-opacity-80;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply mt-8 mb-6;
+  }
+  h1 {
+    @apply text-4xl font-bold;
+  }
+  h2 {
+    @apply text-3xl font-semibold;
+  }
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+  h4 {
+    @apply text-xl font-medium;
+  }
+  h5 {
+    @apply text-lg font-medium;
+  }
+  ul,
+  ol {
+    @apply mx-0 mb-8 p-0 leading-normal;
+    list-style-position: outside;
+    list-style-image: none;
+  }
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
+  ul li,
+  ol li {
+    @apply mb-4 pl-0;
+  }
+
+  li > p {
+    @apply mb-4;
+  }
+
+  li *:last-child {
+    @apply mb-0;
+  }
+
+  li > ul,
+  li > ol {
+    @apply ml-4 mt-2;
+  }
+
+  blockquote {
+    @apply m-6 border-l-4 border-zinc-200 pl-6 italic;
+  }
+
+  blockquote > :last-child {
+    @apply mb-0;
+  }
+
+  blockquote > ul,
+  blockquote > ol {
+    list-style-position: inside;
+  }
+}

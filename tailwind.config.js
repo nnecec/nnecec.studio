@@ -1,12 +1,12 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./components/**/*.tsx', './pages/**/*.tsx'],
   darkMode: 'class',
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
-    container: {
-      center: true
-    },
     extend: {
       colors: {
         primary: 'var(--primary-color)',

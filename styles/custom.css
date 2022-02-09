@@ -1,0 +1,60 @@
+:root {
+  --primary-color: theme('colors.yellow.300');
+  --primary-dark-color: theme('colors.yellow.400');
+  --anchors-width: 299px;
+}
+.heti,
+.heti--sans {
+  font-family: inherit;
+}
+
+/* HTML elements */
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom classes */
+
+.global-wrapper {
+  @apply py-10 px-5;
+  @apply mx-auto;
+  @apply max-w-3xl;
+}
+
+.blog-post a {
+  @apply mx-1;
+}
+/* Media queries */
+
+@media (max-width: 42rem) {
+  blockquote {
+    @apply m-0 pl-2;
+  }
+  ul,
+  ol {
+    list-style-position: inside;
+  }
+}
+
+.anchors ul {
+  @apply list-none;
+}
+.anchors ul * {
+  @apply my-0;
+}
+.anchors ul p,
+.anchors ul a {
+  @apply truncate break-normal;
+  @apply text-xs;
+}
+.anchors ul p {
+  @apply my-2;
+}

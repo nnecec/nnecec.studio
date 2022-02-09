@@ -1,0 +1,29 @@
+{
+  "name": "nnecec's aircraft",
+  "short_name": "aircraft",
+  "icons": [
+    {
+      "src": "/favicons/favicon.ico",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/favicons/favicon.ico",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ],
+  "theme_color": "#1c1917",
+  "background_color": "#ffffff",
+  "user_preferences": {
+    "color_scheme_dark": {
+      "theme_color": "#27272a",
+      "background_color": "#27272a"
+    },
+    "color_scheme_light": {
+      "theme_color": "#fff",
+      "background_color": "#fff"
+    }
+  },
+  "display": "standalone"
+}

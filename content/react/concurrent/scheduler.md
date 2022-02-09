@@ -57,7 +57,7 @@ function shouldYield() {
 
 ### 优先级调度
 
-在[状态更新](/react/rerender)中，提到 React 的更新最后都通过 `scheduleUpdateOnFiber` 方法调度更新。在方法中调用了 `ensureRootIsScheduled`
+在[状态更新](/posts/react_rerender)中，提到 React 的更新最后都通过 `scheduleUpdateOnFiber` 方法调度更新。在方法中调用了 `ensureRootIsScheduled`
 
 ```ts
 function ensureRootIsScheduled(root: FiberRoot, currentTime: number) {
