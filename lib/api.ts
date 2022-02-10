@@ -44,7 +44,7 @@ export function getAllPosts(fields: string[] = []) {
   const posts = slugs
     .map(slug => getPosts(slug, fields))
     .filter(Boolean)
-    .sort((post1, post2) => (dayjs(post1.date).isAfter(dayjs(post2.date)) ? -1 : 1))
+    .sort((post1, post2) => (dayjs(post1!.date).isAfter(dayjs(post2!.date)) ? -1 : 1))
   return posts
 }
 
