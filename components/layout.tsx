@@ -1,13 +1,13 @@
+import Footer from './footer'
 import Meta from './meta'
 import Navbar from './navbar'
-import Footer from './footer'
+import { PropsWithChildren } from 'react'
 
 type Props = {
   preview?: boolean
-  children: React.ReactNode
 }
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children }: PropsWithChildren<Props>) => {
   return (
     <>
       <Meta />

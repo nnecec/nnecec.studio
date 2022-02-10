@@ -4,7 +4,7 @@ module.exports = {
   content: ['./components/**/*.tsx', './pages/**/*.tsx'],
   darkMode: 'class',
   corePlugins: {
-    preflight: false,
+    preflight: false
   },
   theme: {
     extend: {

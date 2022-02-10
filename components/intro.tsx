@@ -10,8 +10,8 @@ const Intro = () => {
           <span className="text-cyan-500">React</span>.
         </Text>
         <Tooltip content="Try to keep update.">
-          <Link href="/posts">
-            <Button>Posts</Button>
+          <Link href="/posts" passHref>
+            <Button as="a">Posts</Button>
           </Link>
         </Tooltip>
       </div>

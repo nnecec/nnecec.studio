@@ -23,7 +23,11 @@ const PostsPage = ({ posts }: Props) => {
             {posts.map(post => {
               return (
                 <Grid xs={12} sm={6} md={6} key={post.slug}>
-                  <Link as={`/posts/${post.slug}`} href="/posts/[slug]">
+                  <Link
+                    as={`/posts/${post.slug}`}
+                    href="/posts/[slug]"
+                    passHref
+                  >
                     <Card hoverable clickable>
                       <Card.Header>
                         <Text h4>{post.title}</Text>

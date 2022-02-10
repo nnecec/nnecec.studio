@@ -1,11 +1,9 @@
 import { SITE_CONFIG } from '../lib/constants'
 import { Card, Text, Row, Col, Button } from '@nextui-org/react'
-type Props = {
-  className?: string
-}
+
 const { author, social, description } = SITE_CONFIG
 
-const Bio = ({ className }: Props) => {
+const Bio = () => {
   return (
     <Card cover css={{ w: '100%', p: 0 }}>
       <Card.Body>

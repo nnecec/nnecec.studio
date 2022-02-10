@@ -9,7 +9,7 @@ export interface Props {
   isHome?: boolean
 }
 
-const Navbar: React.FC<Props> = ({ isHome, routes }) => {
+const Navbar: React.FC<Props> = () => {
   return (
     <header className="sticky top-0 z-50 bg-transparent backdrop-blur">
       <Container display="flex" alignItems="center" justify="space-between">

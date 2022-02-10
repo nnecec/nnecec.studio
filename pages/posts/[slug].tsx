@@ -13,11 +13,9 @@ import { Container, Loading, Spacer } from '@nextui-org/react'
 
 type Props = {
   post: PostType
-  morePosts: PostType[]
-  preview?: boolean
 }
 
-const Post = ({ post, preview }: Props) => {
+const Post = ({ post }: Props) => {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
@@ -32,10 +30,6 @@ const Post = ({ post, preview }: Props) => {
             <article>
               <Head>
                 <title>{post.title}</title>
-                <link
-                  rel="stylesheet"
-                  href="//unpkg.com/heti/umd/heti.min.css"
-                ></link>
               </Head>
               <article
                 className="blog-post"

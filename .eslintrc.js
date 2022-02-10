@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['next', 'plugin:prettier/recommended']
+  extends: ['eslint:recommended', 'next', 'plugin:prettier/recommended']
 }

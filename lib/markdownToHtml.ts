@@ -5,6 +5,10 @@ import toc from 'remark-toc'
 import prism from 'remark-prism'
 
 export default async function markdownToHtml(markdown: string) {
-  const result = await remark().use(html, { sanitize: false }).use(toc).use(prism).process(markdown)
+  const result = await remark()
+    .use(html, { sanitize: false })
+    .use(toc)
+    .use(prism)
+    .process(markdown)
   return result.toString()
 }
