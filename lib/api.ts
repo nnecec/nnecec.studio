@@ -51,14 +51,14 @@ export function getAllPosts(fields: string[] = []) {
 }
 
 export function getPost(slug: string, fields: string[] = []) {
-  return getDetail('/' + slug.replaceAll('_', '/'), fields)
+  return getDetail('/' + slug.replace(/_/g, '/'), fields)
 }
 
 function getDetail(slug: string, fields: string[] = []) {
   const fullPath = join(postsDirectory, `${slug}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
-  const realSlug = slug.replaceAll('/', '_').slice(1)
+  const realSlug = slug.replace(/\//g, '_').slice(1)
 
   const items: Items = {}
 
