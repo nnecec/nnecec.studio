@@ -11,7 +11,7 @@ export interface Props {
 
 const Navbar: React.FC<Props> = () => {
   return (
-    <header className="sticky top-0 z-50 bg-transparent backdrop-blur">
+    <header className="sticky top-0 z-[999] bg-transparent backdrop-blur">
       <Container display="flex" alignItems="center" justify="space-between">
         <h1>
           <Link href="/">{SITE_CONFIG.title}</Link>
