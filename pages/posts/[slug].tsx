@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import Layout from '../../components/layout'
-import { getPost, getAllPosts } from '../../lib/api'
+import Layout from '@/components/layout'
+import { getPost, getAllPosts } from '@/lib/api'
 import Head from 'next/head'
-import markdownToHtml from '../../lib/markdownToHtml'
-import { SITE_CONFIG } from '../../lib/constants'
-import PostType from '../../types/post'
-import Bio from '../../components/bio'
-import Tag from '../../components/tag'
+import { markdownToHtml } from '@/lib/markdown'
+import { SITE_CONFIG } from '@/lib/constants'
+import PostType from '@/types/post'
+import Bio from '@/components/bio'
+import Tag from '@/components/tag'
 import { Share } from '@icon-park/react'
 import { Container, Loading, Spacer } from '@nextui-org/react'
 
@@ -32,7 +32,7 @@ const Post = ({ post }: Props) => {
                 <title>{post.title}</title>
               </Head>
               <article
-                className="blog-post"
+                className="blog-post overflow-hidden"
                 itemScope
                 itemType="http://schema.org/Article"
               >

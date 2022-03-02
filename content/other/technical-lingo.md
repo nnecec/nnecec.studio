@@ -23,3 +23,6 @@ description: "IoC, DI, DDD, RPC 等等都是什么？"
 ## SOLID
 
 - [面向对象编程的 SOLID 原则 (freecodecamp.org)](https://chinese.freecodecamp.org/news/solid-principles/)
+
+## AOP
+

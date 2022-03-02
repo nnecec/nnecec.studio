@@ -4,29 +4,21 @@ import { SITE_CONFIG } from '../lib/constants'
 import NextLink from 'next/link'
 import ThemeSwitch from './theme-switch'
 
-export interface Props {
-  routes?: any[]
-  isHome?: boolean
-}
-
-const Navbar: React.FC<Props> = () => {
+const Navbar: React.FC = () => {
   return (
-    <header className="sticky top-0 z-[999] bg-transparent backdrop-blur">
+    <header className="fixed top-0 z-[999] w-screen border-b border-gray-50 bg-transparent backdrop-blur">
       <Container display="flex" alignItems="center" justify="space-between">
         <h1>
-          <Link href="/">{SITE_CONFIG.title}</Link>
+          <NextLink href="/">{SITE_CONFIG.title}</NextLink>
         </h1>
 
-        <Row fluid={false} gap={1}>
-          <Col>
-            <NextLink href="/posts">
-              <Link block>Posts</Link>
-            </NextLink>
-          </Col>
-          <Col>
-            <ThemeSwitch />
-          </Col>
-        </Row>
+        <div className="flex gap-2">
+          <NextLink href="/posts">
+            <Link block>文章</Link>
+          </NextLink>
+
+          <ThemeSwitch />
+        </div>
       </Container>
     </header>
   )

@@ -4,7 +4,9 @@ export const darkTheme = createTheme({
   type: 'dark',
   className: 'dark',
   theme: {
-    colors: {}
+    colors: {
+      selection: 'red'
+    }
   }
 })
 

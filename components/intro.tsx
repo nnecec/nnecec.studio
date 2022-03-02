@@ -1,21 +1,25 @@
 import Link from 'next/link'
 import { Text, Tooltip, Button } from '@nextui-org/react'
+import { motion } from 'framer-motion'
 
 const Intro = () => {
   return (
-    <section className="px-6 sm:px-8 lg:flex lg:w-full lg:items-center lg:justify-between lg:gap-12">
-      <div className="lg:mb-10 lg:w-1/2">
-        <Text h1>
+    <section className="flex h-[calc(100vh-96px)] items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: 'tween' }}
+      >
+        <Text h1 className="mb-4">
           Focused on <span className="text-yellow-400">JavaScript</span> and{' '}
           <span className="text-cyan-500">React</span>.
         </Text>
-        <Tooltip content="Try to keep update.">
+        <Tooltip content="最近更新">
           <Link href="/posts" passHref>
-            <Button as="a">Posts</Button>
+            <Button as="a">文章</Button>
           </Link>
         </Tooltip>
-      </div>
-      <div className="relative -mx-6 mt-6 overflow-hidden p-4 sm:-mx-8 sm:p-8 md:p-10 lg:mt-0 lg:h-[51rem] lg:w-1/2 lg:rounded-l-2xl lg:p-8"></div>
+      </motion.div>
     </section>
   )
 }

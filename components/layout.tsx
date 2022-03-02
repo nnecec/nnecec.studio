@@ -12,7 +12,7 @@ const Layout = ({ children }: PropsWithChildren<Props>) => {
     <>
       <Meta />
       <Navbar />
-      <main className="min-h-screen">{children}</main>
+      <main className="min-h-screen pt-[96px]">{children}</main>
       <Footer />
     </>
   )
