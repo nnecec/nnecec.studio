@@ -20,7 +20,7 @@ description: "hooks 以什么样的形态存在于 React 中？"
 在调度节点渲染的方法中，当遇到节点类型为 `FunctionComponent` 时，会通过 `renderWithHooks` 方法计算得出新节点的页面信息。
 
 ```mermaid
-graph TD
+graph TD;
 beginWork[beginWork 调度渲染每个 fiber 节点]
 beginWork --> updateFunctionComponent[updateFunctionComponent 调度更新FunctionComponent]
 updateFunctionComponent --> renderWithHooks[renderWithHooks 计算获取新的节点信息<br/>并在方法内部根据当前mount或update阶段设定<br/>ReactCurrentDispatcher.current的指向]
@@ -122,3 +122,4 @@ function updateWorkInProgressHook(): Hook {
 ```
 
 在 `update` 阶段，通过 `updateWorkInProgressHook` 获取当前 hook 并返回该 hook 的值 `hook.memoizedState`。在这个方法里，通过判断区分出是由用户触发的更新还是由更新触发的更新<sup>待补充</sup>，并返回最终正确的 hook。
+

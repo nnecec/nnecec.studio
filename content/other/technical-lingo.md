@@ -9,12 +9,14 @@ description: "IoC, DI, DDD, RPC 等等都是什么？"
 
 ## IoC 控制反转, DI 依赖注入
 
-- [了不起的 IoC 与 DI - SegmentFault 思否](https://segmentfault.com/a/1190000023650518)
+- [了不起的 IoC 与 DI](https://segmentfault.com/a/1190000023650518)
+- [深入浅出前端控制反转和依赖注入实现](https://juejin.cn/post/7046927021028409351)
 
 ## DDD 领域驱动模型
 
 - [Sairyss/domain-driven-hexagon: Guide on Domain-Driven Design, software architecture, design patterns, best practices etc. with code examples (github.com)](https://github.com/Sairyss/domain-driven-hexagon)
 - [领域驱动设计在互联网业务开发中的实践 - 美团技术团队 (meituan.com)](https://tech.meituan.com/2017/12/22/ddd-in-practice.html)
+- [用DDD(领域驱动设计)和ADT(代数数据类型)提升代码质量](https://mp.weixin.qq.com/s/UaJ56G_Vdx6__6ximfP47A)
 
 ## RPC
 
@@ -24,5 +26,7 @@ description: "IoC, DI, DDD, RPC 等等都是什么？"
 
 - [面向对象编程的 SOLID 原则 (freecodecamp.org)](https://chinese.freecodecamp.org/news/solid-principles/)
 
-## AOP
+## OOP, AOP
+
+- 
 
