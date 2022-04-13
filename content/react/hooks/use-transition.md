@@ -7,4 +7,8 @@ description: "useTransition 和它的一切。"
 
 ## 概念
 
-你可以在[官方文档](https://zh-hans.reactjs.org/docs/concurrent-mode-reference.html)中看到 `useTransition` 的介绍。
+你可以在[官方文档](https://zh-hans.reactjs.org/docs/hooks-reference.html#usetransition)中看到 `useTransition` 的介绍。
+
+`useTransition` 返回了一个变量用于标记是否在 pending 状态，另一个方法用于限制函数执行优先级。
+
+

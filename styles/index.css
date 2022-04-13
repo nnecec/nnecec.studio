@@ -9,9 +9,7 @@
     @apply leading-normal;
   }
   body {
-    @apply break-words bg-zinc-50
-    text-zinc-800 transition-colors dark:bg-zinc-800
-    dark:text-zinc-100 dark:text-opacity-80;
+    @apply break-words  transition-colors;
   }
   h1,
   h2,

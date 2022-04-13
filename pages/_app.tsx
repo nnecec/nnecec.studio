@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app'
 import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { darkTheme, lightTheme } from '../lib/theme'
+import { darkTheme, lightTheme } from '../utils/theme'
 
 import '../styles/index.css'
 import '../styles/code.css'

@@ -129,7 +129,7 @@ dispatchEvent["触发 click 事件，冒泡到根节点调用绑定的方法 dis
 dispatchEvent --> findInstanceBlockingEvent["通过 dispatchEventForPluginEventSystem 获取目标 DOM"]
 findInstanceBlockingEvent --> dispatchEventForPluginEventSystem["dispatchEventForPluginEventSystem"]
 dispatchEventForPluginEventSystem --> extractEvents["通过 extractEvents 生成事件队列 listeners"]
-extractEvents --> accumulateSinglePhaseListeners["accumulateSinglePhaseListeners <br/>获取触发本次事件的 fiber 节点并依次查找直到根节点<br/>获取每个节点上的 onClick 方法并添加到 dispatchQueue 队列"]
+extractEvents --> accumulateSinglePhaseListeners["accumulateSinglePhaseListeners  获取触发本次事件的 fiber 节点并依次查找直到根节点 获取每个节点上的 onClick 方法并添加到 dispatchQueue 队列"]
 accumulateSinglePhaseListeners --> processDispatchQueue["遍历 dispatchQueue 队列，依次调用各自的 onClick 方法"]
 ```
 

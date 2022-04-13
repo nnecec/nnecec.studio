@@ -1,13 +1,13 @@
-import Footer from './footer'
-import Meta from './meta'
-import Navbar from './navbar'
+import { Meta } from './meta'
+import { Navbar } from './navbar'
 import { PropsWithChildren } from 'react'
+import { Footer } from './footer'
 
 type Props = {
   preview?: boolean
 }
 
-const Layout = ({ children }: PropsWithChildren<Props>) => {
+export const Layout = ({ children }: PropsWithChildren<Props>) => {
   return (
     <>
       <Meta />
@@ -17,5 +17,3 @@ const Layout = ({ children }: PropsWithChildren<Props>) => {
     </>
   )
 }
-
-export default Layout

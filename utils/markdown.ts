@@ -6,10 +6,11 @@ import { remarkMermaid } from 'remark-mermaidjs'
 
 export async function markdownToHtml(markdown: string) {
   const result = await remark()
-    .use(html, { sanitize: false })
+    .use(remarkMermaid)
     .use(toc)
     .use(prism)
-    .use(remarkMermaid)
+    .use(html, { sanitize: false })
     .process(markdown)
+
   return result.toString()
 }

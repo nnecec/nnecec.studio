@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import { HOME_OG_IMAGE_URL, SITE_CONFIG } from '../lib/constants'
+import { HOME_OG_IMAGE_URL, SITE_CONFIG } from 'utils/constants'
 
-const Meta = () => {
+export const Meta = () => {
   return (
     <Head>
       <link
@@ -20,5 +20,3 @@ const Meta = () => {
     </Head>
   )
 }
-
-export default Meta

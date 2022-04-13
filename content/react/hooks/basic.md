@@ -21,11 +21,10 @@ description: "hooks 以什么样的形态存在于 React 中？"
 
 ```mermaid
 graph TD;
-beginWork[beginWork 调度渲染每个 fiber 节点]
-beginWork --> updateFunctionComponent[updateFunctionComponent 调度更新FunctionComponent]
-updateFunctionComponent --> renderWithHooks[renderWithHooks 计算获取新的节点信息<br/>并在方法内部根据当前mount或update阶段设定<br/>ReactCurrentDispatcher.current的指向]
-renderWithHooks --> component["Component(props) 调用组件方法获取children<br/>当执行到 hook(如 useState(initialState))时其实相当于调用<br/> ReactCurrentDispatcher.current.useState(initialState)"]
-component --> hook["ReactCurrentDispatcher.current.useXxx(...) 调用对应hook方法<br/>计算新的hook状态并存储到hook.memoizedState上"]
+beginWork[beginWork 调度渲染每个 fiber 节点]-->updateFunctionComponent[updateFunctionComponent 调度更新FunctionComponent]
+updateFunctionComponent-->renderWithHooks["renderWithHooks 计算获取新的节点信息 并在方法内部根据当前mount或update阶段设定 ReactCurrentDispatcher.current的指向"]
+renderWithHooks-->component["Component(props) 调用组件方法获取children 当执行到 hook(如 useState(initialState))时其实相当于调用  ReactCurrentDispatcher.current.useState(initialState)"]
+component-->hook["ReactCurrentDispatcher.current.useXxx(...) 调用对应hook方法 计算新的hook状态并存储到hook.memoizedState上"]
 ```
 
 下面看一个相对比较简单的 `useRef` 方法的源码：

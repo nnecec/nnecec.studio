@@ -1,9 +1,9 @@
-import { SITE_CONFIG } from '../lib/constants'
+import { SITE_CONFIG } from '../utils/constants'
 import { Card, Text, Row, Col, Button } from '@nextui-org/react'
 
 const { author, social, description } = SITE_CONFIG
 
-const Bio = () => {
+export const Bio = () => {
   return (
     <Card cover css={{ w: '100%', p: 0 }}>
       <Card.Body>
@@ -67,4 +67,3 @@ const Bio = () => {
     </Card>
   )
 }
-export default Bio

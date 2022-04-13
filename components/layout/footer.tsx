@@ -1,7 +1,7 @@
 import { Container, Grid, Spacer } from '@nextui-org/react'
 import { Share, Github, Twitter } from '@icon-park/react'
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="py-8 text-sm">
       <Container>
@@ -34,5 +34,3 @@ const Footer = () => {
     </footer>
   )
 }
-
-export default Footer

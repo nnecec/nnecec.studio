@@ -2,7 +2,7 @@ import { Sun, Moon } from '@icon-park/react'
 import { useTheme as useNextTheme } from 'next-themes'
 import { Switch, useTheme } from '@nextui-org/react'
 
-const ThemeSwitch = () => {
+export const ThemeSwitch = () => {
   const { setTheme } = useNextTheme()
   const { isDark } = useTheme()
 
@@ -15,4 +15,3 @@ const ThemeSwitch = () => {
     ></Switch>
   )
 }
-export default ThemeSwitch

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Container, Link, Row, Col } from '@nextui-org/react'
-import { SITE_CONFIG } from '../lib/constants'
+import { Container, Link } from '@nextui-org/react'
+import { SITE_CONFIG } from '../../utils/constants'
 import NextLink from 'next/link'
-import ThemeSwitch from './theme-switch'
+import { ThemeSwitch } from './theme-switch'
 
-const Navbar: React.FC = () => {
+export const Navbar: React.FC = () => {
   return (
     <header className="fixed top-0 z-[999] w-screen border-b border-gray-50 bg-transparent backdrop-blur">
       <Container display="flex" alignItems="center" justify="space-between">
@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
         </h1>
 
         <div className="flex gap-2">
-          <NextLink href="/posts">
+          <NextLink href="/posts" passHref>
             <Link block>文章</Link>
           </NextLink>
 
@@ -23,5 +23,3 @@ const Navbar: React.FC = () => {
     </header>
   )
 }
-
-export default Navbar

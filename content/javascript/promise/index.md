@@ -9,7 +9,7 @@ description: "Promise API 解读及实现"
 
 - [MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-## API
+## 核心实现
 
 ### Promise Constructor
 
@@ -34,26 +34,26 @@ class Promise {
 }
 ```
 
-然后需要实现 Promise 构造函数的功能。我们会向构造函数传入一个接受 `resolve, reject` 作为参数的方法。
+然后需要实现 Promise 构造函数接受参数的功能。我们会向构造函数传入一个接受 `resolve, reject` 作为参数的方法。
 
 ```js
 class Promise {
   constructor(resolver) {
     // ...
     if (resolver !== internal.noop) {
-      safelyResolveThenable(this, resolver)
+      safelyResolveThenable(this, resolver) // 稍后解释
     }
   }
 }
 ```
 
-### resolve, reject
+### 内部 resolve, reject 实现
 
 如果传入 resolve 的是 Promise，则继续构建该 Promise。当是一个非 Promise 的值时，修改成对应的成功失败状态，并赋予该值。
 
 ```js
 const resolve = function (self, value) {
-  const result = tryCatch(getThen, value)
+  const result = tryCatch(getThen, value) // 通过 try..catch 调用 getThen(value)
   if (result.status === "error") {
     return reject(self, result.value)
   }
@@ -74,7 +74,7 @@ const reject = function (self, error) {
 }
 ```
 
-到这里，基本走完了 Promise 的构造函数流程。其中有一个重要的实现 `safelyResolveThenable`。 `safelyResolveThenable` 通过 `try...catch` 执行了参数 resolver，并根据成功执行与否，执行对应的 `onSuccess` 或 `onError` 方法。但注意，方法内部声明了 `called` 变量。该变量为了实现 Promise 仅可以修改一次内部 `state` 状态。
+到这里，基本走完了 Promise 的构造函数流程。其中有一个重要的实现 `safelyResolveThenable`。 `safelyResolveThenable` 通过 `try...catch` 执行了参数 resolver，并根据成功执行与否，执行对应的 `onSuccess` 或 `onError` 方法。但注意，方法内部声明了 `called` 变量。该变量为了实现 Promise 仅可以修改一次内部 `state` 状态。使用 called 标记后，在构造函数多次调用 resolve/reject 都会被拦截。
 
 ```js
 function safelyResolveThenable(self, resolver) {
@@ -120,7 +120,7 @@ const isPromise = promise => {
 }
 ```
 
-可见 `then` 是 Promise 中的一个重要实现。
+通过判断 then 是否是方法来判断是不是一个 promise，由此可见 `then` 是 Promise 中的一个重要实现。
 
 `then` 接受 2 个方法，分别在成功、失败时调用。如果 Promise 是同步执行，则根据 `this._state` 执行对应的方法。那么，如果 Promise 的构造函数是异步的呢？
 
@@ -128,18 +128,24 @@ const isPromise = promise => {
 
 ```js
 function then(onFulfilled, onRejected) {
+  // ...
+
+  // 构造一个新的 promise 用于返回 Promise
   const _promise = new this.constructor(internal.noop)
   if (this._state !== internal.PENDING) {
-    const handler =
-      this._state === internal.FULFILLED ? onFulfilled : onRejected
+    // 根据非 pending 状态决定策略
+    const handler = this._state === internal.FULFILLED ? onFulfilled : onRejected
     internal.unwrap(_promise, handler, this._value)
   } else {
+    // 如果是 pending 状态，将 then 携带的方法添加到待执行队列中
     this._subscribers.push(
       new SubscriberItem(_promise, onFulfilled, onRejected)
     )
   }
   return _promise
 }
+
+// 在 resolve/reject 中添加调用 待执行队列 中方法的实现
 const resolve = function (self, value) {
   // ...
   if (thenable) {
@@ -167,7 +173,48 @@ const reject = function (self, error) {
 }
 ```
 
+### 实现异步执行 then 方法
+
+在时间循环中，我们知道 JavaScript 的执行 按照 `macro script - micro script - macro script` 的顺序循环执行，对于 Promise 的构造方法来说是在 macro script 中同步执行的，对于 then 携带的回调方法则是在下一个 micro script 的循环中执行。
+
+在我们的实现中，resolve 中的 callFulfilled 和 reject 中的 callRejected 都会异步执行
+
+```js
+/**
+ * promise: promise 实例
+ * function_: 根据状态传入 fulfilled / rejected 方法
+ * value: 给function_方法的值参数
+ *  
+ */
+function unwrap(promise, function_, value) {
+  // 需要环境支持 immediate 或 使用 setTimeout 降级 
+  immediate(function () {
+    let returnValue
+    try {
+      returnValue = function_(value) // 对当前 then 中的值调用 resolver 方法获得 returnValue
+    } catch (error) {
+      return reject(promise, error)
+    }
+
+    // 如果返回值 与 promise 一样，则说明 promise 返回了自身，不允许返回自身所以报错
+    if (returnValue === promise) {
+      reject(promise, new TypeError('Cannot resolve promise with itself'))
+    } else {
+      resolve(promise, returnValue)
+    }
+  })
+}
+```
+
+## 其他方法
+
+Promise 中的方法或多或少的都依赖 Promise 已经实现的自身能力
+
 ### promise.catch, promise.finally
+
+promise.catch 相当于只传入了 onRejected 方法，在 rejected 状态下才会执行 catch
+
+promise.finally 相当于 onFulfilled/onRejected 传入了同一个方法，这样等于成功、失败都会执行。
 
 ```js
 class Promise {
@@ -200,6 +247,8 @@ class Promise {
 
 ### Promise.resolve, Promise.reject
 
+Promise.resolve/Promise.reject 相当于调用内部的 resolve/reject 实现，并且可以支持 then 链式调用。
+
 ```js
 Promise.resolve = function (value) {
   const Constructor = this
@@ -218,9 +267,13 @@ Promise.reject = function (reason) {
 
 ### Promise.all, Promise.allSettled
 
-`Promise.all()` 方法接收一个 promise 的 iterable 类型的输入，并且只返回一个 Promise 实例， 那个输入的所有 promise 的 resolve 回调的结果是一个数组。
+Promise.all 方法接收一个 promise 的 iterable 类型的输入，resolve 回调的结果是一个数组。
 
-当所有输入的 promise 的 resolve 回调都结束，或者输入的 iterable 里没有 promise 了，执行 resolve。当任何一个输入的 promise 的 reject 回调执行或者输入不合法的 promise 就会立即抛出错误，执行 reject。
+在内部构造一个 Promise 实例 `pp` 用于返回。
+
+依次 resolve 传入的 promise 数组，并在 then.onFulfilled 方法中将 count+1，当 count === promises.length 时，意味着所有的 promise 都 resolved 了，调用之前构造的 pp.resolve(value[])
+
+当任何一个输入的 promise 进入 reject 回调执行或者输入不合法的 promise 就会立即抛出错误，执行 pp.reject(error)。
 
 ```js
 Promise.all = function (iterable) {
@@ -268,7 +321,11 @@ Promise.all = function (iterable) {
 }
 ```
 
-`Promise.allSettled()` 方法返回一个在所有给定的 promise 都已经 fulfilled 或 rejected 后的 promise，并带有一个对象数组，每个对象表示对应的 promise 结果。
+Promise.allSettled 与 Promise.all 类似，同样需要对内部已执行的 promise 计数。
+
+由于规范定义方法返回一个在所有给定的 promise 都已经 fulfilled 或 rejected 后的 promise，并带有一个对象数组，每个对象表示对应的 promise 结果。
+
+保存下来每一个 promise 的结果，并根据成功/失败标记该位置的 value.status，以及对应的值/错误 value.value，最后通过 pp.resolve(value[]) 返回所有 promise 的执行结果。
 
 ```js
 function allSettled(iterable) {
@@ -324,7 +381,7 @@ function allSettled(iterable) {
 
 ### Promise.race
 
-`Promise.race(iterable)` 方法返回一个 promise，一旦迭代器中的某个 promise 解决或拒绝，返回的 promise 就会解决或拒绝。在内部实现中，用 `called = false` 标记，当有一个 promise 解决或拒绝时，标记 `called = true`，并对内部 promise 调用 resolve/reject 跳出 race 方法。
+`Promise.race(iterable)` 方法构造一个 Promise 实例 `pp`，一旦传入的 promises中的某个 promise 解决或拒绝，就会立即执行 pp.resolve(value)/pp.reject(error)。
 
 ```js
 Promise.race = function (iterable) {
