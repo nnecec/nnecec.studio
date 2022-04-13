@@ -1,8 +1,8 @@
-import { Bio, Layout, Tag } from 'components'
+import { Layout, Tag } from 'components'
 import Head from 'next/head'
 import Link from 'next/link'
 import Post from '../../types/post'
-import { Spacer, Card, Container, Row, Text } from '@nextui-org/react'
+import { Card, Container, Row, Text } from '@nextui-org/react'
 import { getAllPosts } from '../../utils/api'
 
 type Props = {
@@ -19,12 +19,7 @@ const PostsPage = ({ posts }: Props) => {
         <Container sm>
           {posts.map(post => {
             return (
-              <Link
-                as={`/posts/${post.slug}`}
-                href="/posts/[slug]"
-                passHref
-                key={post.slug}
-              >
+              <Link href={`/posts${post.slug}`} passHref key={post.slug}>
                 <Card className="mb-4 cursor-pointer">
                   <Card.Header>
                     <Text h4>{post.title}</Text>
@@ -51,9 +46,6 @@ const PostsPage = ({ posts }: Props) => {
               </Link>
             )
           })}
-
-          <Spacer y={2} />
-          <Bio />
         </Container>
       </Layout>
     </>

@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import { Layout, Bio, Tag } from 'components'
+import { Layout, Tag } from 'components'
 import { getPost, getAllPosts } from 'utils/api'
 import Head from 'next/head'
 import { markdownToHtml } from 'utils/markdown'
 import { SITE_CONFIG } from 'utils/constants'
 import PostType from 'types/post'
 import { Share } from '@icon-park/react'
-import { Container, Loading, Spacer } from '@nextui-org/react'
+import { Container, Loading } from '@nextui-org/react'
 
 type Props = {
   post: PostType
@@ -81,10 +81,6 @@ const Post = ({ post }: Props) => {
                     // className="heti"
                   />
                 </div>
-                <Spacer y={2} />
-                <footer>
-                  <Bio />
-                </footer>
               </article>
               <nav>
                 {/* <ul
@@ -133,12 +129,12 @@ export default Post
 
 type Params = {
   params: {
-    slug: string
+    slug: string[]
   }
 }
 
 export async function getStaticProps({ params }: Params) {
-  const post = getPost(params.slug, [
+  const post = getPost(params.slug.join('/'), [
     'title',
     'date',
     'slug',
@@ -165,7 +161,7 @@ export async function getStaticPaths() {
     paths: posts.map(post => {
       return {
         params: {
-          slug: post?.slug
+          slug: post?.slug?.split('/').slice(1)
         }
       }
     }),
