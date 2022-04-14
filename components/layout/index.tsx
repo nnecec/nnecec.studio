@@ -1,6 +1,8 @@
+import { PropsWithChildren } from 'react'
+import { Container } from '@nextui-org/react'
+
 import { Meta } from './meta'
 import { Navbar } from './navbar'
-import { PropsWithChildren } from 'react'
 import { Footer } from './footer'
 
 type Props = {
@@ -12,7 +14,9 @@ export const Layout = ({ children }: PropsWithChildren<Props>) => {
     <>
       <Meta />
       <Navbar />
-      <main className="min-h-screen pt-[96px]">{children}</main>
+      <Container>
+        <main className="min-h-screen pt-[96px]">{children}</main>
+      </Container>
       <Footer />
     </>
   )

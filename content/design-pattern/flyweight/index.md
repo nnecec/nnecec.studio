@@ -1,8 +1,8 @@
 ---
-title: "Design Pattern: Flyweight"
-date: "2021-09-08"
-tags: ["Design Pattern"]
-description: "9. 享元模式"
+title: 'Design Pattern: Flyweight'
+date: '2021-09-08'
+tags: ['Design Pattern']
+description: '9. 享元模式'
 ---
 
 ## 定义
@@ -62,14 +62,14 @@ var Model = function (sex, underwear) {
   this.underwear = underwear
 }
 Model.prototype.takePhoto = function () {
-  console.log("sex= " + this.sex + " underwear=" + this.underwear)
+  console.log('sex= ' + this.sex + ' underwear=' + this.underwear)
 }
 for (var i = 1; i <= 50; i++) {
-  var maleModel = new Model("male", "underwear" + i)
+  var maleModel = new Model('male', 'underwear' + i)
   maleModel.takePhoto()
 }
 for (var j = 1; j <= 50; j++) {
-  var femaleModel = new Model("female", "underwear" + j)
+  var femaleModel = new Model('female', 'underwear' + j)
   femaleModel.takePhoto()
 }
 // after
@@ -77,16 +77,16 @@ var Model = function (sex) {
   this.sex = sex
 }
 Model.prototype.takePhoto = function () {
-  console.log("sex= " + this.sex + " underwear=" + this.underwear)
+  console.log('sex= ' + this.sex + ' underwear=' + this.underwear)
 }
-var maleModel = new Model("male"),
-  femaleModel = new Model("female")
+var maleModel = new Model('male'),
+  femaleModel = new Model('female')
 for (var i = 1; i <= 50; i++) {
-  maleModel.underwear = "underwear" + i
+  maleModel.underwear = 'underwear' + i
   maleModel.takePhoto()
 }
 for (var j = 1; j <= 50; j++) {
-  femaleModel.underwear = "underwear" + j
+  femaleModel.underwear = 'underwear' + j
   femaleModel.takePhoto()
 }
 ```
@@ -113,16 +113,16 @@ var Upload = function (uploadType, fileName, fileSize) {
 Upload.prototype.init = function (id) {
   var that = this
   this.id = id
-  this.dom = document.createElement("div")
+  this.dom = document.createElement('div')
   this.dom.innerHTML =
-    "<span>文件名称:" +
+    '<span>文件名称:' +
     this.fileName +
-    ", 文件大小: " +
+    ', 文件大小: ' +
     this.fileSize +
-    "</span>" +
+    '</span>' +
     '<button class="delFile">删除</button>'
 
-  this.dom.querySelector(".delFile").onclick = function () {
+  this.dom.querySelector('.delFile').onclick = function () {
     that.delFile()
   }
   document.body.appendChild(this.dom)
@@ -132,7 +132,7 @@ Upload.prototype.delFile = function () {
     return this.dom.parentNode.removeChild(this.dom)
   }
 
-  if (window.confirm("确定要删除该文件吗? " + this.fileName)) {
+  if (window.confirm('确定要删除该文件吗? ' + this.fileName)) {
     return this.dom.parentNode.removeChild(this.dom)
   }
 }
@@ -157,16 +157,16 @@ var uploadManager = (function () {
     add: function (id, uploadType, fileName, fileSize) {
       var flyWeightObj = UploadFactory.create(uploadType)
 
-      var dom = document.createElement("div")
+      var dom = document.createElement('div')
       dom.innerHTML =
-        "<span>文件名称:" +
+        '<span>文件名称:' +
         fileName +
-        ", 文件大小: " +
+        ', 文件大小: ' +
         fileSize +
-        "</span>" +
+        '</span>' +
         '<button class="delFile">删除</button>'
 
-      dom.querySelector(".delFile").onclick = function () {
+      dom.querySelector('.delFile').onclick = function () {
         flyWeightObj.delFile(id)
       }
 
@@ -212,7 +212,7 @@ Upload.prototype.delFile = function (id) {
     return this.dom.parentNode.removeChild(this.dom)
   }
 
-  if (window.confirm("确定要删除该文件吗? " + this.fileName)) {
+  if (window.confirm('确定要删除该文件吗? ' + this.fileName)) {
     return this.dom.parentNode.removeChild(this.dom)
   }
 }

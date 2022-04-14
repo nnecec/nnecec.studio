@@ -1,16 +1,19 @@
 import React from 'react'
 import { Container, Link } from '@nextui-org/react'
-import { SITE_CONFIG } from '../../utils/constants'
 import NextLink from 'next/link'
+
 import { ThemeSwitch } from './theme-switch'
+import { Logo } from './logo'
 
 export const Navbar: React.FC = () => {
   return (
-    <header className="fixed top-0 z-[999] w-screen border-b border-gray-50 bg-transparent backdrop-blur">
+    <header className="fixed top-0 z-[999] flex h-[96px] w-screen border-b border-gray-50 bg-transparent backdrop-blur">
       <Container display="flex" alignItems="center" justify="space-between">
-        <h1>
-          <NextLink href="/">{SITE_CONFIG.title}</NextLink>
-        </h1>
+        <NextLink href="/">
+          <a>
+            <Logo />
+          </a>
+        </NextLink>
 
         <div className="flex gap-2">
           <NextLink href="/posts" passHref>

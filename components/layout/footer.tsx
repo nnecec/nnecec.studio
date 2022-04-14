@@ -12,8 +12,8 @@ export const Footer = () => {
         direction="column"
       >
         <Bio />
-        <Spacer />
-        <div className="flex gap-4">
+        <Spacer y={2} />
+        <div className="flex gap-8">
           <a
             href="https://github.com/nnecec/nnecec.github.io"
             target="_blank"

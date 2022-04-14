@@ -1,11 +1,13 @@
 import { AppProps } from 'next/app'
 import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { darkTheme, lightTheme } from '../utils/theme'
 
-import '../styles/index.css'
-import '../styles/code.css'
-import '../styles/custom.css'
+import { darkTheme, lightTheme } from 'lib/theme'
+import { Layout } from 'components'
+
+import 'styles/index.css'
+import 'styles/code.css'
+import 'styles/custom.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -18,7 +20,9 @@ export default function App({ Component, pageProps }: AppProps) {
       }}
     >
       <NextUIProvider>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </NextUIProvider>
     </NextThemesProvider>
   )
