@@ -19,7 +19,7 @@ const PostsPage = ({ posts }: Props) => {
         {posts.map(post => {
           return (
             <Link href={`/posts${post.slug}`} passHref key={post.slug}>
-              <Card className="mb-4 cursor-pointer">
+              <Card className="mb-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
                 <Card.Header>
                   <Text h4>{post.title}</Text>
                 </Card.Header>
