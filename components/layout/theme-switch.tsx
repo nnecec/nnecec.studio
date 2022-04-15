@@ -8,6 +8,7 @@ export const ThemeSwitch = () => {
 
   return (
     <Switch
+      aria-label="toggle dark mode"
       checked={isDark}
       onChange={e => setTheme(e.target.checked ? 'dark' : 'light')}
       iconOff={<Sun theme="filled" />}

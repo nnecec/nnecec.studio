@@ -1,6 +1,8 @@
 {
   "name": "nnecec",
   "short_name": "nnecec",
+  "scope": "/",
+  "start_url": "/",
   "icons": [
     {
       "src": "/favicons/favicon.ico",

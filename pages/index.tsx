@@ -1,9 +1,10 @@
+import { Text, Tooltip, Button } from '@nextui-org/react'
 import Head from 'next/head'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+
 import { SITE_CONFIG } from 'lib/constants'
 import { getAllPosts } from 'lib/api'
-import Link from 'next/link'
-import { Text, Tooltip, Button } from '@nextui-org/react'
-import { motion } from 'framer-motion'
 
 const Index = () => {
   return (

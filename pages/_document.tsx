@@ -4,7 +4,7 @@ import { CssBaseline } from '@nextui-org/react'
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="zh">
         <Head>{CssBaseline.flush()}</Head>
         <body>
           <Main />
