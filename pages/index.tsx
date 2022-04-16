@@ -1,17 +1,13 @@
 import { Text, Tooltip, Button } from '@nextui-org/react'
-import Head from 'next/head'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-import { SITE_CONFIG } from 'lib/constants'
 import { getAllPosts } from 'lib/api'
+import { Layout } from 'components'
 
 const Index = () => {
   return (
-    <>
-      <Head>
-        <title>{SITE_CONFIG.title}</title>
-      </Head>
+    <Layout>
       <section className="mt-[-96px] flex h-screen items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -28,7 +24,7 @@ const Index = () => {
           </Tooltip>
         </motion.div>
       </section>
-    </>
+    </Layout>
   )
 }
 

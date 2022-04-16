@@ -1,5 +1,4 @@
-import { Tag } from 'components'
-import Head from 'next/head'
+import { Layout, Tag } from 'components'
 import Link from 'next/link'
 import Post from 'types/post'
 import { Card, Container, Row, Text } from '@nextui-org/react'
@@ -11,10 +10,7 @@ type Props = {
 
 const PostsPage = ({ posts }: Props) => {
   return (
-    <>
-      <Head>
-        <title>nnecec | 文章列表</title>
-      </Head>
+    <Layout title="nnecec | 文章列表">
       <Container sm>
         {posts.map(post => {
           return (
@@ -46,7 +42,7 @@ const PostsPage = ({ posts }: Props) => {
           )
         })}
       </Container>
-    </>
+    </Layout>
   )
 }
 

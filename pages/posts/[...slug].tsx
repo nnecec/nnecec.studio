@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
-import { Tag } from 'components'
+import { Container, Loading } from '@nextui-org/react'
+import { Share } from '@icon-park/react'
+
+import PostType from 'types/post'
+import { Layout, Tag } from 'components'
 import { getPost, getAllPosts } from 'lib/api'
-import Head from 'next/head'
 import { markdownToHtml } from 'lib/markdown'
 import { SITE_CONFIG } from 'lib/constants'
-import PostType from 'types/post'
-import { Share } from '@icon-park/react'
-import { Container, Loading } from '@nextui-org/react'
 
 type Props = {
   post: PostType
@@ -15,24 +14,15 @@ type Props = {
 
 const Post = ({ post }: Props) => {
   const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
-  }
+
   return (
-    <Container xs>
-      {router.isFallback ? (
-        <Loading />
-      ) : (
-        <>
-          <article>
-            <Head>
-              <title>{post.title}</title>
-            </Head>
-            <article
-              className="blog-post"
-              itemScope
-              itemType="http://schema.org/Article"
-            >
+    <Layout title={post.title}>
+      <Container sm>
+        {router.isFallback ? (
+          <Loading />
+        ) : (
+          <>
+            <article className="blog-post" itemScope>
               <header className="mb-12">
                 <h1>{post.title}</h1>
                 <div className="flex flex-col gap-2 text-sm">
@@ -116,10 +106,10 @@ const Post = ({ post }: Props) => {
                     </li>
                   </ul> */}
             </nav>
-          </article>
-        </>
-      )}
-    </Container>
+          </>
+        )}
+      </Container>
+    </Layout>
   )
 }
 
@@ -142,6 +132,7 @@ export async function getStaticProps({ params }: Params) {
     'coverImage'
   ])
   const content = await markdownToHtml(post.content || '')
+
   return {
     props: {
       post: {

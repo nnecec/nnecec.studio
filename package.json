@@ -28,7 +28,7 @@
     "@nextui-org/react": "^1.0.8-beta.5",
     "@tailwindcss/typography": "^0.5.2",
     "classnames": "2.3.1",
-    "dayjs": "^1.11.0",
+    "dayjs": "^1.11.1",
     "framer-motion": "^6.3.0",
     "gray-matter": "4.0.3",
     "next": "^12.1.5",
