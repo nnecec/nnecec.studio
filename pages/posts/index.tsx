@@ -1,6 +1,6 @@
 import { Layout, Tag } from 'components'
 import Link from 'next/link'
-import Post from 'types/post'
+import { Post } from 'types/post'
 import { Card, Container, Row, Text } from '@nextui-org/react'
 import { getAllPosts } from 'lib/api'
 
@@ -51,8 +51,8 @@ export default PostsPage
 export const getStaticProps = async () => {
   const posts = getAllPosts([
     'title',
-    'date',
     'slug',
+    'date',
     'tags',
     'description',
     'excerpt'

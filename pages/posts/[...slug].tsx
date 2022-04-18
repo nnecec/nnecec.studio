@@ -2,17 +2,17 @@ import { useRouter } from 'next/router'
 import { Container, Loading } from '@nextui-org/react'
 import { Share } from '@icon-park/react'
 
-import PostType from 'types/post'
+import type { Post } from 'types/post'
 import { Layout, Tag } from 'components'
 import { getPost, getAllPosts } from 'lib/api'
 import { markdownToHtml } from 'lib/markdown'
 import { SITE_CONFIG } from 'lib/constants'
 
 type Props = {
-  post: PostType
+  post: Post
 }
 
-const Post = ({ post }: Props) => {
+const PostPage = ({ post }: Props) => {
   const router = useRouter()
 
   return (
@@ -26,18 +26,7 @@ const Post = ({ post }: Props) => {
               <header className="mb-12">
                 <h1>{post.title}</h1>
                 <div className="flex flex-col gap-2 text-sm">
-                  <div className="flex justify-between">
-                    最后更新: {post.date}
-                    <a
-                      href={`${SITE_CONFIG.repositoryUrl}/issues`}
-                      target="_blank"
-                      referrerPolicy="no-referrer"
-                      rel="noreferrer"
-                    >
-                      反馈
-                      <Share theme="filled" />
-                    </a>
-                  </div>
+                  <div>最后更新: {post.date}</div>
                   <div>
                     {post.tags?.map(tag => (
                       <Tag key={tag}>{tag}</Tag>
@@ -54,6 +43,15 @@ const Post = ({ post }: Props) => {
                       CC BY-NC-ND 3.0
                     </a>
                     ）
+                    <a
+                      href={`${SITE_CONFIG.repositoryUrl}/issues`}
+                      target="_blank"
+                      referrerPolicy="no-referrer"
+                      rel="noreferrer"
+                    >
+                      反馈
+                      <Share theme="filled" />
+                    </a>
                   </div>
                 </div>
               </header>
@@ -113,7 +111,7 @@ const Post = ({ post }: Props) => {
   )
 }
 
-export default Post
+export default PostPage
 
 type Params = {
   params: {
@@ -124,12 +122,10 @@ type Params = {
 export async function getStaticProps({ params }: Params) {
   const post = getPost(params.slug.join('/'), [
     'title',
-    'date',
     'slug',
-    'author',
+    'date',
     'content',
-    'ogImage',
-    'coverImage'
+    'tags'
   ])
   const content = await markdownToHtml(post.content || '')
 

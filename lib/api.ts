@@ -2,12 +2,11 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 import dayjs from 'dayjs'
+import { Post } from 'types/post'
+
+type Field = keyof Post
 
 const postsDirectory = join(process.cwd(), 'content')
-
-type Items = {
-  [key: string]: string
-}
 
 export function getPostSlugs(directoryPath: string) {
   const slugs: string[] = []
@@ -32,14 +31,14 @@ export function getPostSlugs(directoryPath: string) {
   return slugs
 }
 
-export function getPosts(slug: string, fields: string[] = []) {
+export function getPosts(slug: string, fields: Field[] = []) {
   if (slug.endsWith('.md')) {
     return getPost(slug.replace(/\.md$/, ''), fields)
   }
   return undefined
 }
 
-export function getAllPosts(fields: string[] = []) {
+export function getAllPosts(fields: Field[] = []) {
   const slugs = getPostSlugs(postsDirectory)
   const posts = slugs
     .map(slug => getPosts(slug, fields))
@@ -50,12 +49,12 @@ export function getAllPosts(fields: string[] = []) {
   return posts
 }
 
-export function getPost(slug: string, fields: string[] = []) {
+export function getPost(slug: string, fields: Field[] = []) {
   const fullPath = join(postsDirectory, `${slug}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
-  const items: Items = {}
+  const items: Partial<Post> = {}
 
   fields.forEach(field => {
     if (field === 'slug') {

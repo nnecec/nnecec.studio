@@ -58,3 +58,7 @@ html {
 .anchors ul p {
   @apply my-2;
 }
+
+.i-icon {
+  vertical-align: middle;
+}
