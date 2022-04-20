@@ -1,8 +1,9 @@
-import { Layout, Tag } from 'components'
-import Link from 'next/link'
-import { Post } from 'types/post'
 import { Card, Row, Text } from '@nextui-org/react'
+import Link from 'next/link'
+
+import { Layout, Tag } from 'components'
 import { getAllPosts } from 'lib/api'
+import { Post } from 'types/post'
 
 type Props = {
   posts: Post[]
@@ -45,8 +46,6 @@ const PostsPage = ({ posts }: Props) => {
   )
 }
 
-export default PostsPage
-
 export const getStaticProps = async () => {
   const { posts, tags } = getAllPosts([
     'title',
@@ -61,3 +60,5 @@ export const getStaticProps = async () => {
     props: { posts, tags }
   }
 }
+
+export default PostsPage

@@ -1,6 +1,7 @@
-import { Text, Tooltip, Button } from '@nextui-org/react'
-import Link from 'next/link'
+import { Button, Text, Tooltip } from '@nextui-org/react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
+
 import { Layout } from 'components'
 
 const Index = () => {
@@ -28,11 +29,11 @@ const Index = () => {
                   ]
                 }}
                 transition={{
+                  delay: 2,
                   duration: 12,
                   ease: 'easeInOut',
-                  times: [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
                   repeat: Infinity,
-                  delay: 2
+                  times: [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1]
                 }}
               >
                 <span style={{ color: '#fcdc00' }}>JavaScript</span>

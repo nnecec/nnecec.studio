@@ -1,12 +1,12 @@
-import { useRouter } from 'next/router'
-import { Loading } from '@nextui-org/react'
 import { Share } from '@icon-park/react'
+import { Loading } from '@nextui-org/react'
+import { useRouter } from 'next/router'
 
-import type { Post } from 'types/post'
 import { Layout, Tag } from 'components'
-import { getPost, getAllPosts } from 'lib/api'
-import { markdownToHtml } from 'lib/markdown'
+import { getAllPosts, getPost } from 'lib/api'
 import { SITE_CONFIG } from 'lib/constants'
+import { markdownToHtml } from 'lib/markdown'
+import type { Post } from 'types/post'
 
 type Props = {
   post: Post
@@ -74,14 +74,6 @@ const PostPage = ({ post }: Props) => {
   )
 }
 
-export default PostPage
-
-type Params = {
-  params: {
-    slug: string[]
-  }
-}
-
 export async function getStaticProps({ params }: Params) {
   const post = getPost(params.slug.join('/'), [
     'title',
@@ -103,17 +95,25 @@ export async function getStaticProps({ params }: Params) {
   }
 }
 
+type Params = {
+  params: {
+    slug: string[]
+  }
+}
+
 export async function getStaticPaths() {
   const { posts } = getAllPosts(['title', 'slug'])
 
   return {
+    fallback: false,
     paths: posts.map(post => {
       return {
         params: {
           slug: post?.slug?.split('/').slice(1)
         }
       }
-    }),
-    fallback: false
+    })
   }
 }
+
+export default PostPage

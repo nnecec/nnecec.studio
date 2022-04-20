@@ -1,12 +1,10 @@
-import { AppProps } from 'next/app'
 import { NextUIProvider } from '@nextui-org/react'
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
-
 import { darkTheme, lightTheme } from 'lib/theme'
-
-import 'styles/index.css'
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import { AppProps } from 'next/app'
 import 'styles/code.css'
 import 'styles/custom.css'
+import 'styles/index.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,8 +13,8 @@ export default function App({ Component, pageProps }: AppProps) {
       enableSystem
       attribute="class"
       value={{
-        light: lightTheme.className,
-        dark: darkTheme.className
+        dark: darkTheme.className,
+        light: lightTheme.className
       }}
     >
       <NextUIProvider>
