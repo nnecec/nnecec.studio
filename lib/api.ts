@@ -58,24 +58,24 @@ export function getAllPosts(fields: Field[] = []) {
   return { posts, tags: Array.from(new Set(tags)) }
 }
 
-export function getPost(slug: string, fields: Field[] = []) {
+export function getPost(slug: string, fields: Field[] = []): Post {
   const fullPath = join(postsDirectory, `${slug}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
-  const items: Partial<Post> = {}
+  const item: Post = {}
 
   fields.forEach(field => {
     if (field === 'slug') {
-      items[field] = slug
+      item[field] = slug
     }
     if (field === 'content') {
-      items[field] = content
+      item[field] = content
     }
 
     if (typeof data[field] !== 'undefined') {
-      items[field] = data[field]
+      item[field] = data[field]
     }
   })
-  return items
+  return item
 }

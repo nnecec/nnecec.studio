@@ -29,7 +29,7 @@ const Index = () => {
                 }}
                 transition={{
                   duration: 12,
-                  ease: 'ease',
+                  ease: 'easeInOut',
                   times: [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
                   repeat: Infinity,
                   delay: 2

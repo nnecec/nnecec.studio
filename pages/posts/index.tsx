@@ -11,7 +11,7 @@ type Props = {
 
 const PostsPage = ({ posts }: Props) => {
   return (
-    <Layout title="nnecec | 文章列表" sm>
+    <Layout title="文章列表" sm>
       {posts.map(post => {
         return (
           <Link href={`/posts${post.slug}`} passHref key={post.slug}>

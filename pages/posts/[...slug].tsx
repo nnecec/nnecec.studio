@@ -14,6 +14,7 @@ type Props = {
 
 const PostPage = ({ post }: Props) => {
   const router = useRouter()
+  // console.log(post)
 
   return (
     <Layout title={post.title} sm>
@@ -62,47 +63,11 @@ const PostPage = ({ post }: Props) => {
                     />
                   )} */}
               <article
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{ __html: post.content || '' }}
                 itemProp="articleBody"
-                // className="heti"
               />
             </div>
           </article>
-          <nav>
-            {/* <ul
-                    style={{
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      justifyContent: 'space-between',
-                      listStyle: 'none',
-                      padding: 0,
-                      fontSize: 14
-                    }}
-                  >
-                    <li>
-                      {previous && (
-                        <Link
-                          className="before:content-['_↽']"
-                          to={previous.fields.slug}
-                          rel="prev"
-                        >
-                          {previous.frontmatter.title}
-                        </Link>
-                      )}
-                    </li>
-                    <li>
-                      {next && (
-                        <Link
-                          className="after:content-['_⇁']"
-                          to={next.fields.slug}
-                          rel="next"
-                        >
-                          {next.frontmatter.title}
-                        </Link>
-                      )}
-                    </li>
-                  </ul> */}
-          </nav>
         </>
       )}
     </Layout>
@@ -125,6 +90,7 @@ export async function getStaticProps({ params }: Params) {
     'content',
     'tags'
   ])
+
   const content = await markdownToHtml(post.content || '')
 
   return {
@@ -138,7 +104,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const { posts } = getAllPosts(['slug'])
+  const { posts } = getAllPosts(['title', 'slug'])
 
   return {
     paths: posts.map(post => {
