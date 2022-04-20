@@ -1,8 +1,6 @@
 import { Text, Tooltip, Button } from '@nextui-org/react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-
-import { getAllPosts } from 'lib/api'
 import { Layout } from 'components'
 
 const Index = () => {
@@ -13,33 +11,36 @@ const Index = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Text h1 className="relative mb-4 overflow-hidden">
+          <Text h1 className="mb-4">
             Focused on{' '}
-            <motion.span
-              className="inline-flex h-[72px] flex-col"
-              animate={{
-                transform: [
-                  'translateY(0)',
-                  'translateY(-100%)',
-                  'translateY(-100%)',
-                  'translateY(-200%)',
-                  'translateY(-200%)',
-                  'translateY(-300%)',
-                  'translateY(-300%)'
-                ]
-              }}
-              transition={{
-                duration: 12,
-                times: [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
-                repeat: Infinity,
-                delay: 2
-              }}
-            >
-              <span style={{ color: '#fcdc00' }}>JavaScript</span>
-              <span style={{ color: '#3178c6' }}>TypeScript</span>
-              <span style={{ color: '#61dafb' }}>React</span>
-              <span style={{ color: '#fcdc00' }}>JavaScript</span>
-            </motion.span>
+            <span className="inline-block w-[220px] overflow-hidden align-bottom">
+              <motion.span
+                className="inline-flex h-[72px] flex-col"
+                animate={{
+                  transform: [
+                    'translateY(0)',
+                    'translateY(-100%)',
+                    'translateY(-100%)',
+                    'translateY(-200%)',
+                    'translateY(-200%)',
+                    'translateY(-300%)',
+                    'translateY(-300%)'
+                  ]
+                }}
+                transition={{
+                  duration: 12,
+                  ease: 'ease',
+                  times: [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+                  repeat: Infinity,
+                  delay: 2
+                }}
+              >
+                <span style={{ color: '#fcdc00' }}>JavaScript</span>
+                <span style={{ color: '#3178c6' }}>TypeScript</span>
+                <span style={{ color: '#61dafb' }}>React</span>
+                <span style={{ color: '#fcdc00' }}>JavaScript</span>
+              </motion.span>
+            </span>
           </Text>
           <Tooltip content="最近更新">
             <Link href="/posts" passHref>
@@ -53,18 +54,3 @@ const Index = () => {
 }
 
 export default Index
-
-export const getStaticProps = async () => {
-  const posts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'tags',
-    'description',
-    'excerpt'
-  ])
-
-  return {
-    props: { posts }
-  }
-}

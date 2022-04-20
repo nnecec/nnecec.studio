@@ -40,13 +40,22 @@ export function getPosts(slug: string, fields: Field[] = []) {
 
 export function getAllPosts(fields: Field[] = []) {
   const slugs = getPostSlugs(postsDirectory)
+
+  const tags: string[] = []
+
   const posts = slugs
-    .map(slug => getPosts(slug, fields))
+    .map(slug => {
+      const data = getPosts(slug, fields)
+      if (data?.tags) {
+        tags.push(...data.tags)
+      }
+      return data
+    })
     .filter(Boolean)
     .sort((post1, post2) =>
       dayjs(post1!.date).isAfter(dayjs(post2!.date)) ? -1 : 1
     )
-  return posts
+  return { posts, tags: Array.from(new Set(tags)) }
 }
 
 export function getPost(slug: string, fields: Field[] = []) {

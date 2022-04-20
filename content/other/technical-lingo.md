@@ -1,5 +1,5 @@
 ---
-title: "技术黑话手册"
+title: "黑话手册参考"
 date: "2021-12-09"
 tags: ["Introduction"]
 description: "IoC, DI, DDD, RPC 等等都是什么？"
