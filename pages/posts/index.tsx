@@ -9,7 +9,7 @@ type Props = {
   tags: string[]
 }
 
-const PostsPage = ({ posts, tags }: Props) => {
+const PostsPage = ({ posts }: Props) => {
   return (
     <Layout title="nnecec | 文章列表" sm>
       {posts.map(post => {
