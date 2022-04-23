@@ -1,15 +1,19 @@
 ---
-title: "React优先级调度：Scheduler"
-date: "2022-01-16"
-tags: ["Deep Dive", "React"]
-description: "React 如何控制不同优先级的调度"
+title: 'React优先级调度：Scheduler'
+date: '2022-01-16'
+tags: ['Deep Dive', 'React']
+description: 'React 如何控制不同优先级的调度'
 ---
 
 ## 优先级定义
 
 React 可以通过 `ReactDOM.createRoot(rootNode).render(<App />)` 开启异步渲染，这是 React 在 React@16 之后耗费大量时间以及精力努力去达成的目标，具体可以在[Concurrent 模式介绍](https://zh-hans.reactjs.org/docs/concurrent-mode-intro.html)中了解 React 提出 Concurrent 的背景以及这种模式的概念。
 
-Scheduler 是 React 自己实现的在类似 `requestIdCallback` 执行时机去检查是否有更高优先级的任务被加入到了执行队列中，从而实现了异步渲染的概念。
+Scheduler 是 React 自己实现的在类似 `requestIdleCallback` 执行时机去检查是否有更高优先级的任务被加入到了执行队列中，从而实现了异步渲染的概念。
+
+不使用原生 requestIdleCallback 原因有：
+
+- requestIdleCallback 浏览器支持程度差
 
 Scheduler 有一套自己的优先级机制，而 React 也有一套自己的优先级机制 `lane`，针对两者优先级机制的不同，在 React 中定义了两套机制优先级的映射关系，以支持 React 使用 Scheduler 的调度机制。
 
@@ -114,9 +118,9 @@ function scheduleCallback(priorityLevel, callback, options) {
   var currentTime = getCurrentTime()
   //
   var startTime
-  if (typeof options === "object" && options !== null) {
+  if (typeof options === 'object' && options !== null) {
     var delay = options.delay
-    if (typeof delay === "number" && delay > 0) {
+    if (typeof delay === 'number' && delay > 0) {
       startTime = currentTime + delay
     }
   } else {
