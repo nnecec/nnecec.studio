@@ -1,5 +1,6 @@
-import { Container, Spacer } from '@nextui-org/react'
 import { Github, Twitter } from '@icon-park/react'
+import { Container, Spacer } from '@nextui-org/react'
+
 import { Bio } from './bio'
 
 export const Footer = () => {

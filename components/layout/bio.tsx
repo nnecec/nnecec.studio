@@ -1,5 +1,6 @@
+import { Avatar, Text } from '@nextui-org/react'
+
 import { SITE_CONFIG } from 'lib/constants'
-import { Text, Avatar } from '@nextui-org/react'
 
 const { author, description } = SITE_CONFIG
 

@@ -1,6 +1,6 @@
-import { Sun, Moon } from '@icon-park/react'
-import { useTheme as useNextTheme } from 'next-themes'
+import { Moon, Sun } from '@icon-park/react'
 import { Switch, useTheme } from '@nextui-org/react'
+import { useTheme as useNextTheme } from 'next-themes'
 
 export const ThemeSwitch = () => {
   const { setTheme } = useNextTheme()
