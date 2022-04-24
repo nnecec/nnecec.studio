@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+
 import { SITE_CONFIG } from 'lib/constants'
 
 export const Logo = () => {

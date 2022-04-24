@@ -2,10 +2,10 @@ import React from 'react'
 import { Container, Link } from '@nextui-org/react'
 import NextLink from 'next/link'
 
-import { ThemeSwitch } from './theme-switch'
 import { Logo } from './logo'
+import { ThemeSwitch } from './theme-switch'
 
-export const Navbar: React.FC = () => {
+export const Header: React.FC = () => {
   return (
     <header className="fixed top-0 z-[999] flex h-[96px] w-screen border-b border-gray-50 bg-transparent backdrop-blur">
       <Container display="flex" alignItems="center" justify="space-between">
