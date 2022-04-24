@@ -1,62 +1,76 @@
 ---
-title: "React Redux 源码解析"
-date: "2021-11-25"
-tags: ["Deep Dive", "React"]
-description: "React Redux 源码解析"
+title: 'React Redux 源码解析'
+date: '2022-04-24'
+tags: ['Deep Dive', 'React']
+description: 'React Redux 源码解析'
 ---
 
-> 当时版本：v8.0.0-beta
+> 当时版本：v8.0.1
 
 首先是基于了解基本使用方式的程度，来看各个组件的源码，由于代码量比较大这里贴出官网的 [quick-start](https://react-redux.js.org/tutorials/quick-start)
 
 ## Provider
 
-首先要提供给 `Provider` 一个合法的 store 实例，Provider 是一个 `Context.Provider`，`props` 上的 `store` 值为
+Provider 就是一个 `Context.Provider`，记录着 通过 createStore 创建的 store 以及 React Redux 中的 subscription。
 
-```jsx
-// value 属性存储的值
-{
-  store,
-  subscription,
+```tsx
+function Provider({ store, context, children, serverState }: ProviderProps<A>) {
+  const contextValue = useMemo(() => {
+    const subscription = createSubscription(store)
+    return {
+      store,
+      subscription,
+      getServerState: serverState ? () => serverState : undefined
+    }
+  }, [store, serverState])
+
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>
 }
 ```
 
-`store` 是传给 `Provider` 的 `store props`，`subscription` 则通过 `createSubscription(store)` 方法生成。
+这样相当于在 React 全局环境中创建了 store。
 
-在 `Provider` 内使用 `Redux` 数据的组件有两种接入的方法：
+在组件中使用 store 数据的时候有两种接入的方法：
 
 1. 使用 `connect` 返回包装后的高阶组件
 2. 在 `FunctionComponent` 内使用 `useSelector`, `useDispatch` 获取 `store` 及 `dispatch`
 
 ## connect
 
-> https://github.com/reduxjs/react-redux/blob/449b84c668/src/components/connect.tsx#L461
+> 官方仍支持该 api 但更推荐开发者使用 hooks api
 
-先了解一下 `connect` 的[API](https://react-redux.js.org/api/connect)。
+先了解一下[connect API](https://react-redux.js.org/api/connect)。
 
 ```ts
 function connect(
-  mapStateToProps?,
-  mapDispatchToProps?,
-  mergeProps?,
-  options?
+  mapStateToProps?: Function,
+  mapDispatchToProps?: Function | Object,
+  mergeProps?: Function,
+  options?: Object
 ) {}
 
-connect(mapState, null, mergeProps, options)(Component)
+// ...
+connect(mapStateToProps, mapDispatchToProps, mergeProps, options)(Component)
 ```
 
-`connect()(Component)` 对包裹的 `Component` 做了如下操作：
+`connect(..)` 做了如下操作：
 
-- 生成一个新的组件
-- 将第一个小括号内的配置作为参数提供给 `connect` 返回的闭包方法 `wrapWithConnect`
-- `wrapWithConnect` 将计算后的 `actualChildProps` 提供给 `WrappedComponent`
+- 生成一个新的高阶组件(且称之为 `ConnectComponent`)
+- 将 connect 第一个小括号内的参数作为配置提供给闭包方法 `wrapWithConnect`
+- 返回 wrapWithConnect 作为 `connect()` 的返回值
+
+`wrapWithConnect(Component)` 接受 Component 作为参数 做了如下操作：
+
+- 获取 Provider 提供的 contextValue (同时也对没有通过 Context 而是通过 props 传递 store 的情况作了处理，本文跳过该逻辑)
+- 生成 childPropSelector(用于从 store 筛选组件订阅的 state)
+- useSyncExternalStore 将计算后的 `actualChildProps` 提供给 `ConnectComponent`
 - 将 Component 的静态方法复制到新的组件上(hoist-non-react-statics 过滤 React 原生属性)
 
-经过这些步骤，将被 `connect` 的 `Component` 包装成一个 订阅 `store` 的 `NewComponent`。
+经过这些步骤，将 `Component` 包装成一个 订阅 store 的组件 `ConnectComponent`。
 
-### mapStateToProps, mapDispatchToProps
+### 1. mapStateToProps, mapDispatchToProps
 
-在业务中我们常写这样的代码：
+可能在实际中会编写如下代码：
 
 ```js
 const mapStateToProps = (state, ownProps) => {
@@ -77,29 +91,27 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage)
 ```
 
-这些配置在 `connect` 会经过下列处理
+这些配置在 connect 会经过下列处理
 
 ```ts
 const initMapStateToProps = match(
   mapStateToProps,
   defaultMapStateToPropsFactories,
-  "mapStateToProps"
+  'mapStateToProps'
 )!
 ```
 
 第二个参数是方法数组 `factories` ，`match` 将第一个参数作为 `factories` 每个方法的参数进行调用，如果有返回值则直接返回计算结果。
 
-> initMapStateToProps -> factories[1](mapStateToProps) -> whenMapStateToPropsIsFunction(mapStateToProps) -> initProxySelector
+> initMapStateToProps -> wrapMapToPropsFunc(mapStateToProps) -> initProxySelector
 
-同理 `initMapDispatchToProps`, `initMergeProps` 最后也是被赋值为 `initProxySelector`。
+同理 `initMapDispatchToProps`, `initMergeProps` 也是 `initProxySelector`。
 
 先把该环节跳过，后面会回头来看这个结果的作用。接下来进入到 `wrapWithConnect` 方法
 
-### wrapWithConnect
+### 2. wrapWithConnect
 
-在 connect 中，主要的逻辑实现在这个 `wrapWithConnect` 方法中。
-
-该方法经过下列处理，返回了经过包装的 `ConnectFunction` 组件，`ConnectFunction` 的组件实现是用户定义的 `Component`，但 `ConnectFunction` 中最终混入了 `Connect` 的逻辑以完成订阅 `store` 的功能。
+在 connect 中，主要的逻辑实现在这个 wrapWithConnect 方法中。该方法经过下列处理，返回了经过包装的 ConnectComponent 组件。
 
 ```ts
 const wrapWithConnect: AdvancedComponentDecorator<
@@ -107,7 +119,7 @@ const wrapWithConnect: AdvancedComponentDecorator<
   WrappedComponentProps
 > = WrappedComponent => {
   const wrappedComponentName =
-    WrappedComponent.displayName || WrappedComponent.name || "Component"
+    WrappedComponent.displayName || WrappedComponent.name || 'Component'
   const displayName = `Connect(${wrappedComponentName})`
 
   function ConnectFunction<TOwnProps>(props: ConnectProps & TOwnProps) {
@@ -139,35 +151,23 @@ const wrapWithConnect: AdvancedComponentDecorator<
 }
 ```
 
-#### ConnectFunction
+#### 3. ConnectFunction
 
-```ts
+```tsx
 function ConnectFunction<TOwnProps>(props: ConnectProps & TOwnProps) {
   // 获取 Component 自己的 props，可能存在的 context 和 wrapWithConnect 提供的 ref
   const [propsContext, reactReduxForwardedRef, wrapperProps] = useMemo(() => {
     // ...
   }, [props])
 
-  // 如果该节点是 Context.Consumer 使用该 Context
-  const ContextToUse: ReactReduxContextInstance = useMemo(() => {
-    // ...
-  }, [propsContext, Context])
-
   // 获取 contextValue
   const contextValue = useContext(ContextToUse)
 
-  // 确认 store 来源
-  const didStoreComeFromProps =
-    Boolean(props.store) &&
-    Boolean(props.store!.getState) &&
-    Boolean(props.store!.dispatch)
-  const didStoreComeFromContext =
-    Boolean(contextValue) && Boolean(contextValue!.store)
-  const store: Store = didStoreComeFromProps
-    ? props.store!
-    : contextValue!.store
+  // 确认 store 来源是 context 还是 props
 
-  // 根据订阅的 store 数据精确更新渲染组件
+  const store: Store = contextValue!.store
+
+  // 很长一段代码，为了根据订阅的 store 数据精确更新渲染组件
   // ...
 
   let actualChildProps: unknown
@@ -179,19 +179,10 @@ function ConnectFunction<TOwnProps>(props: ConnectProps & TOwnProps) {
       actualChildPropsSelector,
       actualChildPropsSelector
     )
-  } catch (err) {
-    if (latestSubscriptionCallbackError.current) {
-      ;(
-        err as Error
-      ).message += `\nThe error may be correlated with this previous error:\n${latestSubscriptionCallbackError.current.stack}\n\n`
-    }
+  } catch (err) {}
 
-    throw err
-  }
-
+  // 更新 childProps
   useIsomorphicLayoutEffect(() => {
-    latestSubscriptionCallbackError.current = undefined
-    childPropsFromStoreUpdate.current = undefined
     lastChildProps.current = actualChildProps
   })
 
@@ -218,16 +209,17 @@ function ConnectFunction<TOwnProps>(props: ConnectProps & TOwnProps) {
 }
 ```
 
-### Subscription
+#### 3.1 Subscription
 
 在 ConnectFunction 有一段关于 store 订阅数据的处理方法，下面逐一解读。
 
 ```ts
-// ...
+// 获取该组件的 selector
 const childPropsSelector = useMemo(() => {
   return defaultSelectorFactory(store.dispatch, selectorFactoryOptions)
 }, [store])
 
+// selectorFactory.ts
 // defaultSelectorFactory 就是 finalPropsSelectorFactory
 export default function finalPropsSelectorFactory(
   dispatch: Dispatch<Action>,
@@ -254,9 +246,9 @@ export default function finalPropsSelectorFactory(
 }
 ```
 
-这里终于用上了之前生成的 initMapStateToProps, initMapDispatchToProps(initProxySelector) 等方法，其实就是返回了 initProxySelector 生成的 proxy，然后当作 selectorFactory 的参数进行调用。最终通过 selectorFactory 返回了 pureFinalPropsSelector。
+这里终于用上了之前生成的 `initMapStateToProps`, `initMapDispatchToProps` 等方法，其实就是返回了 `initProxySelector` 生成的 proxy，然后当作 selectorFactory 的参数进行调用。最终通过 selectorFactory 返回了 pureFinalPropsSelector。
 
-(pureFinalPropsSelector 则根据用户自定义的 mapStateToProps 将 store 中的 nextState 生成下一次更新时的 props 返回 (mapDispatchToProps 同理)。)
+pureFinalPropsSelector 则根据用户自定义的 mapStateToProps 过滤方法将 nextState 生成下一次更新时的 props 返回 (mapDispatchToProps 同理)。
 
 ```ts
 // 生成 subscription 合并为 actualContextValue
@@ -283,7 +275,7 @@ const overriddenContextValue = useMemo(() => {
 
 // 使用 useRef 记录数据
 const lastChildProps = useRef<unknown>() //
-const lastWrapperProps = useRef(wrapperProps) // NewComponent 上一次接收到的 props
+const lastWrapperProps = useRef(wrapperProps) // ConnectComponent 上一次接收到的 props
 const childPropsFromStoreUpdate = useRef<unknown>()
 const renderIsScheduled = useRef(false)
 const isProcessingDispatch = useRef(false)
@@ -298,7 +290,7 @@ useIsomorphicLayoutEffect(() => {
   }
 }, [])
 
-// 获取 childPropsSelector
+// 获取 childPropsSelector 该方法将会 合并 筛选后的 state 和 ownProps
 const actualChildPropsSelector = usePureOnlyMemo(() => {
   const selector = () => {
     // 防止Redux更新错误的导致重新渲染
@@ -313,7 +305,7 @@ const subscribeForReact = useMemo(() => {
     if (!subscription) {
       return () => {}
     }
-    // 比对前后 childProps 如果不一致则调用 reactListener 触发更新
+    // 该方法比对前后 childProps 如果不一致则调用 reactListener 触发更新
     return subscribeUpdates(
       shouldHandleStateChanges,
       store,
@@ -336,7 +328,7 @@ const subscribeForReact = useMemo(() => {
 
 ### createSubscription
 
-在 [redux](/infra/state-management/redux) 中，我们知道， redux 是通过 `store.subscribe` 添加订阅的。
+在 [redux](/infra/state-management/redux) 中，我们知道， redux 通过 store.subscribe 添加订阅方法。
 
 ```ts
 export function createSubscription(store: any, parentSub?: Subscription) {
@@ -377,25 +369,41 @@ export function createSubscription(store: any, parentSub?: Subscription) {
 }
 ```
 
-生成的 `subscription` 拥有 `handleChangeWrapper` , `trySubscribe`。
+生成的 subscription 拥有 handleChangeWrapper , trySubscribe 方法。
 
-在 `subscribeUpdates` 中 `trySubscribe` 被赋值为 `checkForUpdates`， 这个方法就是上文中提到的**检查前后 childProps 如果不一致则调用 `reactListener` 触发更新**。
+在 connect 的过程中，会调用 context 上的 `subscription.addNestedSub` 向 context.subscription 添加监听方法。
+
+在 `subscribeUpdates` 中组件的 `subscription.onStateChange` 被赋值为 `checkForUpdates`，并通过 `trySubscribe` 添加到监听方法中。
+
+checkForUpdates 就是上文中提到的**检查前后 childProps 如果不一致则调用 `reactListener` 触发更新**。
+
+当 store 发生变化时，会调用 subscription.notifyNestedSubs 触发所有 connect 组件检查是否需要更新 state。
 
 ## useSelector, useDispatch
 
-在 `Provider` 和 `connect` 方法中，使用的都是内部 `ReactReduxContext` 或同一个外部传入的 `context`，所以在 `useSelector` 中很自然要利用这个 `Context` 获取 `store`，并根据配置获取精确的值。
+所以在 `useSelector` 中利用 useContext 获取 store、subscription，通过 React18 提供的 `useSyncExternalStoreWithSelector` 获取组件订阅的部分 state 并返回。
 
-`useDispatch` 则是通过 `useStore` 获取 `store`，然后直接返回 `store.dispatch`。([redux](/infra/state-management/redux) 中介绍过 store 的能力)
+`useDispatch` 则是通过 useContext 获取 store 直接返回 `store.dispatch`。([redux](/posts/infra/state-management/redux) 中介绍过 store 实例提供了 dispatch 方法)。
 
 ## 总结
 
-React Redux 基于 Redux 提供的状态管理功能，在 React 生态下提供了：
-
-- Provider： 利用 Context 下发 store 数据
-- connect: 利用高阶函数包装用户定义的组件，并且根据用户的配置，精确筛选 Context 中 store 需要的值作为 props 传入。在该方法中，利用了 `store.subscribe` 向 store 添加了状态变更的订阅，在 store 发生变更时，触发 connect 的订阅方法去对比两次生成的 `childProps` 是否发生了变化，如果前后的值不相等则触发 React 提供的 `forceUpdate` 方法更新组件。
-- useSelector,useDispatch: 利用 Context 获取到 store 进行操作。
-
-> 在 v8.0 中，可以看到 React Redux 利用 React@18 提供的新的 hooks 方法：
+> 在 ^8.0.0，可以看到 React Redux 利用 React18 提供的新的 hooks 方法：
 >
 > - useSyncExternalStore
 > - useSyncExternalStoreWithSelector
+
+React Redux 基于 Redux 提供的状态管理功能，在 React 生态下提供了：
+
+1. Provider
+
+   利用 Context 下发 store 实例及 subscription 实例。
+
+2. connect
+
+   利用高阶函数包装用户定义的组件，并且根据用户的配置的筛选方法，精确筛选 Context 中 store 需要的值作为 props 传入。
+
+   React Redux 内部通过发布订阅方法，将组件的订阅方法添加到响应 store 变更的监听队列中。当 store 发生变更时，触发 connect 过的组件的订阅方法去对比两次生成的 `childProps` 是否发生了变化，如果前后的值不相等，则调用 React 提供的 `forceUpdate` 方法更新组件。
+
+3. useSelector,useDispatch
+
+   利用 Context 获取到 store 实例进行操作
