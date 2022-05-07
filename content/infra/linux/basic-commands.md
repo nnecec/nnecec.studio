@@ -1,8 +1,8 @@
 ---
-title: "前端应该掌握的Linux命令"
-date: "2021-12-03"
-tags: ["Introduction"]
-description: "Linux 命令整理"
+title: '前端应该掌握的Linux命令'
+date: '2021-12-03'
+tags: ['Introduction']
+description: 'Linux 命令整理'
 ---
 
 > https://www.linuxcool.com/

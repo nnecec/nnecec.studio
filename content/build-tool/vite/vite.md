@@ -32,13 +32,13 @@ description: '了解Vite特性及关键源码解读'
     └── utils.ts
 ```
 
-### 通过 ESM 实现快速的模块化加载 JavaScript 文件
+### 通过 ESM 实现模块化加载
 
 `vite dev` 通过 node 的 http/https/http2 根据配置创建了一个 server，通过 ws 创建了一个 websocketServer，通过 chokidar 监听根节点下的文件改动等事件。
 
 `container.buildStart({})` 调用 buildStart 并且调用 所有插件的 buildStart 方法。
 
-`initOptimizer` 依赖预构建
+`initOptimizer` 依赖预构建。
 
 通过 `server.listen()` 启动本地服务，
 
