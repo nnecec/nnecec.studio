@@ -129,15 +129,15 @@ TCP/IP 协议将应用层、表示层、会话层合并为应用层，物理层�
 
 对于 HTTPS 协议来说，相当于比 HTTP 多了一次 SSL/TLS 加密。HTTPS 解决数据传输安全问题的方案就是混合使用对称加密和非对称加密。
 
-1. Client 发起握手请求，并携带支持的 `TLS 版本`、`加密方案`，以及一个随机字符 `ClientHelloRandom`
-2. Server 发送响应请求，确认选择支持的`TLS 版本`、`加密方案`，以及一个随机字符 `ServerHelloRandom`、`数字证书(公钥)`
-3. Client 检查数字证书有效期、有效状态，获取公钥，发送经过公钥加密的随机数`pre-master key`、`编码改变通知`
+1. Client 发起握手请求，并携带对称加密套件列表、非对称加密套件列表和随机数 client-random；
+2. Server 发送响应请求，服务器保存随机数 client-random，选择对称加密和非对称加密的套件，然后生成随机数 service-random，向浏览器发送选择的加密套件、service-random 和数字证书（公钥）；
+3. Client 检查数字证书有效期、有效状态，获取公钥，发送经过公钥加密的随机数`pre-master key`
 
    > 对称加密密钥 KEY 由 `ClientHelloRandom` + `ServerHelloRandom` + `pre-master key` 通过加密方法生成
 
    Client 发送经过 KEY 加密过的`finished`信号，此时 Client 就绪
 
-4. Server 根据 KEY 解密`finished`信号验证，最后一次发送 KEY 加密过的`finished`信号、`编码改变通知`，Server 就绪
+4. Server 拿出自己的私钥，解密出 pre-master 数据，并返回确认消息，Server 就绪
 
 TLS 加密中的几个概念：
 
@@ -354,7 +354,7 @@ Paint 可以将布局树中的元素分解为多个层。将内容提升到 GPU 
 
 当文档的各个部分以不同的层绘制，相互重叠时，必须进行合成，以确保它们以正确的顺序绘制到屏幕上，并正确显示内容。
 
-## 参考
+### 参考
 
 1. [渲染页面：浏览器的工作原理](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work)
 2. [浏览器的工作原理：新式网络浏览器幕后揭秘](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/)

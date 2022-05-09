@@ -26,7 +26,7 @@ module.exports = {
           '-apple-system',
           ...fontFamily.sans
         ],
-        mono: ['"Source Code Pro"', ...fontFamily.mono]
+        mono: ['Roboto Mono', 'Source Code Pro', ...fontFamily.mono]
       }
     }
   },

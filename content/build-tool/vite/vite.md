@@ -1,8 +1,8 @@
 ---
-title: 'Vite简明指南'
-date: '2022-03-30'
-tags: ['Deep Dive', 'Vite']
-description: '了解Vite特性及关键源码解读'
+title: 'Vite 源码初识'
+date: '2022-04-30'
+tags: ['Introduction', 'Vite']
+description: '了解 vite 主要功能源码'
 ---
 
 ### 文件结构
@@ -83,4 +83,21 @@ vite 通过扫描根目录下的所有 .html 文件或根据用户配置 `optimi
 
 - indexHtmlMiddleware
 
-  在该方法中处理 `GET /` 的情况，加载 index.html。在开发环境，会遍历 index.html 添加开发环境的代码，如 hmr 的功能。
+  在该方法中处理 `GET /` 的情况，加载 index.html。在开发环境，会遍历 index.html 添加开发环境的代码，如 HMR 的功能。
+
+### HMR
+
+通过 chokidar 监听根节点下的文件改动，当发生改动时触发 `change` 事件，对于 package.json 有特殊处理，对于常规文件则进入 HRM 的逻辑。
+
+- 如果是 vite 配置文件，或 .env 文件发生变化，会重启 dev 服务
+- 如果是 html 文件发送编号，会刷新页面
+- 如果是其他文件，则进入普通更新逻辑。vite 会提供与变更文件相关联的所有关联文件，遍历文件，检查文件是否需要重刷页面。如果都符合热更新逻辑，则将文件信息添加到 updates 队列中，通过 ws 发送给客户端。
+
+在创建本地服务时，vite 会向客户端注入 `vite/src/client.js` 的代码，在 `handleMessage` 方法中可以有对 socket 消息的处理
+
+- 对于 link 标签，获取页面中的 link 进行 href 更新替换
+- 对于 js 文件，获取新的 js 代码，通过 Promise 使用异步的方式添加到任务队列中。
+
+### 参考
+
+1. [vite](https://github.com/vitejs/vite)
