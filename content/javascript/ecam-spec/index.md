@@ -1,5 +1,5 @@
 ---
-title: 'ECMA 规范解读 (WIP)'
+title: 'ECMA 规范解读 🚧 WIP'
 date: '2021-11-22'
 tags: ['Deep Dive', 'JavaScript']
 description: '以查看Module及Number为例了解如何阅读 ECMAScript 规范'

@@ -1,10 +1,8 @@
+@import url('//unpkg.com/heti/umd/heti.min.css');
+
 :root {
   --primary-color: theme('colors.yellow.300');
-  --primary-dark-color: theme('colors.yellow.400');
-  --anchors-width: 299px;
 }
-
-/* HTML elements */
 
 *,
 :after,
@@ -27,32 +25,6 @@ html {
 
 .blog-post a {
   @apply mx-1;
-}
-/* Media queries */
-
-@media (max-width: 42rem) {
-  blockquote {
-    @apply m-0 pl-2;
-  }
-  ul,
-  ol {
-    list-style-position: inside;
-  }
-}
-
-.anchors ul {
-  @apply list-none;
-}
-.anchors ul * {
-  @apply my-0;
-}
-.anchors ul p,
-.anchors ul a {
-  @apply truncate break-normal;
-  @apply text-xs;
-}
-.anchors ul p {
-  @apply my-2;
 }
 
 .i-icon {

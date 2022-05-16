@@ -17,7 +17,7 @@ const PostPage = ({ post }: Props) => {
   // console.log(post)
 
   return (
-    <Layout title={post.title} sm>
+    <Layout title={post.title} xs>
       {router.isFallback ? (
         <Loading />
       ) : (
@@ -64,7 +64,7 @@ const PostPage = ({ post }: Props) => {
                   )} */}
               <article
                 dangerouslySetInnerHTML={{ __html: post.content || '' }}
-                itemProp="articleBody"
+                className="heti"
               />
             </div>
           </article>

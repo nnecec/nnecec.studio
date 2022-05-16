@@ -1,9 +1,10 @@
 ---
-title: "React 的 Reconciliation 阶段"
-date: "2022-03-16"
-tags: ["React"]
-description: "reconciliation 阶段做了哪些事情"
+title: 'React 的 Reconciliation 阶段'
+date: '2022-03-16'
+tags: ['React']
+description: 'reconciliation 阶段做了哪些事情'
 ---
+
 ## 概述
 
 React 将 [reconciliation](https://reactjs.org/docs/reconciliation.html) 称为一种算法，该算法的目的是利用上一次页面结果找出最小变动需要的操作，以此完成高性能更新页面的功能。可以理解为 React 将借助 Diff 算法计算出需要变更的节点的过程称为 `reconciliation`。
@@ -167,6 +168,6 @@ function reconcileChildFibers(
 
 ### completeWork
 
-对于 HostComponent ，React 将 DOM 节点的 props 提供给 DOM 元素，并通过 DOM 的方法如`document.createElement`构建DOM节点，将属性设置给 DOM 节点完成节点的构建工作。
+对于 HostComponent ，React 将 DOM 节点的 props 提供给 DOM 元素，并通过 DOM 的方法如`document.createElement`构建 DOM 节点，将属性设置给 DOM 节点完成节点的构建工作。
 
 在由子节点依次执行 completeWork 到根节点后，完成 reconciliation 阶段。

@@ -1,8 +1,8 @@
 ---
-title: "React SyntheticEvent"
-date: "2022-01-27"
-tags: ["Deep Dive", "React"]
-description: "合成事件"
+title: 'React SyntheticEvent'
+date: '2022-01-27'
+tags: ['Deep Dive', 'React']
+description: '合成事件'
 ---
 
 > React 17.0.2
@@ -11,7 +11,7 @@ React 在[文档](https://zh-hans.reactjs.org/docs/handling-events.html)中提�
 
 > SyntheticEvent 实例将被传递给你的事件处理函数，它是浏览器的原生事件的跨浏览器包装器。
 
-在 React 中，并不像 DOM 一样在各个节点上注册事件，而是在根节点监听事件。
+在 React 中，并不像 DOM 一样在各个节点上注册事件，而是在根节点监听事件。然后通过事件捕获、事件冒泡的机制响应事件回调方法。
 
 针对合成事件的处理可以理解为两个阶段：
 
@@ -38,7 +38,7 @@ function listenToAllSupportedEvents(rootContainerElement: EventTarget) {
     ;(rootContainerElement: any)[listeningMarker] = true
 
     allNativeEvents.forEach(domEventName => {
-      if (domEventName !== "selectionchange") {
+      if (domEventName !== 'selectionchange') {
         if (!nonDelegatedEvents.has(domEventName)) {
           listenToNativeEvent(domEventName, false, rootContainerElement)
         }
@@ -78,7 +78,7 @@ function addTrappedEventListener(
 }
 ```
 
-ReactDOM 会在初始化的时候，调用各种 EventPlugin.registerEvents 来注册当前环境（浏览器）应该处理的事件名称。
+ReactDOM 会在初始化的时候，调用各种 EventPlugin.registerEvents 来注册当前环境（如浏览器）应该处理的事件名称。
 
 ```js
 SimpleEventPlugin.registerEvents()
@@ -94,27 +94,27 @@ BeforeInputEventPlugin.registerEvents()
 registrationNameDependencies = {
   // ...
   onChange: [
-    "change",
-    "click",
-    "focusin",
-    "focusout",
-    "input",
-    "keydown",
-    "keyup",
-    "selectionchange"
+    'change',
+    'click',
+    'focusin',
+    'focusout',
+    'input',
+    'keydown',
+    'keyup',
+    'selectionchange'
   ],
   onChangeCapture: [
-    "change",
-    "click",
-    "focusin",
-    "focusout",
-    "input",
-    "keydown",
-    "keyup",
-    "selectionchange"
+    'change',
+    'click',
+    'focusin',
+    'focusout',
+    'input',
+    'keydown',
+    'keyup',
+    'selectionchange'
   ],
-  onClick: ["click"],
-  onClickCapture: ["click"]
+  onClick: ['click'],
+  onClickCapture: ['click']
   // ...
 }
 ```
@@ -123,14 +123,13 @@ registrationNameDependencies = {
 
 经过 listenToAllSupportedEvents 方法处理后，可以支持任何在根节点内触发的被当前运行环境支持的事件。以 `click` 事件为例整体流程如下：
 
-```mermaid
-graph TD
-dispatchEvent["触发 click 事件，冒泡到根节点调用绑定的方法 dispatchEvent"]
-dispatchEvent --> findInstanceBlockingEvent["通过 dispatchEventForPluginEventSystem 获取目标 DOM"]
-findInstanceBlockingEvent --> dispatchEventForPluginEventSystem["dispatchEventForPluginEventSystem"]
-dispatchEventForPluginEventSystem --> extractEvents["通过 extractEvents 生成事件队列 listeners"]
-extractEvents --> accumulateSinglePhaseListeners["accumulateSinglePhaseListeners  获取触发本次事件的 fiber 节点并依次查找直到根节点 获取每个节点上的 onClick 方法并添加到 dispatchQueue 队列"]
-accumulateSinglePhaseListeners --> processDispatchQueue["遍历 dispatchQueue 队列，依次调用各自的 onClick 方法"]
+```
+1. 触发 click 事件，冒泡到根节点调用绑定的方法 dispatchEvent
+2. 通过 dispatchEventForPluginEventSystem 获取目标 DOM
+3. 通过 extractEvents 生成事件队列 listeners
+4. 获取触发本次事件的 fiber 节点并依次查找直到根节点
+   获取每个节点上的 onClick 方法并添加到 dispatchQueue 队列
+5. 遍历 dispatchQueue 队列，依次调用各自的 onClick 方法
 ```
 
 ### dispatchEvent

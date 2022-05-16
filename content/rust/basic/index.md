@@ -1,8 +1,8 @@
 ---
-title: "Induction: Rust (WIP)"
-date: "2021-08-17"
-tags: ["Induction", "Rust"]
-description: "从前端开发者的视角进入 Rust 的世界"
+title: 'Induction: Rust 🚧 WIP'
+date: '2021-08-17'
+tags: ['Induction', 'Rust']
+description: '从前端开发者的视角进入 Rust 的世界'
 ---
 
 ## 学习资料
@@ -20,8 +20,8 @@ const MAX: number = 10000
 let a: number = 0
 a = 1
 
-let b = "hello"
-let b = "world" // error
+let b = 'hello'
+let b = 'world' // error
 ```
 
 ```rust
@@ -70,8 +70,8 @@ interface User {
 }
 
 const user1: User = {
-  email: "someone@example.com",
-  username: "someusername123",
+  email: 'someone@example.com',
+  username: 'someusername123',
   active: true,
   sign_in_count: 1
 }
@@ -80,8 +80,8 @@ console.log(user1.email)
 
 const user2: User = {
   ...user1,
-  email: "another@example.com",
-  username: "anotherusername567"
+  email: 'another@example.com',
+  username: 'anotherusername567'
 }
 
 user1.say_name = () => {
@@ -167,11 +167,11 @@ let six = IpAddr::V6(String::from("::1"));
 
 ```ts
 //  导入 Result
-import { Result } from "./utils/result"
-import { Result as IoResult } from "./result2"
+import { Result } from './utils/result'
+import { Result as IoResult } from './result2'
 
 // 导入 模块
-import * as fmt from "fmt"
+import * as fmt from 'fmt'
 ```
 
 ```rust
