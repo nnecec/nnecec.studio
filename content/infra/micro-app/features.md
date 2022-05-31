@@ -39,3 +39,8 @@ description: '探索微前端技术点的实现原理'
 
 1. 通过 window 设置全局变量
 2. 通过 window 实现发布订阅模式
+
+### 样式隔离
+
+1. 通过 Shadow DOM 提供隔离能力
+2. 各项目编译产物 class 增加前缀 prefix

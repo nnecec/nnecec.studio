@@ -1,7 +1,7 @@
 ---
 title: 'Promise 解析'
 date: '2021-10-15'
-tags: ['Deep Dive', 'JavaScript']
+tags: ['JavaScript']
 description: 'Promise API 解读及实现'
 ---
 

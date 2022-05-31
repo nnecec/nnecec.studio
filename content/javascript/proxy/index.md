@@ -1,8 +1,8 @@
 ---
-title: "Proxy, Reflect"
-date: "2021-10-20"
-tags: ["Deep Dive", "JavaScript"]
-description: "介绍 Proxy 和 Reflect 的常见使用方式"
+title: 'Proxy, Reflect'
+date: '2021-10-20'
+tags: ['JavaScript']
+description: '介绍 Proxy 和 Reflect 的常见使用方式'
 ---
 
 ## 文档

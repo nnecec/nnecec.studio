@@ -1,8 +1,8 @@
 ---
-title: "Fiber 概念"
-date: "2021-11-02"
-tags: ["Deep Dive", "React"]
-description: "Fiber 的理解及源码浅析"
+title: 'Fiber 概念'
+date: '2021-11-02'
+tags: ['React']
+description: 'Fiber 的理解及源码浅析'
 ---
 
 ## 概念

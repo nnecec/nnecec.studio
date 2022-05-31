@@ -1,8 +1,8 @@
 ---
-title: "Hooks 源码：useState, useReducer"
-date: "2021-03-18"
-tags: ["Deep Dive", "React"]
-description: "useState, useReducer 和它的一切。"
+title: 'Hooks 源码：useState, useReducer'
+date: '2021-03-18'
+tags: ['React']
+description: 'useState, useReducer 和它的一切。'
 ---
 
 ## 定义
@@ -25,7 +25,7 @@ const [count, dispatchCount] = useReducer(countReducer, 0)
 
 ## 源码
 
-在我们对[hooks](/react/hooks/basic)的解读中，解释了 hooks 的状态是如何记录并获取的。
+在我们对[hooks](/posts/react/hooks/basic)的解读中，解释了 hooks 的状态是如何记录并获取的。
 
 在看这部分源码前，我们带着几个问题：
 
@@ -105,7 +105,7 @@ function mountReducer<S, I, A>(
 ```ts
 function useMyState(initialState) {
   const reducer = ((state, action) =
-    typeof action === "function" ? action(state) : action)
+    typeof action === 'function' ? action(state) : action)
   return useReducer(reducer, initialState)
 }
 ```

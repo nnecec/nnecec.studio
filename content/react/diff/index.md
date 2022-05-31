@@ -1,7 +1,7 @@
 ---
 title: 'Virtual DOM 和 Diff 解读'
 date: '2021-08-08'
-tags: ['Deep Dive', 'React']
+tags: ['React']
 description: '理解 Virtual DOM 和 Diff 算法'
 ---
 

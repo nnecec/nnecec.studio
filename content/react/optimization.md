@@ -1,7 +1,7 @@
 ---
 title: 'React性能优化指南'
 date: '2022-04-23'
-tags: ['Deep Dive', 'React']
+tags: ['React']
 description: 'React 函数式组件的性能优化的手段与相关原理'
 ---
 

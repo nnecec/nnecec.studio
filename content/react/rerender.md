@@ -1,7 +1,7 @@
 ---
 title: 'React 状态更新'
 date: '2021-11-11'
-tags: ['Deep Dive', 'React']
+tags: ['React']
 description: '如何触发 React 中的状态更新，如何将更新提交给页面渲染'
 ---
 

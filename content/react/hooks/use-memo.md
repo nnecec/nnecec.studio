@@ -1,8 +1,8 @@
 ---
-title: "Hooks 源码：useMemo"
-date: "2021-07-16"
-tags: ["Deep Dive", "React"]
-description: "useMemo 和它的一切。"
+title: 'Hooks 源码：useMemo'
+date: '2021-07-16'
+tags: ['React']
+description: 'useMemo 和它的一切。'
 ---
 
 ## 定义

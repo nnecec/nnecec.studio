@@ -1,8 +1,8 @@
 ---
-title: "理解 hooks 基础"
-date: "2021-07-11"
-tags: ["Deep Dive", "React"]
-description: "hooks 以什么样的形态存在于 React 中？"
+title: '理解 hooks 基础'
+date: '2021-07-11'
+tags: ['React']
+description: 'hooks 以什么样的形态存在于 React 中？'
 ---
 
 ## 定义
@@ -121,4 +121,3 @@ function updateWorkInProgressHook(): Hook {
 ```
 
 在 `update` 阶段，通过 `updateWorkInProgressHook` 获取当前 hook 并返回该 hook 的值 `hook.memoizedState`。在这个方法里，通过判断区分出是由用户触发的更新还是由更新触发的更新<sup>待补充</sup>，并返回最终正确的 hook。
-

@@ -1,7 +1,7 @@
 ---
 title: 'React Redux 源码解析'
 date: '2022-04-24'
-tags: ['Deep Dive', 'React']
+tags: ['React']
 description: 'React Redux 源码解析'
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 'React SyntheticEvent'
 date: '2022-01-27'
-tags: ['Deep Dive', 'React']
+tags: ['React']
 description: '合成事件'
 ---
 

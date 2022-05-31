@@ -1,7 +1,7 @@
 ---
 title: 'React优先级调度：Scheduler'
 date: '2022-01-16'
-tags: ['Deep Dive', 'React']
+tags: ['React']
 description: 'React 如何控制不同优先级的调度'
 ---
 

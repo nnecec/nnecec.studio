@@ -1,8 +1,8 @@
 ---
-title: "Hooks 源码：useEffect, useLayoutEffect"
-date: "2021-08-02"
-tags: ["Deep Dive", "React"]
-description: "useEffect 和它的一切。"
+title: 'Hooks 源码：useEffect, useLayoutEffect'
+date: '2021-08-02'
+tags: ['React']
+description: 'useEffect 和它的一切。'
 ---
 
 ## 定义

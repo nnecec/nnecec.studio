@@ -1,8 +1,8 @@
 ---
-title: "Hooks 源码：useCallback"
-date: "2021-07-13"
-tags: ["Deep Dive", "React"]
-description: "useCallback 和它的一切。"
+title: 'Hooks 源码：useCallback'
+date: '2021-07-13'
+tags: ['React']
+description: 'useCallback 和它的一切。'
 ---
 
 ## 定义
@@ -72,7 +72,7 @@ function areHookInputsEqual(
 
   ```js
   function App() {
-    const [title, setTitle] = useState("title")
+    const [title, setTitle] = useState('title')
 
     const sayTitle = useCallback(() => {
       console.log(title)
@@ -94,7 +94,7 @@ function areHookInputsEqual(
 
 ```js
 function App() {
-  const [title, setTitle] = useState("title")
+  const [title, setTitle] = useState('title')
 
   const sayTitle = useCallback(() => {
     console.log(title)
@@ -160,8 +160,8 @@ callback() // 0
 
 ```js
 function App() {
-  const [title, setTitle] = useState("title")
-  const inputRef = useRef("")
+  const [title, setTitle] = useState('title')
+  const inputRef = useRef('')
 
   const sayTitle = useCallback(() => {
     console.log(inputRef.current)
@@ -185,7 +185,7 @@ function App() {
 ```js
 function useRefCallback(fn, dependencies) {
   const ref = useRef(() => {
-    throw new Error("Cannot call an event handler while rendering.")
+    throw new Error('Cannot call an event handler while rendering.')
   })
 
   useEffect(() => {
@@ -199,7 +199,7 @@ function useRefCallback(fn, dependencies) {
 }
 
 function App() {
-  const [title, setTitle] = useState("title")
+  const [title, setTitle] = useState('title')
 
   const sayTitle = useRefCallback(() => {
     console.log(title)
