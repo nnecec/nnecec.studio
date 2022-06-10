@@ -1,7 +1,7 @@
 ---
 title: '@formily/reactive 源码解析'
 date: '2021-12-23'
-tags: ['Dive Deep']
+tags: ['Source code']
 description: '从了解 @formily/reactive 源码洞悉 reactive 的原理'
 ---
 

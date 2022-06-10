@@ -1,4 +1,5 @@
 export type Post = {
+  marp?: boolean
   slug?: string
   title?: string
   date?: string

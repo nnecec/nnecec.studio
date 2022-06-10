@@ -7,7 +7,7 @@ import { Post } from 'types/post'
 
 type Field = keyof Post
 
-const postsDirectory = join(process.cwd(), 'content')
+const postsDirectory = join(process.cwd(), 'posts')
 
 export function getPostSlugs(directoryPath: string) {
   const slugs: string[] = []
@@ -59,24 +59,14 @@ export function getAllPosts(fields: Field[] = []) {
   return { posts, tags: Array.from(new Set(tags)) }
 }
 
-export function getPost(slug: string, fields: Field[] = []): Post {
+export function getPost(slug: string): Post {
   const fullPath = join(postsDirectory, `${slug}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
-
-  const item: Post = {}
-
-  fields.forEach(field => {
-    if (field === 'slug') {
-      item[field] = slug
-    }
-    if (field === 'content') {
-      item[field] = content
-    }
-
-    if (typeof data[field] !== 'undefined') {
-      item[field] = data[field]
-    }
-  })
+  const item: Post = {
+    ...data,
+    slug,
+    content
+  }
   return item
 }

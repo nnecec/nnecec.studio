@@ -123,14 +123,12 @@ registrationNameDependencies = {
 
 经过 listenToAllSupportedEvents 方法处理后，可以支持任何在根节点内触发的被当前运行环境支持的事件。以 `click` 事件为例整体流程如下：
 
-```
 1. 触发 click 事件，冒泡到根节点调用绑定的方法 dispatchEvent
 2. 通过 dispatchEventForPluginEventSystem 获取目标 DOM
 3. 通过 extractEvents 生成事件队列 listeners
 4. 获取触发本次事件的 fiber 节点并依次查找直到根节点
    获取每个节点上的 onClick 方法并添加到 dispatchQueue 队列
 5. 遍历 dispatchQueue 队列，依次调用各自的 onClick 方法
-```
 
 ### dispatchEvent
 

@@ -14,4 +14,3 @@ description: '了解 Three.js 基本概念'
 - 物体及表面材质：Material, Textures
 - 人与物体的相对位置：Geometry
 - 所处的“世界”：Renderer
-

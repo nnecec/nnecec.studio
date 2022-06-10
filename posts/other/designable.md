@@ -1,8 +1,8 @@
 ---
-title: "designable 技术总结"
-date: "2022-01-24"
-tags: ["Dive Deep"]
-description: "designable"
+title: 'designable 技术总结'
+date: '2022-01-24'
+tags: ['Source code']
+description: 'designable'
 ---
 
 作者在[直播](https://www.bilibili.com/video/BV1kq4y137fP)中，非常详细的解读了 Designable 的源码，本文是根据视频内容以及对源码的理解做个小结。
