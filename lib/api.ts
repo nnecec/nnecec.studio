@@ -5,8 +5,6 @@ import { join } from 'path'
 
 import { Post } from 'types/post'
 
-type Field = keyof Post
-
 const postsDirectory = join(process.cwd(), 'posts')
 
 export function getPostSlugs(directoryPath: string) {
@@ -32,21 +30,21 @@ export function getPostSlugs(directoryPath: string) {
   return slugs
 }
 
-export function getPosts(slug: string, fields: Field[] = []) {
+export function getPosts(slug: string) {
   if (slug.endsWith('.md')) {
-    return getPost(slug.replace(/\.md$/, ''), fields)
+    return getPost(slug.replace(/\.md$/, ''))
   }
   return undefined
 }
 
-export function getAllPosts(fields: Field[] = []) {
+export function getAllPosts() {
   const slugs = getPostSlugs(postsDirectory)
 
   const tags: string[] = []
 
   const posts = slugs
     .map(slug => {
-      const data = getPosts(slug, fields)
+      const data = getPosts(slug)
       if (data?.tags) {
         tags.push(...data.tags)
       }

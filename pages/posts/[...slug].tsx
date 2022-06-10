@@ -1,7 +1,7 @@
 import { Share } from '@icon-park/react'
+import { Marp } from '@marp-team/marp-core'
 import { Loading } from '@nextui-org/react'
 import { useRouter } from 'next/router'
-import { Marp } from '@marp-team/marp-core'
 
 import { Layout, Tag } from 'components'
 import { getAllPosts, getPost } from 'lib/api'
@@ -111,7 +111,7 @@ type Params = {
 }
 
 export async function getStaticPaths() {
-  const { posts } = getAllPosts(['title', 'slug'])
+  const { posts } = getAllPosts()
 
   return {
     fallback: false,

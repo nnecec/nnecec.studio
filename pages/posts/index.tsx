@@ -1,4 +1,4 @@
-import { Card, Row, Text } from '@nextui-org/react'
+import { Row, Text } from '@nextui-org/react'
 import Link from 'next/link'
 
 import { Layout, Tag } from 'components'
@@ -42,14 +42,7 @@ const PostsPage = ({ posts }: Props) => {
 }
 
 export const getStaticProps = async () => {
-  const { posts, tags } = getAllPosts([
-    'title',
-    'slug',
-    'date',
-    'tags',
-    'description',
-    'excerpt'
-  ])
+  const { posts, tags } = getAllPosts()
 
   return {
     props: { posts, tags }
