@@ -1,12 +1,12 @@
 ---
 marp: true
 title: '如何阅读 ECMA 标准'
-date: '2022-06-10'
+date: '2022-06-30'
 tags: ['JavaScript']
 description: '通过例子了解如何阅读 ECMAScript 规范'
 ---
 
-# 如何阅读 ECMA 规范
+# 如何阅读 ECMAScript 规范
 
 <!--
 
@@ -35,6 +35,39 @@ MDN 关于[JavaScript 参考](https://developer.mozilla.org/zh-CN/docs/Web/JavaS
 在 MDN JavaScript 【关于该参考】的介绍中，提到绝大部分 JavaScript 核心语言特性基于 ECMAScript。所以 ECMAScript 规范理论上也是 MDN 文档的基础。
 
 所以一个 JavaScript开发者 如果需要在该领域长期发展，同样需要具备阅读规范的能力，而不是仅仅查阅他人总结归纳的知识。
+-->
+
+---
+
+## 标准化之前
+
+1995 年，网景和 Sun 共同完成 LiveScript 的开发，就在 Netscape 14 Navigator 2 正式发布前，网景把 LiveScript 改名为 JavaScript，以便搭上媒体当时热烈炒作 Java 的顺风车。
+
+日后，网景又在 NetscapeNavigator3 中发布了 1.1 版本。这时候，微软决定向 IE 投入更多资源。就在 NetscapeNavigator3 发布后不久，微软发布了 IE3，其中包含自己名为 JScript(叫这个名字是为了避免与网景发生许可纠纷)的 JavaScript 实现。
+
+微软的动作意味着出现了两个版本的 JavaScript:NetscapeNavigator 中的 JavaScript，以及 IE 中的 JScript。而当时 JavaScript 还没有规范其语法或特性的标准，两个版本并存让这个问题更加突出了。随着业界担忧日甚，JavaScript 终于踏上了标准化的征程。
+
+---
+
+## 编写规范
+
+1997 年，JavaScript1.1 作为提案被提交给欧洲计算机制造商协会(Ecma)。第 39 技术委员会(TC39)承担了“标准化一门通用、跨平台、厂商中立的脚本语言的语法和语义”的任务(参见 TC39-ECMAScript)。
+
+TC39（Ecma 技术委员会（Technical Committee）使用数字来标记旗下的技术委员会，当时下一个可用数字是 39） 委员会由来自网景、Sun、微软、Borland、Nombas 和其他对这门脚本语言有兴趣的公司的工程师组成。他们花了数月时间打造出 ECMA-262，也就是 ECMAScript(发音为“ek-ma-script”)这个新的脚本语言标准。
+
+---
+
+## 规范总览
+
+- 第 1-4 章描述了规范的背景及大纲
+- 第 5 章定义了规范中的一些符号或者语法的约定。
+- 第 6-10 章定义了 ECMAScript 程序操作包含的执行环境。
+- 第 11-17 章定义了实际的 ECMAScript 语言，包括它的语法编码以及语言特性的执行语义。
+- 第 18-28 章定义了 ECMAScript 标准库。它们包括所有当 ECMAScript 程序执行时可用的标准对象的定义。
+- 第 29 章描述了访问备用数组缓冲区内存和原子对象的内存一致性模型。
+
+<!--
+目前规范的内容大致可以按这样分类，
 -->
 
 ---
@@ -318,6 +351,5 @@ UnaryExpression : typeof UnaryExpression
 ## 参考
 
 1. [ECMAScript® Specification](https://tc39.es/ecma262/)
-   - [中文](https://ecma262.docschina.org/)
 2. [How to Read the ECMAScript Specification](https://timothygu.me/es-howto/)
 3. [ECMAScript 阅读指南（二）](https://zhuanlan.zhihu.com/p/262265857)
