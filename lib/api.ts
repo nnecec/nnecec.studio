@@ -10,7 +10,7 @@ const postsDirectory = join(process.cwd(), 'posts')
 export function getPostSlugs(directoryPath: string) {
   const slugs: string[] = []
 
-  function map(directoryPath: string, baseURL: string = '') {
+  function map(directoryPath: string, baseURL = '') {
     const files = fs.readdirSync(directoryPath)
     files.forEach(file => {
       if (!/(^|\/)\.[^/.]/g.test(file)) {

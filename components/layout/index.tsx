@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
-import { Container, ContainerProps } from '@nextui-org/react'
+import { Container } from '@nextui-org/react'
+import { ContainerProps } from '@nextui-org/react/types/container'
 import Head from 'next/head'
 
 import { SITE_CONFIG } from 'lib/constants'
