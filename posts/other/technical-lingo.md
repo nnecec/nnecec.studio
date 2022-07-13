@@ -1,8 +1,8 @@
 ---
-title: "黑话手册参考"
-date: "2021-12-09"
-tags: ["Introduction"]
-description: "IoC, DI, DDD, RPC 等等都是什么？"
+title: '黑话手册参考'
+date: '2021-12-09'
+tags: ['Introduction']
+description: 'IoC, DI, DDD 等等都是什么？'
 ---
 
 > sort by mood.
@@ -16,7 +16,7 @@ description: "IoC, DI, DDD, RPC 等等都是什么？"
 
 - [Sairyss/domain-driven-hexagon: Guide on Domain-Driven Design, software architecture, design patterns, best practices etc. with code examples (github.com)](https://github.com/Sairyss/domain-driven-hexagon)
 - [领域驱动设计在互联网业务开发中的实践 - 美团技术团队 (meituan.com)](https://tech.meituan.com/2017/12/22/ddd-in-practice.html)
-- [用DDD(领域驱动设计)和ADT(代数数据类型)提升代码质量](https://mp.weixin.qq.com/s/UaJ56G_Vdx6__6ximfP47A)
+- [用 DDD(领域驱动设计)和 ADT(代数数据类型)提升代码质量](https://mp.weixin.qq.com/s/UaJ56G_Vdx6__6ximfP47A)
 
 ## RPC
 
@@ -28,5 +28,8 @@ description: "IoC, DI, DDD, RPC 等等都是什么？"
 
 ## OOP, AOP
 
-- 
+## [同构](https://www.zhihu.com/question/325952676)
 
+同构：服务端渲染，将 html 返回到客户端再进行客户端渲染
+
+-

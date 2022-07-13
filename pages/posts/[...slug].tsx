@@ -1,5 +1,4 @@
 import { Share } from '@icon-park/react'
-import { Marp } from '@marp-team/marp-core'
 import { Loading } from '@nextui-org/react'
 import { useRouter } from 'next/router'
 
@@ -11,9 +10,7 @@ import type { Post } from 'types/post'
 
 type Props = {
   post: Post
-  css: string
 }
-const marp = new Marp()
 
 const PostPage = ({ post, css }: Props) => {
   const router = useRouter()
@@ -81,25 +78,16 @@ const PostPage = ({ post, css }: Props) => {
 
 export async function getStaticProps({ params }: Params) {
   const post = getPost(params.slug.join('/'))
-  const { marp: isMarp, content = '' } = post
+  const { content = '' } = post
 
-  let html = content
-  let css = ''
-  if (isMarp) {
-    const { html: newHtml, css: newCss } = marp.render(content)
-    html = newHtml
-    css = newCss
-  } else {
-    html = await markdownToHtml(content || '')
-  }
+  const html = await markdownToHtml(content || '')
 
   return {
     props: {
       post: {
         ...post,
         content: html
-      },
-      css
+      }
     }
   }
 }

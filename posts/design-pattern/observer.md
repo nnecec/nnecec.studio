@@ -1,8 +1,8 @@
 ---
-title: "Design Pattern: Observer"
-date: "2021-09-07"
-tags: ["Design Pattern"]
-description: "5. 观察者模式"
+title: 'Design Pattern: Observer'
+date: '2021-09-07'
+tags: ['Design Pattern']
+description: '5. 观察者模式'
 ---
 
 ## 定义
@@ -17,33 +17,26 @@ description: "5. 观察者模式"
 
 当然现实中没有这么笨的销售公司，实际上故事是这样的：小明离开之前，把电话号码留在了售楼处。销售员答应他，新楼盘一推出就马上发信息通知小明。小红、小强和小龙也是一样，他们的电话号码都被记在售楼处，销售员会翻开花名册，遍历上面的电话号码，依次发送一条短信来通知他们。
 
-## 解决方案
-
-1. 仔细检查你的业务逻辑， 试着将其拆分为两个部分： 独立于其他代码的核心功能将作为发布者； 其他代码则将转化为一组订阅类。
-2. 声明订阅者接口。 该接口至少应声明一个 update 方法。
-3. 声明发布者接口并定义一些接口来在列表中添加和删除订阅对象。 记住发布者必须仅通过订阅者接口与它们进行交互。
-4. 确定存放实际订阅列表的位置并实现订阅方法。 通常所有类型的发布者代码看上去都一样， 因此将列表放置在直接扩展自发布者接口的抽象类中是显而易见的。 具体发布者会扩展该类从而继承所有的订阅行为。但是， 如果你需要在现有的类层次结构中应用该模式， 则可以考虑使用组合的方式： 将订阅逻辑放入一个独立的对象， 然后让所有实际订阅者使用该对象。
-5. 创建具体发布者类。 每次发布者发生了重要事件时都必须通知所有的订阅者。
-6. 在具体订阅者类中实现通知更新的方法。 绝大部分订阅者需要一些与事件相关的上下文数据。 这些数据可作为通知方法的参数来传递。但还有另一种选择。 订阅者接收到通知后直接从通知中获取所有数据。 在这种情况下， 发布者必须通过更新方法将自身传递出去。 另一种不太灵活的方式是通过构造函数将发布者与订阅者永久性地连接起来。
-7. 客户端必须生成所需的全部订阅者， 并在相应的发布者处完成注册工作。
-
 ## 优缺点
 
 优点
 
-- 开闭原则。 你无需修改发布者代码就能引入新的订阅者类 （如果是发布者接口则可轻松引入发布者类）。
+- 符合关注点分离和单一职责。
 - 你可以在运行时建立对象之间的联系。
 
 缺点
 
-- 订阅者的通知顺序是随机的。
+- 订阅者的通知顺序是随机的（不可指定的）。
+- 当观察者变得非常复杂时，性能会严重下降。
 
 ## 代码实现
 
 ### 通用的发布订阅模式
 
+> https://github.com/developit/mitt
+
 ```js
-function mitt() {
+function observable() {
   const all = new Map()
 
   return {
@@ -75,7 +68,7 @@ function mitt() {
           handler.call(null, params)
         }
       }
-      const noTypeHandlers = all.get("*") // 响应无需提供 type 的订阅
+      const noTypeHandlers = all.get('*') // 响应无需提供 type 的订阅
       if (noTypeHandlers) {
         for (let handler of handlers) {
           handler.call(null, type, params)
@@ -100,12 +93,12 @@ requestLogin().then(data => {
 
 // after
 requestLogin().then(data => {
-  emitter.emit("loginSuccess")
+  emitter.emit('loginSuccess')
 })
 
-messageList.on("loginSuccess")
-cartList.on("loginSuccess")
-userInfo.on("loginSuccess")
+messageList.on('loginSuccess')
+cartList.on('loginSuccess')
+userInfo.on('loginSuccess')
 // ...
 ```
 

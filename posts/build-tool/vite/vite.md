@@ -1,9 +1,11 @@
 ---
-title: 'Vite 源码初识'
-date: '2022-04-30'
+title: 'Vite 原理简析'
+date: '2022-07-12'
 tags: ['Introduction', 'Vite']
 description: '了解 vite 主要功能源码'
 ---
+
+## 源码简析
 
 ### 文件结构
 
@@ -36,7 +38,7 @@ description: '了解 vite 主要功能源码'
 
 `vite dev` 通过 node 的 http/https/http2 根据配置创建了一个 server，通过 ws 创建了一个 websocketServer，通过 chokidar 监听根节点下的文件改动等事件。
 
-`container.buildStart({})` 调用 buildStart 并且调用 所有插件的 buildStart 方法。
+`container.buildStart({})` 调用 buildStart 并触发所有插件的 buildStart 方法。
 
 `initOptimizer` 依赖预构建。
 
@@ -98,6 +100,18 @@ vite 通过扫描根目录下的所有 .html 文件或根据用户配置 `optimi
 - 对于 link 标签，获取页面中的 link 进行 href 更新替换
 - 对于 js 文件，获取新的 js 代码，通过 Promise 使用异步的方式添加到任务队列中。
 
-### 参考
+## 总结
+
+Vite 主要通过浏览器原生支持 ESModule 的特性，实现快速更新页面资源的功能。
+
+Vite 会将依赖统一转化为 ESModule 格式，并将零碎文件合成一个大文件以减少资源请求次数。
+
+在开发环境，Vite 会直接启动本地服务器，当浏览器发起资源请求时，Vite 对请求进行拦截。当请求发现携带@开头的特殊路径时，会对其特殊处理。其他请求会被认为是普通静态资源请求。
+
+热更新实现首先依赖 Vite 对 index.html 进行处理，添加了响应 socket 通信的代码，从而实现了资源热更新的能力。
+
+在生产环境，Vite 仍需要通过 Rollup 将资源打包。
+
+## 参考
 
 1. [vite](https://github.com/vitejs/vite)

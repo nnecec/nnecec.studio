@@ -36,8 +36,7 @@ export const Footer = () => {
 
         <div>
           {' '}
-          © {new Date().getFullYear()} Built with{' '}
-          <a href="https://www.nextjs.org">Next.js</a>.
+          © 2020-{new Date().getFullYear()} nnecec. All rights reserved.
         </div>
       </Container>
     </footer>

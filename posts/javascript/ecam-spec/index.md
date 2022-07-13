@@ -1,5 +1,6 @@
 ---
 marp: true
+class: invert
 title: '如何阅读 ECMAScript 标准'
 date: '2022-06-30'
 tags: ['JavaScript']
