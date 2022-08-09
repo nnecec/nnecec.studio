@@ -4,12 +4,6 @@
   --primary-color: theme('colors.yellow.300');
 }
 
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
-
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

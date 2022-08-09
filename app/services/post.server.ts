@@ -3,7 +3,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import { join } from 'path'
 
-import { Post } from 'types/post'
+import type { Post } from '~/types/post'
 
 const postsDirectory = join(process.cwd(), 'posts')
 
@@ -34,27 +34,36 @@ export function getPosts(slug: string) {
   if (slug.endsWith('.md')) {
     return getPost(slug.replace(/\.md$/, ''))
   }
-  return undefined
 }
 
-export function getAllPosts() {
+export function getAllPosts(tag?: string) {
   const slugs = getPostSlugs(postsDirectory)
 
   const tags: string[] = []
-
+  console.log(tag)
   const posts = slugs
     .map(slug => {
       const data = getPosts(slug)
       if (data?.tags) {
         tags.push(...data.tags)
       }
+
+      if (tag) {
+        if (data?.tags?.includes(tag)) {
+          return data
+        }
+        return null
+      }
       return data
     })
     .filter(Boolean)
     .sort((post1, post2) =>
-      dayjs(post1!.date).isAfter(dayjs(post2!.date)) ? -1 : 1
+      dayjs(post1.date).isAfter(dayjs(post2.date)) ? -1 : 1
     )
-  return { posts, tags: Array.from(new Set(tags)) }
+  return {
+    posts,
+    tags: Array.from(new Set(tags)).sort((a, b) => a.localeCompare(b))
+  }
 }
 
 export function getPost(slug: string): Post {

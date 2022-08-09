@@ -2,11 +2,7 @@ const { fontFamily } = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./components/**/*.tsx', './pages/**/*.tsx'],
-  darkMode: 'class',
-  corePlugins: {
-    preflight: false
-  },
+  content: ['./app/**/*.{ts,tsx,js,jsx}'],
   theme: {
     extend: {
       colors: {
@@ -16,14 +12,11 @@ module.exports = {
       fontFamily: {
         sans: [
           'SF Pro SC',
-          'SF Pro Display',
-          'SF Pro Icons',
           'PingFang SC',
           'Helvetica Neue',
           'Helvetica',
           'Arial',
           'sans-serif',
-          'Optimistic Display',
           '-apple-system',
           ...fontFamily.sans
         ],
@@ -31,5 +24,8 @@ module.exports = {
       }
     }
   },
-  plugins: [require('@tailwindcss/typography')]
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  daisyui: {
+    themes: ['light', 'dark']
+  }
 }
