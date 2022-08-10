@@ -1456,6 +1456,9 @@ html {
   -webkit-text-decoration-line: underline;
   text-decoration-line: underline;
 }
+.menu > :where(li.disabled > *:not(ul):focus) {
+  cursor: auto;
+}
 .stats {
   display: inline-grid;
   --tw-bg-opacity: 1;
@@ -1564,6 +1567,17 @@ html {
   border-width: 4px;
   --tw-border-opacity: 1;
   border-color: hsl(var(--b1) / var(--tw-border-opacity));
+}
+.btm-nav>*.disabled, 
+    .btm-nav>*.disabled:hover, 
+    .btm-nav>*[disabled], 
+    .btm-nav>*[disabled]:hover {
+  pointer-events: none;
+  --tw-border-opacity: 0;
+  background-color: hsl(var(--n) / var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.1;
+  color: hsl(var(--bc) / var(--tw-text-opacity));
+  --tw-text-opacity: 0.2;
 }
 .btm-nav>* .label {
   font-size: 1rem;
@@ -1786,6 +1800,16 @@ body[dir="rtl"] .checkbox:checked,
 .link:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
+}
+.menu li.disabled > * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+       user-select: none;
+  color: hsl(var(--bc) / var(--tw-text-opacity));
+  --tw-text-opacity: 0.2;
+}
+.menu li.disabled > *:hover {
+  background-color: transparent;
 }
 @-webkit-keyframes progress-loading {
 

@@ -40,7 +40,7 @@ export function getAllPosts(tag?: string) {
   const slugs = getPostSlugs(postsDirectory)
 
   const tags: string[] = []
-  console.log(tag)
+
   const posts = slugs
     .map(slug => {
       const data = getPosts(slug)

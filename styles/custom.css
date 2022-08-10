@@ -1,12 +1,19 @@
 @import url('//unpkg.com/heti/umd/heti.min.css');
 
-:root {
-  --primary-color: theme('colors.yellow.300');
-}
-
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  .heti pre {
+    background-color: rgba(0, 0, 0, 0.054);
+  }
+  &.dark {
+    .heti pre {
+      background-color: rgba(255, 255, 255, 0.054);
+    }
+  }
 }
 
 code:hover {
@@ -21,8 +28,11 @@ code:hover {
   @apply max-w-3xl;
 }
 
-.blog-post a {
-  @apply mx-1;
+.blog-post {
+  a {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }
 }
 
 .i-icon {

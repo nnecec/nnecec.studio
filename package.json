@@ -17,7 +17,7 @@
   "author": "nnecec <nnecec@outlook.com>",
   "sideEffects": false,
   "scripts": {
-    "build": "run-s \"build:*\"",
+    "build": "rm -rf api && run-s \"build:*\"",
     "build:css": "postcss styles --base styles --dir app/styles --env production",
     "build:remix": "remix build",
     "dev": "run-p \"dev:*\"",
@@ -37,13 +37,12 @@
     "dayjs": "^1.11.4",
     "framer-motion": "^7.0.0",
     "gray-matter": "4.0.3",
+    "highlight.js": "^11.6.0",
     "iconoir-react": "^5.1.4",
+    "marked": "^4.0.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intl": "^6.0.5",
-    "remark": "14.0.2",
-    "remark-html": "15.0.1",
-    "remark-prism": "^1.3.6",
     "tailwindcss": "^3.1.8"
   },
   "devDependencies": {
@@ -53,6 +52,7 @@
     "@remix-run/dev": "1.6.7",
     "@remix-run/eslint-config": "1.6.7",
     "@remix-run/serve": "1.6.7",
+    "@types/marked": "^4.0.3",
     "@types/node": "^18.6.5",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
@@ -61,6 +61,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",
+    "postcss-import": "^14.1.0",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.7.4"
