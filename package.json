@@ -15,15 +15,14 @@
   },
   "license": "0BSD",
   "author": "nnecec <nnecec@outlook.com>",
-  "main": "n/a",
+  "sideEffects": false,
   "scripts": {
     "build": "run-s \"build:*\"",
     "build:css": "postcss styles --base styles --dir app/styles --env production",
     "build:remix": "remix build",
     "dev": "run-p \"dev:*\"",
     "dev:css": "postcss styles --base styles --dir app/styles -w",
-    "dev:remix": "remix dev --port 3006",
-    "start": "remix-serve build"
+    "dev:remix": "remix dev --port 3006"
   },
   "dependencies": {
     "@marp-team/marp-core": "^3.2.1",
@@ -68,6 +67,6 @@
   },
   "packageManager": "pnpm@7.0.0",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   }
 }
