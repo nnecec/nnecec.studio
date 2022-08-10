@@ -1,4 +1,4 @@
-@import url('//unpkg.com/heti/umd/heti.min.css');
+@import url('./heti.css');
 
 html {
   -webkit-font-smoothing: antialiased;

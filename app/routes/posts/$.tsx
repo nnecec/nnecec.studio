@@ -46,7 +46,7 @@ const PostPage = () => {
 
   return (
     <Layout>
-      <article className="blog-post heti mx-auto" itemScope>
+      <article className="blog-post heti mx-auto">
         <header className="mb-12">
           <h1>{post.title}</h1>
           <div className="flex flex-col gap-2 text-sm">

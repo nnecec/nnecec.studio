@@ -7,13 +7,11 @@ export const useDarkMode = (): [
   boolean,
   React.Dispatch<React.SetStateAction<boolean | undefined>>
 ] => {
-  const [enabledState, setEnabledState] = useLocalStorage<boolean>(
-    'theme',
-    false
-  )
+  const [enabledState, setEnabledState] = useLocalStorage<boolean>('theme')
 
   const prefersDarkMode = useMedia('(prefers-color-scheme: dark)', false)
-  const enabled = enabledState || prefersDarkMode
+
+  const enabled = enabledState ?? prefersDarkMode
 
   useEffect(() => {
     const darkName = 'dark'
