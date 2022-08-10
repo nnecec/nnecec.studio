@@ -1,5 +1,6 @@
 import { SITE_CONFIG } from '~/utils/constants'
 import { GitHub, Twitter } from 'iconoir-react'
+import avatar from '~/assets/avatar.jpg'
 
 const { author } = SITE_CONFIG
 
@@ -9,8 +10,8 @@ export const Bio = () => {
       <div className="tooltip" data-tip={author.name}>
         <img
           className="inline-block h-10 w-10 rounded-full"
-          src="/assets/profile-pic.jpg"
-          alt=""
+          src={avatar}
+          alt="avatar"
         />
       </div>
 
