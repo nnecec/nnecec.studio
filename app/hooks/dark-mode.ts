@@ -13,17 +13,16 @@ export const useDarkMode = (): [
   )
 
   const prefersDarkMode = useMedia('(prefers-color-scheme: dark)', false)
-
-  const enabled = enabledState ?? prefersDarkMode
+  const enabled = enabledState || prefersDarkMode
 
   useEffect(() => {
-    const className = 'dark'
+    const darkName = 'dark'
     const element = window.document.body
     if (enabled) {
-      element.classList.add(className)
-      document.documentElement.setAttribute('data-theme', className)
+      element.classList.add(darkName)
+      document.documentElement.setAttribute('data-theme', darkName)
     } else {
-      element.classList.remove(className)
+      element.classList.remove(darkName)
       document.documentElement.setAttribute('data-theme', 'light')
     }
   }, [enabled])
