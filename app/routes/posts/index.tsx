@@ -32,7 +32,7 @@ const PostsPage = () => {
 
   return (
     <Layout>
-      <div className="prose mx-auto grid grid-cols-3 items-start gap-4">
+      <div className="prose mx-auto grid grid-cols-3 gap-4">
         <div className="col-span-2">
           {posts.map(post => {
             return (
@@ -56,7 +56,7 @@ const PostsPage = () => {
           })}
         </div>
 
-        <ul className="sticky top-[96px] col-span-1">
+        <ul className="sticky top-[96px] col-span-1 self-start">
           <li>
             <Link
               to={`/posts`}
