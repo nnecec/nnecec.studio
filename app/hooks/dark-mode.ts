@@ -15,13 +15,13 @@ export const useDarkMode = (): [
 
   useEffect(() => {
     const darkName = 'dark'
-    const element = window.document.body
+    const element = document.documentElement
     if (enabled) {
       element.classList.add(darkName)
-      document.documentElement.setAttribute('data-theme', darkName)
+      element.setAttribute('data-theme', darkName)
     } else {
       element.classList.remove(darkName)
-      document.documentElement.setAttribute('data-theme', 'light')
+      element.setAttribute('data-theme', 'light')
     }
   }, [enabled])
 

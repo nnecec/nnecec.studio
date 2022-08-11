@@ -47,7 +47,7 @@ const PostPage = () => {
   return (
     <Layout>
       <article className="blog-post heti mx-auto">
-        <header className="mb-12">
+        <section className="mb-32">
           <h1>{post.title}</h1>
           <div className="flex flex-col gap-2 text-sm">
             <div>最后更新: {post.date}</div>
@@ -77,8 +77,8 @@ const PostPage = () => {
               </a>
             </div>
           </div>
-        </header>
-        <div className="relative my-8">
+        </section>
+        <div className="relative my-8 font-serif">
           {/* {!!post.tableOfContents && (
                     <Toc
                       className="top-[20rem] right-[max(0px,calc(50%-46rem))] z-20 max-h-[600px] w-[19.5rem] overflow-y-auto py-6 px-4 text-sm xl:fixed"

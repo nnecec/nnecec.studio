@@ -7,7 +7,7 @@ const Index = () => {
       <section className="mt-[-96px] flex h-screen items-center justify-center">
         <h2>你好，我是 nnecec。这是我的 blog。</h2>
         <Link to="/posts">
-          <button type="button" className="btn">
+          <button type="button" className="btn btn-primary">
             文章
           </button>
         </Link>

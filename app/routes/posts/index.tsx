@@ -32,17 +32,42 @@ const PostsPage = () => {
 
   return (
     <Layout>
-      <div className="prose mx-auto grid grid-cols-3 gap-4">
-        <div className="col-span-2">
+      <div className="prose relative mx-auto">
+        <ul className="fixed -right-full top-[96px] list-none">
+          <li>
+            <Link
+              to={`/posts`}
+              className={clsx('tab', !currentTag && 'link link-primary')}
+            >
+              # All
+            </Link>
+          </li>
+
+          {tags.map(tag => (
+            <li key={tag}>
+              <Link
+                to={`/posts?tag=${tag}`}
+                className={clsx(
+                  'tab',
+                  currentTag === tag && 'link link-primary'
+                )}
+              >
+                # {tag}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div>
           {posts.map(post => {
             return (
               <Link
                 to={`/posts${post.slug}`}
                 key={post.slug}
-                className="no-underline"
+                className="no-underline "
               >
                 <div className="mb-4 cursor-pointer">
-                  <h3>{post.title}</h3>
+                  <h2>{post.title}</h2>
 
                   <div className="text-sm">{post.date}</div>
                   <div>
@@ -55,27 +80,6 @@ const PostsPage = () => {
             )
           })}
         </div>
-
-        <ul className="sticky top-[96px] col-span-1 self-start">
-          <li>
-            <Link
-              to={`/posts`}
-              className={clsx(!currentTag && 'link link-secondary')}
-            >
-              # All
-            </Link>
-          </li>
-          {tags.map(tag => (
-            <li key={tag} className="list-none">
-              <Link
-                to={`/posts?tag=${tag}`}
-                className={clsx(currentTag === tag && 'link link-secondary')}
-              >
-                # {tag}
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
     </Layout>
   )
