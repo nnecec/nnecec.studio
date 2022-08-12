@@ -1,5 +1,6 @@
 {
   "files.exclude": {
-    ".next": true
+    ".cache": true,
+    "app/styles": true
   }
 }

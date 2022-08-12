@@ -1,6 +1,6 @@
 ---
 title: 'Virtual DOM 和 Diff 解读'
-date: '2021-08-08'
+date: '2022-07-22'
 tags: ['React']
 description: '理解 Virtual DOM 和 Diff 算法'
 ---
@@ -15,26 +15,39 @@ React 会在更新阶段，判断 bailout 失败后进入 Diff 算法的逻辑�
 
 ## Diff 算法的策略
 
-在[官方文档](https://zh-hans.reactjs.org/docs/reconciliation.html#the-diffing-algorithm)中，阐述了 React Diff 的策略。
+在[官方文档](https://zh-hans.reactjs.org/docs/reconciliation.html#the-diffing-algorithm)中，简述了 React Diff 的策略：
+
+- 原生 DOM 节点类型发生变化，不可复用
+- 原生 DOM 节点属性发生变化，可复用
+- 组件节点继续递归上述判断
+- 递归判断子节点数组时，借助 key 和类型判断
 
 一个 DOM 节点在某一时刻最多会有 4 个节点和他相关。
 
-1. `current Fiber`。如果该 DOM 节点已在页面中，`current Fiber` 代表该 DOM 节点对应的 Fiber 节点。
-2. `workInProgress Fiber`。如果该 DOM 节点将在本次更新中渲染到页面中，`workInProgress Fiber` 代表该 DOM 节点对应正在调度中的 Fiber 节点。
+1. currentFiber。如果该 DOM 节点已在页面中，currentFiber 代表该 DOM 节点对应的 Fiber 节点。
+2. workInProgressFiber。如果该 DOM 节点将在本次更新中渲染到页面中，workInProgressFiber 代表该 DOM 节点对应正在调度中的 Fiber 节点。
 3. DOM 节点本身。
-4. JSX 对象。ClassComponent 的 `render` 方法的返回结果，或 `FunctionComponent` 的调用结果。JSX 对象中包含描述 DOM 节点的信息。
+4. JSX 对象。ClassComponent 的 `render` 方法的返回结果或 FunctionComponent 的调用结果。JSX 对象中包含描述 DOM 节点的信息。
 
 Diff 算法的本质是对比 1 和 4，生成 2。
 
 为了降低算法复杂度，React 的 Diff 算法会预设三个限制：
 
-1. 只对同级兄弟元素进行 Diff。如果一个 `DOM` 节点在更新中跨越了层级，那么 React 认为变动节点的旧节点需要删除，不会尝试复用。
-2. 两个不同类型的标签会产生出不同的节点树。如果元素由 `div` 变为 `p`，React 会销毁 `div` 及其子孙节点，并新建 `p` 及其子孙节点。
-3. 通过 `key` 来标记，通常用于表明元素在同层级的类似元素中各自 key，用于发生同层级移动时的查找。
+1. 只对同级兄弟元素进行 Diff。
+
+   如果一个 DOM 节点在更新中跨越了层级，那么 React 认为变动节点的旧节点需要删除，不会尝试复用。
+
+2. 两个不同类型的标签会产生出不同的节点树。
+
+   如果元素由 `div` 变为 `p`，React 会销毁 `div` 及其子孙节点，并新建 `p` 及其子孙节点。
+
+3. 通过 `key` 来标记。
+
+   通常用于表明元素在同层级的类似元素中各自 key，用于发生同层级移动时的查找。
 
 ## 源码
 
-Diff 获取到 fiber.child 并根据 typeof 返回的类型(object(array), string) 做不同处理。
+Diff 获取到 fiber.child 并根据 typeof 返回的类型，如 object(array)、string 做不同处理。
 
 ```ts
 function reconcileChildFibers(
@@ -54,8 +67,7 @@ function reconcileChildFibers(
             lanes
           )
         )
-      case REACT_PORTAL_TYPE:
-      case REACT_LAZY_TYPE:
+      // ...
     }
 
     if (isArray(newChild)) {
@@ -91,8 +103,31 @@ function reconcileChildFibers(
     )
   }
 
-  // Remaining cases are all treated as empty.
   return deleteRemainingChildren(returnFiber, currentFirstChild)
+}
+```
+
+### 对于 string/number 类型的节点
+
+如果节点内仅有 string/number，如 `return 'text'`。如果有 oldChild 类型相同都是文字节点的话，则都可以复用。
+
+```ts
+function reconcileSingleTextNode(
+  returnFiber: Fiber,
+  currentFirstChild: Fiber | null,
+  textContent: string,
+  lanes: Lanes
+): Fiber {
+  if (currentFirstChild !== null && currentFirstChild.tag === HostText) {
+    deleteRemainingChildren(returnFiber, currentFirstChild.sibling)
+    const existing = useFiber(currentFirstChild, textContent)
+    existing.return = returnFiber
+    return existing
+  }
+  deleteRemainingChildren(returnFiber, currentFirstChild)
+  const created = createFiberFromText(textContent, returnFiber.mode, lanes)
+  created.return = returnFiber
+  return created
 }
 ```
 
@@ -109,7 +144,6 @@ function reconcileSingleElement(
   let child = currentFirstChild
   while (child !== null) {
     if (child.key === key) {
-      // 省略 REACT_FRAGMENT_TYPE
       const elementType = element.type
       if (child.elementType === elementType) {
         deleteRemainingChildren(returnFiber, child.sibling)
@@ -133,13 +167,13 @@ function reconcileSingleElement(
 }
 ```
 
-当新节点的类型是 `object` 时，该节点只能是 `ReactElement`，`ReactPortal`,`ReactLazyElement`类型。拿 `ReactElement` 举例来看吧。
+当新节点的类型是 `object` 时，该节点只能是 `ReactElement`，`ReactPortal`,`ReactLazyElement`类型。拿常见的 `ReactElement` 举例来看吧。
 
 从代码可以看出，React 通过先判断 `key` 是否相同（没有赋值的 `key` 值为 `null`）
 
 - 如果 `key` 相同且 `type` 相同时，可以复用。
 - 如果 `key` 相同但 `type` 不同时，无法复用。
-- 如果 `key` 不同，说明还没找到对应的 `oldChild`，删除当前不符合的 `oldChild` 继续查找兄弟节点。
+- 如果 `key` 不同，说明还没找到对应的 `oldChild`，删除当前不符合的 `oldChild` 继续查找剩下的兄弟节点。
 
 因为是单个节点 diff，当查找到可以复用的节点时，意味着剩下的兄弟节点都应当删除（如果不删除则意味着 newChild 应该是 array 数据类型）。通过 `deleteRemainingChildren` 删除多余的 `sibling` 节点。
 
@@ -153,7 +187,7 @@ function reconcileSingleElement(
 - 节点新增、删除
 - 节点发生移动
 
-在 React 的实现中，会先开始一次对新 children 的遍历，优先处理节点更新的逻辑。将 newIdx 递增并检查 newChild 是否有可以利用的 oldChild 如果有则利用并将 old
+在 React 的实现中，会先开始一次对新 children 的遍历，优先处理节点更新的逻辑。将 newIdx 递增并检查 newChild 是否有可以利用的 oldChild，如果有则利用并将 oldChild 更新。
 
 ```ts
 let resultingFirstChild: Fiber | null = null // 返回 作为 return 的 child 属性(first child)
@@ -220,18 +254,18 @@ function placeChild(
 
 第一次遍历的结束条件是：
 
-1. 对应序号的 fiber key 不同，意味着该位置 节点发生了 新增/移动/删除，后续节点不可直接复用
-2. oldChildren 和 newChildren 至少有一个遍历完成
+1. 对应序号的 fiber key 不同，意味着该位置节点发生了 新增/移动/删除，后续节点不可直接复用
+2. oldChildren 和 newChildren 至少有一个遍历结束
 
 当第一次遍历完成后有下列三种情况：
 
-1. oldChildren 和 newChildren 都遍历完成
-
-   这种情况下，我们会认为 Diff 已经完成
+1. oldChildren 和 newChildren 都遍历完成，这种情况下认为 Diff 已经完成
 
 2. oldChildren 或 newChildren 之一遍历完成
 
-   这种情况下，如果还剩下 oldChildren ，则将剩下的 oldChild 都删除。如果剩下 newChildren，则遍历剩余的 newChild 并创建新的 fiber，连接到第一次遍历结束的末尾
+   这种情况下，如果还剩下 oldChildren ，则将剩下的 oldChild 都删除。
+
+   如果剩下 newChildren，则遍历剩余的 newChild 并创建新的 fiber，连接到第一次遍历结束的末尾
 
    ```ts
    // newChildren 遍历完成
@@ -261,7 +295,7 @@ function placeChild(
 3. oldChildren 和 newChildren 都没有遍历完成，意味着 oldChildren 没有遍历完成，其中仍有可能可以利用的节点。
 
    ```ts
-   // 将链表结构的 oldChildren 转化成 Map 的结构
+   // 将链表结构的 oldChildren 转化成 Map 的映射结构
    const existingChildren = mapRemainingChildren(returnFiber, oldFiber)
 
    for (; newIdx < newChildren.length; newIdx++) {
@@ -304,9 +338,9 @@ function placeChild(
 
    这种是最复杂的情况。意味着剩余的 oldChildren 中仍有可能提供给剩余 newChildren 复用的 fiber
 
-   将 `oldChildren` 以 key/index 做键，fiber 做值，生成 `Map` 类型的 `existingChildren`。
+   将 `oldChildren` 以 key/index 做键，fiber 做值，生成 Map 类型的 `existingChildren`。
 
-   再遍历剩下的 `newChildren`，对比如果发现可以复用则可以添加到 `lastPlacedIndex`，只需要比较遍历到的可复用 `oldFiber` 在上次更新时是否也在 `lastPlacedIndex` 对应的 `oldFiber` 后面，就能知道两次更新中这两个节点的相对位置改变没有。
+   再遍历剩下的 `newChildren`，对比如果发现可以复用则可以添加到 `lastPlacedIndex`，只需要比较找到的可复用 `oldFiber` 在更新前是否也在 `lastPlacedIndex` 对应的 `oldFiber` 后面，就能知道两次更新中这两个节点的相对位置改变没有。
 
    ```js
    abcd -> acdb // 遍历新 children， a-c-d 标记不用改变 到 b 时标记移动
@@ -316,37 +350,16 @@ function placeChild(
 
    如果前后顺序发生变化，则需要标记从前序移动到后序的节点，相对顺序没有变更的可直接复用。
 
-### 对于 string/number 类型的节点
-
-如果节点内仅有 string/number，如 `return 'text'` 这种写法。如果有 oldChild 类型相同都是文字节点的话，则都可以复用。
-
-```ts
-function reconcileSingleTextNode(
-  returnFiber: Fiber,
-  currentFirstChild: Fiber | null,
-  textContent: string,
-  lanes: Lanes
-): Fiber {
-  if (currentFirstChild !== null && currentFirstChild.tag === HostText) {
-    deleteRemainingChildren(returnFiber, currentFirstChild.sibling)
-    const existing = useFiber(currentFirstChild, textContent)
-    existing.return = returnFiber
-    return existing
-  }
-  deleteRemainingChildren(returnFiber, currentFirstChild)
-  const created = createFiberFromText(textContent, returnFiber.mode, lanes)
-  created.return = returnFiber
-  return created
-}
-```
+   比较完成后，将剩余的 oldFiber 遍历删除。最后剩下的就是 newFiber 数组。
 
 ## 总结
 
-React 通过 Diff 算法达到复用已经有的节点从而提高性能的目的。
+React 通过 Diff 算法达到复用已经有的节点从而提高性能的目的。在 React 中，节点以 Virtual DOM 的形态存在，Diff 则是将新老 DOM 树进行对比，尽可能的复用已经存在的 DOM 节点，减少插入、删除等 DOM 操作。
 
-React 对比 currentFiber 和 nextFiber 的 child 字段
+React 通过对比 currentFiber 和 nextFiber 的 child 字段，进行 Diff：
 
-- 当 child 是 object 且不是 array 时：只有 key 和 tag 类型一致可以复用，并且会删除兄弟节点
+- 当 child 是 object 或文本单节点时：只有 key 和 tag 类型一致可以复用，并且会删除兄弟节点
 - 当 child 是 array 时。
-
-  首先遍历新子节点数组，如果遇到相同位置 key 不同的情况或者新旧子节点数组有一方遍历结束，跳出第一次循环。
+  1. 首先遍历新子节点数组，如果遇到相同位置 key 不同的情况或者新旧子节点数组有一方遍历结束，跳出第一次循环。已经遍历完成的部分，属于有可复用节点的。
+  2. 如果 newChildren 有剩余，则接到末尾依此新增。如果 oldChildren 有剩余，则遍历删除。
+  3. 如果都有剩余，则以 newChildren 的顺序，查找是否有能利用的节点，并将 oldFiber 标记移动或删除。
