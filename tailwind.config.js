@@ -37,11 +37,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--primary-color)',
-        'primary-dark': 'var(--primary-dark-color)'
+        primary: 'hsl(var(--p))',
+        secondary: 'hsl(var(--s))',
+        accent: 'hsl(var(--a))'
       },
       fontFamily: {
-        sans: ['SF Pro SC', 'PingFang SC', ...fontFamily.sans],
+        sans: ['Inter', 'SF Pro SC', 'PingFang SC', ...fontFamily.sans],
         mono: ['Roboto Mono', 'Source Code Pro', ...fontFamily.mono]
       }
     }

@@ -33,11 +33,11 @@ const PostsPage = () => {
   return (
     <Layout>
       <div className="prose relative mx-auto">
-        <ul className="fixed -right-full top-[96px] list-none">
+        <ul className="fixed top-[132px] right-[max(0px,calc(50%-32rem))] list-none text-sm xl:fixed">
           <li>
             <Link
               to={`/posts`}
-              className={clsx('tab', !currentTag && 'link link-primary')}
+              className={clsx(!currentTag && 'link link-primary')}
             >
               # All
             </Link>
@@ -47,10 +47,7 @@ const PostsPage = () => {
             <li key={tag}>
               <Link
                 to={`/posts?tag=${tag}`}
-                className={clsx(
-                  'tab',
-                  currentTag === tag && 'link link-primary'
-                )}
+                className={clsx(currentTag === tag && 'link link-primary')}
               >
                 # {tag}
               </Link>
@@ -61,22 +58,20 @@ const PostsPage = () => {
         <div>
           {posts.map(post => {
             return (
-              <Link
-                to={`/posts${post.slug}`}
-                key={post.slug}
-                className="no-underline "
-              >
-                <div className="mb-4 cursor-pointer">
-                  <h2>{post.title}</h2>
+              <div className="mb-4" key={post.slug}>
+                <Link to={`/posts${post.slug}`} className="no-underline ">
+                  <h2 className="inline-block bg-current from-pink-500 to-yellow-500 bg-clip-text hover:bg-gradient-to-r hover:text-transparent">
+                    {post.title}
+                  </h2>
+                </Link>
 
-                  <div className="text-sm">{post.date}</div>
-                  <div>
-                    {post.tags?.map(tag => (
-                      <Tag key={tag}>{tag}</Tag>
-                    ))}
-                  </div>
+                <div className="text-sm">{post.date}</div>
+                <div>
+                  {post.tags?.map(tag => (
+                    <Tag key={tag}>{tag}</Tag>
+                  ))}
                 </div>
-              </Link>
+              </div>
             )
           })}
         </div>
