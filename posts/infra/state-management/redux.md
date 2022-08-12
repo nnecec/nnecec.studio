@@ -1,7 +1,7 @@
 ---
 title: 'Redux 源码解读'
 date: '2022-04-24'
-tags: ['React', 'state-management']
+tags: ['React', 'State management']
 description: 'Redux 的源码解读'
 ---
 

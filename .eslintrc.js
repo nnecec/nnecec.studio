@@ -1,3 +1,7 @@
 module.exports = {
-  extends: ['next', '@nnecec/eslint-config/react']
+  extends: [
+    '@remix-run/eslint-config',
+    '@remix-run/eslint-config/node'
+    // '@nnecec/eslint-config/react'
+  ]
 }
