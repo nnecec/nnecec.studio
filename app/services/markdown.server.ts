@@ -10,7 +10,7 @@ marked.setOptions({
 
 const renderer = new marked.Renderer()
 renderer.heading = function (text, level) {
-  return `<a id="${text}" href="#${text}"><h${level} class="hover:after:content-['#'] after:text-primary">${text}</h${level}></a>\n`
+  return `<a href="#${text}"><h${level} id="${text}" class="hover:after:content-['#'] after:text-primary target:mt-[-96px] target:pt-[96px]">${text}</h${level}></a>\n`
 }
 marked.setOptions({ renderer })
 
