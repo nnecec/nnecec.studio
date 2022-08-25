@@ -19,7 +19,7 @@ export const Layout = ({
   return (
     <>
       <Header />
-      <main className="container mx-auto min-h-screen pt-[96px]">
+      <main className="container mx-auto min-h-screen px-4 pt-[96px] md:px-0">
         <div className={className}>{children}</div>
       </main>
       <Footer />

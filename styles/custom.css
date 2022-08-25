@@ -6,6 +6,8 @@ html {
 
   .heti pre {
     background-color: rgba(0, 0, 0, 0.054);
+    @apply -mx-4;
+    @apply md:mx-0;
   }
   &.dark {
     .heti pre {
