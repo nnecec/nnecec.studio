@@ -1,11 +1,10 @@
 import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
-import { Link, useLoaderData } from '@remix-run/react'
+import { Link, useLoaderData, useNavigate } from '@remix-run/react'
 
 import { Layout, Tag } from '~/components'
 import { getAllPosts } from '~/services/post.server'
 import type { Post } from '~/types/post'
-import clsx from 'clsx'
 
 type LoaderData = {
   posts: Post[]
@@ -29,31 +28,28 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 const PostsPage = () => {
   const { posts, tags, tag: currentTag } = useLoaderData<LoaderData>()
+  const navigate = useNavigate()
 
   return (
     <Layout>
       <div className="prose relative mx-auto">
-        <ul className="fixed top-[132px] right-[max(0px,calc(50%-32rem))] list-none text-sm xl:fixed">
-          <li>
-            <Link
-              to={`/posts`}
-              className={clsx(!currentTag && 'link link-primary')}
-            >
-              # All
-            </Link>
-          </li>
-
+        <select
+          className="select select-primary w-full max-w-xs"
+          value={currentTag}
+          onChange={e => {
+            const value = e.target.value
+            value === 'all'
+              ? navigate(`/posts`, { replace: true })
+              : navigate(`/posts?tag=${e.target.value}`, { replace: true })
+          }}
+        >
+          <option value="all"># All</option>
           {tags.map(tag => (
-            <li key={tag}>
-              <Link
-                to={`/posts?tag=${tag}`}
-                className={clsx(currentTag === tag && 'link link-primary')}
-              >
-                # {tag}
-              </Link>
-            </li>
+            <option key={tag} value={tag}>
+              # {tag}
+            </option>
           ))}
-        </ul>
+        </select>
 
         <div>
           {posts.map(post => {
