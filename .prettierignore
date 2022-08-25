@@ -1,4 +1,5 @@
-.cache
+.vercel
+api
 node_modules
 package.json
 package-lock.json

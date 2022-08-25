@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   author: {
     name: 'nnecec'
   },
-  description: '前端深入不浅出指北 🧐',
+  description: '摇了摇头 🧐',
   siteUrl: 'https://nnecec.vercel.app',
   repositoryUrl: 'https://github.com/nnecec/nnecec.github.io',
   social: {
