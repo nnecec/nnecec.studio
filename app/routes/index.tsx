@@ -1,4 +1,4 @@
-import { motion, MotionProps } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Layout } from '~/components'
 
 const WavingHand = () => (

@@ -1,5 +1,5 @@
 import { SITE_CONFIG } from '~/utils/constants'
-import { GitHub, Twitter } from 'iconoir-react'
+import { GitHub, Twitter, Notes } from 'iconoir-react'
 import avatar from '~/assets/avatar.jpg'
 
 const { author, description } = SITE_CONFIG
@@ -40,6 +40,16 @@ export const Footer = () => {
           >
             <div className="tooltip" data-tip="twitter.com/nnecec_cn">
               <Twitter />
+            </div>
+          </a>
+          <a
+            href="https://nnecec.zhubai.love/"
+            target="_blank"
+            referrerPolicy="no-referrer"
+            rel="noreferrer"
+          >
+            <div className="tooltip" data-tip="nnecec.zhubai.love">
+              <Notes />
             </div>
           </a>
         </div>
