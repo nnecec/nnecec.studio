@@ -11,6 +11,7 @@ description: 'IoC, DI, DDD 等等都是什么？'
 
 - [了不起的 IoC 与 DI](https://segmentfault.com/a/1190000023650518)
 - [深入浅出前端控制反转和依赖注入实现](https://juejin.cn/post/7046927021028409351)
+- [依赖注入简介](https://github.com/ascoders/weekly/blob/master/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/256.%E7%B2%BE%E8%AF%BB%E3%80%8A%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B%E3%80%8B.md)
 
 ## DDD 领域驱动模型
 
