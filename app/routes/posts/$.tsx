@@ -3,7 +3,7 @@ import { json } from '@remix-run/node'
 import { OpenNewWindow } from 'iconoir-react'
 import { useLoaderData } from '@remix-run/react'
 
-import { Layout, Tag } from '~/components'
+import { Layout, Tag } from '~/ui'
 import { getPost } from '~/services/post.server'
 import { SITE_CONFIG } from '~/utils/constants'
 import { markdownToHtml } from '~/services/markdown.server'

@@ -8,12 +8,14 @@ const light = {
   'secondary-content': colors.gray[100],
   accent: colors.green[500],
   'accent-content': colors.cyan[800],
-  neutral: colors.neutral[700],
-  'neutral-content': colors.neutral[100],
+  neutral: colors.neutral[100],
+  'neutral-content': colors.neutral[700],
   'base-100': colors.zinc[100],
   'base-200': colors.zinc[200],
   'base-300': colors.zinc[300],
-  'base-content': colors.zinc[800]
+  'base-400': colors.zinc[400],
+  'base-500': colors.zinc[500],
+  'base-content': colors.zinc[900]
 }
 const dark = {
   primary: colors.rose[500],
@@ -22,13 +24,15 @@ const dark = {
   'secondary-content': colors.gray[100],
   accent: colors.green[500],
   'accent-content': colors.cyan[800],
-  neutral: colors.neutral[600],
-  'neutral-focus': colors.neutral[500],
-  'neutral-content': colors.neutral[100],
-  'base-100': colors.zinc[800],
-  'base-200': colors.zinc[700],
-  'base-300': colors.zinc[600],
-  'base-content': colors.zinc[300]
+  neutral: colors.neutral[900],
+  'neutral-focus': colors.neutral[800],
+  'neutral-content': colors.neutral[200],
+  'base-100': colors.zinc[900],
+  'base-200': colors.zinc[800],
+  'base-300': colors.zinc[700],
+  'base-400': colors.zinc[600],
+  'base-500': colors.zinc[600],
+  'base-content': colors.zinc[200]
 }
 
 /** @type {import('tailwindcss').Config} */

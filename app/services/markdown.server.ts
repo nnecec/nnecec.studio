@@ -8,7 +8,7 @@ const md = new MarkdownIt({
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(str, { language: lang }).value
-      } catch (__) {}
+      } catch (__) { }
     }
 
     return '' // use external default escaping
@@ -19,7 +19,12 @@ const md = new MarkdownIt({
   permalinkSymbol: '#',
   permalinkClass: 'text-primary'
 })
-
+/**
+ * Parse markdown to HTML string with {@link https://github.com/markdown-it/markdown-it}
+ * 
+ * @param markdown  - markdown string
+ * @returns parsed string like HTML structure
+ */
 export async function markdownToHtml(markdown: string) {
   const result = md.render(markdown)
   return result
