@@ -1,31 +1,26 @@
-import MarkdownIt from 'markdown-it'
-import anchor from 'markdown-it-anchor'
-import hljs from 'highlight.js'
+import Markdoc from '@markdoc/markdoc'
 
-const md = new MarkdownIt({
-  linkify: true,
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(str, { language: lang }).value
-      } catch (__) { }
-    }
-
-    return '' // use external default escaping
-  }
-}).use(anchor, {
-  level: [1, 2, 3, 4],
-  permalink: true,
-  permalinkSymbol: '#',
-  permalinkClass: 'text-primary'
-})
 /**
- * Parse markdown to HTML string with {@link https://github.com/markdown-it/markdown-it}
- * 
+ * Parse markdown to HTML string with {@link https://github.com/markdoc/markdoc}
+ *
  * @param markdown  - markdown string
- * @returns parsed string like HTML structure
+ * @returns @string content
  */
 export async function markdownToHtml(markdown: string) {
-  const result = md.render(markdown)
-  return result
+  const ast = Markdoc.parse(markdown)
+  const fence = {
+    render: 'Fence',
+    attributes: {
+      language: {
+        type: String
+      }
+    }
+  }
+
+  const content = Markdoc.transform(ast, {
+    nodes: {
+      fence
+    }
+  })
+  return content
 }

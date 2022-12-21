@@ -1,7 +1,7 @@
 ---
 title: "Design Pattern: Template Method"
 date: "2021-09-07"
-tags: ["Design Pattern"]
+tags: ["Pattern"]
 description: "8. 模板方法模式"
 ---
 

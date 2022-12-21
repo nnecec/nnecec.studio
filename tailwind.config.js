@@ -46,7 +46,13 @@ module.exports = {
         accent: 'hsl(var(--a))'
       },
       fontFamily: {
-        sans: ['Inter', 'SF Pro SC', 'PingFang SC', ...fontFamily.sans],
+        sans: [
+          'Mona Sans',
+          'Inter',
+          'SF Pro SC',
+          'PingFang SC',
+          ...fontFamily.sans
+        ],
         mono: ['Roboto Mono', 'Source Code Pro', ...fontFamily.mono]
       }
     }

@@ -8,6 +8,7 @@ import { getPost } from '~/services/post.server'
 import { SITE_CONFIG } from '~/utils/constants'
 import { markdownToHtml } from '~/services/markdown.server'
 import type { Post } from '~/types/post'
+import { Previewer } from '~/ui/markdown'
 
 type LoaderData = {
   post: Post
@@ -28,7 +29,7 @@ export const meta: MetaFunction = ({ data }) => {
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const post = getPost(params['*'])
+  const post = getPost(params['*'] as string)
   const { content = '' } = post
 
   const html = await markdownToHtml(content || '')
@@ -79,13 +80,8 @@ const PostPage = () => {
           </div>
         </section>
         <div className="relative my-8 font-serif">
-          {/* {!!post.tableOfContents && (
-                    <Toc
-                      className="top-[20rem] right-[max(0px,calc(50%-46rem))] z-20 max-h-[600px] w-[19.5rem] overflow-y-auto py-6 px-4 text-sm xl:fixed"
-                      toc={post.tableOfContents}
-                    />
-                  )} */}
-          <article dangerouslySetInnerHTML={{ __html: post.content || '' }} />
+         <Previewer content={post.content}></Previewer>
+          {/* <article dangerouslySetInnerHTML={{ __html: post.content || '' }} /> */}
         </div>
       </article>
     </Layout>

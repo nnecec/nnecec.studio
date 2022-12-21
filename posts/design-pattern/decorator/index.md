@@ -1,7 +1,7 @@
 ---
 title: "Design Pattern: Decorator"
 date: "2021-09-09"
-tags: ["Design Pattern"]
+tags: ["Pattern"]
 description: "12. 装饰器模式"
 ---
 

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 
 import {
   Album,
@@ -11,13 +11,9 @@ import {
   Stroller
 } from 'iconoir-react'
 
-import { Layout } from '~/ui'
-
-import clsx from 'clsx'
 import type { Variants } from 'framer-motion'
 import {
   motion,
-  useIsomorphicLayoutEffect,
   useMotionTemplate,
   useMotionValue,
   useScroll,
@@ -45,10 +41,16 @@ const PokerVariants = {
 }
 const cardVariants: Variants = {
   front: {
-    rotateY: 0
+    rotateY: 0,
+    transition: {
+      duration: 0.6
+    }
   },
   back: {
-    rotateY: 180
+    rotateY: 180,
+    transition: {
+      duration: 0.6
+    }
   }
 }
 
@@ -98,32 +100,30 @@ const Poker = ({
   return (
     <motion.div variants={PokerVariants} {...props}>
       <motion.div
-        className="relative h-full w-full"
-        animate={reverse ? 'front' : 'back'}
-        variants={cardVariants}
+        className="relative h-full w-full cursor-pointer overflow-hidden rounded-2xl bg-base-200 shadow"
+        onPointerMove={onMove}
+        onPointerLeave={onLeave}
+        style={{
+          transition: 'transform .3s ease-out',
+          rotateY,
+          rotateX
+        }}
+        onClick={onClick}
+        whileTap={{ scale: 0.9 }}
+        onTap={() => {
+          setReverse(!reverse)
+        }}
       >
         <motion.div
-          className="relative h-full w-full cursor-pointer overflow-hidden rounded-2xl bg-base-200 shadow"
-          onPointerMove={onMove}
-          onPointerLeave={onLeave}
-          style={{
-            transition: 'transform .3s ease-out',
-            perspective: 500,
-            rotateY,
-            rotateX
-          }}
-          onClick={onClick}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.9 }}
-          onTap={() => {
-            setReverse(!reverse)
-          }}
+          className="relative h-full w-full"
+          animate={reverse ? 'back' : 'front'}
+          variants={cardVariants}
+          style={{ transformStyle: 'preserve-3d' }}
         >
           <motion.div
             className="absolute inset-0 flex items-center justify-center"
-            animate={reverse ? 'back' : 'front'}
-            variants={cardVariants}
             style={{
+              rotateY: 0,
               backfaceVisibility: 'hidden'
             }}
           >
@@ -143,10 +143,9 @@ const Poker = ({
           <motion.div
             className="absolute inset-0"
             style={{
+              rotateY: 180,
               backfaceVisibility: 'hidden'
             }}
-            animate={reverse ? 'front' : 'back'}
-            variants={cardVariants}
           >
             {children}
           </motion.div>
@@ -161,7 +160,7 @@ export const Intro = () => {
   const { scrollY } = useScroll()
 
   const titleOpacity = useTransform(scrollY, [100, 380], [1, 0])
-  const titleY = useTransform(scrollY, [0, 380], [0, -240])
+  const titleY = useTransform(scrollY, [0, 380], [-56, -240])
 
   const gridY = useTransform(scrollY, [380, 600], [400, 0])
   const gridOpacity = useTransform(scrollY, [380, 600], [0, 1])
@@ -193,7 +192,7 @@ export const Intro = () => {
         <div className="h-screen">
           <div className="relative h-full">
             <motion.h1
-              className="absolute top-1/2 text-9xl"
+              className="absolute top-1/2 ml-[10%] text-9xl"
               variants={titleVariants}
               initial="hidden"
               animate="show"

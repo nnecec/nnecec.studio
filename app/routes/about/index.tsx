@@ -1,16 +1,9 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
-
-import type { Variants } from "framer-motion";
-import { useTransform } from "framer-motion"
-import { useIsomorphicLayoutEffect } from "framer-motion";
-import { useScroll } from "framer-motion";
-import { motion } from "framer-motion";
-
-import type { LinksFunction } from '@remix-run/node';
+import { useIsomorphicLayoutEffect } from 'framer-motion'
 
 import { Layout } from '~/ui'
-import { Intro } from '~/components/about'
+import { Intro, Tech } from '~/components/about'
 
 const Resume = () => {
   const [clientHeight, setClientHeight] = useState<number>()
@@ -28,28 +21,37 @@ const Resume = () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
-  
-  return <Layout>
-    <section className="mt-[-96px]" ref={section0}>
-      <Intro />
-    </section>
-    <section className="flex items-center justify-center" ref={section0}>
-      <div className="relative h-[300vh]">
-        <div className="sticky top-0 h-screen">
-          <div className='absolute top-1/2 left-1/2 h-[786px] w-[1336px] -translate-x-1/2 -translate-y-1/2'>
-            <h1 className='text-8xl'>Tea</h1>
+
+  return (
+    <Layout>
+      <section className="mt-[-96px]" ref={section0}>
+        <Intro />
+      </section>
+      <section className="">
+        <div className="relative h-[200vh]">
+          <div className="sticky top-0 h-screen">
+            <div className="h-screen">
+              <h1 className="text-8xl">History</h1>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section>
+        <Tech />
+      </section>
 
-    <section className="flex items-center justify-center" ref={section0}>
-      <div className="h-[100vh]">
-        <h1 className='text-5xl'>Coffee is a drink prepared from roasted coffee beans. Darkly colored, bitter, and slightly acidic, coffee has a stimulating effect on humans, primarily due to its caffeine content. It is the most popular hot drink in the world.</h1>
-      </div>
-    </section>
-  </Layout>
+      <section className="flex items-center justify-center" ref={section0}>
+        <div className="h-[100vh]">
+          <h1 className="text-5xl">
+            Coffee is a drink prepared from roasted coffee beans. Darkly
+            colored, bitter, and slightly acidic, coffee has a stimulating
+            effect on humans, primarily due to its caffeine content. It is the
+            most popular hot drink in the world.
+          </h1>
+        </div>
+      </section>
+    </Layout>
+  )
 }
-
 
 export default Resume

@@ -4,6 +4,24 @@ import avatar from '~/assets/avatar.jpg'
 
 const { author, description } = SITE_CONFIG
 
+const Links = [
+  {
+    name: 'github.com/nnecec',
+    icon: <GitHub />,
+    link: 'https://github.com/nnecec/nnecec.github.io'
+  },
+  {
+    name: 'twitter.com/nnecec_cn',
+    icon: <Twitter />,
+    link: 'https://twitter.com/nnecec_cn'
+  },
+  {
+    name: 'nnecec.zhubai.love',
+    icon: <Notes />,
+    link: 'https://nnecec.zhubai.love/'
+  }
+]
+
 export const Footer = () => {
   return (
     <footer className="footer footer-center mt-20 rounded p-10">
@@ -21,37 +39,17 @@ export const Footer = () => {
       </div>
       <div>
         <div className="grid grid-flow-col gap-4">
-          <a
-            className="link link-hover"
-            href="https://github.com/nnecec/nnecec.github.io"
+          {Links.map(link=> <a
+            className="link-hover link"
+            href={link.link}
             target="_blank"
             referrerPolicy="no-referrer"
             rel="noreferrer"
           >
-            <div className="tooltip" data-tip="github.com/nnecec">
-              <GitHub />
+            <div className="tooltip" data-tip={link.name}>
+              {link.icon}
             </div>
-          </a>
-          <a
-            href="https://twitter.com/nnecec_cn"
-            target="_blank"
-            referrerPolicy="no-referrer"
-            rel="noreferrer"
-          >
-            <div className="tooltip" data-tip="twitter.com/nnecec_cn">
-              <Twitter />
-            </div>
-          </a>
-          <a
-            href="https://nnecec.zhubai.love/"
-            target="_blank"
-            referrerPolicy="no-referrer"
-            rel="noreferrer"
-          >
-            <div className="tooltip" data-tip="nnecec.zhubai.love">
-              <Notes />
-            </div>
-          </a>
+          </a>)}
         </div>
       </div>
       <div className="text-center">

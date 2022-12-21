@@ -1,7 +1,7 @@
 ---
 title: "Design Pattern: Mediator"
 date: "2021-09-09"
-tags: ["Design Pattern"]
+tags: ["Pattern"]
 description: "11. 中介者模式"
 ---
 
