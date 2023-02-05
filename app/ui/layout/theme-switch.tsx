@@ -1,4 +1,4 @@
-import { HalfMoon, SunLight } from 'iconoir-react'
+import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useEffect } from 'react'
 import { useDarkMode } from '~/hooks/dark-mode'
 
@@ -29,11 +29,11 @@ export const ThemeSwitch = () => {
   }
 
   return (
-    <label className="swap-rotate swap">
+    <label className="swap swap-rotate">
       <input type="checkbox" checked={darkMode} onChange={toggle} />
 
-      <HalfMoon className="swap-on" />
-      <SunLight className="swap-off" />
+      <IconMoon className="swap-on" />
+      <IconSun className="swap-off" />
     </label>
   )
 }

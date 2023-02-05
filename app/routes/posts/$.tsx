@@ -1,6 +1,6 @@
 import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
-import { OpenNewWindow } from 'iconoir-react'
+import { IconExternalLink } from '@tabler/icons-react'
 import { useLoaderData } from '@remix-run/react'
 
 import { Layout, Tag } from '~/ui'
@@ -74,7 +74,7 @@ const PostPage = () => {
                 referrerPolicy="no-referrer"
                 rel="noreferrer"
               >
-                反馈<OpenNewWindow className="inline"></OpenNewWindow>
+                反馈<IconExternalLink className="inline" />
               </a>
             </div>
           </div>

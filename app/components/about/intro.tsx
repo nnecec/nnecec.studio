@@ -1,67 +1,50 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import {
-  Album,
-  Camera,
-  Code,
-  CoffeeCup,
-  DesignPencil,
-  Gamepad,
-  Motorcycle,
-  Stroller
-} from 'iconoir-react'
-
-import type { Variants } from 'framer-motion'
 import {
   motion,
   useMotionTemplate,
   useMotionValue,
   useScroll,
-  useTransform
+  useTransform,
 } from 'framer-motion'
 import colors from 'tailwindcss/colors'
+import type { TablerIconsProps } from '@tabler/icons-react'
+import {
+  IconCode,
+  IconBeach,
+  IconChefHat,
+  IconCamera,
+  IconMusic,
+} from '@tabler/icons-react'
 
 const delta = 12
 
 interface PokerProps {
-  style: React.CSSProperties
-  icon?: React.ReactNode
-  title?: React.ReactNode
+  style?: React.CSSProperties
+  title: React.ReactNode
+  description: React.ReactNode
+  icon: React.JSXElementConstructor<TablerIconsProps>
 }
 
 const PokerVariants = {
   hidden: {
     opacity: 0,
-    y: 30
+    y: 30,
   },
   show: {
     opacity: 1,
-    y: 0
-  }
-}
-const cardVariants: Variants = {
-  front: {
-    rotateY: 0,
-    transition: {
-      duration: 0.6
-    }
+    y: 0,
   },
-  back: {
-    rotateY: 180,
-    transition: {
-      duration: 0.6
-    }
-  }
 }
 
 const Poker = ({
-  children,
   title,
+  description,
   icon,
-  ...props
+  style,
 }: React.PropsWithChildren<PokerProps>) => {
   const [hovering, setHovering] = useState(false)
-  const [reverse, setReverse] = useState(false)
+  const Icon = icon
 
   const y = useMotionValue(0.5)
   const x = useMotionValue(0.5)
@@ -71,10 +54,10 @@ const Poker = ({
   const backgroundImage = useMotionTemplate`radial-gradient(circle at ${xp}% ${yp}%, ${AccentColor}, #0000000f)`
 
   const rotateY = useTransform(x, [0, 1], [-delta, delta], {
-    clamp: true
+    clamp: true,
   })
   const rotateX = useTransform(y, [0, 1], [delta, -delta], {
-    clamp: true
+    clamp: true,
   })
 
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -93,64 +76,38 @@ const Poker = ({
     setHovering(false)
   }
 
-  const onClick = () => {
-    console.log('click')
-  }
-
   return (
-    <motion.div variants={PokerVariants} {...props}>
-      <motion.div
-        className="relative h-full w-full cursor-pointer overflow-hidden rounded-2xl bg-base-200 shadow"
-        onPointerMove={onMove}
-        onPointerLeave={onLeave}
-        style={{
-          transition: 'transform .3s ease-out',
-          rotateY,
-          rotateX
-        }}
-        onClick={onClick}
-        whileTap={{ scale: 0.9 }}
-        onTap={() => {
-          setReverse(!reverse)
-        }}
-      >
-        <motion.div
-          className="relative h-full w-full"
-          animate={reverse ? 'back' : 'front'}
-          variants={cardVariants}
-          style={{ transformStyle: 'preserve-3d' }}
-        >
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{
-              rotateY: 0,
-              backfaceVisibility: 'hidden'
-            }}
-          >
-            <div className="text-center">
-              <div className="flex justify-center text-4xl">{icon}</div>
+    <motion.div
+      variants={PokerVariants}
+      onPointerMove={onMove}
+      onPointerLeave={onLeave}
+      style={{
+        ...style,
+        transition: 'transform .3s ease-out',
+        rotateY,
+        rotateX,
+      }}
+    >
+      <div className="relative h-full w-full cursor-pointer overflow-hidden rounded-2xl bg-base-200 shadow">
+        <div className="absolute top-[50%] flex w-full items-center justify-center p-8">
+          <div className="flex gap-2">
+            <div>
+              <Icon className="inline align-text-top" size={18} />
             </div>
-
-            <motion.div
-              className="absolute inset-0 rounded-2xl transition-opacity duration-300"
-              style={{
-                opacity: hovering ? 0.3 : 0,
-                backgroundImage: hovering ? backgroundImage : 'none'
-              }}
-            ></motion.div>
-          </motion.div>
-
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              rotateY: 180,
-              backfaceVisibility: 'hidden'
-            }}
-          >
-            {children}
-          </motion.div>
-        </motion.div>
-      </motion.div>
+            <div>
+              <h3 className="text-2xl">{title}</h3>
+              <p>{description}</p>
+            </div>
+          </div>
+        </div>
+        <motion.div
+          className="absolute inset-0 transition-opacity duration-300"
+          style={{
+            opacity: hovering ? 0.3 : 0,
+            backgroundImage: hovering ? backgroundImage : 'none',
+          }}
+        ></motion.div>
+      </div>
     </motion.div>
   )
 }
@@ -165,34 +122,41 @@ export const Intro = () => {
   const gridY = useTransform(scrollY, [380, 600], [400, 0])
   const gridOpacity = useTransform(scrollY, [380, 600], [0, 1])
 
-  scrollY.onChange(y => {
-    setShowGrid(y > 380 ? true : false)
-  })
+  useEffect(() => {
+    const unsubscribe = scrollY.on('change', y => {
+      setShowGrid(y > 380 ? true : false)
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [scrollY])
 
   const titleVariants = {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.12
-      }
-    }
+        staggerChildren: 0.12,
+      },
+    },
   }
+
   const charVariants = {
     hidden: {
-      opacity: 0
+      opacity: 0,
     },
     show: {
-      opacity: 1
-    }
+      opacity: 1,
+    },
   }
 
   return (
-    <div className="relative h-[200vh]">
+    <div className="container relative mx-auto h-[200vh]">
       <div className="sticky top-0 h-screen">
         <div className="h-screen">
           <div className="relative h-full">
             <motion.h1
-              className="absolute top-1/2 ml-[10%] text-9xl"
+              className="container absolute top-1/2 text-9xl"
               variants={titleVariants}
               initial="hidden"
               animate="show"
@@ -213,27 +177,46 @@ export const Intro = () => {
               style={{
                 y: gridY,
                 opacity: gridOpacity,
-                gridTemplateColumns: '.25fr .3fr .25fr .2fr',
-                gridTemplateRows: '.55fr .35fr .85fr .65',
+                gridTemplateColumns: '.4fr .3fr .3fr',
+                gridTemplateRows: '1fr .15fr 1fr',
                 gridTemplateAreas: `
-                  "feat-0 feat-1 feat-2 feat-3"
-                  "feat-0 feat-1 feat-5 feat-3"
-                  "feat-4 feat-1 feat-5 feat-7"
-                  "feat-4 feat-6 feat-5 feat-7"
-                `
+                  "feat-0 feat-1 feat-2"
+                  "feat-0 feat-1 feat-4"
+                  "feat-0 feat-3 feat-4"
+                `,
               }}
             >
-              <Poker style={{ gridArea: 'feat-0' }} icon={<Gamepad />}>
-                league of legends
-              </Poker>
-              <Poker style={{ gridArea: 'feat-1' }} icon={<Code />} />
+              <Poker
+                style={{ gridArea: 'feat-0' }}
+                icon={IconCode}
+                title="Coder"
+                description="Create beautiful and high-performance web applications."
+              ></Poker>
+              <Poker
+                style={{ gridArea: 'feat-1' }}
+                icon={IconChefHat}
+                title="Chef"
+                description="I'm the family chef, trying to make wonderful food for my family."
+              ></Poker>
 
-              <Poker style={{ gridArea: 'feat-2' }} icon={<Album />} />
-              <Poker style={{ gridArea: 'feat-3' }} icon={<DesignPencil />} />
-              <Poker style={{ gridArea: 'feat-4' }} icon={<CoffeeCup />} />
-              <Poker style={{ gridArea: 'feat-5' }} icon={<Camera />} />
-              <Poker style={{ gridArea: 'feat-6' }} icon={<Stroller />} />
-              <Poker style={{ gridArea: 'feat-7' }} icon={<Motorcycle />} />
+              <Poker
+                style={{ gridArea: 'feat-2' }}
+                icon={IconBeach}
+                title="Traveler"
+                description="I like to stay at home, but my wife likes to go out and travel, so I have become a person who loves to travel."
+              ></Poker>
+              <Poker
+                style={{ gridArea: 'feat-3' }}
+                icon={IconCamera}
+                title="Photographer"
+                description="It's a hobby of mine to take great looking photos with my phone or camera."
+              ></Poker>
+              <Poker
+                style={{ gridArea: 'feat-4' }}
+                icon={IconMusic}
+                title="Guitar learner"
+                description="Ready to teach my daughter guitar, but I do not know how to play the guitar yet, is learning to play the guitar."
+              ></Poker>
             </motion.div>
           </div>
         </div>

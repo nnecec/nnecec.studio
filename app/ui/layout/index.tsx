@@ -1,5 +1,4 @@
 import type { PropsWithChildren } from 'react'
-
 import { SITE_CONFIG } from '~/utils/constants'
 
 import { Footer } from './footer'
@@ -9,12 +8,13 @@ type Props = {
   preview?: boolean
   title?: string
   className?: string
+  container?: boolean
 }
 
 export const Layout = ({
   children,
   title = SITE_CONFIG.title,
-  className
+  className,
 }: PropsWithChildren<Props>) => {
   return (
     <>

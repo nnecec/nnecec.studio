@@ -1,5 +1,5 @@
 import { SITE_CONFIG } from '~/utils/constants'
-import { GitHub, Twitter, Notes } from 'iconoir-react'
+import { IconBrandGithub, IconBrandTwitter, IconNews } from '@tabler/icons-react'
 import avatar from '~/assets/avatar.jpg'
 
 const { author, description } = SITE_CONFIG
@@ -7,19 +7,19 @@ const { author, description } = SITE_CONFIG
 const Links = [
   {
     name: 'github.com/nnecec',
-    icon: <GitHub />,
-    link: 'https://github.com/nnecec/nnecec.github.io'
+    icon: <IconBrandGithub />,
+    link: SITE_CONFIG.social.github,
   },
   {
     name: 'twitter.com/nnecec_cn',
-    icon: <Twitter />,
-    link: 'https://twitter.com/nnecec_cn'
+    icon: <IconBrandTwitter />,
+    link: SITE_CONFIG.social.twitter,
   },
   {
     name: 'nnecec.zhubai.love',
-    icon: <Notes />,
-    link: 'https://nnecec.zhubai.love/'
-  }
+    icon: <IconNews />,
+    link: SITE_CONFIG.social.zhubai,
+  },
 ]
 
 export const Footer = () => {
@@ -39,21 +39,24 @@ export const Footer = () => {
       </div>
       <div>
         <div className="grid grid-flow-col gap-4">
-          {Links.map(link=> <a
-            className="link-hover link"
-            href={link.link}
-            target="_blank"
-            referrerPolicy="no-referrer"
-            rel="noreferrer"
-          >
-            <div className="tooltip" data-tip={link.name}>
-              {link.icon}
-            </div>
-          </a>)}
+          {Links.map(link => (
+            <a
+              key={link.name}
+              className="link-hover link"
+              href={link.link}
+              target="_blank"
+              referrerPolicy="no-referrer"
+              rel="noreferrer"
+            >
+              <div className="tooltip" data-tip={link.name}>
+                {link.icon}
+              </div>
+            </a>
+          ))}
         </div>
       </div>
       <div className="text-center">
-        © 2020-{new Date().getFullYear()} nnecec. All rights reserved.
+        © 2020-{new Date().getFullYear()}. All rights reserved.
       </div>
     </footer>
   )
