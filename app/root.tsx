@@ -18,23 +18,9 @@ import { SITE_CONFIG } from '~/utils/constants'
 
 import indexStyle from './styles/index.css'
 import customStyle from './styles/custom.css'
-import githubDarkStyle from 'highlight.js/styles/github-dark.css'
-import githubStyle from 'highlight.js/styles/github.css'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: indexStyle },
-  {
-    rel: 'stylesheet',
-    href: githubDarkStyle,
-    id: 'dark-style',
-    disabled: true
-  },
-  {
-    rel: 'stylesheet',
-    href: githubStyle,
-    id: 'light-style',
-    disabled: true
-  },
   { rel: 'stylesheet', href: customStyle },
   {
     rel: 'apple-touck-icon',

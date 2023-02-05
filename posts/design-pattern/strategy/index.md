@@ -1,7 +1,7 @@
 ---
 title: "Design Pattern: Strategy"
 date: "2021-09-06"
-tags: ["Design Pattern"]
+tags: ["Pattern"]
 description: "2. 策略模式"
 ---
 

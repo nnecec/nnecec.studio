@@ -1,15 +1,16 @@
-export const HOME_OG_IMAGE_URL =
-  'https://og-image.vercel.app/Next.js%20Blog%20Starter%20Example.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg'
 export const SITE_CONFIG = {
-  title: 'nnecec',
+  title: 'nnecec\'s blog.',
   author: {
     name: 'nnecec'
   },
-  description: '摇了摇头 🧐',
+  description: 'think. try. treasure.',
   siteUrl: 'https://nnecec.vercel.app',
   repositoryUrl: 'https://github.com/nnecec/nnecec.github.io',
+  email: 'nnecec@outlook.com',
   social: {
-    twitter: 'nnecec_cn',
-    github: 'nnecec'
+    instagram: 'https://www.instagram.com/nnecec',
+    twitter: 'https://twitter.com/nnecec_cn',
+    github: 'https://github.com/nnecec',
+    zhubai: 'https://nnecec.zhubai.love/'
   }
 }

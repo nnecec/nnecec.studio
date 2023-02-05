@@ -3,7 +3,7 @@ export type Post = {
   slug?: string
   title?: string
   date?: string
-  content?: string
+  content?: any
   tags?: string[]
   description?: string
   excerpt?: string
