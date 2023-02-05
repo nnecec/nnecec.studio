@@ -2,7 +2,7 @@ import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Link, useLoaderData, useNavigate } from '@remix-run/react'
 
-import { Layout, Tag } from '~/components'
+import { Layout, Tag } from '~/ui'
 import { getAllPosts } from '~/services/post.server'
 import type { Post } from '~/types/post'
 
@@ -32,9 +32,9 @@ const PostsPage = () => {
 
   return (
     <Layout>
-      <div className="prose relative mx-auto">
+      <div className="prose relative mx-auto py-4">
         <select
-          className="select select-primary w-full max-w-xs"
+          className="select-primary select w-full max-w-xs"
           value={currentTag}
           onChange={e => {
             const value = e.target.value

@@ -1,7 +1,7 @@
 ---
 title: "Design Pattern: State"
 date: "2021-09-09"
-tags: ["Design Pattern"]
+tags: ["Pattern"]
 description: "13. 状态模式"
 ---
 

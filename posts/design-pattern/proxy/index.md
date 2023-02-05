@@ -1,7 +1,7 @@
 ---
 title: "Design Pattern: Proxy"
 date: "2021-09-06"
-tags: ["Design Pattern"]
+tags: ["Pattern"]
 description: "3. 代理模式"
 ---
 

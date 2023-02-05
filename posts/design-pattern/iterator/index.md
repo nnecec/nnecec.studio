@@ -1,7 +1,7 @@
 ---
 title: "Design Pattern: Iterator"
 date: "2021-09-07"
-tags: ["Design Pattern"]
+tags: ["Pattern"]
 description: "4. 迭代器模式"
 ---
 

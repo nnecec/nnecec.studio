@@ -1,7 +1,7 @@
 ---
 title: "Design Pattern: Chain of Command"
 date: "2021-09-09"
-tags: ["Design Pattern"]
+tags: ["Pattern"]
 description: "10. 职责链模式"
 ---
 

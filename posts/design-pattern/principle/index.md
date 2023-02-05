@@ -1,7 +1,7 @@
 ---
 title: "Design Pattern: Principle"
 date: "2021-09-07"
-tags: ["Design Pattern"]
+tags: ["Pattern"]
 description: "设计模式中的设计原则"
 ---
 

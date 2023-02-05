@@ -1,23 +1,17 @@
 @import url('./heti.css');
 
+@font-face {
+  font-family: 'Mona Sans';
+  src:
+    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2') format('woff2 supports variations'),
+    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  .heti pre {
-    background-color: rgba(0, 0, 0, 0.054);
-    @apply -mx-4;
-    @apply md:mx-0;
-  }
-  &.dark {
-    .heti pre {
-      background-color: rgba(255, 255, 255, 0.054);
-    }
-  }
-}
-
-code:hover {
-  opacity: 1;
 }
 
 /* Custom classes */
