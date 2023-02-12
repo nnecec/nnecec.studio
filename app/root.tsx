@@ -33,7 +33,7 @@ export const links: LinksFunction = () => [
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
-  title: "nnecec's blog",
+  title: SITE_CONFIG.title,
   viewport: 'width=device-width,initial-scale=1',
   'msapplication-TileColor': '#000000',
   'theme-color': '#000',

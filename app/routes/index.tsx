@@ -4,7 +4,7 @@ import { Layout } from '~/ui'
 const WavingHand = () => (
   <motion.div
     style={{
-      display: 'inline-block'
+      display: 'inline-block',
     }}
     animate={{ rotate: 20 }}
     transition={{
@@ -13,7 +13,7 @@ const WavingHand = () => (
       duration: 0.2,
       delay: 0.5,
       ease: 'easeInOut',
-      type: 'tween'
+      type: 'tween',
     }}
   >
     👋🏻
@@ -24,21 +24,17 @@ const Index = () => {
   return (
     <Layout>
       <section className="mt-[-96px] flex h-screen items-center">
-        <h1 className="text-9xl">
+        <h1 className="text-7xl max-w-5xl">
           <WavingHand />
           <br />
           Hi, I'm nnecec.
+          <span className="text-5xl opacity-70">
+            This is my blog. I share through my writing my experience as a
+            frontend engineer and everything I'm learning about on JavaScript,
+            React and more.
+          </span>
         </h1>
       </section>
-      {/* <section>
-        <h1 className="text-8xl leading-tight">
-          <div>
-            {['这是我的个人博客。'].map(word => (
-              <div key={word}>{word}</div>
-            ))}
-          </div>
-        </h1>
-      </section> */}
     </Layout>
   )
 }
