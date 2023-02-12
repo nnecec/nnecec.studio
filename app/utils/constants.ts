@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  title: 'nnecec\'s blog.',
+  title: 'nnecec\'s Blog',
   author: {
     name: 'nnecec'
   },

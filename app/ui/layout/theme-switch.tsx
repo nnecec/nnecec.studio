@@ -8,7 +8,7 @@ export const ThemeSwitch = () => {
   useEffect(() => {
     if (typeof document !== 'undefined') {
       const lightStyle = document.querySelector(
-        '#light-style'
+        '#light-style',
       ) as HTMLLinkElement
       const darkStyle = document.querySelector('#dark-style') as HTMLLinkElement
 
@@ -32,8 +32,8 @@ export const ThemeSwitch = () => {
     <label className="swap swap-rotate">
       <input type="checkbox" checked={darkMode} onChange={toggle} />
 
-      <IconMoon className="swap-on" />
-      <IconSun className="swap-off" />
+      <IconMoon className="swap-on" size={20} />
+      <IconSun className="swap-off" size={20} />
     </label>
   )
 }

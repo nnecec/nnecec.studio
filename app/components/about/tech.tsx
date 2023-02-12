@@ -126,7 +126,7 @@ function ScrollText({
   return (
     <div>
       <div className="inline-block">
-        <motion.div className="mb-4 flex cursor-default gap-8" style={{ x }}>
+        <motion.div className="mb-4 flex cursor-default gap-12" style={{ x }}>
           {banner}
           {banner}
         </motion.div>
