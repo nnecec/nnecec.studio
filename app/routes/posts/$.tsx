@@ -74,7 +74,7 @@ const PostPage = () => {
                 referrerPolicy="no-referrer"
                 rel="noreferrer"
               >
-                反馈<IconExternalLink className="inline" />
+                反馈<IconExternalLink className="inline" size={16} />
               </a>
             </div>
           </div>
