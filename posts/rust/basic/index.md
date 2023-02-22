@@ -73,7 +73,7 @@ const user1: User = {
   email: 'someone@example.com',
   username: 'someusername123',
   active: true,
-  sign_in_count: 1
+  sign_in_count: 1,
 }
 
 console.log(user1.email)
@@ -81,7 +81,7 @@ console.log(user1.email)
 const user2: User = {
   ...user1,
   email: 'another@example.com',
-  username: 'anotherusername567'
+  username: 'anotherusername567',
 }
 
 user1.say_name = () => {
@@ -141,7 +141,7 @@ println!("rect1 is {:?}", rect1);
 ```ts
 enum IpAddrKind {
   v4,
-  v6
+  v6,
 }
 
 const IP1 = IpAddrKind.v4
@@ -166,6 +166,9 @@ let six = IpAddr::V6(String::from("::1"));
 ### 模块
 
 ```ts
+// ./utils/result
+export const Result = () => {}
+
 //  导入 Result
 import { Result } from './utils/result'
 import { Result as IoResult } from './result2'
@@ -175,10 +178,12 @@ import * as fmt from 'fmt'
 ```
 
 ```rust
+// ./utils/result
+pub fn Result (){}
 // 绝对路径下的Result
 mod crate::result;
 // 相对路径下的Result
-mod result2;
+mod utils::result;
 
 // 导入模块
 use std::fmt;
