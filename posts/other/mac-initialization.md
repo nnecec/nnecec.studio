@@ -63,7 +63,7 @@ brew install fnm git pnpm starship
 brew install --cask appcleaner arc bitwarden docker figma google-chrome iina microsoft-edge notion obsidian raycast sourcetree telegram visual-studio-code warp wechat
 
 # optional
-brew install --case item2 firefox
+brew install --case item2 firefox licecap
 
 fnm install 18
 ```
@@ -103,6 +103,8 @@ export PNPM_HOME="/Users/nnecec/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 ```
 
+我的最终 .zshrc 可以在[该链接](https://gist.github.com/nnecec/254eef8da4df74d5c577983accd82747)查看
+
 ### 4. 配置 git 及 ssh
 
 ```bash
@@ -125,5 +127,6 @@ brew install font-iosevka font-roboto font-roboto-mono font-lxgw-wenkai
 
 - Edge/Chrome: 设置默认浏览器，登陆 google, github 等账号，其他平台一键登录会很方便
 - Raycase: 配置 Window Management - presets - magnet，配置剪贴板快捷键(我配置的是 `cmd+control+v`)
+  - magnet 预设方案如果有冲突，可以自定义快捷键，我是改成了 `control + option + cmd + KEY` 组合。
 - Telegram: 配置 Proxy: 127.0.0.1:7890
 - Warp/VSCode: `font: Iosevka, Roboto Mono, LXGW WenKai Mono`
