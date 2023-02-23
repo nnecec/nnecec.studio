@@ -2,9 +2,10 @@
 
 @font-face {
   font-family: 'Mona Sans';
-  src:
-    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2') format('woff2 supports variations'),
-    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2') format('woff2-variations');
+  src: url('//github.githubassets.com/static/fonts/github/mona-sans.woff2')
+      format('woff2 supports variations'),
+    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2')
+      format('woff2-variations');
   font-weight: 200 900;
   font-stretch: 75% 125%;
 }
@@ -26,6 +27,8 @@ html {
   a {
     margin-left: 0.25rem;
     margin-right: 0.25rem;
+    @apply bg-primary bg-clip-text;
+    @apply from-pink-500 to-yellow-500 hover:bg-gradient-to-r text-transparent;
   }
 }
 
