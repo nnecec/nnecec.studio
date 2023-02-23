@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import { Header } from '~/ui/layout/header'
+import { Header } from '~/components/layout/header'
 import { Contact, Intro, Tech } from '~/components/about'
 
 const Resume = () => {

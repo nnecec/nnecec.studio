@@ -55,7 +55,7 @@ const PostsPage = () => {
           {posts.map(post => {
             return (
               <div className="mb-4" key={post.slug}>
-                <Link to={`/posts${post.slug}`} className="no-underline ">
+                <Link to={`/posts${post.slug}`} className="no-underline">
                   <h2 className="inline-block bg-current from-pink-500 to-yellow-500 bg-clip-text hover:bg-gradient-to-r hover:text-transparent">
                     {post.title}
                   </h2>

@@ -1,5 +1,5 @@
 ---
-title: '组件库的技术点总结'
+title: '如何搭建可维护的组件库'
 date: '2022-10-11'
 tags: ['Introduction']
 description: ''
@@ -49,5 +49,12 @@ description: ''
 - swc
 - turbopack
 
-### 3. TypeScript
+### 3. 使用 TypeScript
+
+基于 TypeScript 实现组件库，是现代组件库逐渐形成的默认开发语言。通过 TypeScript 强化类型提示及开发时的报错提示，并对 API 进行约束，提供了良好的开发体验。
+
+### 4. 样式方案
+
+样式方案发展经历了 CSS, Less/SCSS, CSS Module, CSS-in-JS, Atomic CSS 等等。如今每个方案仍然有各自适合的场景。
+
 

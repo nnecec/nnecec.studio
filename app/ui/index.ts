@@ -1,2 +1,2 @@
-export * from './layout'
+export * from '../components/layout'
 export * from './tag'
