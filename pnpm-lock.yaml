@@ -15,18 +15,18 @@ specifiers:
   '@remix-run/vercel': ^1.13.0
   '@tabler/icons-react': ^2.5.0
   '@tailwindcss/typography': ^0.5.9
-  '@types/node': ^18.14.0
+  '@types/node': ^18.14.1
   '@types/prismjs': ^1.26.0
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.11
-  '@vercel/node': ^2.9.7
+  '@vercel/node': ^2.9.8
   autoprefixer: ^10.4.13
   clsx: ^1.2.1
-  daisyui: ^2.51.0
+  daisyui: ^2.51.1
   dayjs: ^1.11.7
   eslint: ^8.34.0
   eslint-plugin-tailwindcss: ^3.9.0
-  framer-motion: ^9.0.7
+  framer-motion: ^10.0.0
   gray-matter: 4.0.3
   isbot: ^3.6.6
   npm-run-all: ^4.1.5
@@ -47,14 +47,14 @@ dependencies:
   '@motionone/utils': 10.15.1
   '@remix-run/node': 1.13.0
   '@remix-run/react': 1.13.0_biqbaboplfbrettd7655fr4n2y
-  '@remix-run/vercel': 1.13.0_@vercel+node@2.9.7
+  '@remix-run/vercel': 1.13.0_@vercel+node@2.9.8
   '@tabler/icons-react': 2.5.0_react@18.2.0
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
-  '@vercel/node': 2.9.7
+  '@vercel/node': 2.9.8
   clsx: 1.2.1
-  daisyui: 2.51.0_gbtt6ss3tbiz4yjtvdr6fbrj44
+  daisyui: 2.51.1_gbtt6ss3tbiz4yjtvdr6fbrj44
   dayjs: 1.11.7
-  framer-motion: 9.1.0_biqbaboplfbrettd7655fr4n2y
+  framer-motion: 10.0.0_biqbaboplfbrettd7655fr4n2y
   gray-matter: 4.0.3
   isbot: 3.6.6
   prism-react-renderer: 1.3.5_react@18.2.0
@@ -68,7 +68,7 @@ devDependencies:
   '@remix-run/eslint-config': 1.13.0_km5ddj7uwb23cqeymeyvzjsfb4
   '@remix-run/serve': 1.13.0
   '@remix-run/server-runtime': 1.13.0
-  '@types/node': 18.14.0
+  '@types/node': 18.14.1
   '@types/prismjs': 1.26.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
@@ -1757,41 +1757,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@motionone/animation/10.15.1:
-    resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==}
-    dependencies:
-      '@motionone/easing': 10.15.1
-      '@motionone/types': 10.15.1
-      '@motionone/utils': 10.15.1
-      tslib: 2.5.0
-    dev: false
-
-  /@motionone/dom/10.15.5:
-    resolution: {integrity: sha512-Xc5avlgyh3xukU9tydh9+8mB8+2zAq+WlLsC3eEIp7Ax7DnXgY7Bj/iv0a4X2R9z9ZFZiaXK3BO0xMYHKbAAdA==}
-    dependencies:
-      '@motionone/animation': 10.15.1
-      '@motionone/generators': 10.15.1
-      '@motionone/types': 10.15.1
-      '@motionone/utils': 10.15.1
-      hey-listen: 1.0.8
-      tslib: 2.5.0
-    dev: false
-
-  /@motionone/easing/10.15.1:
-    resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==}
-    dependencies:
-      '@motionone/utils': 10.15.1
-      tslib: 2.5.0
-    dev: false
-
-  /@motionone/generators/10.15.1:
-    resolution: {integrity: sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==}
-    dependencies:
-      '@motionone/types': 10.15.1
-      '@motionone/utils': 10.15.1
-      tslib: 2.5.0
-    dev: false
-
   /@motionone/types/10.15.1:
     resolution: {integrity: sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==}
     dev: false
@@ -2065,14 +2030,14 @@ packages:
       set-cookie-parser: 2.5.1
       source-map: 0.7.4
 
-  /@remix-run/vercel/1.13.0_@vercel+node@2.9.7:
+  /@remix-run/vercel/1.13.0_@vercel+node@2.9.8:
     resolution: {integrity: sha512-6ZzVFTCjbZMonaZwyM7rWtqPFP1IEK8ntiUIl2oUT3V8O6hsbfkik+1x8FkcSJQu96mfgxVhBhOS9P3Hz8aHlg==}
     engines: {node: '>=14'}
     peerDependencies:
       '@vercel/node': ^1.8.3 || ^2.4.0
     dependencies:
       '@remix-run/node': 1.13.0
-      '@vercel/node': 2.9.7
+      '@vercel/node': 2.9.8
     dev: false
 
   /@remix-run/web-blob/3.0.4:
@@ -2216,7 +2181,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 18.14.0
+      '@types/node': 18.14.1
       '@types/responselike': 1.0.0
     dev: true
 
@@ -2246,7 +2211,7 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.14.0
+      '@types/node': 18.14.1
     dev: true
 
   /@types/hast/2.3.4:
@@ -2268,7 +2233,7 @@ packages:
   /@types/keyv/3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.14.0
+      '@types/node': 18.14.1
     dev: true
 
   /@types/linkify-it/3.0.2:
@@ -2308,8 +2273,8 @@ packages:
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
     dev: false
 
-  /@types/node/18.14.0:
-    resolution: {integrity: sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==}
+  /@types/node/18.14.1:
+    resolution: {integrity: sha512-QH+37Qds3E0eDlReeboBxfHbX9omAcBCXEzswCu6jySP642jiM3cYSIkU/REqwhCUqXdonHFuBfJDiAJxMNhaQ==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -2339,7 +2304,7 @@ packages:
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.14.0
+      '@types/node': 18.14.1
     dev: true
 
   /@types/scheduler/0.16.2:
@@ -2532,17 +2497,17 @@ packages:
     resolution: {integrity: sha512-mFd6QZJX1SaweTa9BB+zO6OyGeQWsk+z0LFhsSblnWue2wjmeZ3z3TBt8V/Wlae5NMg4+E2AFcDf/lr3ENeCfg==}
     dev: false
 
-  /@vercel/node-bridge/3.1.11:
-    resolution: {integrity: sha512-LGbj+kPGgRnIlKo3949z01mLbHVi4BnRE7V5R6+J4E3f7xpQ12I9Wek10V7ivLB+LyS1+ATdjasdXAF4HOhqQw==}
+  /@vercel/node-bridge/3.1.12:
+    resolution: {integrity: sha512-RYMYzyR/QyT+1JeOHBtBxwDc8XszYbChq0b18uqt4/PQ8rUWdcHMUkUoNjScB6RmqScX+vTzYj8eLS8UfHxnaQ==}
     dev: false
 
-  /@vercel/node/2.9.7:
-    resolution: {integrity: sha512-mpJl6jKpkmARUb+vokeM86g3gjvgWiNhCrM2JzczVq4ru1o11qHUxzZF5cfS4Pt7nDS3LNfh9/6ds4XYY/DHGQ==}
+  /@vercel/node/2.9.8:
+    resolution: {integrity: sha512-GqRqUmdT5/l8XY68ulUJKgijCrWw/p2sgxzrq5Mj40B2nOC5CQa0HLLiNd/Q+jnIrrJkdBpB1xeVkebEv1mgng==}
     dependencies:
       '@edge-runtime/vm': 2.0.0
       '@types/node': 14.18.33
       '@vercel/build-utils': 6.3.1
-      '@vercel/node-bridge': 3.1.11
+      '@vercel/node-bridge': 3.1.12
       '@vercel/static-config': 2.0.13
       edge-runtime: 2.0.0
       esbuild: 0.14.47
@@ -3349,8 +3314,8 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
 
-  /daisyui/2.51.0_gbtt6ss3tbiz4yjtvdr6fbrj44:
-    resolution: {integrity: sha512-HGM89+VzZ/KDsH4cK6OhizIscXOVzkEENynovL6bXPfJDOKZQz0V2CuTGEoQmN8FeuGxrZiz/He1P9p+E9Qr5A==}
+  /daisyui/2.51.1_gbtt6ss3tbiz4yjtvdr6fbrj44:
+    resolution: {integrity: sha512-rMtdB8Rh8Ghd3+FDlMe63Caw+IopKIf7tviJGEx8gkjj5H+RCvU1bEbjx6DHsMsu477Gv5aafrLIdoUL+iMRrw==}
     peerDependencies:
       autoprefixer: ^10.0.2
       postcss: ^8.1.6
@@ -4913,14 +4878,12 @@ packages:
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
 
-  /framer-motion/9.1.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-u4fZdmi+i7JTgLsvYetDDCAKtmE9zf7W7VZNl6ST/2Tvx53Dn3sj8tmdE0vAneueiXYhy0VJcVOWcZmisyactg==}
+  /framer-motion/10.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-qVmndcu4Z3q5ftqcbUCvVewHc5yiw4uIZyM0uvJ0/spj9lza/FnWywUUc8DNIZTG1my6nFsNLRPGDruP4o6eIw==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
-      '@motionone/dom': 10.15.5
-      hey-listen: 1.0.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       tslib: 2.5.0
@@ -5135,7 +5098,7 @@ packages:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.11
+      fast-glob: 3.2.12
       glob: 7.2.3
       ignore: 5.2.4
       merge2: 1.4.1
