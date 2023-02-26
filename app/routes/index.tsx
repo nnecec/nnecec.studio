@@ -24,7 +24,7 @@ const Index = () => {
   return (
     <Layout>
       <section className="mt-[-96px] flex h-screen items-center">
-        <h1 className="text-7xl max-w-5xl">
+        <h1 className="max-w-5xl text-7xl">
           <WavingHand />
           <br />
           Hi, I'm nnecec.
