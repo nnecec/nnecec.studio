@@ -5,6 +5,7 @@ import {
   IconBrandTelegram,
   IconMail,
   IconBrandGithub,
+  IconBookmarks,
 } from '@tabler/icons-react'
 import { SITE_CONFIG } from '~/utils/constants'
 
@@ -64,6 +65,17 @@ export const Contact = () => {
               <label htmlFor="telegram-modal" className="btn">
                 <IconBrandTelegram />
               </label>
+
+              <button className="btn">
+                <a
+                  href={SITE_CONFIG.social.bento}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <IconBookmarks />
+                </a>
+              </button>
+
               <input
                 type="checkbox"
                 id="telegram-modal"
