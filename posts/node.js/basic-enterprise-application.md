@@ -11,26 +11,35 @@ description: '一个企业 Node.js BFF 应用应当具有哪些特性及能力�
 
 ## 基础架构
 
-基础架构的代码，可以考虑抽象设计作为底层包提供给每个业务应用作为依赖使用，类似 egg 做的工作。
+基础架构的代码，可以考虑抽象设计作为底层包提供给每个业务应用作为依赖使用，类似 egg 做的工作。本文将其命名为 `@cop/base`。
 
 ### 应用脚手架：Koa
 
 我们选择了 Koa 作为应用最基本的 Web 框架。Koa 提供了非常基础的能力，如启动 http 服务，接受请求，处理请求后返回响应结果，并提供了中间件的能力从而给 Koa 带来非常灵活的拓展能力。
 
-Koa 最有特点的设计就是称为洋葱模型的中间件。
-
-常见的写法为
-
-```js
-app
-  .use(logger())
-  .use(errors())
-  .use(bodyParser())
-  .use(anyCustomMiddleware())
-  .use(routes())
-```
-
 app 会在接受到请求后依次从上而下的调用中间件，在前一个中间件遇到 `await next()` 代码时，执行下一个中间件内的 `await next()` 之前的代码，从而实现了依次调用中间件的能力。当最后一个中间件`next()`执行完成，会开始处理响应，再从下而上的依次调用 `next()` 方法后面的代码。
+
+在 `@cop/base` 中，提供方法 `createApp` 来创建应用。方法中实例化一个 `Koa`，对该实例进行通用配置，比如:
+
+```ts
+export const createApp = (options: Options) => {
+  const app = new Koa()
+  app
+    // 针对业务报错 常见HTTP报错进行结构处理，返回给前端约定好的错误数据结构
+    .use(normalizeErrors())
+    // 暴露 ctx.logger 方法 并记录默认 context 数据
+    .use(logger())
+    // 提供 cors 配置
+    .use(cors(options.cors))
+    // 提供代理选项，在企业应用中代理到不同的测试环境、预发环境
+    .use(createProxy(options.proxy))
+    // 通用
+    .use(bodyParser())
+    // 提供给上层应用接入路由
+    .use(options.router.routes())
+    .use(options.router.allowMethods())
+}
+```
 
 ### 日志记录
 
@@ -49,14 +58,6 @@ import { transports, createLogger, format } from 'winston'
 const { combine, colorize, printf, timestamp } = format
 
 export function logger(loggerOptions: LoggerOptions) {
-  const defaultOptions = {
-    dir: './logs/app'
-  }
-  const options = {
-    ...defaultOptions,
-    ...loggerOptions
-  }
-
   const appLogger = createLogger({
     format: combine(
       timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS' }),
@@ -65,8 +66,8 @@ export function logger(loggerOptions: LoggerOptions) {
         const threadName = '[main]'
         const stackInfo = '-'
         return `${timestamp} ${level.toUpperCase()} ${threadName} ${stackInfo} ${message}`
-      })
-    )
+      }),
+    ),
   })
 
   return async function (context: Context, next: Next) {
@@ -77,25 +78,22 @@ export function logger(loggerOptions: LoggerOptions) {
     try {
       await next()
     } finally {
-      // 某些情况不需要打印日志时，提供 ignoreLogger 参数跳过日志
-      if (!context.state.ignoreLogger) {
-        const message = generateMessage({
-          context,
-          startTime
-        })
-        appLogger.info(message)
-      }
+      // 打印请求信息， 通过 formatMessage 自定义格式
+      const message = formatMessage({
+        context,
+        startTime,
+      })
+      appLogger.info(message)
     }
   }
 }
 
 // 组合日志信息
-export const generateMessage = (options): string => {
+const formatMessage = (options): string => {
   const { context, startTime } = options
-  const ip = context.ip || context.ips || context.socket.remoteAddress
 
   const list = [
-    /* remote */ ip,
+    /* remote */ context.ip || context.socket.remoteAddress,
     /* time */ `[${dayjs().format('DD/MMM/YYYY:HH:mm:ss +0800')}]`,
     /* host */ context.hostname,
     /* port */ 80,
@@ -107,14 +105,16 @@ export const generateMessage = (options): string => {
     /* size */ context.response.length,
     /* referer */ context.headers.referer,
     /* agent */ context.headers['user-agent'],
-    /* real_ip */ ip,
-    /* http_x_forwarded_for */ ip,
-    /* request_time */ Date.now() - startTime
+    /* real_ip */ context.headers['x-real-ip'] || '-',
+    /* http_x_forwarded_for */ context.headers['x-forwarded-for'] || '-',
+    /* request_time */ Date.now() - startTime,
   ]
 
   return list.join('||')
 }
 ```
+
+这样就定义好了默认的日志格式及内容，并为 context 提供了 logger 方法。
 
 ### 错误处理
 
@@ -126,30 +126,36 @@ const errors = () => {
     try {
       await next()
     } catch (err) {
+      const level = err.level || 'error'
+      const log = ctx.logger[level] || ctx.logger.error
+
       ctx.logger.error(`${err.message}: ${err.stack || ''}`)
 
-      const isClientError = err instanceof ClientError
-      const isServerError = err instanceof ServerError
-      const isBizError = err instanceof BizError
-      const isHttpError = err instanceof HttpError
+      log(`[${err.traceId}]:${err.message} | ${stackMsg} | ${reasonMsg}`)
 
-      if (isHttpError) {
-        ctx.status = err.status || 400
-      } else if (isClientError || isServerError || isBizError) {
-        ctx.status = err.status || 500
-      } else if (err instanceof joi.ValidationError) {
-        ctx.status = 400
+      // 处理各种报错情况
+      if (err instanceof joi.ValidationError) {
+        e.status = 400
+      } else {
+        ctx.body = {
+          success: false,
+          msg: '服务器发生错误，请稍后再试',
+          data: null,
+        }
+        ctx.status = 500
       }
-
-      // ...
     }
   }
 }
 ```
 
+### 代理
+
+### 路由
+
 ## 监控
 
-监控往往独立于业务应用之外，如独立生成另一个 Koa 实例，在该实例中接入监控或探针能力。
+监控独立于业务应用之外，如独立生成另一个 Koa 实例，在该实例中接入监控能力。
 
 ### 探针
 
@@ -160,7 +166,7 @@ const app = new Koa()
 const actuator = new Koa()
 
 const actuatorRouter = new Router({
-  prefix: '/actuator'
+  prefix: '/actuator',
 })
 
 actuatorRouter.get('/health/readiness', getReadiness)
@@ -198,7 +204,7 @@ const app = new Koa()
 
 ## 业务
 
-### Restful API
+### Restful API 及路由设计
 
 通过 koa/router 将业务需求按模块划分，每个模块有自己的
 
