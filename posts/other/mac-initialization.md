@@ -41,7 +41,7 @@ export https_proxy=http://127.0.0.1:7890
 export all_proxy=socks5://127.0.0.1:7890
 ```
 
-> 如果你没有代理，可以通过[这个链接](https://mojie.nl/#/register?code=xzSjSYO6)注册。这个代理是不限时间设备数量，只计算使用流量的，所以非常节省。从 2021 年用到现在一直都很稳定，速度也不错，youtube 1440p 不会卡。
+> 如果你没有代理，可以通过[这个链接](https://mojie.nl/#/register?code=xzSjSYO6)注册。这个代理是不限时间设备数量，只计算使用流量的，如果不经常看视频会非常省钱。从 2021 年用到现在一直都很稳定，速度也不错，试了一下 youtube 1440p 不会卡。
 
 ### 2. 安装 [Brew](https://brew.sh/)
 
