@@ -202,6 +202,10 @@ collectDefaultMetrics({ register })
 const app = new Koa()
 ```
 
+### 日志告警
+
+通过固定的报错标记，在阿里云设置告警配置，当出现报错信息后，执行告警通知。
+
 ## 业务
 
 ### Restful API 及路由设计
