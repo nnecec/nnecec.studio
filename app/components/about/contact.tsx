@@ -1,12 +1,13 @@
 import {
-  IconBrandInstagram,
-  IconBrandWechat,
-  IconBrandTwitter,
-  IconBrandTelegram,
-  IconMail,
-  IconBrandGithub,
   IconBookmarks,
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandTelegram,
+  IconBrandTwitter,
+  IconBrandWechat,
+  IconMail,
 } from '@tabler/icons-react'
+
 import { SITE_CONFIG } from '~/utils/constants'
 
 import telegramJPG from './telegram.jpg'

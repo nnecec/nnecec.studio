@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react'
-
+import type { TablerIconsProps } from '@tabler/icons-react'
+import {
+  IconBeach,
+  IconCamera,
+  IconChefHat,
+  IconCode,
+  IconMusic,
+} from '@tabler/icons-react'
 import {
   motion,
   useMotionTemplate,
@@ -8,14 +15,6 @@ import {
   useTransform,
 } from 'framer-motion'
 import colors from 'tailwindcss/colors'
-import type { TablerIconsProps } from '@tabler/icons-react'
-import {
-  IconCode,
-  IconBeach,
-  IconChefHat,
-  IconCamera,
-  IconMusic,
-} from '@tabler/icons-react'
 
 const delta = 12
 
@@ -106,7 +105,7 @@ const Poker = ({
             opacity: hovering ? 0.3 : 0,
             backgroundImage: hovering ? backgroundImage : 'none',
           }}
-        ></motion.div>
+         />
       </div>
     </motion.div>
   )
@@ -124,7 +123,7 @@ export const Intro = () => {
 
   useEffect(() => {
     const unsubscribe = scrollY.on('change', y => {
-      setShowGrid(y > 380 ? true : false)
+      setShowGrid(y > 380)
     })
 
     return () => {
@@ -162,7 +161,7 @@ export const Intro = () => {
               animate="show"
               style={{ opacity: titleOpacity, y: titleY }}
             >
-              {'About'.split('').map((char, index) => (
+              {[...'About'].map((char, index) => (
                 <motion.span key={index} variants={charVariants}>
                   {char}
                 </motion.span>
@@ -191,32 +190,32 @@ export const Intro = () => {
                 icon={IconCode}
                 title="Coder"
                 description="Create beautiful and high-performance web applications."
-              ></Poker>
+               />
               <Poker
                 style={{ gridArea: 'feat-1' }}
                 icon={IconChefHat}
                 title="Chef"
                 description="I'm the family chef, trying to make wonderful food for my family."
-              ></Poker>
+               />
 
               <Poker
                 style={{ gridArea: 'feat-2' }}
                 icon={IconBeach}
                 title="Traveler"
                 description="I like to stay at home, but my wife likes to go out and travel, so I have become a person who loves to travel."
-              ></Poker>
+               />
               <Poker
                 style={{ gridArea: 'feat-3' }}
                 icon={IconCamera}
                 title="Photographer"
                 description="It's a hobby of mine to take great looking photos with my phone or camera."
-              ></Poker>
+               />
               <Poker
                 style={{ gridArea: 'feat-4' }}
                 icon={IconMusic}
                 title="Guitar learner"
                 description="Ready to teach my daughter guitar, but I do not know how to play the guitar yet, is learning to play the guitar."
-              ></Poker>
+               />
             </motion.div>
           </div>
         </div>

@@ -1,6 +1,7 @@
-import { SITE_CONFIG } from '~/utils/constants'
 import { IconBrandGithub, IconBrandTwitter, IconNews } from '@tabler/icons-react'
+
 import avatar from '~/assets/avatar.jpg'
+import { SITE_CONFIG } from '~/utils/constants'
 
 const { author, description } = SITE_CONFIG
 

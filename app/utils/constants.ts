@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   title: 'nnecec\'s Blog',
   author: {
-    name: 'nnecec'
+    name: 'nnecec',
   },
   description: 'think. try. treasure.',
   siteUrl: 'https://nnecec.vercel.app',
@@ -12,6 +12,6 @@ export const SITE_CONFIG = {
     instagram: 'https://www.instagram.com/nnecec',
     twitter: 'https://twitter.com/nnecec_cn',
     github: 'https://github.com/nnecec',
-    zhubai: 'https://nnecec.zhubai.love/'
-  }
+    zhubai: 'https://nnecec.zhubai.love/',
+  },
 }

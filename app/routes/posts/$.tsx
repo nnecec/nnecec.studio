@@ -1,14 +1,14 @@
 import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
-import { IconExternalLink } from '@tabler/icons-react'
 import { useLoaderData } from '@remix-run/react'
+import { IconExternalLink } from '@tabler/icons-react'
 
-import { Layout, Tag } from '~/ui'
-import { getPost } from '~/services/post.server'
-import { SITE_CONFIG } from '~/utils/constants'
 import { markdownToHtml } from '~/services/markdown.server'
+import { getPost } from '~/services/post.server'
 import type { Post } from '~/types/post'
+import { Layout, Tag } from '~/ui'
 import { Previewer } from '~/ui/markdown'
+import { SITE_CONFIG } from '~/utils/constants'
 
 type LoaderData = {
   post: Post
@@ -17,14 +17,14 @@ type LoaderData = {
 export const meta: MetaFunction = ({ data }) => {
   if (!data) {
     return {
-      title: 'Missing post'
+      title: 'Missing post',
     }
   }
 
   const { post } = data as LoaderData
   return {
     title: post.title,
-    description: post.description
+    description: post.description,
   }
 }
 
@@ -37,8 +37,8 @@ export const loader: LoaderFunction = async ({ params }) => {
   return json<LoaderData>({
     post: {
       ...post,
-      content: html
-    }
+      content: html,
+    },
   })
 }
 
@@ -74,13 +74,14 @@ const PostPage = () => {
                 referrerPolicy="no-referrer"
                 rel="noreferrer"
               >
-                反馈<IconExternalLink className="inline" size={16} />
+                反馈
+                <IconExternalLink className="inline" size={16} />
               </a>
             </div>
           </div>
         </section>
         <div className="relative my-8 font-serif">
-         <Previewer content={post.content}></Previewer>
+          <Previewer content={post.content} />
           {/* <article dangerouslySetInnerHTML={{ __html: post.content || '' }} /> */}
         </div>
       </article>

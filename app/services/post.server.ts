@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
-import fs from 'fs'
 import matter from 'gray-matter'
-import { join } from 'path'
+import fs from 'node:fs'
+import { join } from 'node:path'
 
 import type { Post } from '~/types/post'
 
@@ -12,8 +12,8 @@ export function getPostSlugs(directoryPath: string) {
 
   function map(directoryPath: string, baseURL = '') {
     const files = fs.readdirSync(directoryPath)
-    files.forEach(file => {
-      if (!/(^|\/)\.[^/.]/g.test(file)) {
+    for (const file of files) {
+      if (!/(^|\/)\.[^./]/g.test(file)) {
         const filePath = join(directoryPath, file)
         const stats = fs.statSync(filePath)
         const slug = `${baseURL}/${file}`
@@ -23,7 +23,7 @@ export function getPostSlugs(directoryPath: string) {
           slugs.push(slug)
         }
       }
-    })
+    }
   }
 
   map(directoryPath)
@@ -58,11 +58,11 @@ export function getAllPosts(tag?: string) {
     })
     .filter(Boolean)
     .sort((post1, post2) =>
-      dayjs(post1.date).isAfter(dayjs(post2.date)) ? -1 : 1
+      dayjs(post1.date).isAfter(dayjs(post2.date)) ? -1 : 1,
     )
   return {
     posts,
-    tags: Array.from(new Set(tags)).sort((a, b) => a.localeCompare(b))
+    tags: [...new Set(tags)].sort((a, b) => a.localeCompare(b)),
   }
 }
 
@@ -73,7 +73,7 @@ export function getPost(slug: string): Post {
   const item: Post = {
     ...data,
     slug,
-    content
+    content,
   }
   return item
 }

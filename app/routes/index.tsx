@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+
 import { Layout } from '~/ui'
 
 const WavingHand = () => (
