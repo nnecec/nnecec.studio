@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from 'react'
+
 import { SITE_CONFIG } from '~/utils/constants'
 
 import { Footer } from './footer'

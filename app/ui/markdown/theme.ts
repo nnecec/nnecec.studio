@@ -32,39 +32,39 @@ const theme: PrismTheme = {
   plain: {
     color: 'hsl(220, 14%, 71%)',
     backgroundColor: 'hsl(220, 13%, 18%)',
-    fontSize: 13
+    fontSize: 13,
   },
   styles: [
     {
       types: ['comment', 'prolog', 'cdata'],
       style: {
         color: 'hsl(220, 10%, 40%)',
-        fontStyle: 'italic'
-      }
+        fontStyle: 'italic',
+      },
     },
     {
       types: ['doctype', 'punctuation', 'entity'],
       style: {
-        color: 'hsl(220, 14%, 71%)'
-      }
+        color: 'hsl(220, 14%, 71%)',
+      },
     },
     {
       types: ['namespace'],
       style: {
-        opacity: 0.8
-      }
+        opacity: 0.8,
+      },
     },
     {
       types: ['string', 'attr-value'],
       style: {
-        color: 'hsl(95, 38%, 62%)'
-      }
+        color: 'hsl(95, 38%, 62%)',
+      },
     },
     {
       types: ['punctuation', 'operator'],
       style: {
-        color: 'hsl(207, 82%, 66%)'
-      }
+        color: 'hsl(207, 82%, 66%)',
+      },
     },
     {
       types: [
@@ -73,23 +73,23 @@ const theme: PrismTheme = {
         'boolean',
         'constant',
         'number',
-        'atrules'
+        'atrules',
       ],
       style: {
-        color: 'hsl(29, 54%, 61%)'
-      }
+        color: 'hsl(29, 54%, 61%)',
+      },
     },
     {
       types: ['keyword'],
       style: {
-        color: 'hsl(286, 60%, 67%)'
-      }
+        color: 'hsl(286, 60%, 67%)',
+      },
     },
     {
       types: ['property', 'tag', 'symbol', 'deleted', 'important'],
       style: {
-        color: 'hsl(355, 65%, 65%)'
-      }
+        color: 'hsl(355, 65%, 65%)',
+      },
     },
     {
       types: [
@@ -99,89 +99,89 @@ const theme: PrismTheme = {
         'builtin',
         'inserted',
         'regex',
-        'attr-value'
+        'attr-value',
       ],
       style: {
-        color: 'hsl(95, 38%, 62%)'
-      }
+        color: 'hsl(95, 38%, 62%)',
+      },
     },
     {
       types: ['function', 'variable', 'operator'],
       style: {
-        color: 'hsl(207, 82%, 66%)'
-      }
+        color: 'hsl(207, 82%, 66%)',
+      },
     },
     {
       types: ['url'],
       style: {
-        color: 'hsl(187, 47%, 55%)'
-      }
+        color: 'hsl(187, 47%, 55%)',
+      },
     },
     // css overrides
     {
       types: ['selector'],
       style: {
-        color: 'hsl(355, 65%, 65%)'
-      }
+        color: 'hsl(355, 65%, 65%)',
+      },
     },
     {
       types: ['property'],
       style: {
-        color: 'hsl(220, 14%, 71%)'
-      }
+        color: 'hsl(220, 14%, 71%)',
+      },
     },
     {
       types: ['function'],
       style: {
-        color: 'hsl(187, 47%, 55%)'
-      }
+        color: 'hsl(187, 47%, 55%)',
+      },
     },
     {
       types: ['url'],
       style: {
-        color: 'hsl(95, 38%, 62%)'
-      }
+        color: 'hsl(95, 38%, 62%)',
+      },
     },
     {
       types: ['important', 'atrule', 'rule'],
       style: {
-        color: 'hsl(286, 60%, 67%)'
-      }
+        color: 'hsl(286, 60%, 67%)',
+      },
     },
     // js overrides
     {
       types: ['operator'],
       style: {
-        color: 'hsl(286, 60%, 67%)'
-      }
+        color: 'hsl(286, 60%, 67%)',
+      },
     },
     // json overrides
     {
       types: ['operator'],
       style: {
-        color: 'hsl(220, 14%, 71%)'
-      }
+        color: 'hsl(220, 14%, 71%)',
+      },
     },
     // general
     {
       types: ['bold'],
       style: {
-        fontWeight: 'bold'
-      }
+        fontWeight: 'bold',
+      },
     },
     {
       types: ['comment', 'italic'],
       style: {
-        fontStyle: 'italic'
-      }
+        fontStyle: 'italic',
+      },
     },
     {
       types: ['entity'],
       style: {
-        cursor: 'help'
-      }
-    }
-  ]
+        cursor: 'help',
+      },
+    },
+  ],
 }
 
 export default theme

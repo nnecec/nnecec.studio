@@ -2,12 +2,12 @@ import React, { useMemo } from 'react'
 import { wrap } from '@motionone/utils'
 import {
   motion,
-  useScroll,
-  useTransform,
-  useMotionValue,
-  useVelocity,
   useAnimationFrame,
+  useMotionValue,
+  useScroll,
   useSpring,
+  useTransform,
+  useVelocity,
 } from 'framer-motion'
 
 const stacks = [
@@ -103,7 +103,7 @@ function ScrollText({
   const x = useTransform(baseX, v => `${wrap(0, -50, v)}%`)
 
   useAnimationFrame((t, delta) => {
-    let moveBy = -velocity * (delta / 10000)
+    let moveBy = -velocity * (delta / 10_000)
     moveBy += moveBy * Math.abs(velocityFactor.get())
 
     baseX.set(baseX.get() + moveBy)
@@ -151,8 +151,8 @@ export const Tech = () => {
 
             <div className="relative flex items-center">
               <div className="overflow-hidden whitespace-nowrap italic">
-                <ScrollText velocity={5} words={stacks}></ScrollText>
-                <ScrollText velocity={4} words={libs}></ScrollText>
+                <ScrollText velocity={5} words={stacks} />
+                <ScrollText velocity={4} words={libs} />
               </div>
             </div>
           </div>

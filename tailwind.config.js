@@ -15,7 +15,7 @@ const light = {
   'base-300': colors.zinc[300],
   'base-400': colors.zinc[400],
   'base-500': colors.zinc[500],
-  'base-content': colors.zinc[900]
+  'base-content': colors.zinc[900],
 }
 const dark = {
   primary: colors.rose[500],
@@ -32,7 +32,7 @@ const dark = {
   'base-300': colors.zinc[700],
   'base-400': colors.zinc[600],
   'base-500': colors.zinc[600],
-  'base-content': colors.zinc[200]
+  'base-content': colors.zinc[200],
 }
 
 /** @type {import('tailwindcss').Config} */
@@ -43,7 +43,7 @@ module.exports = {
       colors: {
         primary: 'hsl(var(--p))',
         secondary: 'hsl(var(--s))',
-        accent: 'hsl(var(--a))'
+        accent: 'hsl(var(--a))',
       },
       fontFamily: {
         sans: [
@@ -51,14 +51,14 @@ module.exports = {
           'Inter',
           'SF Pro SC',
           'PingFang SC',
-          ...fontFamily.sans
+          ...fontFamily.sans,
         ],
-        mono: ['Roboto Mono', 'Source Code Pro', ...fontFamily.mono]
-      }
-    }
+        mono: ['Roboto Mono', 'Source Code Pro', ...fontFamily.mono],
+      },
+    },
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
-    themes: [{ light, dark }]
-  }
+    themes: [{ light, dark }],
+  },
 }

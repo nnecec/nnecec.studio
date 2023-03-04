@@ -1,6 +1,7 @@
 import React from 'react'
-import Highlight, { defaultProps } from 'prism-react-renderer'
 import Markdoc from '@markdoc/markdoc'
+import Highlight, { defaultProps } from 'prism-react-renderer'
+
 import oneDark from './theme';
 
 export function Fence(props) {
@@ -31,8 +32,8 @@ export const Previewer = ({ content }: PreviewerProps) => {
     <div>
       {Markdoc.renderers.react(content, React, {
         components: {
-          Fence
-        }
+          Fence,
+        },
       })}
     </div>
   )

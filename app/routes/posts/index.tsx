@@ -2,9 +2,9 @@ import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Link, useLoaderData, useNavigate } from '@remix-run/react'
 
-import { Layout, Tag } from '~/ui'
 import { getAllPosts } from '~/services/post.server'
 import type { Post } from '~/types/post'
+import { Layout, Tag } from '~/ui'
 
 type LoaderData = {
   posts: Post[]
@@ -14,7 +14,7 @@ type LoaderData = {
 
 export const meta: MetaFunction = () => {
   return {
-    title: '文章列表'
+    title: '文章列表',
   }
 }
 

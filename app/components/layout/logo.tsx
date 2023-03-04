@@ -19,9 +19,9 @@ export const Logo = () => {
         initial="hide"
         variants={{
           hide: { borderRadius: 0 },
-          show: { borderRadius: '50%' }
+          show: { borderRadius: '50%' },
         }}
-      ></motion.div>
+       />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react'
-import { useCallback, useState, useRef, useLayoutEffect } from 'react'
+import { useCallback, useLayoutEffect,useRef, useState } from 'react'
 
 const isBrowser = typeof document !== 'undefined'
 const noop = () => {}
@@ -17,7 +17,7 @@ type parserOptions<T> =
 export const useLocalStorage = <T>(
   key: string,
   initialValue?: T,
-  options?: parserOptions<T>
+  options?: parserOptions<T>,
 ): [T | undefined, Dispatch<SetStateAction<T | undefined>>, () => void] => {
   if (!isBrowser) {
     return [initialValue as T, noop, noop]
@@ -27,26 +27,26 @@ export const useLocalStorage = <T>(
   }
 
   const deserializer = options
-    ? options.raw
+    ? (options.raw
       ? value => value
-      : options.deserializer
+      : options.deserializer)
     : JSON.parse
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const initializer = useRef((key: string) => {
     try {
       const serializer = options
-        ? options.raw
+        ? (options.raw
           ? String
-          : options.serializer
+          : options.serializer)
         : JSON.stringify
 
       const localStorageValue = localStorage.getItem(key)
-      if (localStorageValue !== null) {
-        return deserializer(localStorageValue)
-      } else {
+      if (localStorageValue === null) {
         initialValue && localStorage.setItem(key, serializer(initialValue))
         return initialValue
+      } else {
+        return deserializer(localStorageValue)
       }
     } catch {
       // If user is in private mode or has storage restriction
@@ -58,7 +58,7 @@ export const useLocalStorage = <T>(
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [state, setState] = useState<T | undefined>(() =>
-    initializer.current(key)
+    initializer.current(key),
   )
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -72,13 +72,12 @@ export const useLocalStorage = <T>(
           typeof valOrFunc === 'function'
             ? (valOrFunc as Function)(state)
             : valOrFunc
-        if (typeof newState === 'undefined') return
+        if (newState === undefined) return
         let value: string
 
         if (options)
           if (options.raw)
-            if (typeof newState === 'string') value = newState
-            else value = JSON.stringify(newState)
+            value = typeof newState === 'string' ? newState : JSON.stringify(newState);
           else if (options.serializer) value = options.serializer(newState)
           else value = JSON.stringify(newState)
         else value = JSON.stringify(newState)
@@ -90,14 +89,14 @@ export const useLocalStorage = <T>(
         // localStorage can throw. Also JSON.stringify can throw.
       }
     },
-    [key, setState]
+    [key, setState],
   )
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const remove = useCallback(() => {
     try {
       localStorage.removeItem(key)
-      setState(undefined)
+      setState()
     } catch {
       // If user is in private mode or has storage restriction
       // localStorage can throw.

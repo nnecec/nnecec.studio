@@ -1,5 +1,6 @@
 import type React from 'react'
 import { useEffect } from 'react'
+
 import { useLocalStorage } from './local-storage'
 import { useMedia } from './media'
 
@@ -18,10 +19,10 @@ export const useDarkMode = (): [
     const element = document.documentElement
     if (enabled) {
       element.classList.add(darkName)
-      element.setAttribute('data-theme', darkName)
+      element.dataset.theme = darkName
     } else {
       element.classList.remove(darkName)
-      element.setAttribute('data-theme', 'light')
+      element.dataset.theme = 'light'
     }
   }, [enabled])
 

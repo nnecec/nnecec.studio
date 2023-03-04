@@ -1,5 +1,6 @@
-import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useEffect } from 'react'
+import { IconMoon, IconSun } from '@tabler/icons-react'
+
 import { useDarkMode } from '~/hooks/dark-mode'
 
 export const ThemeSwitch = () => {

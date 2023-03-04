@@ -12,15 +12,15 @@ export async function markdownToHtml(markdown: string) {
     render: 'Fence',
     attributes: {
       language: {
-        type: String
-      }
-    }
+        type: String,
+      },
+    },
   }
 
   const content = Markdoc.transform(ast, {
     nodes: {
-      fence
-    }
+      fence,
+    },
   })
   return content
 }
