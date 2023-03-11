@@ -9,7 +9,7 @@ description: '介绍如何从零配置 Macbook Pro。最终配置完成时是前
 
 一些系统及 App 配置可以参考[Mac Setup for Web Development [2023]](https://www.robinwieruch.de/mac-setup-web-development/)。这位作者自定义了很多配置，并且安装了很多不一定用得上的 App。所以别人的配置最好作为参考，自己从中取需要的部分。不要照搬配置，配置了一大堆用不着的。
 
-本文的配置几乎是（中国大陆前端）开发人员最小的配置清单了。记得把 nnecec 替换成你自己的 ID！
+本文的配置几乎是（中国大陆前端）开发人员最小的配置清单了。记得把 nnecec 替换成你自己的 username！
 
 ## 流程
 

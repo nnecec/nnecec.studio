@@ -13,11 +13,12 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react'
-
-import { SITE_CONFIG } from '~/utils/constants'
+import { AnimatePresence } from 'framer-motion'
 
 import customStyle from './styles/custom.css'
 import indexStyle from './styles/index.css'
+
+import { SITE_CONFIG } from '~/utils/constants'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: indexStyle },
@@ -57,7 +58,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <Outlet />
+        </AnimatePresence>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
