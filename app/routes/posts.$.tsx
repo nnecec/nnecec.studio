@@ -30,6 +30,7 @@ export const meta: MetaFunction = ({ data }) => {
 
 export const loader: LoaderFunction = async ({ params }) => {
   const post = getPost(params['*'] as string)
+
   const { content = '' } = post
 
   const html = await markdownToHtml(content || '')
@@ -82,7 +83,6 @@ const PostPage = () => {
         </section>
         <div className="relative my-8 font-serif">
           <Previewer content={post.content} />
-          {/* <article dangerouslySetInnerHTML={{ __html: post.content || '' }} /> */}
         </div>
       </article>
     </Layout>
