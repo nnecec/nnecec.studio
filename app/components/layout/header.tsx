@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react'
 
-import { ThemeSwitch } from './theme-switch'
+import { ThemeSwitch } from '../theme/switch'
 
 export const Header = () => {
   return (

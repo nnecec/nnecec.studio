@@ -1,8 +1,4 @@
-import type {
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
-} from '@remix-run/node'
+import type { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import {
   Links,
@@ -14,11 +10,13 @@ import {
   useLoaderData,
 } from '@remix-run/react'
 import { AnimatePresence } from 'framer-motion'
+import { ThemeProvider, useTheme } from '~/components/theme'
 
 import customStyle from './styles/custom.css'
 import indexStyle from './styles/index.css'
 
 import { SITE_CONFIG } from '~/utils/constants'
+import clsx from 'clsx'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: indexStyle },
@@ -45,14 +43,19 @@ type LoaderData = {
 }
 
 export const loader: LoaderFunction = async () => {
-  return json<LoaderData>({ trackingId: process.env.GOOGLE_TRACKING_ID })
+  return json<LoaderData>({
+    trackingId: process.env.GOOGLE_TRACKING_ID,
+  })
 }
 
-export default function App() {
+const App = () => {
   const { trackingId } = useLoaderData<LoaderData>()
+  const { prefersTheme } = useTheme()
+
+  console.log(prefersTheme)
 
   return (
-    <html lang="en">
+    <html lang="en" className={clsx(prefersTheme)} data-theme={clsx(prefersTheme)}>
       <head>
         <Meta />
         <Links />
@@ -67,10 +70,7 @@ export default function App() {
 
         {process.env.NODE_ENV === 'development' || !trackingId ? null : (
           <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`}
-            />
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />
             <script
               async
               id="gtag-init"
@@ -87,5 +87,13 @@ export default function App() {
         )}
       </body>
     </html>
+  )
+}
+
+export default function Root() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   )
 }
