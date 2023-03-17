@@ -84,6 +84,10 @@ function redirect(user: Admin | User) {
     routeToHomePage(user.email)
   }
 }
+
+function isAdmin(user: Admin | User): user is Admin {
+  return (user as any).role !== undefined
+}
 ```
 
 ### Type Assertion
@@ -130,6 +134,30 @@ type P = React.ComponentProps<typeof App> // get Props
 ```
 
 通过 ReturnType 获取返回类型，通过 Parameters 获取参数类型。
+
+### 处理不存在的类型
+
+使用 `declare module 'MODULE_MANE'` 来拓展第三方依赖中不满足使用的类型。
+
+```ts
+declare module '*.png'
+
+import * as logo from './logo.png'
+```
+
+## tsconfig
+
+相对于常规 TypeScript 在 React 项目中你可能需要显示配置下列配置
+
+```json
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "typeRoots": ["./typings", "./node_modules/@types"]
+  }
+}
+```
 
 ## Reference
 

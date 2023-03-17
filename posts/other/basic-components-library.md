@@ -1,6 +1,6 @@
 ---
 title: '如何搭建可维护的组件库'
-date: '2022-10-11'
+date: '2023-03-17'
 tags: ['Introduction']
 description: ''
 ---
@@ -30,7 +30,7 @@ description: ''
   - utils
 ```
 
-将移动和 PC 的页面逻辑单独实现，通用方法共用，通过 monorepo 的方式组织可以更方便的共用代码，并将代码合理的分类管理。
+由于移动端和桌面端的样式和用户操作逻辑往往差异比较大，将移动和 PC 的页面逻辑单独实现，通用方法共用，通过 monorepo 的方式组织可以更方便的共用代码，并将代码合理的分类管理。
 
 在 monorepo 的技术选型方面，可以参考 [monorepo.tools](https://monorepo.tools/) 对 monorepo 的概念及技术框架有比较详细的说明。
 
@@ -57,4 +57,57 @@ description: ''
 
 样式方案发展经历了 CSS, Less/SCSS, CSS Module, CSS-in-JS, Atomic CSS 等等。如今每个方案仍然有各自适合的场景。
 
+2022 年流行起来一股 Headless UI 风潮，组件库只提供功能，样式由用户编写。个人认为这是未来的一个趋势，类似 Radix UI 默认只提供了组件的能力，也提供了样式代码供用户拷贝到自己的项目中使用。
 
+NextUI v2 的重构则同样不提供样式代码，但基于 TailwindCSS 提供了样式类，内部通过 `tailwind-variants` 将 class 集成到组件上。
+
+### 5. 代码组织
+
+一般一个组件由源代码、单元测试、文档、Demo 及样式构成。
+
+```
+├── src
+│   ├── components
+│   │   └── User
+│   │        ├── user.test.tsx
+│   │        ├── user.stories.tsx
+│   │        ├── user.tsx
+│   │        ├── index.css
+│   │        ├── types.tsx
+│   │        └── index.ts
+│   ├── types
+│   └── utils
+└── package.json
+```
+
+如果是 monorepo 的组织方式，往往一个组件作为一个 package，如果组件数量比较大的情况下，也可以有一个 main package 去中转所有的 sub package。这样用户只需要安装这一个 main package 就可以了，并且在 Tree Shaking 的能力下不会对产物体积产生影响。
+
+```
+├── packages
+│   ├── business
+│   │   └── package.json
+│   ├── base
+│   │   └── package.json
+│   ├── order
+│   │   └── package.json
+│   ├── main
+│   │   ├── index.ts
+│   │   └── package.json
+│   └── utils
+│       └── package.json
+│
+└── package.json
+```
+
+```ts
+// main/index.ts
+export * from '@n/business'
+export * from '@n/order'
+export * from '@n/utils'
+```
+
+### 文档
+
+### 单元测试
+
+###
