@@ -36,7 +36,100 @@ const useUser = () => {
 }
 ```
 
+## Event
+
+- 内联写法可以自动推导出方法类型: `onClick={e => {}}`
+- 如果单独声明了方法，需要显示的指定事件类型
+
+  ```ts
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    this.setState({ text: e.currentTarget.value })
+  }
+  // or
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = e => {
+    this.setState({ text: e.currentTarget.value })
+  }
+  ```
+
+- 如果不关心具体的事件类型，则可以直接指定为 SyntheticEvent
+
+  ```ts
+  const onSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault()
+  }
+  ```
+
 ## Ref
+
+## 常见技巧
+
+### Union Types and Type Guarding
+
+通过联合类型组合类型，通过类型守卫去推断不同的类型
+
+```ts
+interface Admin {
+  role: string
+}
+interface User {
+  email: string
+}
+
+// Method 1: use `in` keyword
+function redirect(user: Admin | User) {
+  if ('role' in user) {
+    // use the `in` operator for typeguards since TS 2.7+
+    routeToAdminPage(user.role)
+  } else {
+    routeToHomePage(user.email)
+  }
+}
+```
+
+### Type Assertion
+
+使用 `!` 断言非空 ，使用 `as` 断言类型。
+
+### Intersection Types
+
+使用交叉类型组合复用类型
+
+```ts
+type BaseProps = {
+  className?: string
+  style?: React.CSSProperties
+  name: string // used in both
+}
+type DogProps = {
+  tailsCount: number
+}
+type HumanProps = {
+  handsCount: number
+}
+export const Human = (props: BaseProps & HumanProps) => {}
+export const Dog = (props: BaseProps & DogProps) => {}
+```
+
+### Inferred Types
+
+通过 typeof 获取类型
+
+```ts
+const [state, setState] = useState({
+  foo: 1,
+  bar: 2,
+})
+
+const someMethod = (obj: typeof state) => {
+
+}
+
+export function App = (props: Props) => {}
+
+type P = React.ComponentProps<typeof App> // get Props
+```
+
+通过 ReturnType 获取返回类型，通过 Parameters 获取参数类型。
 
 ## Reference
 

@@ -41,8 +41,8 @@ dependencies:
     specifier: ^1.11.7
     version: 1.11.7
   framer-motion:
-    specifier: ^10.3.2
-    version: 10.3.2(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^10.4.0
+    version: 10.4.0(react-dom@18.2.0)(react@18.2.0)
   gray-matter:
     specifier: 4.0.3
     version: 4.0.3
@@ -4918,8 +4918,8 @@ packages:
   /fraction.js@4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
 
-  /framer-motion@10.3.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-8GrK3X2vXG/9LJCNJuU5gKxDwSN0VTf7tD6MFP3S9F7rgsUavx+8ZNwhfZfak6maCBBHZ1m86K7TIXpbdfML2w==}
+  /framer-motion@10.4.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-nhQTbtRxaE7eoNuFeDpp0CdDMHWV5WIKZtV1CSD+zbVZzp5I0vmagOdCTivgBVKgA3ErJH5fIFf8l9FILTYKHQ==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
