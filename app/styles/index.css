@@ -55,3 +55,11 @@
     list-style-position: inside;
   }
 }
+
+@layer utilities {
+  .transition-shadow {
+    transition-property: 'box-shadow';
+    transition-timing-function: 'ease';
+    transition-duration: 250ms;
+  }
+}
