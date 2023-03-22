@@ -31,7 +31,7 @@ export const ThemeSwitch = () => {
       </label>
       <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
         {options.map(({ label, value }) => (
-          <li key={value} onClick={() => changeTheme(value)}>
+          <li key={value} onClick={() => changeTheme(value as Theme)}>
             <a>
               {label} {value}
             </a>

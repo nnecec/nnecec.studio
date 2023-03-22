@@ -2,9 +2,9 @@ import React from 'react'
 import Markdoc from '@markdoc/markdoc'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 
-import oneDark from './theme';
+import oneDark from './theme'
 
-export function Fence(props) {
+export function Fence(props: any) {
   const { children, language } = props
   return (
     <Highlight {...defaultProps} theme={oneDark} code={children} language={language}>
