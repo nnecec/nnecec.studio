@@ -4,5 +4,6 @@ module.exports = {
   ignoredRouteFiles: ['**/.*'],
   future: {
     v2_routeConvention: true,
+    unstable_postcss: true
   },
 }

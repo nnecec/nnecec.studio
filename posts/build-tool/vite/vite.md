@@ -55,7 +55,7 @@ Vite 通过 `getDepHash` 方法计算 hash 值，影响 hash 值计算的因素�
 
 如果没有预构建缓存可用，则需要首次预构建。
 
-vite 通过扫描根目录下的所有 .html 文件或根据用户配置 `optimizeDeps.entries`和`rollupOptions.input` 获取入口找到所有的 script 标签。通过入口获取关联的依赖<sup>todo</sup>
+vite 通过扫描根目录下的所有 .html 文件或根据用户配置 `optimizeDeps.entries`和`rollupOptions.input` 获取入口找到所有的 script 标签。通过入口获取关联的依赖
 
 然后根据依赖，使用 esbuild 预构建依赖，写入缓存文件夹，并生成 `_metadata.json`。
 
@@ -93,7 +93,7 @@ vite 通过扫描根目录下的所有 .html 文件或根据用户配置 `optimi
 
 - 如果是 vite 配置文件，或 .env 文件发生变化，会重启 dev 服务
 - 如果是 html 文件发送编号，会刷新页面
-- 如果是其他文件，则进入普通更新逻辑。vite 会提供与变更文件相关联的所有关联文件，遍历文件，检查文件是否需要重刷页面。如果都符合热更新逻辑，则将文件信息添加到 updates 队列中，通过 ws 发送给客户端。
+- 如果是其他文件，则进入普通更新逻辑。vite 会提供与变更文件相关联的所有关联文件，遍历文件，检查文件是否需要重刷页面。如果都符合热更新逻辑，则将文件信息添加到 updates 队列中，通过 websocket 发送给客户端。
 
 在创建本地服务时，vite 会向客户端注入 `vite/src/client.js` 的代码，在 `handleMessage` 方法中可以有对 socket 消息的处理
 
