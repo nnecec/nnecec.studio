@@ -18,10 +18,8 @@
   "author": "nnecec <nnecec@outlook.com>",
   "scripts": {
     "build": "rm -rf api && run-s \"build:*\"",
-    "build:css": "postcss styles --base styles --dir app/styles --env production",
     "build:remix": "remix build",
     "dev": "run-p \"dev:*\"",
-    "dev:css": "postcss styles --base styles --dir app/styles -w",
     "dev:remix": "remix dev --port 3006"
   },
   "dependencies": {

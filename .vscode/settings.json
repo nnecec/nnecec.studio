@@ -1,7 +1,7 @@
 {
   "files.exclude": {
     ".cache": true,
-    "app/styles": true
+    // "app/styles": true
   },
   "typescript.tsdk": "node_modules/typescript/lib"
 }
