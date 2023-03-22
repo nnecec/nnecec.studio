@@ -1,5 +1,4 @@
-import { Link, NavLink } from '@remix-run/react'
-import type { LoaderFunction } from '@remix-run/server-runtime'
+import { NavLink } from '@remix-run/react'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 
