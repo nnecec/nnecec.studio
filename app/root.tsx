@@ -51,9 +51,7 @@ export const loader: LoaderFunction = async () => {
 const App = () => {
   const { trackingId } = useLoaderData<LoaderData>()
   const { prefersTheme } = useTheme()
-
-  console.log(prefersTheme)
-
+  
   return (
     <html lang="en" className={clsx(prefersTheme)} data-theme={clsx(prefersTheme)}>
       <head>

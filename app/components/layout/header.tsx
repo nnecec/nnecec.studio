@@ -1,6 +1,7 @@
 import { NavLink } from '@remix-run/react'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
+import { useWindowScroll } from '~/hooks/window-scroll'
 
 import { ThemeSwitch } from '../theme/switch'
 
@@ -19,9 +20,16 @@ const NAV_LINKS = [
   },
 ]
 
-export const Header = ({}) => {
+export const Header = () => {
+  const { y } = useWindowScroll()
+
   return (
-    <header className="fixed top-0 z-[999] flex h-[96px] w-screen bg-transparent backdrop-blur">
+    <header
+      className={clsx(
+        'fixed top-0 z-[999] flex h-[96px] w-screen bg-transparent backdrop-blur',
+        y > 50 && 'shadow transition-shadow',
+      )}
+    >
       <div className="container mx-auto flex items-center justify-end gap-2 text-base">
         {NAV_LINKS.map(({ label, to }) => (
           <div key={to}>
