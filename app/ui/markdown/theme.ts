@@ -28,7 +28,7 @@
 
 import type { PrismTheme } from 'prism-react-renderer'
 
-const theme: PrismTheme = {
+export const theme: PrismTheme = {
   plain: {
     color: 'hsl(220, 14%, 71%)',
     backgroundColor: 'hsl(220, 13%, 18%)',
@@ -183,5 +183,3 @@ const theme: PrismTheme = {
     },
   ],
 }
-
-export default theme
