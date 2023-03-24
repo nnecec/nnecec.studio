@@ -7,7 +7,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
     "moduleResolution": "node",
     "paths": {
       "~/*": ["./app/*"]
@@ -15,7 +15,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2019",
+    "target": "ES2020",
+    "module": "ES2020",
 
     // Remix takes care of building everything in `remix build`.
     "noEmit": true
