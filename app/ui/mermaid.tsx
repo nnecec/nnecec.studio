@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 mermaid.initialize({
   startOnLoad: false,
   securityLevel: 'loose',
-  theme: 'dark',
   logLevel: 5,
 })
 

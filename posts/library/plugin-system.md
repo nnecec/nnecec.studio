@@ -19,7 +19,7 @@ Redux 类似洋葱模型，可以通过插件将 dispatch 方法进行包装增�
 
 ```mermaid
 flowchart LR
-  subgraph Middleware
+  subgraph Middleware[middlwares/dispatch]
     direction TB
     subgraph plugin-a
     subgraph plugin-b

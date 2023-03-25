@@ -14,11 +14,7 @@ description: ''
 ## 为什么
 
 ```js
-function beginWork(
-  current: Fiber | null,
-  workInProgress: Fiber,
-  renderLanes: Lanes
-): Fiber | null {
+function beginWork(current: Fiber | null, workInProgress: Fiber, renderLanes: Lanes): Fiber | null {
   const updateLanes = workInProgress.lanes
 
   if (current !== null) {
@@ -47,11 +43,13 @@ function beginWork(
 }
 ```
 
-`bailoutOnAlreadyFinishedWork`是复用逻辑，可以看到进入该方法的判断条件：
+`bailoutOnAlreadyFinishedWork`是复用上一次渲染的结果，可以看到进入该方法的判断条件：
 
 1. oldProps === newProps
-<!-- 2. legacy context 没被修改 -->
-2. 不包含与本次 fiber 一致优先级的更新
+2. context 没被修改
+3. 不包含与本次 fiber 一致优先级的更新
+
+当不属于这三种情况时，则会出发 React 渲染组件。
 
 - `Origin`
 
@@ -73,15 +71,7 @@ function beginWork(
 
     // ...
 
-    return ReactElement(
-      type,
-      key,
-      ref,
-      self,
-      source,
-      ReactCurrentOwner.current,
-      props
-    )
+    return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props)
   }
   ```
 
@@ -106,11 +96,7 @@ function beginWork(
         // memo条件2
         if (!includesSomeLane(renderLanes, updateLanes)) {
           workInProgress.lanes = current.lanes
-          return bailoutOnAlreadyFinishedWork(
-            current,
-            workInProgress,
-            renderLanes
-          )
+          return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes)
         }
       }
     }
@@ -134,7 +120,7 @@ function beginWork(
 function bailoutOnAlreadyFinishedWork(
   current: Fiber | null,
   workInProgress: Fiber,
-  renderLanes: Lanes
+  renderLanes: Lanes,
 ): Fiber | null {
   if (current !== null) {
     // Reuse previous dependencies

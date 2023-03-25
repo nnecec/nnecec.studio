@@ -9,7 +9,7 @@ description: 'useState, useReducer 和它的一切。'
 
 你可以在[useState](https://reactjs.org/docs/hooks-reference.html#usestate)和[useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)中看到 `useState` 和 `useReducer` 的说明。
 
-我不对文档已有的基本内容做说明，你可以访问官网查看官方的说明。
+本文不对文档已有的基本内容做说明，你可以访问官网查看官方的说明。
 
 `useState` 可以视为 `useReducer` 的语法糖，本质上都是返回了一个被储存的值，以及一个修改它的方法。
 
