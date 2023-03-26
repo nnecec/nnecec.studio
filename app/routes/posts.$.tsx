@@ -49,26 +49,11 @@ const PostPage = () => {
   return (
     <Layout>
       <article className="blog-post heti mx-auto">
-        <section className="mb-32">
+        <section className="mb-24">
           <h1>{post.title}</h1>
           <div className="flex flex-col gap-2 text-sm">
-            <div>最后更新: {post.date}</div>
             <div>
-              {post.tags?.map(tag => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-            </div>
-            <div>
-              版权声明: 署名-非商业性使用-禁止演绎 3.0 国际（
-              <a
-                href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh"
-                target="_blank"
-                referrerPolicy="no-referrer"
-                rel="noreferrer"
-              >
-                CC BY-NC-ND 3.0
-              </a>
-              ）
+              最后更新: {post.date}{' '}
               <a
                 href={`${SITE_CONFIG.repositoryUrl}/issues`}
                 target="_blank"
@@ -77,6 +62,22 @@ const PostPage = () => {
               >
                 反馈
                 <IconExternalLink className="inline" size={16} />
+              </a>
+            </div>
+            <div>
+              {post.tags?.map(tag => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
+            </div>
+            <div>
+              版权声明:
+              <a
+                href="http://creativecommons.org/licenses/by-nc/4.0/"
+                target="_blank"
+                referrerPolicy="no-referrer"
+                rel="noreferrer"
+              >
+                CC BY-NC 4.0
               </a>
             </div>
           </div>

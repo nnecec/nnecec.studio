@@ -30,7 +30,7 @@ export const Header = () => {
         y > 50 && 'shadow transition-shadow',
       )}
     >
-      <div className="container mx-auto flex items-center justify-end gap-2 text-base">
+      <div className="container mx-auto flex items-center justify-end gap-2 text-base relative">
         {NAV_LINKS.map(({ label, to }) => (
           <div key={to}>
             <NavLink to={to}>

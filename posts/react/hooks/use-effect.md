@@ -134,6 +134,6 @@ function pushEffect(tag, create, destroy, deps) {
 
 > 赋值给 useEffect 的函数会在组件渲染到屏幕之后执行。默认情况下，effect 将在每轮渲染结束后执行，但你可以选择让它 在只有某些值改变的时候才执行。
 
-在[commit 阶段](/react/progress/commit)对 `useEffect` 和 `useLayoutEffect` 进行处理。
+在[commit 阶段](/react/commit)对 `useEffect` 和 `useLayoutEffect` 进行处理。
 
 对于 `useLayoutEffect`,React 会在 `commit` 阶段重绘页面前调用，而对于 `useEffect` 会在 `commit` 页面重绘后对其进行调用。
