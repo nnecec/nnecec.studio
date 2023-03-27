@@ -5,6 +5,18 @@ tags: ['React']
 description: ''
 ---
 
+> 本文增加了对 https://overreacted.io/before-you-memo/ 的源码解释，并编写了一份 [Demo](https://nnecec.github.io/before-you-memo/build/) 提供预览。
+
+## 原文总结
+
+原始代码中 B 组件有重操作，在更新 A 组件时，导致了 B 的重新渲染，从而导致了页面卡顿。
+
+在 before you memo 这篇文章中，作者提供了几个解决没有耦合的组件之间如何避免重复渲染的方法。
+
+1. memo。使用 memo 包装组件，使组件进行浅比较，由于 A, B 组件之间无耦合关系，所以 B 的 Props 不会因上层状态改变而改变，从而避免了渲染。
+2. move state down。如果状态仅与 A 组件有关，则将状态降低到 A 组件内部，这样修改 A 状态则不会影响 B 的渲染。
+3. lift content up。将 B 通过 A 的 children 进行连接，虽然两者 DOM 结构耦合到了一起，但从代码来看，B 的 Props 来自于 A 和 B 的父组件，而 A 的状态变化不会影响父组件状态变化，从而不会导致 B 重新渲染。
+
 ## 有哪些优化 React 代码的手段？
 
 1. 验证是否正在运行一个生产环境的构建。（开发环境构建会刻意地缓慢一些，极端情况下可能会慢一个数量级）
@@ -12,6 +24,10 @@ description: ''
 3. 运行 React 开发者工具来检测是什么导致了二次渲染，以及在高开销的子树上包裹 memo()。（以及在需要的地方使用 useMemo()）
 
 ## 为什么
+
+> React v18.2.0
+
+在 React 的 reconciliation 阶段，beginWork 是调度节点更新的入口方法。在这个方法的开始，有一个对于可直接复用上一次渲染结果的判断。代码如下：
 
 ```js
 function beginWork(current: Fiber | null, workInProgress: Fiber, renderLanes: Lanes): Fiber | null {
@@ -21,100 +37,103 @@ function beginWork(current: Fiber | null, workInProgress: Fiber, renderLanes: La
     const oldProps = current.memoizedProps
     const newProps = workInProgress.pendingProps
 
-    if (
-      oldProps !== newProps ||
-      hasLegacyContextChanged() ||
-      (__DEV__ ? workInProgress.type !== current.type : false)
-    ) {
+    if (oldProps !== newProps || hasLegacyContextChanged()) {
       didReceiveUpdate = true
-    } else if (!includesSomeLane(renderLanes, updateLanes)) {
-      didReceiveUpdate = false
-      // ...
-
-      return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes)
+    } else {
+      const hasScheduledUpdateOrContext = checkScheduledUpdateOrContext(current, renderLanes)
+      if (!hasScheduledUpdateOrContext && (workInProgress.flags & DidCapture) === NoFlags) {
+        didReceiveUpdate = false
+        // 该方法进入 bailoutOnAlreadyFinishedWork 逻辑
+        return attemptEarlyBailoutIfNoScheduledUpdate(current, workInProgress, renderLanes)
+      }
     }
   } else {
     didReceiveUpdate = false
   }
 
-  workInProgress.lanes = NoLanes
-
-  // reconcileChildren
+  // ... reconcileChildren
 }
 ```
 
-`bailoutOnAlreadyFinishedWork`是复用上一次渲染的结果，可以看到进入该方法的判断条件：
+预设 `bailoutOnAlreadyFinishedWork` 是直接复用旧节点的的方法，可以看到进入该方法的判断条件：
 
 1. oldProps === newProps
-2. context 没被修改
-3. 不包含与本次 fiber 一致优先级的更新
+2. fiber 不包含与本次更新一致优先级的更新（检查 state 或 context）
 
-当不属于这三种情况时，则会出发 React 渲染组件。
+当符合上述条件进入 bailout 逻辑，则不会重新调度节点，可以直接复用上一次渲染结果。明白这一点后，可以结合文章中的几种情况各种检查原因了。
 
-- `Origin`
+### 原始代码
 
-  每一次 rerender 对于`ExpensiveTree`来说都是调用了 `React.createElement(ExpensiveTree, null))`。
+每一次 rerender 对于 `ExpensiveTree` 来说都是调用了 `React.createElement(ExpensiveTree, null))`。
 
-  ```js
-  export function createElement(type, config, children) {
-    let propName
+```js
+export function createElement(type, config, children) {
+  let propName
 
-    // Reserved names are extracted
-    const props = {}
+  // Reserved names are extracted
+  const props = {}
 
+  // ...
+
+  if (config !== null) {
     // ...
+    props[propName] = config[propName]
+  }
 
-    if (config !== null) {
-      // ...
-      props[propName] = config[propName]
-    }
+  // ...
 
+  return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props)
+}
+```
+
+config 为 null，最后生成的 props 是 `{}`，由于 `{}==={}` 的判断结果是 `false`，所以`条件1: oldProps === newProps`不符合，无法进入 bailout 逻辑，会触发渲染。
+
+### 使用 memo
+
+`memo` 方法会将 `$$typeof` 标记为 `REACT_MEMO_TYPE`，在构建 fiber 过程中，会根据 `$$typeof` 将 tag 赋值为 `MemoComponent`。
+
+在 `beginWork` 的条件里，其实是不符合 `条件1` 跳过了第一次的 bailout。
+
+但在接下来 `reconcileChildren` 的阶段中，根据 `workInProgress.tag` 进入`updateMemoComponent`方法中，可以看到一个类似`beginWork`的过程：
+
+```js
+function updateMemoComponent() {
+  if (current === null) {
     // ...
-
-    return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props)
+    return child
   }
-  ```
-
-  由于 `{}==={}` 返回`false`，所以`条件1`不符合，会触发渲染。
-
-- memo
-
-  `memo`方法会将`fiber.tag`标记为`SimpleMemoComponent`。在`beginWork`的条件里，其实是不符合`条件1`跳过了第一次的`bailoutOnAlreadyFinishedWork`。
-
-  在接下来根据`tag`进入`updateSimpleMemoComponent`方法中，可以看到一个类似`beginWork`的过程：
-
-  ```js
-  function updateSimpleMemoComponent() {
-    if (current !== null) {
-      const prevProps = current.memoizedProps
-      if (
-        // memo条件1
-        shallowEqual(prevProps, nextProps) &&
-        current.ref === workInProgress.ref
-      ) {
-        didReceiveUpdate = false
-        // memo条件2
-        if (!includesSomeLane(renderLanes, updateLanes)) {
-          workInProgress.lanes = current.lanes
-          return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes)
-        }
-      }
+  const hasScheduledUpdateOrContext = checkScheduledUpdateOrContext(current, renderLanes)
+  if (!hasScheduledUpdateOrContext) {
+    const prevProps = currentChild.memoizedProps
+    let compare = Component.compare
+    compare = compare !== null ? compare : shallowEqual
+    if (compare(prevProps, nextProps) && current.ref === workInProgress.ref) {
+      return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes)
     }
-    return updateFunctionComponent()
   }
-  ```
+  return newChild
+}
+```
 
-  在本例中，符合`memo`条件，所以仍然可以执行到`bailoutOnAlreadyFinishedWork`。
+同样检查是否有同一优先级的更新后，通过 `shallowEqual` 浅比较前后 props 如果没有变化则符合 bailout 条件。
 
-- move state down
+> 浅比较：将对象的相同的 key 的值依次对比，而不是对象整个对比, 在浅比较的情况下 `{} === {}` 返回 true
 
-  这种情况下，`ColorPicker`和`ExpensiveTree`已经分别属于两个组件了，修改`ColorPicker`不会影响到`ExpensiveTree`，所以`ExpensiveTree`可以一直复用。
+### move state down
 
-- lift content up
+这种情况下，`ColorPicker`和`ExpensiveTree`已经分别属于两个组件了，修改 `ColorPicker` 不会影响到 `ExpensiveTree`，所以 `ExpensiveTree` 可以一直复用。
 
-  在`LiftContentUp`中，对于`ExpensiveTree`来说，它在`ColorPicker`中意味着是`props.children`。
+### lift content up
 
-  对于`ColorPicker`来说，它的`props.children` 在 App 中没有重新渲染，props 也没有改变。在`setState`中并没有发生变化。
+在 `LiftContentUp` 中，对于 `ExpensiveTree` 来说，它在 `ColorPicker` 中意味着是 `props.children`。
+
+对于 `ColorPicker` 来说，它的 `props.children` 在 App 中 props 也没有改变。在 `setState` 也没有发生变化。
+
+所以，在调度到 ExpensiveTree 也符合 bailout 的条件。
+
+### bailout
+
+我们最后来看一下 bailout 方法的实现，可以看到该方法最后通过复制节点完成了复用的能力。
 
 ```js
 function bailoutOnAlreadyFinishedWork(
@@ -122,41 +141,12 @@ function bailoutOnAlreadyFinishedWork(
   workInProgress: Fiber,
   renderLanes: Lanes,
 ): Fiber | null {
-  if (current !== null) {
-    // Reuse previous dependencies
-    workInProgress.dependencies = current.dependencies
-  }
-
-  markSkippedUpdateLanes(workInProgress.lanes)
-
-  // Check if the children have any pending work.
   if (!includesSomeLane(renderLanes, workInProgress.childLanes)) {
-    // The children don't have any work either. We can skip them.
-    // TODO: Once we add back resuming, we should check if the children are
-    // a work-in-progress set. If so, we need to transfer their effects.q
     return null
-  } else {
-    // This fiber doesn't have work, but its subtree does. Clone the child fibers and continue.
-    cloneChildFibers(current, workInProgress)
-    return workInProgress.child
   }
-}
-
-function performUnitOfWork(unitOfWork: Fiber): void {
-  const current = unitOfWork.alternate
-  setCurrentDebugFiberInDEV(unitOfWork)
-
-  let next = beginWork(current, unitOfWork, subtreeRenderLanes)
-
-  unitOfWork.memoizedProps = unitOfWork.pendingProps
-  if (next === null) {
-    // If this doesn't spawn new work, complete the current work.
-    completeUnitOfWork(unitOfWork)
-  } else {
-    workInProgress = next
-  }
-
-  ReactCurrentOwner.current = null
+  // 复用节点
+  cloneChildFibers(current, workInProgress)
+  return workInProgress.child
 }
 ```
 
