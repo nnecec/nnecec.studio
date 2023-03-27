@@ -15,6 +15,10 @@ const NAV_LINKS = [
     to: '/posts',
   },
   {
+    label: 'Projects',
+    to: '/projects',
+  },
+  {
     label: 'About',
     to: '/about',
   },
