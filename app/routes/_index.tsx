@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 
-import { Layout } from '~/ui'
+import { Layout } from '~/components/layout'
+import { UI } from '~/utils/constants'
 
 const WavingHand = () => (
   <motion.div
@@ -24,15 +25,14 @@ const WavingHand = () => (
 const Index = () => {
   return (
     <Layout>
-      <section className="mt-[-96px] flex h-screen items-center">
+      <section className={`mt-[-${UI.headerHeight}px] flex h-screen items-center`}>
         <h1 className="max-w-5xl text-7xl">
           <WavingHand />
           <br />
           Hi, I'm nnecec.
           <span className="text-5xl opacity-70">
-            This is my blog. I share through my writing my experience as a
-            frontend engineer and everything I'm learning about on JavaScript,
-            React and more.
+            This is my blog. I share through my writing my experience as a frontend engineer and
+            everything I'm learning about on JavaScript, React and more.
           </span>
         </h1>
       </section>

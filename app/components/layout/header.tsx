@@ -2,6 +2,7 @@ import { NavLink } from '@remix-run/react'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import { useWindowScroll } from '~/hooks/window-scroll'
+import { UI } from '~/utils/constants'
 
 import { ThemeSwitch } from '../theme/switch'
 
@@ -30,7 +31,7 @@ export const Header = () => {
   return (
     <header
       className={clsx(
-        'fixed top-0 z-[999] flex h-[96px] w-screen bg-transparent backdrop-blur',
+        `fixed top-0 z-[999] flex h-[${UI.headerHeight}px] w-screen bg-transparent backdrop-blur`,
         y > 50 && 'shadow transition-shadow',
       )}
     >
