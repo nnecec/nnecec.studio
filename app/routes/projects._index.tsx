@@ -1,28 +1,9 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/node'
-import { json } from '@remix-run/node'
-import { Link, useLoaderData, useNavigate } from '@remix-run/react'
+import type { MetaFunction } from '@remix-run/node'
+import { Link } from '@remix-run/react'
 
-import type { Project } from '~/types/project'
-import { Layout, Tag } from '~/ui'
-
-const ProjectsList: Project[] = [
-  {
-    title: 'decox',
-    description: 'Decorate your picture of art.',
-    link: 'https://decox.vercel.app/',
-  },
-  {
-    title: 'afo',
-    description: 'Tools collection, mainly for React developing.',
-    link: 'https://github.com/nnecec/afo/',
-  },
-  {
-    title: 'config',
-    description:
-      'Front-end engineering config, includes ESLint, Prettier, TSConfig, Vite. Simple but useful.',
-    link: 'https://github.com/nnecec/config/',
-  },
-]
+import { Layout } from '~/components/layout'
+import { Poker } from '~/ui'
+import { ProjectsList, UI } from '~/utils/constants'
 
 export const meta: MetaFunction = () => {
   return {
@@ -31,13 +12,20 @@ export const meta: MetaFunction = () => {
 }
 
 const PostsPage = () => {
-  const navigate = useNavigate()
-
   return (
     <Layout>
-      <div className="relative mx-auto py-4">
+      <div
+        className="relative mx-auto py-4 grid grid-cols-2 gap-4"
+        style={{ height: `calc(100vh - ${UI.headerHeight}px)` }}
+      >
         {ProjectsList.map(project => (
-          <div key={project.title}>{project.title}</div>
+          <Link key={project.title} to={project.link} target="_blank" className="block">
+            <Poker
+              className="border border-neutral-300 dark:border-neutral-700"
+              title={project.title}
+              description={project.description}
+            />
+          </Link>
         ))}
       </div>
     </Layout>
