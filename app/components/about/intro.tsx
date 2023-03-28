@@ -1,115 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import type { TablerIconsProps } from '@tabler/icons-react'
-import {
-  IconBeach,
-  IconCamera,
-  IconChefHat,
-  IconCode,
-  IconMusic,
-} from '@tabler/icons-react'
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useScroll,
-  useTransform,
-} from 'framer-motion'
-import colors from 'tailwindcss/colors'
-
-const delta = 12
-
-interface PokerProps {
-  style?: React.CSSProperties
-  title: React.ReactNode
-  description: React.ReactNode
-  icon: React.JSXElementConstructor<TablerIconsProps>
-}
-
-const PokerVariants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-  },
-}
-
-const Poker = ({
-  title,
-  description,
-  icon,
-  style,
-}: React.PropsWithChildren<PokerProps>) => {
-  const [hovering, setHovering] = useState(false)
-  const Icon = icon
-
-  const y = useMotionValue(0.5)
-  const x = useMotionValue(0.5)
-  const yp = useTransform(y, y => y * 100)
-  const xp = useTransform(x, x => x * 100)
-  const AccentColor = useMotionValue(colors.zinc[600])
-  const backgroundImage = useMotionTemplate`radial-gradient(circle at ${xp}% ${yp}%, ${AccentColor}, #0000000f)`
-
-  const rotateY = useTransform(x, [0, 1], [-delta, delta], {
-    clamp: true,
-  })
-  const rotateX = useTransform(y, [0, 1], [delta, -delta], {
-    clamp: true,
-  })
-
-  const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const bounds = e.currentTarget.getBoundingClientRect()
-    const xValue = (e.clientX - bounds.x) / e.currentTarget.clientWidth
-    const yValue = (e.clientY - bounds.y) / e.currentTarget.clientHeight
-
-    x.set(xValue, true)
-    y.set(yValue, true)
-    setHovering(true)
-  }
-
-  const onLeave = (e: React.PointerEvent<HTMLDivElement>) => {
-    x.set(0.5, true)
-    y.set(0.5, true)
-    setHovering(false)
-  }
-
-  return (
-    <motion.div
-      variants={PokerVariants}
-      onPointerMove={onMove}
-      onPointerLeave={onLeave}
-      style={{
-        ...style,
-        transition: 'transform .3s ease-out',
-        rotateY,
-        rotateX,
-      }}
-    >
-      <div className="relative h-full w-full cursor-pointer overflow-hidden rounded-2xl bg-base-200 shadow">
-        <div className="absolute top-[50%] flex w-full items-center justify-center p-8">
-          <div className="flex gap-2">
-            <div>
-              <Icon className="inline align-text-top" size={18} />
-            </div>
-            <div>
-              <h3 className="text-2xl">{title}</h3>
-              <p>{description}</p>
-            </div>
-          </div>
-        </div>
-        <motion.div
-          className="absolute inset-0 transition-opacity duration-300"
-          style={{
-            opacity: hovering ? 0.3 : 0,
-            backgroundImage: hovering ? backgroundImage : 'none',
-          }}
-         />
-      </div>
-    </motion.div>
-  )
-}
+import { useEffect, useState } from 'react'
+import { IconBeach, IconCamera, IconChefHat, IconCode, IconMusic } from '@tabler/icons-react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Poker } from '~/ui/poker'
 
 export const Intro = () => {
   const [showGrid, setShowGrid] = useState(false)
@@ -190,32 +82,32 @@ export const Intro = () => {
                 icon={IconCode}
                 title="Coder"
                 description="Create beautiful and high-performance web applications."
-               />
+              />
               <Poker
                 style={{ gridArea: 'feat-1' }}
                 icon={IconChefHat}
                 title="Chef"
                 description="I'm the family chef, trying to make wonderful food for my family."
-               />
+              />
 
               <Poker
                 style={{ gridArea: 'feat-2' }}
                 icon={IconBeach}
                 title="Traveler"
                 description="I like to stay at home, but my wife likes to go out and travel, so I have become a person who loves to travel."
-               />
+              />
               <Poker
                 style={{ gridArea: 'feat-3' }}
                 icon={IconCamera}
                 title="Photographer"
                 description="It's a hobby of mine to take great looking photos with my phone or camera."
-               />
+              />
               <Poker
                 style={{ gridArea: 'feat-4' }}
                 icon={IconMusic}
                 title="Guitar learner"
                 description="Ready to teach my daughter guitar, but I do not know how to play the guitar yet, is learning to play the guitar."
-               />
+              />
             </motion.div>
           </div>
         </div>
