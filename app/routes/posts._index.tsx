@@ -4,7 +4,8 @@ import { Link, useLoaderData, useNavigate } from '@remix-run/react'
 
 import { getAllPosts } from '~/services/post.server'
 import type { Post } from '~/types/post'
-import { Layout, Tag } from '~/ui'
+import { Tag } from '~/ui'
+import { Layout } from '~/components/layout'
 
 type LoaderData = {
   posts: Post[]
