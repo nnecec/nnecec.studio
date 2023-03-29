@@ -163,6 +163,12 @@ function reconcileChildFibers(
 
 ### completeWork
 
-对于 HostComponent ，React 将 DOM 节点的 props 提供给 DOM 元素，并通过 DOM 的方法如 `document.createElement` 构建 DOM 节点，将属性设置给 DOM 节点完成节点的构建工作。
+`beginWork` 执行完成后，会返回与之关联的下一个待执行的 fiber 节点。当节点树深度优先完成，最后一个节点会返回 null ，这时会调用 `completeWork` 并跳出 `workLoop` 循环。
 
-在由子节点依次执行 completeWork 到根节点后，完成 reconciliation 阶段。
+在由子节点依次执行按照 sibling - return - sibling 直到最后遍历到根节点，完成 completeWork 阶段，此时也完成了 reconciliation 阶段的工作。
+
+completeWork 方法主要做了如下事情：
+
+- 对于 HostComponent ，React 将 DOM 节点的 props 提供给 DOM 元素，并通过 DOM 的方法如 `document.createElement` 构建 DOM 节点，将属性设置给 DOM 节点完成节点的构建工作。
+
+## 总结
