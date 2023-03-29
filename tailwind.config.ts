@@ -1,5 +1,9 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+import { fontFamily } from 'tailwindcss/defaultTheme'
+import colors from 'tailwindcss/colors'
+import daisyui from 'daisyui'
+import typography from '@tailwindcss/typography'
+
+import type { Config } from 'tailwindcss'
 
 const light = {
   primary: colors.rose[500],
@@ -35,8 +39,7 @@ const dark = {
   'base-content': colors.zinc[200],
 }
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./app/**/*.{ts,tsx,js,jsx}'],
   darkMode: 'class',
   theme: {
@@ -52,8 +55,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  plugins: [typography, daisyui],
   daisyui: {
     themes: [{ light, dark }],
   },
-}
+} satisfies Config
