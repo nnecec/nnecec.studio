@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { IconBeach, IconCamera, IconChefHat, IconCode, IconMusic } from '@tabler/icons-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+
 import { Poker } from '~/ui/poker'
 
 export const Intro = () => {

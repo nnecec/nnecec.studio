@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+
 import { useRafState } from './request-animation-state'
 
 export interface State {
@@ -27,8 +28,8 @@ export const useWindowScroll = (): State => {
       })
     }
 
-    //We have to update window scroll at mount, before subscription.
-    //Window scroll may be changed between render and effect handler.
+    // We have to update window scroll at mount, before subscription.
+    // Window scroll may be changed between render and effect handler.
     handler()
 
     window.addEventListener('scroll', handler, {

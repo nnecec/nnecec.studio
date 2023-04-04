@@ -1,5 +1,6 @@
-import type { Dispatch, SetStateAction } from 'react'
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+
+import type { Dispatch, SetStateAction } from 'react'
 
 const isBrowser = typeof document !== 'undefined'
 const noop = () => {}
@@ -27,9 +28,9 @@ export const useLocalStorage = <T>(
   }
 
   const deserializer = options
-    ? options.raw
+    ? (options.raw
       ? (value: any) => value
-      : options.deserializer
+      : options.deserializer)
     : JSON.parse
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -88,7 +89,7 @@ export const useLocalStorage = <T>(
   const remove = useCallback(() => {
     try {
       localStorage.removeItem(key)
-      setState(undefined)
+      setState()
     } catch {
       // If user is in private mode or has storage restriction
       // localStorage can throw.

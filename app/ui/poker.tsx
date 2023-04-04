@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import type { TablerIconsProps } from '@tabler/icons-react'
+import clsx from 'clsx'
 import { motion, useMotionTemplate, useMotionValue, useTransform } from 'framer-motion'
 import colors from 'tailwindcss/colors'
-import clsx from 'clsx'
+
+import type { TablerIconsProps } from '@tabler/icons-react'
 
 const delta = 12
 
@@ -81,7 +82,7 @@ export const Poker = ({
       <div
         className={clsx(
           className,
-          'relative h-full w-full cursor-pointer overflow-hidden rounded-2xl bg-base-200 shadow',
+          'bg-base-200 relative h-full w-full cursor-pointer overflow-hidden rounded-2xl shadow',
         )}
       >
         <div className="absolute top-[50%] flex w-full items-center p-8">
@@ -92,7 +93,7 @@ export const Poker = ({
               </div>
             )}
             <div>
-              <h3 className="text-3xl mb-4">{title}</h3>
+              <h3 className="mb-4 text-3xl">{title}</h3>
               <p>{description}</p>
             </div>
           </div>

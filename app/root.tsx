@@ -1,4 +1,3 @@
-import type { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import {
   Links,
@@ -9,14 +8,16 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from '@remix-run/react'
+import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
+
 import { ThemeProvider, useTheme } from '~/components/theme'
+import { SITE_CONFIG } from '~/utils/constants'
+
+import type { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node'
 
 import customStyle from './styles/custom.css'
 import indexStyle from './styles/index.css'
-
-import { SITE_CONFIG } from '~/utils/constants'
-import clsx from 'clsx'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: indexStyle },

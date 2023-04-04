@@ -1,6 +1,7 @@
 import Markdoc from '@markdoc/markdoc'
-import { heading } from '~/ui/markdown/heading.markdoc'
+
 import { fence } from '~/ui/markdown/fence.markdoc'
+import { heading } from '~/ui/markdown/heading.markdoc'
 
 /**
  * Parse markdown to HTML string with {@link https://github.com/markdoc/markdoc}
@@ -14,7 +15,7 @@ export async function markdownToHtml(markdown: string) {
   const content = Markdoc.transform(ast, {
     nodes: {
       heading,
-      fence
+      fence,
     },
   })
 

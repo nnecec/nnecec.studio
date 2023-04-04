@@ -1,7 +1,7 @@
-import { fontFamily } from 'tailwindcss/defaultTheme'
-import colors from 'tailwindcss/colors'
-import daisyui from 'daisyui'
 import typography from '@tailwindcss/typography'
+import daisyui from 'daisyui'
+import colors from 'tailwindcss/colors'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 import type { Config } from 'tailwindcss'
 
