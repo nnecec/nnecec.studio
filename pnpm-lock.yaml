@@ -3,7 +3,7 @@ lockfileVersion: '6.0'
 dependencies:
   '@markdoc/markdoc':
     specifier: ^0.2.2
-    version: 0.2.2(@types/react@18.0.32)(react@18.2.0)
+    version: 0.2.2(@types/react@18.0.33)(react@18.2.0)
   '@motionone/utils':
     specifier: ^10.15.1
     version: 10.15.1
@@ -17,8 +17,8 @@ dependencies:
     specifier: ^1.15.0
     version: 1.15.0(@vercel/node@2.10.2)
   '@tabler/icons-react':
-    specifier: ^2.13.1
-    version: 2.13.1(react@18.2.0)
+    specifier: ^2.13.2
+    version: 2.13.2(react@18.2.0)
   '@tailwindcss/typography':
     specifier: ^0.5.9
     version: 0.5.9(tailwindcss@3.3.1)
@@ -88,8 +88,8 @@ devDependencies:
     specifier: ^1.26.0
     version: 1.26.0
   '@types/react':
-    specifier: ^18.0.32
-    version: 18.0.32
+    specifier: ^18.0.33
+    version: 18.0.33
   '@types/react-copy-to-clipboard':
     specifier: ^5.0.4
     version: 5.0.4
@@ -103,8 +103,8 @@ devDependencies:
     specifier: ^8.37.0
     version: 8.37.0
   husky:
-    specifier: ^8.0.0
-    version: 8.0.0
+    specifier: ^8.0.3
+    version: 8.0.3
   npm-run-all:
     specifier: ^4.1.5
     version: 4.1.5
@@ -1962,7 +1962,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: false
 
-  /@markdoc/markdoc@0.2.2(@types/react@18.0.32)(react@18.2.0):
+  /@markdoc/markdoc@0.2.2(@types/react@18.0.33)(react@18.2.0):
     resolution: {integrity: sha512-0TiD9jmA5h5znN4lxo7HECAu3WieU5g5vUsfByeucrdR/x88hEilpt16EydFyJwJddQ/3w5HQgW7Ovy62r4cyw==}
     engines: {node: '>=14.7.0'}
     peerDependencies:
@@ -1974,7 +1974,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 18.0.32
+      '@types/react': 18.0.33
       react: 18.2.0
     optionalDependencies:
       '@types/markdown-it': 12.2.3
@@ -2261,7 +2261,7 @@ packages:
     dependencies:
       '@remix-run/router': 1.5.0
       '@types/cookie': 0.4.1
-      '@types/react': 18.0.32
+      '@types/react': 18.0.33
       '@web3-storage/multipart-parser': 1.0.0
       cookie: 0.4.2
       set-cookie-parser: 2.6.0
@@ -2334,18 +2334,18 @@ packages:
       defer-to-connect: 2.0.1
     dev: true
 
-  /@tabler/icons-react@2.13.1(react@18.2.0):
-    resolution: {integrity: sha512-YPqwdEj5T/ld5Ub00yY96rbJbys5IrmssG8f+mzSUaj3zic4DEezZhRRslRk/9gnVeUW3Qfi4p16tiBdBMdxFQ==}
+  /@tabler/icons-react@2.13.2(react@18.2.0):
+    resolution: {integrity: sha512-orkRLOOA3jpHE5prNhBzKEBlVCc5sO5SuRBRk9mjNen2uqoIeBJTkJqquhWIIR2uHqmhP+PUls0MtEqW+qjbIA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@tabler/icons': 2.13.1
+      '@tabler/icons': 2.13.2
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
 
-  /@tabler/icons@2.13.1:
-    resolution: {integrity: sha512-hQkYW9+tnRUlnm3WDpNGLEB2FS6gyMdDb7eubmGjaWOtc9SK4CdBus465UGfx3M8FahlcOoS5BdzuaABrl/OMw==}
+  /@tabler/icons@2.13.2:
+    resolution: {integrity: sha512-sMqkSTAwkLIYIV+Uu/B7MdomR7tHPpwE9YzMtBJgqhK/seiUk5iPoQbTHdS7lbEHqNluAsx2velLCVtM7QilWw==}
     dev: false
 
   /@tailwindcss/typography@0.5.9(tailwindcss@3.3.1):
@@ -2531,17 +2531,17 @@ packages:
   /@types/react-copy-to-clipboard@5.0.4:
     resolution: {integrity: sha512-otTJsJpofYAeaIeOwV5xBUGpo6exXG2HX7X4nseToCB2VgPEBxGBHCm/FecZ676doNR7HCSTVtmohxfG2b3/yQ==}
     dependencies:
-      '@types/react': 18.0.32
+      '@types/react': 18.0.33
     dev: true
 
   /@types/react-dom@18.0.11:
     resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
     dependencies:
-      '@types/react': 18.0.32
+      '@types/react': 18.0.33
     dev: true
 
-  /@types/react@18.0.32:
-    resolution: {integrity: sha512-gYGXdtPQ9Cj0w2Fwqg5/ak6BcK3Z15YgjSqtyDizWUfx7mQ8drs0NBUzRRsAdoFVTO8kJ8L2TL8Skm7OFPnLUw==}
+  /@types/react@18.0.33:
+    resolution: {integrity: sha512-sHxzVxeanvQyQ1lr8NSHaj0kDzcNiGpILEVt69g9S31/7PfMvNCKLKcsHw4lYKjs3cGNJjXSP4mYzX43QlnjNA==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
@@ -5845,8 +5845,8 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
-  /husky@8.0.0:
-    resolution: {integrity: sha512-4qbE/5dzNDNxFEkX9MNRPKl5+omTXQzdILCUWiqG/lWIAioiM5vln265/l6I2Zx8gpW8l1ukZwGQeCFbBZ6+6w==}
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
