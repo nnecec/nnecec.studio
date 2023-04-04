@@ -61,6 +61,9 @@ dependencies:
   tailwindcss:
     specifier: ^3.3.1
     version: 3.3.1(postcss@8.4.21)
+  ts-dedent:
+    specifier: ^2.2.0
+    version: 2.2.0
 
 devDependencies:
   '@nnecec/eslint-config':
