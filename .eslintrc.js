@@ -6,4 +6,7 @@ module.exports = {
     '@remix-run/eslint-config',
     '@remix-run/eslint-config/node',
   ],
+  rules: {
+    camelcase: ['error', { allow: ['^V2_', '^v2_', 'unstable_'] }],
+  },
 }

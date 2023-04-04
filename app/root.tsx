@@ -14,7 +14,7 @@ import { AnimatePresence } from 'framer-motion'
 import { ThemeProvider, useTheme } from '~/components/theme'
 import { SITE_CONFIG } from '~/utils/constants'
 
-import type { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node'
+import type { LinksFunction, LoaderFunction, V2_MetaFunction } from '@remix-run/node'
 
 import customStyle from './styles/custom.css'
 import indexStyle from './styles/index.css'
@@ -31,14 +31,10 @@ export const links: LinksFunction = () => [
   { rel: 'shortcut icon', href: '/favicon/favicon.ico' },
 ]
 
-export const meta: MetaFunction = () => ({
-  charset: 'utf-8',
-  title: SITE_CONFIG.title,
-  viewport: 'width=device-width,initial-scale=1',
-  'msapplication-TileColor': '#000000',
-  'theme-color': '#000',
-  description: SITE_CONFIG.description,
-})
+export const meta: V2_MetaFunction = () => [
+  { title: SITE_CONFIG.title },
+  { name: 'description', content: SITE_CONFIG.description },
+]
 type LoaderData = {
   trackingId: string | undefined
 }
@@ -52,10 +48,14 @@ export const loader: LoaderFunction = async () => {
 const App = () => {
   const { trackingId } = useLoaderData<LoaderData>()
   const { prefersTheme } = useTheme()
-  
+
   return (
     <html lang="en" className={clsx(prefersTheme)} data-theme={clsx(prefersTheme)}>
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="theme-color" content="#000" />
+        <meta name="msapplication-TileColor" content="#000" />
         <Meta />
         <Links />
       </head>

@@ -6,7 +6,7 @@ import { getAllPosts } from '~/services/post.server'
 import type { Post } from '~/types/post'
 import { Tag } from '~/ui'
 
-import type { LoaderFunction, MetaFunction } from '@remix-run/node'
+import type { LoaderFunction, V2_MetaFunction } from '@remix-run/node'
 
 type LoaderData = {
   posts: Post[]
@@ -14,11 +14,11 @@ type LoaderData = {
   tag?: string
 }
 
-export const meta: MetaFunction = () => {
-  return {
+export const meta: V2_MetaFunction = () => [
+  {
     title: '文章列表',
-  }
-}
+  },
+]
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url)

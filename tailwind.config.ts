@@ -44,6 +44,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      spacing: {
+        header: '96px',
+      },
       colors: {
         primary: 'hsl(var(--p))',
         secondary: 'hsl(var(--s))',
