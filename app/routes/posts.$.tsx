@@ -10,24 +10,28 @@ import { Tag } from '~/ui'
 import { Previewer } from '~/ui/markdown'
 import { SITE_CONFIG } from '~/utils/constants'
 
-import type { LoaderFunction, MetaFunction } from '@remix-run/node'
+import type { LoaderFunction, V2_MetaFunction } from '@remix-run/node'
 
 type LoaderData = {
   post: Post
 }
 
-export const meta: MetaFunction = ({ data }) => {
+export const meta: V2_MetaFunction = ({ data }) => {
   if (!data) {
-    return {
-      title: 'Missing post',
-    }
+    return [
+      {
+        title: 'Missing post',
+      },
+    ]
   }
 
   const { post } = data as LoaderData
-  return {
-    title: post.title,
-    description: post.description,
-  }
+  return [
+    {
+      title: post.title!,
+    },
+    { name: 'description', content: post.description ?? 'secrect post' },
+  ]
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -93,3 +97,5 @@ const PostPage = () => {
 }
 
 export default PostPage
+
+export {CommonErrorBoundary as ErrorBoundary} from '~/components/error-boundary'

@@ -32,7 +32,7 @@ export const Header = () => {
   return (
     <header
       className={clsx(
-        `h-[ fixed top-0 z-[999] flex${UI.headerHeight}px] w-screen bg-transparent backdrop-blur`,
+        `h-header fixed top-0 z-[999] flex w-screen bg-transparent backdrop-blur`,
         y > 50 && 'shadow transition-shadow',
       )}
     >

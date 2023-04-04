@@ -4,13 +4,13 @@ import { Layout } from '~/components/layout'
 import { Poker } from '~/ui'
 import { ProjectsList, UI } from '~/utils/constants'
 
-import type { MetaFunction } from '@remix-run/node'
+import type { V2_MetaFunction } from '@remix-run/node'
 
-export const meta: MetaFunction = () => {
-  return {
+export const meta: V2_MetaFunction = () => [
+  {
     title: "Projects' list",
-  }
-}
+  },
+]
 
 const PostsPage = () => {
   return (

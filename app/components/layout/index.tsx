@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-import { SITE_CONFIG, UI } from '~/utils/constants'
+import { SITE_CONFIG } from '~/utils/constants'
 
 import type { Variants } from 'framer-motion'
 import type { PropsWithChildren } from 'react'
@@ -45,7 +45,7 @@ export const Layout = ({
         initial="exit"
         animate="enter"
         exit="exit"
-        className={`pt-[ container mx-auto min-h-screen px-4${UI.headerHeight}px] md:px-0`}
+        className={`pt-header container mx-auto min-h-screen px-4 md:px-0`}
       >
         <div className={className}>{children}</div>
       </motion.main>

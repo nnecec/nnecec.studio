@@ -89,7 +89,8 @@ export const useLocalStorage = <T>(
   const remove = useCallback(() => {
     try {
       localStorage.removeItem(key)
-      setState()
+      // eslint-disable-next-line unicorn/no-useless-undefined
+      setState(undefined)
     } catch {
       // If user is in private mode or has storage restriction
       // localStorage can throw.

@@ -1,8 +1,6 @@
 import { createElement } from 'react'
 import clsx from 'clsx'
 
-import { UI } from '~/utils/constants'
-
 type HeadingProps = {
   id: string
   level: number
@@ -16,7 +14,7 @@ export const Heading = ({ id = '', level = 1, children, className }: HeadingProp
     {
       className: clsx('heading', className),
     },
-    [<div id={id} key={id} className={`target:pt-[${UI.headerHeight}px]`} />, children],
+    [<div id={id} key={id} className="target:pt-header" />, children],
   )
 
   return level === 1 ? link : <a href={`#${id}`}>{link}</a>
