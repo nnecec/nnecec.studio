@@ -31,7 +31,7 @@
     "@remix-run/node": "1.15.0",
     "@remix-run/react": "1.15.0",
     "@remix-run/vercel": "^1.15.0",
-    "@tabler/icons-react": "^2.13.1",
+    "@tabler/icons-react": "^2.13.2",
     "@tailwindcss/typography": "^0.5.9",
     "@vercel/node": "^2.10.2",
     "clsx": "^1.2.1",
@@ -56,12 +56,12 @@
     "@remix-run/server-runtime": "^1.15.0",
     "@types/node": "^18.15.11",
     "@types/prismjs": "^1.26.0",
-    "@types/react": "^18.0.32",
+    "@types/react": "^18.0.33",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.0.11",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.37.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
@@ -70,7 +70,7 @@
     "tailwindcss": "^3.3.1",
     "typescript": "^5.0.3"
   },
-  "packageManager": "pnpm@7.16.0",
+  "packageManager": "pnpm@8.0.0",
   "engines": {
     "node": ">=18"
   }
