@@ -1,24 +1,27 @@
-import Highlight, { defaultProps } from 'prism-react-renderer'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { IconCopy, IconCheck } from '@tabler/icons-react'
-import Mermaid from '../mermaid'
-import { theme } from './theme'
 import { useState } from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { IconCheck,IconCopy } from '@tabler/icons-react'
 import clsx from 'clsx'
+import Highlight, { defaultProps } from 'prism-react-renderer'
+
 import useTimeoutFn from '~/hooks/timeout'
+
+import Mermaid from '../mermaid'
+
+import { theme } from './theme'
 
 export const Fence = ({ children, 'data-language': language }: any) => {
   const [copied, setCopied] = useState(false)
-  const [, , reset] = useTimeoutFn(() => {
+  const reset = useTimeoutFn(() => {
     setCopied(false)
-  }, 2000)
+  }, 2000)[2]
 
   if (language === 'mermaid') {
     return <Mermaid>{children}</Mermaid>
   }
 
   return (
-    <div className="relative group">
+    <div className="group relative">
       <CopyToClipboard
         text={children}
         onCopy={() => {
@@ -26,7 +29,7 @@ export const Fence = ({ children, 'data-language': language }: any) => {
           reset()
         }}
       >
-        <button className="absolute right-4 top-4 btn btn-sm opacity-0 group-hover:opacity-100">
+        <button className="btn btn-sm absolute right-4 top-4 opacity-0 group-hover:opacity-100">
           <label className={clsx(copied && 'swap-active', 'swap')}>
             <div className="swap-on">
               <IconCheck />

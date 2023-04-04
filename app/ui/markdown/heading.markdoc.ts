@@ -1,5 +1,6 @@
-import type { Schema } from '@markdoc/markdoc'
 import { Tag } from '@markdoc/markdoc'
+
+import type { Schema } from '@markdoc/markdoc'
 
 export const heading: Schema = {
   render: 'Heading',
@@ -19,7 +20,7 @@ export const heading: Schema = {
     const id = children
       .filter(child => typeof child === 'string')
       .join(' ')
-      .replace(/[?]/g, '')
+      .replace(/\?/g, '')
       .replace(/\s+/g, '-')
       .toLowerCase()
 

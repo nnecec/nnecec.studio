@@ -1,11 +1,12 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Link, useLoaderData, useNavigate } from '@remix-run/react'
 
+import { Layout } from '~/components/layout'
 import { getAllPosts } from '~/services/post.server'
 import type { Post } from '~/types/post'
 import { Tag } from '~/ui'
-import { Layout } from '~/components/layout'
+
+import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 
 type LoaderData = {
   posts: Post[]

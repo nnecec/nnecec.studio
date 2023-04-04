@@ -1,9 +1,10 @@
-import type { MetaFunction } from '@remix-run/node'
 import { Link } from '@remix-run/react'
 
 import { Layout } from '~/components/layout'
 import { Poker } from '~/ui'
 import { ProjectsList, UI } from '~/utils/constants'
+
+import type { MetaFunction } from '@remix-run/node'
 
 export const meta: MetaFunction = () => {
   return {
@@ -15,7 +16,7 @@ const PostsPage = () => {
   return (
     <Layout>
       <div
-        className="relative mx-auto py-4 grid grid-cols-2 gap-4"
+        className="relative mx-auto grid grid-cols-2 gap-4 py-4"
         style={{ height: `calc(100vh - ${UI.headerHeight}px)` }}
       >
         {ProjectsList.map(project => (

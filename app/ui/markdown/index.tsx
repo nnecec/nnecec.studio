@@ -1,7 +1,8 @@
 import React from 'react'
 import Markdoc from '@markdoc/markdoc'
-import { Heading } from './heading'
+
 import { Fence } from './fence'
+import { Heading } from './heading'
 
 interface PreviewerProps {
   content: string

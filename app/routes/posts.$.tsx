@@ -1,15 +1,16 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { IconExternalLink } from '@tabler/icons-react'
 
+import { Layout } from '~/components/layout'
 import { markdownToHtml } from '~/services/markdown.server'
 import { getPost } from '~/services/post.server'
 import type { Post } from '~/types/post'
 import { Tag } from '~/ui'
-import { Layout } from '~/components/layout'
 import { Previewer } from '~/ui/markdown'
 import { SITE_CONFIG } from '~/utils/constants'
+
+import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 
 type LoaderData = {
   post: Post

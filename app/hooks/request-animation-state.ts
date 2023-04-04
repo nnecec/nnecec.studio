@@ -1,6 +1,6 @@
-import type { Dispatch, SetStateAction } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { useEffect, useCallback, useRef, useState } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 
 // React state hook that only updates state in the callback of requestAnimationFrame.
 // https://github.com/streamich/react-use/blob/master/src/useRafState.ts
@@ -24,5 +24,3 @@ export const useRafState = <S>(initialState: S | (() => S)): [S, Dispatch<SetSta
 
   return [state, setRafState]
 }
-
-

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 
-export default function useTimeoutFn(fn: Function, ms: number = 0) {
+export default function useTimeoutFn(fn: Function, ms = 0) {
   const ready = useRef<boolean | null>(false)
   const timeout = useRef<ReturnType<typeof setTimeout>>()
   const callback = useRef(fn)

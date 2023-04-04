@@ -1,7 +1,9 @@
 import { createContext, useContext } from 'react'
+
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
-import { useMedia } from '../../hooks/media'
+
 import { useLocalStorage } from '../../hooks/local-storage'
+import { useMedia } from '../../hooks/media'
 
 export type Theme = 'auto' | 'dark' | 'light'
 

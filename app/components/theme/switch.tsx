@@ -1,7 +1,9 @@
-import { IconMoon, IconSun, IconDeviceLaptop } from '@tabler/icons-react'
+import { IconDeviceLaptop,IconMoon, IconSun } from '@tabler/icons-react'
 import clsx from 'clsx'
-import type { Theme } from './provider'
+
 import { useTheme } from './provider'
+
+import type { Theme } from './provider'
 
 const options = [
   {
@@ -32,7 +34,7 @@ export const ThemeSwitch = () => {
       <label tabIndex={0} className="btn m-1">
         {active?.label}
       </label>
-      <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-52">
+      <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box w-52 p-2 shadow">
         {options.map(({ label, value }) => (
           <li key={value} onClick={() => changeTheme(value as Theme)}>
             <button className={clsx(active?.value === value && 'active')}>

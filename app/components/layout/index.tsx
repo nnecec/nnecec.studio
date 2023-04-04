@@ -1,8 +1,9 @@
-import type { PropsWithChildren } from 'react'
-import type { Variants } from 'framer-motion'
 import { motion } from 'framer-motion'
 
 import { SITE_CONFIG, UI } from '~/utils/constants'
+
+import type { Variants } from 'framer-motion'
+import type { PropsWithChildren } from 'react'
 
 import { Footer } from './footer'
 import { Header } from './header'
@@ -44,7 +45,7 @@ export const Layout = ({
         initial="exit"
         animate="enter"
         exit="exit"
-        className={`container mx-auto min-h-screen px-4 pt-[${UI.headerHeight}px] md:px-0`}
+        className={`pt-[ container mx-auto min-h-screen px-4${UI.headerHeight}px] md:px-0`}
       >
         <div className={className}>{children}</div>
       </motion.main>
