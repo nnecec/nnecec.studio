@@ -8,5 +8,6 @@ module.exports = {
   ],
   rules: {
     camelcase: ['error', { allow: ['^V2_', '^v2_', 'unstable_'] }],
+    'unicorn/filename-case': 'off',
   },
 }

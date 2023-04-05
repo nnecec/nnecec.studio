@@ -1,4 +1,4 @@
-import { IconDeviceLaptop,IconMoon, IconSun } from '@tabler/icons-react'
+import { IconDeviceLaptop, IconMoon, IconSun } from '@tabler/icons-react'
 import clsx from 'clsx'
 
 import { useTheme } from './provider'
