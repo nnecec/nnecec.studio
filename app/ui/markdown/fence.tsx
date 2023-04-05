@@ -6,8 +6,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 
 import useTimeoutFn from '~/hooks/timeout'
 
-import Mermaid from '../mermaid'
-
+// import Mermaid from '../mermaid'
 import { theme } from './theme'
 
 export const Fence = ({ children, 'data-language': language }: any) => {
@@ -16,9 +15,9 @@ export const Fence = ({ children, 'data-language': language }: any) => {
     setCopied(false)
   }, 2000)[2]
 
-  if (language === 'mermaid') {
-    return <Mermaid>{children}</Mermaid>
-  }
+  // if (language === 'mermaid') {
+  //   return <Mermaid>{children}</Mermaid>
+  // }
 
   return (
     <div className="group relative">

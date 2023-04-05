@@ -17,8 +17,8 @@ dependencies:
     specifier: ^1.15.0
     version: 1.15.0(@vercel/node@2.10.2)
   '@tabler/icons-react':
-    specifier: ^2.13.2
-    version: 2.13.2(react@18.2.0)
+    specifier: ^2.14.0
+    version: 2.14.0(react@18.2.0)
   '@tailwindcss/typography':
     specifier: ^0.5.9
     version: 0.5.9(tailwindcss@3.3.1)
@@ -44,8 +44,8 @@ dependencies:
     specifier: ^3.6.8
     version: 3.6.8
   mermaid:
-    specifier: ^10.0.2
-    version: 10.0.2
+    specifier: ^10.1.0
+    version: 10.1.0(react-dom@18.2.0)(react@18.2.0)
   prism-react-renderer:
     specifier: ^1.3.5
     version: 1.3.5(react@18.2.0)
@@ -61,9 +61,6 @@ dependencies:
   tailwindcss:
     specifier: ^3.3.1
     version: 3.3.1(postcss@8.4.21)
-  ts-dedent:
-    specifier: ^2.2.0
-    version: 2.2.0
 
 devDependencies:
   '@nnecec/eslint-config':
@@ -1968,6 +1965,17 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: false
 
+  /@khanacademy/simple-markdown@0.8.6(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-mAUlR9lchzfqunR89pFvNI51jQKsMpJeWYsYWw0DQcUXczn/T/V6510utgvm7X0N3zN87j1SvuKk8cMbl9IAFw==}
+    peerDependencies:
+      react: 16.14.0
+      react-dom: 16.14.0
+    dependencies:
+      '@types/react': 18.0.33
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@markdoc/markdoc@0.2.2(@types/react@18.0.33)(react@18.2.0):
     resolution: {integrity: sha512-0TiD9jmA5h5znN4lxo7HECAu3WieU5g5vUsfByeucrdR/x88hEilpt16EydFyJwJddQ/3w5HQgW7Ovy62r4cyw==}
     engines: {node: '>=14.7.0'}
@@ -2340,18 +2348,18 @@ packages:
       defer-to-connect: 2.0.1
     dev: true
 
-  /@tabler/icons-react@2.13.2(react@18.2.0):
-    resolution: {integrity: sha512-orkRLOOA3jpHE5prNhBzKEBlVCc5sO5SuRBRk9mjNen2uqoIeBJTkJqquhWIIR2uHqmhP+PUls0MtEqW+qjbIA==}
+  /@tabler/icons-react@2.14.0(react@18.2.0):
+    resolution: {integrity: sha512-5lsXkV2T+ygKwrernJnnbkRtNdbBp8JANP17gdPHhhhVEUIuvaTWU+lDEwJFgyaChlepl5AwcFoMMhcnlPO6Hw==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@tabler/icons': 2.13.2
+      '@tabler/icons': 2.14.0
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
 
-  /@tabler/icons@2.13.2:
-    resolution: {integrity: sha512-sMqkSTAwkLIYIV+Uu/B7MdomR7tHPpwE9YzMtBJgqhK/seiUk5iPoQbTHdS7lbEHqNluAsx2velLCVtM7QilWw==}
+  /@tabler/icons@2.14.0:
+    resolution: {integrity: sha512-q4qFe8P0M0cwRlQajPtjucjVrRPVkv/aFHWrCm+HZH9eOkjYSyyFtn7/Zz7lkjBcGiPUkh08d/d3IvJToP/zvw==}
     dev: false
 
   /@tailwindcss/typography@0.5.9(tailwindcss@3.3.1):
@@ -3993,8 +4001,8 @@ packages:
       d3-zoom: 3.0.0
     dev: false
 
-  /dagre-d3-es@7.0.9:
-    resolution: {integrity: sha512-rYR4QfVmy+sR44IBDvVtcAmOReGBvRCWDpO2QjYwqgh9yijw6eSHBqaPG/LIOEy7aBsniLvtMW6pg19qJhq60w==}
+  /dagre-d3-es@7.0.10:
+    resolution: {integrity: sha512-qTCQmEhcynucuaZgY5/+ti3X/rnszKZhEQH/ZdWdtP1tA/y3VoHJzcVrO9pjjJCNpigfscAtoUB5ONcd2wNn0A==}
     dependencies:
       d3: 7.8.4
       lodash-es: 4.17.21
@@ -4250,8 +4258,8 @@ packages:
       domelementtype: 2.3.0
     dev: true
 
-  /dompurify@2.4.3:
-    resolution: {integrity: sha512-q6QaLcakcRjebxjg8/+NP+h0rPfatOgOzc46Fst9VAA3jF2ApfKBNKMzdP4DYTqtUMXSCd5pRS/8Po/OmoCHZQ==}
+  /dompurify@2.4.5:
+    resolution: {integrity: sha512-jggCCd+8Iqp4Tsz0nIvpcb22InKEBrGz5dw3EQJMs8HPJDsKbFIO3STYtAvCfDx26Muevn1MHVI0XxjgFfmiSA==}
     dev: false
 
   /domutils@3.0.1:
@@ -6859,17 +6867,18 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
-  /mermaid@10.0.2:
-    resolution: {integrity: sha512-slwoB9WdNUT+/W9VhxLYRLZ0Ey12fIE+cAZjm3FmHTD+0F1uoJETfsNbVS1POnvQZhFYzfT6/z6hJZXgecqVBA==}
+  /mermaid@10.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-LYekSMNJygI1VnMizAPUddY95hZxOjwZxr7pODczILInO0dhQKuhXeu4sargtnuTwCilSuLS7Uiq/Qn7HTVrmA==}
     dependencies:
       '@braintree/sanitize-url': 6.0.2
+      '@khanacademy/simple-markdown': 0.8.6(react-dom@18.2.0)(react@18.2.0)
       cytoscape: 3.23.0
       cytoscape-cose-bilkent: 4.1.0(cytoscape@3.23.0)
       cytoscape-fcose: 2.2.0(cytoscape@3.23.0)
       d3: 7.8.4
-      dagre-d3-es: 7.0.9
+      dagre-d3-es: 7.0.10
       dayjs: 1.11.7
-      dompurify: 2.4.3
+      dompurify: 2.4.5
       elkjs: 0.8.2
       khroma: 2.0.0
       lodash-es: 4.17.21
@@ -6878,6 +6887,9 @@ packages:
       ts-dedent: 2.2.0
       uuid: 9.0.0
       web-worker: 1.2.0
+    transitivePeerDependencies:
+      - react
+      - react-dom
     dev: false
 
   /methods@1.1.2:
