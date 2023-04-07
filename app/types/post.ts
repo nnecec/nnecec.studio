@@ -9,4 +9,11 @@ export type Post = {
   excerpt?: string
   prev?: Post
   next?: Post
+  headings?: Heading[]
+}
+
+export type Heading = {
+  title: string
+  id: string
+  level: number
 }

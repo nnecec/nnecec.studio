@@ -4,8 +4,7 @@
   font-family: 'Mona Sans';
   src: url('//github.githubassets.com/static/fonts/github/mona-sans.woff2')
       format('woff2 supports variations'),
-    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2')
-      format('woff2-variations');
+    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2') format('woff2-variations');
   font-weight: 200 900;
   font-stretch: 75% 125%;
 }
@@ -24,7 +23,7 @@ html {
 }
 
 .blog-post {
-  a {
+  article a {
     @apply mx-1 text-primary;
   }
   svg {

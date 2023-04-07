@@ -1,4 +1,5 @@
-import Markdoc from '@markdoc/markdoc'
+import Markdoc, { RenderableTreeNode } from '@markdoc/markdoc'
+import { Heading } from '~/types/post'
 
 import { fence } from '~/ui/markdown/fence.markdoc'
 import { heading } from '~/ui/markdown/heading.markdoc'
@@ -12,12 +13,33 @@ import { heading } from '~/ui/markdown/heading.markdoc'
 export async function markdownToHtml(markdown: string) {
   const ast = Markdoc.parse(markdown)
 
-  const content = Markdoc.transform(ast, {
+  return Markdoc.transform(ast, {
     nodes: {
       heading,
       fence,
     },
   })
+}
 
-  return content
+export function collectHeadings(node: any, sections: Heading[] = []) {
+  if (node) {
+    if (node.name === 'Heading') {
+      const title = node.children[0]
+
+      if (typeof title === 'string') {
+        sections.push({
+          ...node.attributes,
+          title,
+        })
+      }
+    }
+
+    if (node.children) {
+      for (const child of node.children) {
+        collectHeadings(child, sections)
+      }
+    }
+  }
+
+  return sections
 }

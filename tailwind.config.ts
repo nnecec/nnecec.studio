@@ -47,11 +47,6 @@ export default {
       spacing: {
         header: '96px',
       },
-      colors: {
-        primary: 'hsl(var(--p))',
-        secondary: 'hsl(var(--s))',
-        accent: 'hsl(var(--a))',
-      },
       fontFamily: {
         sans: ['Mona Sans', 'Inter', 'SF Pro SC', 'PingFang SC', ...fontFamily.sans],
         mono: ['Roboto Mono', 'Source Code Pro', ...fontFamily.mono],
