@@ -11,10 +11,10 @@ description: '深入 React 源码阅读推荐'
 
 1. [jsx 与 React](/posts/react/jsx): 了解 JSX 与 React 的关系
 2. [Fiber](/posts/react/fiber): 了解 Fiber 结构
-3. [reconciliation](/posts/react/reconciliation): React 调度更新任务(首次构建也是一次更新）的阶段
-4. [commit](/posts/react/commit): 当调度完成后，React 提交页面更新
+3. [reconciliation](/posts/react/reconciliation): React 调度更新任务（首次构建也是一次更新）的阶段
+4. [commit](/posts/react/commit): 当调度完成后，React 提交给页面以供渲染
 5. [rerender](/posts/react/rerender): 触发 React 的更新，将更新渲染到页面
-6. [scheduler](/posts/react/scheduler): 在更新阶段，如何实现优先级调度
+6. [scheduler](/posts/react/scheduler): 在调度阶段，如何实现由优先级控制的调度
 
 ### 技术实现
 

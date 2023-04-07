@@ -27,6 +27,7 @@ React 的 mount 和 update 都会经过 reconciliation 阶段，React 通过判�
 function beginWork(current: Fiber | null, workInProgress: Fiber, renderLanes: Lanes): Fiber | null {
   let updateLanes = workInProgress.lanes
 
+  // 更新阶段
   if (current !== null) {
     const oldProps = current.memoizedProps
     const newProps = workInProgress.pendingProps
@@ -105,7 +106,9 @@ export function reconcileChildren(
   }
 }
 
+// 更新阶段
 export const reconcileChildFibers = ChildReconciler(true)
+// 初始化构建阶段
 export const mountChildFibers = ChildReconciler(false)
 ```
 
@@ -114,7 +117,7 @@ export const mountChildFibers = ChildReconciler(false)
 `reconcileChildren` 方法根据 `mount` 和 `update` 的阶段不同，调用 `ChildReconciler` 时传入不同的 `shouldTrackSideEffects`。
 
 - 在 `mount` 阶段，构建对应的 fiber 节点即可。
-- 在 `update` 阶段，需要经过 [Diff 算法](/react/diff) 复用能够复用的节点，不能复用再创建新节点。
+- 在 `update` 阶段，需要经过 [Diff 算法](/react/diff) 判断是否能够复用旧节点，不能复用再创建新节点。
 
 对于 `update` 阶段来说，会在 `reconciliation` 阶段对需要更新、新增、删除的节点打上标记，等到 `commit` 阶段才会执行。而 `mount` 阶段则不需要标记 `effect`。
 
@@ -127,33 +130,27 @@ function reconcileChildFibers(
   returnFiber: Fiber,
   currentFirstChild: Fiber | null,
   newChild: any,
-  lanes: Lanes
+  lanes: Lanes,
 ): Fiber | null {
-  if (typeof newChild === "object" && newChild !== null) {
+  if (typeof newChild === 'object' && newChild !== null) {
     switch (newChild.$$typeof) {
       case REACT_ELEMENT_TYPE:
-        return ..
       case REACT_PORTAL_TYPE:
-        return ..
       case REACT_LAZY_TYPE:
-        if (enableLazyElements) {
-
-          return ..
-        }
+        return //..
     }
 
     if (isArray(newChild)) {
-      return ..
+      return // ..
     }
 
     if (getIteratorFn(newChild)) {
-      return ..
+      return // ..
     }
   }
 
-  if (typeof newChild === "string" || typeof newChild === "number") {
-    return ..
-    )
+  if (typeof newChild === 'string' || typeof newChild === 'number') {
+    return // ..
   }
 
   // Remaining cases are all treated as empty.
@@ -170,5 +167,7 @@ function reconcileChildFibers(
 completeWork 方法主要做了如下事情：
 
 - 对于 HostComponent ，React 将 DOM 节点的 props 提供给 DOM 元素，并通过 DOM 的方法如 `document.createElement` 构建 DOM 节点，将属性设置给 DOM 节点完成节点的构建工作。
+
+- 更新阶段：通过 diffProperties 方法，为 DOM 属性做 删除、更新、新增等操作
 
 ## 总结
