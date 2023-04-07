@@ -3,18 +3,14 @@ import { useLoaderData } from '@remix-run/react'
 import { IconExternalLink } from '@tabler/icons-react'
 
 import { Layout } from '~/components/layout'
-import { markdownToHtml } from '~/services/markdown.server'
+import { collectHeadings, markdownToHtml } from '~/services/markdown.server'
 import { getPost } from '~/services/post.server'
 import type { Post } from '~/types/post'
 import { Tag } from '~/ui'
-import { Previewer } from '~/ui/markdown'
+import { Previewer, TableOfContents } from '~/ui/markdown'
 import { SITE_CONFIG } from '~/utils/constants'
 
-import type { LoaderFunction, V2_MetaFunction } from '@remix-run/node'
-
-type LoaderData = {
-  post: Post
-}
+import type { LoaderArgs, V2_MetaFunction } from '@remix-run/node'
 
 export const meta: V2_MetaFunction = ({ data }) => {
   if (!data) {
@@ -25,7 +21,7 @@ export const meta: V2_MetaFunction = ({ data }) => {
     ]
   }
 
-  const { post } = data as LoaderData
+  const { post } = data
   return [
     {
       title: post.title!,
@@ -34,23 +30,23 @@ export const meta: V2_MetaFunction = ({ data }) => {
   ]
 }
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   const post = getPost(params['*'] as string)
 
-  const { content = '' } = post
+  const content = await markdownToHtml(post.content)
+  const headings = collectHeadings(content)
 
-  const html = await markdownToHtml(content || '')
-
-  return json<LoaderData>({
+  return json<{ post: Post }>({
     post: {
       ...post,
-      content: html,
+      content,
+      headings,
     },
   })
 }
 
 const PostPage = () => {
-  const { post } = useLoaderData<LoaderData>()
+  const { post } = useLoaderData<typeof loader>()
 
   return (
     <Layout>
@@ -89,6 +85,7 @@ const PostPage = () => {
           </div>
         </section>
         <div className="relative my-8 font-serif">
+          <TableOfContents headings={post.headings}></TableOfContents>
           <Previewer content={post.content} />
         </div>
       </article>
@@ -98,4 +95,4 @@ const PostPage = () => {
 
 export default PostPage
 
-export {CommonErrorBoundary as ErrorBoundary} from '~/components/error-boundary'
+export { CommonErrorBoundary as ErrorBoundary } from '~/components/error-boundary'

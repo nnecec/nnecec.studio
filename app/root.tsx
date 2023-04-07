@@ -20,8 +20,6 @@ import customStyle from './styles/custom.css'
 import indexStyle from './styles/index.css'
 
 export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: indexStyle },
-  { rel: 'stylesheet', href: customStyle },
   {
     rel: 'apple-touck-icon',
     href: '/favicon/apple-touch-icon.jpg',
@@ -29,6 +27,8 @@ export const links: LinksFunction = () => [
   },
   { rel: 'manifest', href: '/favicon/site.webmanifest' },
   { rel: 'shortcut icon', href: '/favicon/favicon.ico' },
+  { rel: 'stylesheet', href: indexStyle },
+  { rel: 'stylesheet', href: customStyle },
 ]
 
 export const meta: V2_MetaFunction = () => [
