@@ -161,6 +161,57 @@ function reconcileChildFibers(
 ### completeWork
 
 `beginWork` 执行完成后，会返回与之关联的下一个待执行的 fiber 节点。当节点树深度优先完成，最后一个节点会返回 null ，这时会调用 `completeWork` 并跳出 `workLoop` 循环。
+当 fiber 调度完成后，需要调用 `completeWork` 进行 DOM 构建的工作。
+
+例如对于 HostComponent ，
+
+- 在 mount 阶段，React 通过 DOM 的方法如 `document.createElement` 构建 DOM 节点，并根据 props 通过 `node.setAttribute` 添加属性，完成了构建节点的工作。
+- 在 update 阶段：通过 diffProperties 方法，为 DOM 属性做 删除、更新、新增等操作。
+
+```ts
+function completeWork(
+  current: Fiber | null,
+  workInProgress: Fiber,
+  renderLanes: Lanes,
+): Fiber | null {
+  const newProps = workInProgress.pendingProps
+  switch (workInProgress.tag) {
+    // ...
+    case HostComponent: {
+      const type = workInProgress.type
+      // 当存在 current 且 存在 stateNode 时
+      if (current !== null && workInProgress.stateNode != null) {
+        updateHostComponent(current, workInProgress, type, newProps, renderLanes)
+
+        if (current.ref !== workInProgress.ref) {
+          markRef(workInProgress)
+        }
+      } else {
+        const currentHostContext = getHostContext()
+        const rootContainerInstance = getRootHostContainer()
+        // 通过 createInstance 调用 document.createElement 构建 DOM 实例，此时构建出的实例属性为空
+        const instance = createInstance(
+          type,
+          newProps,
+          rootContainerInstance,
+          currentHostContext,
+          workInProgress,
+        )
+        // 将 DOM 实例与 workInProgress.stateNode 绑定
+        appendAllChildren(instance, workInProgress, false, false)
+        workInProgress.stateNode = instance
+
+        // 根据 props 为 DOM 实例添加属性
+        // 会根据 input select 等节点的不同有不同的设置逻辑
+        if (finalizeInitialChildren(instance, type, newProps, currentHostContext)) {
+          markUpdate(workInProgress)
+        }
+      }
+      return null
+    }
+  }
+}
+```
 
 在由子节点依次执行按照 sibling - return - sibling 直到最后遍历到根节点，完成 completeWork 阶段，此时也完成了 reconciliation 阶段的工作。
 
@@ -171,3 +222,5 @@ completeWork 方法主要做了如下事情：
 - 更新阶段：通过 diffProperties 方法，为 DOM 属性做 删除、更新、新增等操作
 
 ## 总结
+
+reconliliation 阶段主要结合 JSX 获得最新页面数据，在更新阶段的情况下会结合已有节点信息判断能否复用。计算得到 fiber 节点信息后，由渲染器如 ReactDOM 提供方法实现 DOM 节点的信息构建，两者通过 stateNode 进行关联。

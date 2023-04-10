@@ -14,16 +14,16 @@ description: '深入 React 源码阅读推荐'
 3. [reconciliation](/posts/react/reconciliation): React 调度更新任务（首次构建也是一次更新）的阶段
 4. [commit](/posts/react/commit): 当调度完成后，React 提交给页面以供渲染
 5. [rerender](/posts/react/rerender): 触发 React 的更新，将更新渲染到页面
-6. [scheduler](/posts/react/scheduler): 在调度阶段，如何实现由优先级控制的调度
+6. [scheduler](/posts/react/scheduler): React 的 Scheduler 机制
+7. [lane](/posts/react/lane): React 的优先级模型
 
 ### 技术实现
 
 1. [diff](/posts/react/diff): React Diff 算法
 2. [before you memo](/posts/react/before-you-memo): 进入 Diff 之前，React 如何判断节点可复用
 3. [synthetic-event](/posts/react/synthetic-event): React 合成事件实现
-4. [lane](/posts/react/lane): React 如何实现优先级策略
-5. [位运算](/posts/react/bitwise-operator): 位运算在 React 中的实践
-6. [hooks](/posts/react/hooks/basic): React Hooks 简要入门
+4. [位运算](/posts/react/bitwise-operator): 位运算在 React 中的实践
+5. [hooks](/posts/react/hooks/basic): React Hooks 简要入门
 
    1. [useState, useReducer](/posts/react/hooks/use-state-reducer)
    2. [useMemo](/posts/react/hooks/use-memo)
