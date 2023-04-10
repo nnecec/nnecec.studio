@@ -85,10 +85,7 @@ interface ScrollTextProps {
   velocity: number
 }
 
-function ScrollText({
-  words,
-  velocity,
-}: React.PropsWithChildren<ScrollTextProps>) {
+function ScrollText({ words, velocity }: React.PropsWithChildren<ScrollTextProps>) {
   const baseX = useMotionValue(0)
   const { scrollY } = useScroll()
   const scrollVelocity = useVelocity(scrollY)
@@ -113,7 +110,7 @@ function ScrollText({
     () =>
       words.map(word => (
         <div
-          className="text-8xl font-extrabold opacity-40 grayscale transition-all hover:opacity-60 hover:grayscale-0"
+          className="text-6xl font-extrabold opacity-40 grayscale transition-all hover:opacity-60 hover:grayscale-0 md:text-8xl"
           key={word.name}
           style={{ color: word.color }}
         >
@@ -141,11 +138,10 @@ export const Tech = () => {
       <div className="sticky top-0 h-screen">
         <div className="flex h-screen items-center">
           <div className="overflow-hidden">
-            <div className="container mx-auto">
-              <h2 className="mb-8 text-7xl">Technologies</h2>
-              <h4 className="mb-16 text-3xl text-gray-300">
-                Here are some of the technologies that I have used and have some
-                understanding of:
+            <div className="container mx-auto px-4">
+              <h2 className="mb-8 text-5xl md:text-7xl">Technologies</h2>
+              <h4 className="mb-16 text-2xl text-gray-300 md:text-3xl">
+                Here are some of the technologies that I have used and have some understanding of:
               </h4>
             </div>
 
