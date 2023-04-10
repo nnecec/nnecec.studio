@@ -20,7 +20,7 @@ export const Contact = () => {
         <div className="flex h-screen items-center justify-center">
           <div className="">
             <h2 className="mb-8 text-center text-7xl">Find me.</h2>
-            <div className="flex justify-center gap-4 text-center">
+            <div className="flex flex-wrap justify-center gap-4 text-center">
               <button className="btn" aria-label="email">
                 <Link to={`mailto:${SITE_CONFIG.email}`}>
                   <IconMail />

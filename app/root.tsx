@@ -20,15 +20,14 @@ import customStyle from './styles/custom.css'
 import indexStyle from './styles/index.css'
 
 export const links: LinksFunction = () => [
-  {
-    rel: 'apple-touck-icon',
-    href: '/favicon/apple-touch-icon.jpg',
-    sizes: '180x180',
-  },
-  { rel: 'manifest', href: '/favicon/site.webmanifest' },
-  { rel: 'shortcut icon', href: '/favicon/favicon.ico' },
   { rel: 'stylesheet', href: indexStyle },
   { rel: 'stylesheet', href: customStyle },
+  // generate by https://www.favicon.software/
+  { rel: 'icon', type: 'image/x-icon', href: '/favicon/favicon.ico' },
+  { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon/favicon-16x16.png' },
+  { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png' },
+  { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' },
+  { rel: 'manifest', href: '/favicon/site.webmanifest' },
 ]
 
 export const meta: V2_MetaFunction = () => [
