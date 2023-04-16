@@ -3,7 +3,7 @@ import { createContext, useContext } from 'react'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 
 import { useLocalStorage } from '../../hooks/local-storage'
-import { useMedia } from '../../hooks/media'
+import { useMediaQuery } from '../../hooks/media'
 
 export type Theme = 'auto' | 'dark' | 'light'
 
@@ -17,7 +17,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 function ThemeProvider({ children }: { children: ReactNode }) {
   const [selectedTheme = 'auto', setTheme] = useLocalStorage<Theme>('auto')
-  const prefersDarkMode = useMedia('(prefers-color-scheme: dark)', false)
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', false)
 
   const prefersTheme =
     selectedTheme === 'auto' ? (prefersDarkMode ? 'dark' : 'light') : selectedTheme

@@ -24,7 +24,7 @@ const WavingHand = () => (
 const Index = () => {
   return (
     <Layout>
-      <section className="-mt-header flex h-screen items-center">
+      <section className="-mt-header pt-header flex h-screen items-center">
         <h1 className="max-w-5xl text-7xl">
           <WavingHand />
           <br />

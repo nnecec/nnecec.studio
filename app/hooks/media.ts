@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 const isBrowser = typeof document !== 'undefined'
 
-const getInitialState = (query: string, defaultState?: boolean) => {
+const getInitialState = <T = any>(query: string, defaultState?: T) => {
   // Prevent a React hydration mismatch when a default value is provided by not defaulting to window.matchMedia(query).matches.
   if (defaultState !== undefined) {
     return defaultState
@@ -16,14 +16,14 @@ const getInitialState = (query: string, defaultState?: boolean) => {
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-console
     console.warn(
-      '`useMedia` When server side rendering, defaultState should be defined to prevent a hydration mismatches.',
+      '`useMediaQuery` When server side rendering, defaultState should be defined to prevent a hydration mismatches.',
     )
   }
 
   return false
 }
 
-export const useMedia = (query: string, defaultState?: boolean) => {
+export const useMediaQuery = <T = any>(query: string, defaultState?: T) => {
   const [state, setState] = useState(getInitialState(query, defaultState))
 
   useEffect(() => {

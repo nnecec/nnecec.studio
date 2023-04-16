@@ -7,7 +7,7 @@ description: '如何触发 React 中的状态更新，如何将更新提交给�
 
 ## 概念
 
-在 React 中，有如下方法可以触发状态更新：
+在 React 中，通过如下方法可以触发状态更新：
 
 - ReactDOM.render
 - this.setState
@@ -29,11 +29,11 @@ scheduled --> perform["调用 performSyncWorkOnRoot 或 performConcurrentWorkOnR
 perform --> commit["提交更新"]
 ```
 
-## 源码
+### 1. 创建更新
 
-### 创建更新
+通过如下几种方式，构建 Update 实例提供给`scheduleUpdateOnFiber` 调度更新。
 
-#### this.setState
+#### 1.1 this.setState
 
 ```ts
 // this.setState -> this.updater.enqueueSetState
@@ -46,7 +46,7 @@ enqueueSetState(inst, payload, callback) {
 }
 ```
 
-#### this.forceUpdate
+#### 1.2 this.forceUpdate
 
 ```ts
 // this.forceUpdate -> this.updater.enqueueForceUpdate
@@ -59,7 +59,7 @@ enqueueForceUpdate(inst, callback) {
 }
 ```
 
-#### useState/useReducer
+#### 1.3 useState/useReducer
 
 ```ts
 // useState/useReducer -> setState -> dispatchAction
@@ -77,7 +77,7 @@ function dispatchAction<S, A>(
   };
   const alternate = fiber.alternate;
 
-  // 根据不同流程，最终将 update 挂在到 fiber.updateQueue 上
+  // 根据不同流程，最终将 update 挂载到 fiber.updateQueue 上
   if (
     fiber === currentlyRenderingFiber ||
     (alternate !== null && alternate === currentlyRenderingFiber)
@@ -94,7 +94,7 @@ function dispatchAction<S, A>(
 }
 ```
 
-可以看到，所有的状态更新方法，有一个一样的过程是：创建 `update`，根据不同方法打上不同的标记，然后调用 `scheduleUpdateOnFiber` 进入调度更新，即 `reconciliation` 和 `commit`。
+可以看到，所有的状态更新方法，有一个一样的过程是：创建 `update`，根据不同方法打上不同的标记，然后调用 `scheduleUpdateOnFiber` 进入调度更新，即进入 `reconciliation` 和 `commit` 的流程。
 
 #### scheduleUpdateOnFiber
 
@@ -102,7 +102,7 @@ function dispatchAction<S, A>(
 export function scheduleUpdateOnFiber(
   fiber: Fiber,
   lane: Lane,
-  eventTime: number
+  eventTime: number,
 ): FiberRoot | null {
   // 从产生更新的 fiber 一直向上查找到 rootFiber 并为遍历过的 fiber 的 childLanes 打上标记
   const root = markUpdateLaneFromFiberToRoot(fiber, lane)
@@ -128,11 +128,11 @@ export function scheduleUpdateOnFiber(
 
 `scheduleUpdateOnFiber` 根据任务[优先级](/react/lane)，决定本次调度使用 `concurrent` 模式还是 `sync`，然后通过 `performSyncWorkOnRoot/ensureRootIsScheduled` 方法循环调用 [beginWork](/react/conciliation) 开始 `conciliation` 的工作。
 
-### 处理更新(updateQueue)
+### 2. 处理更新(updateQueue)
 
 通过上述步骤，确定了待更新实例 `Update`。在后续的 `beginWork` 中，在 `ClassComponent`, `HostRoot`, `FunctionComponent` 的情况下才会出现以上 5 种产生 `Update` 的方法。
 
-#### 对于 ClassComponent 和 HostRoot
+#### 2.1 对于 ClassComponent 和 HostRoot
 
 在这两种情况下，都会调用 `processUpdateQueue` 根据优先级生成 Update，并将 Update 更新到 fiber 上。
 
@@ -167,7 +167,7 @@ export function processUpdateQueue<State>(
     }
     lastBaseUpdate = lastPendingUpdate;
 
-    // 如果是更新流程，则对 current 进行同样的添加 pendingUpdate 的操作，是为了 备份 updateQueue，为了在有打断更新的情况下 保留完整的 update 链表
+    // 如果是更新流程，则对 current 进行同样的添加 pendingUpdate 的操作，是为了备份 updateQueue，为了在有打断更新的情况下 保留完整的 update 链表
     const current = workInProgress.alternate;
     if (current !== null) {
       const currentQueue: UpdateQueue<State> = (current.updateQueue: any);

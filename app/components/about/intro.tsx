@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { IconBeach, IconCamera, IconChefHat, IconCode, IconMusic } from '@tabler/icons-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
+import { useMediaQuery } from '~/hooks/media'
 import { Poker } from '~/ui/poker'
 
 export const Intro = () => {
@@ -13,6 +14,8 @@ export const Intro = () => {
 
   const gridY = useTransform(scrollY, [380, 600], [400, 0])
   const gridOpacity = useTransform(scrollY, [380, 600], [0, 1])
+
+  const md = useMediaQuery('(min-width: 768px)')
 
   useEffect(() => {
     const unsubscribe = scrollY.on('change', y => {
@@ -69,13 +72,17 @@ export const Intro = () => {
               style={{
                 y: gridY,
                 opacity: gridOpacity,
-                gridTemplateColumns: '.4fr .3fr .3fr',
-                gridTemplateRows: '1fr .15fr 1fr',
-                gridTemplateAreas: `
+                ...(md ? {
+                  gridTemplateColumns: '.4fr .3fr .3fr',
+                  gridTemplateRows: '1fr .15fr 1fr',
+                  gridTemplateAreas: `
                   "feat-0 feat-1 feat-2"
                   "feat-0 feat-1 feat-4"
                   "feat-0 feat-3 feat-4"
                 `,
+                }: {
+                  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+                }),
               }}
             >
               <Poker
