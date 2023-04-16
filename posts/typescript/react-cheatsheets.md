@@ -61,6 +61,12 @@ const useUser = () => {
 
 ## Ref
 
+```ts
+createRef<HTMLButtonElement>()
+
+forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {})
+```
+
 ## 常见技巧
 
 ### Union Types and Type Guarding

@@ -20,7 +20,7 @@ export const Contact = () => {
         <div className="flex h-screen items-center justify-center">
           <div className="">
             <h2 className="mb-8 text-center text-7xl">Find me.</h2>
-            <div className="flex justify-center gap-4 text-center">
+            <div className="flex flex-wrap justify-center gap-4 text-center">
               <button className="btn" aria-label="email">
                 <Link to={`mailto:${SITE_CONFIG.email}`}>
                   <IconMail />
@@ -38,7 +38,7 @@ export const Contact = () => {
               </label>
               <input type="checkbox" id="my-modal" className="modal-toggle" />
               <label htmlFor="my-modal" className="modal cursor-pointer">
-                <label className="modal-box relative" htmlFor="">
+                <label className="modal-box relative w-[200px]" htmlFor="">
                   <img src={wechatJPG} alt="wechat_qrcode" width={200} height={200} />
                 </label>
               </label>
@@ -67,7 +67,7 @@ export const Contact = () => {
 
               <input type="checkbox" id="telegram-modal" className="modal-toggle" />
               <label htmlFor="telegram-modal" className="modal cursor-pointer">
-                <label className="modal-box relative" htmlFor="">
+                <label className="modal-box relative w-[200px]" htmlFor="">
                   <img src={telegramJPG} alt="telegram_qrcode" width={200} height={200} />
                 </label>
               </label>
