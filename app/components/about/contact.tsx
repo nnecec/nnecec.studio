@@ -38,7 +38,7 @@ export const Contact = () => {
               </label>
               <input type="checkbox" id="my-modal" className="modal-toggle" />
               <label htmlFor="my-modal" className="modal cursor-pointer">
-                <label className="modal-box relative" htmlFor="">
+                <label className="modal-box relative w-[200px]" htmlFor="">
                   <img src={wechatJPG} alt="wechat_qrcode" width={200} height={200} />
                 </label>
               </label>
@@ -67,7 +67,7 @@ export const Contact = () => {
 
               <input type="checkbox" id="telegram-modal" className="modal-toggle" />
               <label htmlFor="telegram-modal" className="modal cursor-pointer">
-                <label className="modal-box relative" htmlFor="">
+                <label className="modal-box relative w-[200px]" htmlFor="">
                   <img src={telegramJPG} alt="telegram_qrcode" width={200} height={200} />
                 </label>
               </label>

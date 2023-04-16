@@ -89,6 +89,7 @@ const PostPage = () => {
           <Previewer content={post.content} />
         </div>
       </article>
+      {/* out of heti */}
     </Layout>
   )
 }
