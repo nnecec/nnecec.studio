@@ -1,9 +1,5 @@
 import type { Project } from '~/types/project'
 
-export const UI = {
-  headerHeight: 96,
-}
-
 export const SITE_CONFIG = {
   title: "nnecec's Blog",
   author: {
