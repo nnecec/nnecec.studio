@@ -65,24 +65,20 @@ export const Intro = () => {
             </motion.h1>
 
             <motion.div
-              className="absolute top-[15vh] grid h-[70vh] w-full gap-4"
+              className="top-[15vh] grid h-[70vh] w-full gap-4 md:absolute"
               variants={titleVariants}
               initial="hidden"
               animate={showGrid ? 'show' : undefined}
               style={{
                 y: gridY,
                 opacity: gridOpacity,
-                ...(md ? {
-                  gridTemplateColumns: '.4fr .3fr .3fr',
-                  gridTemplateRows: '1fr .15fr 1fr',
-                  gridTemplateAreas: `
+                gridTemplateColumns: '.4fr .3fr .3fr',
+                gridTemplateRows: '1fr .15fr 1fr',
+                gridTemplateAreas: `
                   "feat-0 feat-1 feat-2"
                   "feat-0 feat-1 feat-4"
                   "feat-0 feat-3 feat-4"
                 `,
-                }: {
-                  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-                }),
               }}
             >
               <Poker

@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import { motion } from 'framer-motion'
 
 import { useWindowScroll } from '~/hooks/window-scroll'
-import { UI } from '~/utils/constants'
 
 import { ThemeSwitch } from '../theme/switch'
 
@@ -41,7 +40,7 @@ export const Header = () => {
           <div key={to}>
             <NavLink to={to}>
               {({ isActive }) => (
-                <motion.div className={clsx('relative p-3', isActive ? 'text-primary' : undefined)}>
+                <div className={clsx('relative p-3', isActive && 'text-primary')}>
                   {label}
 
                   {isActive ? (
@@ -50,7 +49,7 @@ export const Header = () => {
                       layoutId="active"
                     />
                   ) : null}
-                </motion.div>
+                </div>
               )}
             </NavLink>
           </div>
