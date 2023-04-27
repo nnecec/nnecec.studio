@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { IconCheck,IconCopy } from '@tabler/icons-react'
+import { IconCheck, IconCopy } from '@tabler/icons-react'
 import clsx from 'clsx'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import { Highlight } from 'prism-react-renderer'
 
 import useTimeoutFn from '~/hooks/timeout'
 
@@ -39,13 +39,13 @@ export const Fence = ({ children, 'data-language': language }: any) => {
           </label>
         </button>
       </CopyToClipboard>
-      <Highlight {...defaultProps} theme={theme} code={children} language={language}>
+      <Highlight theme={theme as any} code={children} language={language}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })} key={i}>
+              <div key={i} {...getLineProps({ line })}>
                 {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} key={key} />
+                  <span key={key} {...getTokenProps({ token })} />
                 ))}
               </div>
             ))}
