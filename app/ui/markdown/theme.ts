@@ -26,9 +26,7 @@
  * --syntax-cursor-line: hsla(220, 100%, 80%, 0.04);
  */
 
-import type { PrismTheme } from 'prism-react-renderer'
-
-export const theme: PrismTheme = {
+export const theme = {
   plain: {
     color: 'hsl(220, 14%, 71%)',
     backgroundColor: 'hsl(220, 13%, 18%)',
