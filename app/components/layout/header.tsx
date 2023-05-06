@@ -29,18 +29,19 @@ export const Header = () => {
   const { y } = useWindowScroll()
 
   return (
-    <header
+    <motion.header
       className={clsx(
         `h-header fixed top-0 z-[999] flex w-screen bg-transparent backdrop-blur`,
         y > 50 && 'shadow transition-shadow',
       )}
+      layoutRoot
     >
       <div className="container relative mx-auto flex items-center justify-end gap-2 text-base">
         {NAV_LINKS.map(({ label, to }) => (
           <div key={to}>
             <NavLink to={to}>
               {({ isActive }) => (
-                <div className={clsx('relative p-3', isActive && 'text-primary')}>
+                <motion.div className={clsx('relative p-3', isActive && 'text-primary')} layout layoutRoot>
                   {label}
 
                   {isActive ? (
@@ -49,13 +50,13 @@ export const Header = () => {
                       layoutId="active"
                     />
                   ) : null}
-                </div>
+                </motion.div>
               )}
             </NavLink>
           </div>
         ))}
         <ThemeSwitch />
       </div>
-    </header>
+    </motion.header>
   )
 }
