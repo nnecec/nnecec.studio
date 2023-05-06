@@ -9,6 +9,16 @@ description: 'Promise API 解读及实现'
 
 - [MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
+Promise 拥有 3 种状态：
+
+- pending
+- fulfilled
+- rejected
+
+初始状态为 pending，当发生状态转移后，则状态不会再被修改。
+
+`then` `catch` `finally` 方法都会获取上下文的执行状态，并返回一个新生成的 promise。
+
 ## 核心实现
 
 ### Constructor 实现
@@ -130,9 +140,7 @@ function then(onFulfilled, onRejected) {
     internal.unwrap(_promise, handler, this._value)
   } else {
     // 如果是 pending 状态，将 then 携带的方法添加到待执行队列中
-    this._subscribers.push(
-      new SubscriberItem(_promise, onFulfilled, onRejected)
-    )
+    this._subscribers.push(new SubscriberItem(_promise, onFulfilled, onRejected))
   }
   return _promise
 }
@@ -242,7 +250,7 @@ class Promise {
         return constructor.resolve(callback()).then(function () {
           throw reason
         })
-      }
+      },
     )
   }
 }
@@ -313,7 +321,7 @@ Promise.all = function (iterable) {
           called = true
           internal.reject(promise, error)
         }
-      }
+      },
     )
   }
 
@@ -355,7 +363,7 @@ function allSettled(iterable) {
       function (value) {
         values[i] = {
           status: 'fulfilled',
-          value
+          value,
         }
         if (++settled === len && !called) {
           called = true
@@ -365,13 +373,13 @@ function allSettled(iterable) {
       function (reason) {
         values[i] = {
           status: 'rejected',
-          reason
+          reason,
         }
         if (++settled === len && !called) {
           called = true
           internal.resolve(promise, values)
         }
-      }
+      },
     )
   }
 
@@ -416,7 +424,7 @@ Promise.race = function (iterable) {
           called = true
           internal.reject(promise, error)
         }
-      }
+      },
     )
   }
 
