@@ -1,6 +1,6 @@
 ---
 title: 'TypeScript 类型编程基础'
-date: '2022-05-07'
+date: '2023-05-11'
 tags: ['Induction', 'TypeScript']
 description: 'TypeScript 类型不仅可以声明类型，也能描述任何可计算逻辑，比如循环、条件判断、计算等语言能力。对此，称之为类型编程。'
 ---
@@ -45,7 +45,7 @@ type Example2 = RegExp extends Animal ? number : string
 
 ### 类型推断: A extends infer B ? B : never
 
-结合 extends 和 infer 作为类型推断，可以实现类似 `if(type === B){ return B }` 的逻辑
+结合 extends 和 infer 作为类型推断，可以实现类似 if 判断的逻辑
 
 ```ts
 type Flatten<Type> = Type extends Array<infer Item> ? Item : Type
@@ -73,8 +73,9 @@ type Target = GetHelloTo<'Hello World!'>
 有的时候我们需要截取符合某些规则的字符，可以忽略其他不相关的字符时：
 
 ```ts
-type GetSecondStr<T extends string> =
-  T extends `${string}_${infer Second}_${string}` ? Second : never
+type GetSecondStr<T extends string> = T extends `${string}_${infer Second}_${string}`
+  ? Second
+  : never
 
 type Target = GetSecondStr<'Hello World_ME_!'>
 //     ^? type Target = 'ME'
@@ -95,9 +96,9 @@ type Result = PlusOne<5>
 //    ^? type Result = 6
 ```
 
-## 其他关键字
+## 常用关键字
 
-### 获取类型的键: keyof
+### 获取类型的键并以 | 连接返回: keyof
 
 [keyof](https://www.typescriptlang.org/docs/handbook/2/keyof-types.html) 类似 Object.keys 将对象的 key 提取出来并以 `|` 连接
 
@@ -137,9 +138,7 @@ type Readonly<T> = { readonly [K in keyof T]: T[K] }
 
 ```ts
 type Getters<Type> = {
-  [Property in keyof Type as `get${Capitalize<
-    string & Property
-  >}`]: () => Type[Property]
+  [Property in keyof Type as `get${Capitalize<string & Property>}`]: () => Type[Property]
 }
 
 interface Person {
@@ -154,4 +153,103 @@ type LazyPerson = Getters<Person>
 //         getAge: () => number;
 //         getLocation: () => string;
 //       }
+```
+
+### new
+
+构造器和函数的区别是，构造器是用于创建对象的，所以可以被 new。通过 new 判断是否是构造函数。
+
+```ts
+type GetInstanceType<ConstructorType> = ConstructorType extends new (
+  ...args: any
+) => infer InstanceType
+  ? InstanceType
+  : any
+```
+
+### readonly
+
+通过 readonly 将 interface 的键标记为只读。通过 -readonly 将 interface 的键标记为可变。
+
+通过 ? 将 interface 的键标记为可选。通过 -? 将 interface 的键标记为必填。
+
+```ts
+type ToReadonly<T> = {
+  readonly [K in keyof T]: T[K]
+}
+type ToMutable<T> = {
+  -readonly [K in keyof T]: T[K]
+}
+type ToPartial<T> = {
+  [K in keyof T]?: T[K]
+}
+type ToRequired<T> = {
+  [K in keyof T]-?: T[K]
+}
+```
+
+### as const
+
+使 TS 的类型推导变为字面量常量
+
+```ts
+type C = [1, 2] as const
+//   ^? = [1, 2]
+type N = [1, 2]
+//   ^? = number[]
+```
+
+## 组合技术
+
+### 递归
+
+利用声明的类型自身可以实现递归的能力。
+
+例如 `TrimLeft` 每次取出第一个判断类型是否是空字符，如果是则继续对剩余的字符调用 `TrimLeft` 。
+
+```ts
+type TrimLeft<S extends string> = S extends `${infer First}${infer Rest}`
+  ? First extends ' ' | '\n' | '\t'
+    ? TrimLeft<Rest>
+    : S
+  : S
+```
+
+### 分布式条件类型
+
+当类型参数为联合类型，并且在条件类型左边直接引用该类型参数的时候，TypeScript 会把每一个元素单独传入来做类型运算，最后再合并成联合类型，这种语法叫做分布式条件类型。
+
+```ts
+type Union = 'a' | 'b' | 'c'
+type str = `x${Union}`
+//    ^? = 'xa' | 'xb' | 'xc'
+```
+
+## 其他
+
+### 判断 any
+
+any 类型与任何类型的交叉都是 any，也就是 1 & any 结果是 any。
+
+```ts
+export type IsAny<T> = 0 extends 1 & T ? true : false
+```
+
+### 判断 never
+
+```ts
+type IsNever<T> = [T] extends [never] ? true : false
+```
+
+### 判断 tuple
+
+tuple 的 length 是数字字面量，而数组的 length 是 number
+
+```ts
+type t = [1, 2, 3]['length']
+//   ^? = 3
+type a = number[]['length']
+//   ^? = number
+
+type IsTuple<T> = T extends readonly any[] ? (number extends T['length'] ? false : true) : false
 ```

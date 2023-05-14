@@ -339,9 +339,291 @@ match f.read_to_string(&mut s) {
 - 使用 `unwrap` 在正确时返回值，错误时默认调用 `panic!` 。 `expect` 与 `unwrap` 功能类似，但可以带上一段错误提示信息。
 - 使用 `Err(e)` 包装将错误返回给用户自由处理，使用 `?` 运算符可以简写。`?` 如果遇到错误会提前结束这个函数，并返回 Err 类型给调用者。如果正确则继续向下执行。`?` 只能用于处理返回 Result 的函数
 
-## 09 范型
+## 09 泛型
 
+```rust
+// struct 范型
+struct Point<T> { x: T, y: T, }
+// enum 泛型
+enum Result<T, E> { Ok(T), Err(E), }
+// fn 泛型
+impl<T> Point<T> { fn x(&self) -> &T { &self.x } }
+```
 
+- 可以在函数、struct、enum 使用泛型
+- Rust 通过在编译时进行泛型代码的  **单态化**（_monomorphization_）来保证效率。单态化是一个通过填充编译时使用的具体类型，将通用代码转换为特定代码的过程，使得使用泛型类型参数的代码相比使用具体类型并没有任何速度上的损失。
+
+### trait
+
+```rust
+pub trait Summary {
+  fn summarize(&self) -> String;
+
+  // 提供默认实现
+  fn summarize_author(&self) -> String {
+    format!("(Read more from {}...)", self.summarize())
+  }
+}
+
+struct NewsArticle {}
+
+// 通过 impl 在 struct 中实现 trait
+impl Summary for NewsArticle {
+  fn summarize(&self) -> String {
+    format!("{}, by {} ({})", self.headline, self.author, self.location)
+  }
+}
+// trait 作为参数
+pub fn notify(item: impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+// trait bound
+pub fn notify<T: Summary>(item1: T, item2: T) {
+    println!("Breaking news! {}", item.summarize());
+}
+// 多个 trait
+fn some_function<T: Display + Clone, U: Clone + Debug>(t: T, u: U) -> i32 {
+// 效果相同
+fn some_function<T, U>(t: T, u: U) -> i32
+  where T: Display + Clone, U: Clone + Debug
+{
+
+// 返回 trait 类型
+fn returns_summarizable() -> impl Summary {
+
+// 实现了 Display 和 PartialOrd 的 Pair 才有 cmp_display 方法
+impl<T: Display + PartialOrd> Pair<T> {
+   fn cmp_display(&self) {}
+}
+```
+
+- trait 类似 TypeScript 的 interfact
+- 作为参数的 `impl Trait` 是 trait bound 的语法糖
+
+### 生命周期
+
+- Rust 中每一个引用都有其生命周期。
+- 借用检查器保证借用是有效的。
+- 泛型生命周期参数可以定义引用间的关系以便借用检查器可以进行分析。
+
+```rust
+&i32        // 引用
+&'a i32     // 带有显式生命周期的引用
+&'a mut i32 // 带有显式生命周期的可变引用
+
+// 通过生命周期标注 拥有相同的生命周期
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+// struct 生命周期标注
+struct ImportantExcerpt<'a> {
+  part: &'a str,
+}
+
+// 方法定义中的 生命周期标注
+impl<'a> ImportantExcerpt<'a> {
+    fn level(&self) -> i32 {
+        3
+    }
+}
+```
+
+- 生命周期标注并不改变任何引用的生命周期的长短，生命周期标注描述了多个引用生命周期相互的关系。通过生命周期标注可以让 Rust 知道哪些变量属于同一生命周期。
+- 被编码进 Rust 引用分析的模式被称为  **生命周期省略规则**（_lifetime elision rules_），如果 Rust 在明确遵守这些规则的前提下变量的生命周期仍然是模棱两可的话，它不会猜测剩余引用的生命周期应该是什么。
+- 函数或方法的参数的生命周期被称为  **输入生命周期**（_input lifetimes_），而返回值的生命周期被称为  **输出生命周期**（_output lifetimes_）。
+  - 编译器采用三条规则来判断引用何时不需要明确的标注
+  1.  每一个是引用的参数都有它自己的生命周期参数
+  2.  如果只有一个输入生命周期参数，那么它被赋予所有输出生命周期参数：`fn foo<'a>(x: &'a i32) -> &'a i32`。
+  3.  如果方法有多个输入生命周期参数并且其中一个参数是  `&self`  或  `&mut self`，说明是个对象的方法(method)，那么所有输出生命周期参数被赋予  `self`  的生命周期。
+- 静态生命周期 `'static` ，其生命周期能存活于整个程序期间。
+
+## 测试
+
+```rust
+fn main() {}
+  #[cfg(test)] // 标注为测试函数
+  mod tests {
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+}
+
+```
+
+- `assert!` 宏接受 true 则通过测试，反之 接受 false 则失败
+- 使用 `assert_eq!` 测试相等， `assert_ne!` 测试不相等。
+- `assert!` 宏第二个参数可以传递报错信息。
+- 通过 `#[should_panic]` 属性标注函数应该 panic，通过 `#[should_panic(expect = "error message")]` 提示 panic 信息。
+- `Result<T, E>` 也可以用于测试函数正确、失败
+- 通过 `cargo test` 运行测试， `cargo test [命令行参数] -- [二进制文件参数]`
+- `cargo test -- --show-output` 显示代码打印内容
+- `cargo test i_am_fn_name` 测试单个函数，`cargo test i_am` 测试 `i_am` 开头的函数
+- 通过 `#[ignore]` 标记忽略测试该函数，再通过 `cargo test -- --ignored` 可以忽略标记了 ignore 的函数。
+- 通过属性标注 `#[cfg(test)]` 标注函数，只在 `cargo test` 执行函数。
+- 在 tests 目录下编写集成测试，Rust 将 test/common/mod.rs 文件规则不当作测试文件。
+- 只有 src/lib.rs 的库 crate 才可以创建集成测试。
+
+## 10 迭代器与闭包
+
+### 闭包
+
+```rust
+let example_closure = |x| x;
+
+let expensive_closure = |num| {
+  // ...
+    num
+};
+
+// 结合泛型声明闭包 T
+struct Cacher<T>
+    where T: Fn(u32) -> u32
+{
+    calculation: T,
+    value: Option<u32>,
+}
+// 实现 Cacher ，当访问 cacher.value 时才会执行闭包计算并缓存到 value 属性上
+impl<T> Cacher<T>
+    where T: Fn(u32) -> u32
+{
+    fn new(calculation: T) -> Cacher<T> {
+        Cacher {
+            calculation,
+            value: None,
+        }
+    }
+
+    fn value(&mut self, arg: u32) -> u32 {
+        match self.value {
+            Some(v) => v,
+            None => {
+                let v = (self.calculation)(arg);
+                self.value = Some(v);
+                v
+            },
+        }
+    }
+}
+```
+
+- 使用 `|a|` 定义闭包。
+- 可以不显式声明类型，但需要保持上下文类型推断一致。
+- 结合`Fn` , `FnMut` , `FnOnce` trait 和 泛型在 struct 中使用闭包
+- 闭包会捕获其被定义的作用域的变量，使用 move 会强制闭包获取使用环境的所有权。
+
+### 迭代器
+
+```rust
+pub trait Iterator {
+    type Item;
+    fn next(&mut self) -> Option<Self::Item>;
+}
+```
+
+- Rust 中的迭代器是 lazy 的，使用迭代器之前代码并没有执行迭代器逻辑。
+- 迭代器实现了名为 `Iterator` 的 trait， `next` 是唯一被要求定义的方法。`next` 一次返回迭代器中的一个值 `Some<T>` ，结束时返回 `None`
+- `next`  调用中得到的值是 vector 的不可变引用
+- **迭代器适配器**（_iterator adaptors_），他们允许我们将当前迭代器变为不同类型的迭代器，迭代器适配器是惰性的，而这里我们需要消费迭代器。
+- 实现 Iterator trait 可以实现自定义迭代器。
+
+## 11 智能指针
+
+- 智能指针基于 struct 实现，并实现了  `Deref`  和  `Drop` trait。
+
+```rust
+enum List {
+    Cons(i32, List),
+    Nil,
+}
+
+let list = Cons(1, Cons(2, Cons(3, Nil))); // error! 因为不知道需要分配多大的内存
+
+let list = Cons(1,
+  Box::new(Cons(2,
+    Box::new(Cons(3,
+      Box::new(Nil)))))); // pass！
+```
+
+- `Box<T>` 将数据储存在堆上，更适合用于递归类型的数据场景。
+- 当需要使用引用的具体值时，需要通过解引用 `*y` 完成。
+
+```rust
+use std::ops::Deref;
+
+struct MyBox<T>(T);
+
+impl<T> Deref for MyBox<T> {
+    type Target = T;
+
+    fn deref(&self) -> &T {
+        &self.0
+    }
+}
+```
+
+- 自定义类型需要通过 `Deref` trait 实现，实现了 `Deref` 的函数可以通过解引用强制转换的能力转换值的类型并返回。
+  - 当  `T: Deref<Target=U>` ：从  `&T`  到  `&U`。
+  - 当  `T: Deref<Target=U>` ：从  `&mut T`  到  `&U`。
+  - 当  `T: DerefMut<Target=U>` ：从  `&mut T`  到  `&mut U`。
+
+```rust
+struct CustomSmartPointer {
+    data: String,
+}
+
+impl Drop for CustomSmartPointer {
+    fn drop(&mut self) {
+        println!("Dropping CustomSmartPointer with data `{}`!", self.data);
+    }
+}
+
+fn main() {
+    let c = CustomSmartPointer { data: String::from("some data") };
+    println!("CustomSmartPointer created.");
+    drop(c);
+    println!("CustomSmartPointer dropped before the end of main.");
+}
+```
+
+- 在值离开作用域时，可以通过实现 `Drop` trait 来执行一些代码。
+- 使用 `std::mem::drop` 可以提前清理值。
+- 在单线程场景中，通过 `Rc<T>` 分配多所有权，`Rc::new()` 创建引用，`Rc::clone()` 复制引用，当引用计数为 0 时会清理内存并处罚 `Drop` 。
+- 通过 `Rc<T>` 和 `RefCell<T>` 可能使引用计数到不了 0，从而创建循环引用。
+
+## 12 并发
+
+- 通过 `thread::spawn` 创建新线程，返回值可以通过 `.join()` 方法等待所有线程结束。
+- 通过 move 转移所有权。
+
+- 通过 `sync::mpsc::channel` 创建新通道，返回了新元组`(tx, rx)` 分别是发送端和接受端。
+- `tx.send()`  函数获取其参数的所有权并移动这个值归接收者所有。
+- `tx.clone()` 可以返回新的发送者， `mpsc` 的是 mutiple producer 的缩写可以有多个发送者。
+
+```rust
+use std::sync::Mutex;
+
+fn main() {
+    let m = Mutex::new(5);
+    {
+        let mut num = m.lock().unwrap();
+        *num = 6;
+    }
+    println!("m = {:?}", m);
+}
+```
+
+- 通过 `Mutex::new()` 创建互斥器，用  `lock`  方法获取锁，以访问互斥器中的数据。这个调用会阻塞当前线程。
+
+## 13 面向对象编程
+
+## 14 模式和匹配
+
+## 15 高级特征
 
 ## Reference
 

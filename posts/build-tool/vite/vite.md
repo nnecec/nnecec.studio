@@ -7,9 +7,9 @@ description: '了解 vite 主要功能源码'
 
 ## 源码简析
 
-### 文件结构
+### 1. 文件结构
 
-```
+```text
 ./src
 ├── client # 客户端运行时WEB SOCKET以及HMR相关的代码
 │   ├── client.ts
@@ -34,7 +34,7 @@ description: '了解 vite 主要功能源码'
     └── utils.ts
 ```
 
-### 通过 ESM 实现模块化加载
+### 2. 通过 ESM 实现模块化加载
 
 `vite dev` 通过 node 的 http/https/http2 根据配置创建了一个 server，通过 ws 创建了一个 websocketServer，通过 chokidar 监听根节点下的文件改动等事件。
 
@@ -44,14 +44,14 @@ description: '了解 vite 主要功能源码'
 
 通过 `server.listen()` 启动本地服务，
 
-#### `initOptimizer` 依赖预构建
+#### 2.1 `initOptimizer` 依赖预构建
 
 读取缓存文件夹（默认为 node_modules/.vite）中的 `_metadata.json`。如果缓存可用，且 hash 值没有发生变更，则将缓存加载到 metadata 对象中，返回赋值给 cachedMetadata 直接提供给 vite 使用。
 
 Vite 通过 `getDepHash` 方法计算 hash 值，影响 hash 值计算的因素有：
 
 - lockfile
-- vite.config: mode, root, define, resolve, build.target, plugins, optimizeDeps 等相关配置
+- vite.config: mode, root, define, resolve, build.target, plugins, optimizeDeps 等配置
 
 如果没有预构建缓存可用，则需要首次预构建。
 
@@ -59,7 +59,7 @@ vite 通过扫描根目录下的所有 .html 文件或根据用户配置 `optimi
 
 然后根据依赖，使用 esbuild 预构建依赖，写入缓存文件夹，并生成 `_metadata.json`。
 
-#### 加载 ESM 资源
+#### 2.2 加载 ESM 资源
 
 在 `createServer` 方法中，通过中间件接入了：
 
@@ -87,7 +87,7 @@ vite 通过扫描根目录下的所有 .html 文件或根据用户配置 `optimi
 
   在该方法中处理 `GET /` 的情况，加载 index.html。在开发环境，会遍历 index.html 添加开发环境的代码，如 HMR 的功能。
 
-### HMR
+### 3. HMR
 
 通过 chokidar 监听根节点下的文件改动，当发生改动时触发 `change` 事件，对于 package.json 有特殊处理，对于常规文件则进入 HRM 的逻辑。
 
@@ -106,7 +106,7 @@ Vite 主要通过浏览器原生支持 ESModule 的特性，实现快速更新�
 
 Vite 会将依赖统一转化为 ESModule 格式，并将零碎文件合成一个大文件以减少资源请求次数。
 
-在开发环境，Vite 会直接启动本地服务器，当浏览器发起资源请求时，Vite 对请求进行拦截。当请求发现携带@开头的特殊路径时，会对其特殊处理。其他请求会被认为是普通静态资源请求。
+在开发环境，Vite 会直接启动本地服务器，当浏览器发起资源请求时，Vite 对请求进行拦截。当请求发现携带`@`开头的特殊路径时，会对其特殊处理。其他请求会被认为是普通静态资源请求。
 
 热更新实现首先依赖 Vite 对 index.html 进行处理，添加了响应 socket 通信的代码，从而实现了资源热更新的能力。
 
