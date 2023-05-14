@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 
 import { Layout } from '~/components/layout'
+import { HoverText } from '~/ui/hover-text'
 
 const WavingHand = () => (
   <motion.div
@@ -25,13 +26,14 @@ const Index = () => {
   return (
     <Layout>
       <section className="-mt-header pt-header flex h-screen items-center">
-        <h1 className="max-w-5xl text-7xl">
+        <h1 className="max-w-5xl text-5xl md:text-8xl">
           <WavingHand />
           <br />
           Hi, I'm nnecec.
-          <span className="text-5xl opacity-70">
-            This is my blog. I share through my writing my experience as a frontend engineer and
-            everything I'm learning about on JavaScript, React and more.
+          <span className="text-4xl opacity-70 md:text-6xl">
+            This is my blog about the understanding of{' '}
+            <HoverText className="bg-[#FFE70B]">JavaScript</HoverText>, <HoverText className="bg-[rgb(20,158,202)]">React</HoverText>{' '}
+            and more.
           </span>
         </h1>
       </section>
