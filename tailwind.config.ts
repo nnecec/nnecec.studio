@@ -40,7 +40,7 @@ const dark = {
 }
 
 export default {
-  content: ['./app/**/*.{ts,tsx,js,jsx}'],
+  content: ['./app/**/*.{ts,tsx,js,jsx}', './core/**/*.{ts,tsx,js,jsx}'],
   darkMode: 'class',
   theme: {
     extend: {

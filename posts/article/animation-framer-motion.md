@@ -17,7 +17,7 @@ description: ''
 
 ---
 
-从史前文明到如今的信息时代，在人类文化中几乎都贯穿着动画的身影。现在让我们特别关注动画的一个分支: Web Animation 网页动画。
+从史前文明到如今的信息时代，在人类文化中几乎都贯穿着动画的身影。现在，我们特别关注动画的一个分支: Web Animation 网页动画。
 
 ---
 
@@ -51,7 +51,7 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 
 ---
 
-随着移动互联网的快速发展，HTML/CSS/JavaScript 的新标准的落地，以及 Flash 慢慢的死亡，使用前端技术开发 Web Animation 成为主流开发方式。
+随着移动互联网的快速发展，HTML/CSS/JavaScript 的新标准的落地，以及 Flash 慢慢的死亡，使用前端技术开发 Web Animation 成为后来的主流开发方式。
 
 ---
 
@@ -84,11 +84,13 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
     }
   }
   ```
+
 ---
 
 ### JavaScript Animations
 
 - setInterval
+- requestAnimationFrame
 
 ---
 

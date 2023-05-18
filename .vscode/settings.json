@@ -1,7 +1,6 @@
 {
   "files.exclude": {
-    ".cache": true,
-    // "app/styles": true
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "editor.fontFamily": "JetBrains Mono, LXGW WenKai Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true
 }
