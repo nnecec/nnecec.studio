@@ -10,10 +10,8 @@ import { Footer } from './footer'
 import { Header } from './header'
 
 type Props = {
-  preview?: boolean
   title?: string
   className?: string
-  container?: boolean
 }
 
 const variants: Variants = {
