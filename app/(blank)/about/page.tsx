@@ -10,7 +10,6 @@ export default function ResumePage() {
   return (
     <div>
       <section className="mt-header">
-        
         <Intro />
       </section>
       <section>

@@ -1,4 +1,4 @@
-import { IconExternalLink } from '@tabler/icons-react'
+import { IconCopyright, IconExternalLink } from '@tabler/icons-react'
 
 import { getPost } from '~/core/api/post'
 import { Tag } from '~/core/ui'
@@ -31,32 +31,28 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
       <section className="mb-24">
         <h1>{post.title}</h1>
         <div className="flex flex-col gap-2 text-sm">
-          <div>
-            最后更新: {post.date}{' '}
-            <a
-              href={`${SITE_CONFIG.repositoryUrl}/issues`}
-              target="_blank"
-              referrerPolicy="no-referrer"
-              rel="noreferrer"
-            >
-              反馈
-              <IconExternalLink className="inline" size={16} />
-            </a>
-          </div>
+          <div>Last updated: {post.date} </div>
           <div>
             {post.tags?.map(tag => (
               <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
-          <div>
-            版权声明:
+          <div className="flex gap-4">
             <a
               href="http://creativecommons.org/licenses/by-nc/4.0/"
               target="_blank"
               referrerPolicy="no-referrer"
               rel="noreferrer"
             >
-              CC BY-NC 4.0
+              <IconCopyright className="inline" size={14} /> CC BY-NC 4.0
+            </a>
+            <a
+              href={`${SITE_CONFIG.repositoryUrl}/issues`}
+              target="_blank"
+              referrerPolicy="no-referrer"
+              rel="noreferrer"
+            >
+              <IconExternalLink className="inline" size={14} /> feedback
             </a>
           </div>
         </div>
