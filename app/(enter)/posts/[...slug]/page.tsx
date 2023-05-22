@@ -5,25 +5,27 @@ import { Tag } from '~/core/ui'
 import { Previewer } from '~/core/ui/markdown'
 import { SITE_CONFIG } from '~/core/utils/constants'
 
-// export async function generateMetadata({ params }) {
-//   if (!params) {
-//     return [
-//       {
-//         title: 'Missing post',
-//       },
-//     ]
-//   }
+import type { Metadata } from 'next'
 
-//   const { post } = params
-//   return [
-//     {
-//       title: post.title!,
-//     },
-//     { name: 'description', content: post.description ?? 'secrect post' },
-//   ]
-// }
+type Props = {
+  params: { slug: string[] }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
-export default async function PostPage({ params }: { params: { slug: string[] } }) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  if (!params) {
+    return {
+      title: 'Missing post',
+    }
+  }
+
+  const post = await getPost(params.slug.join('/'))
+  return {
+    title: post.title,
+  }
+}
+
+export default async function PostPage({ params }: Props) {
   const post = await getPost(params.slug.join('/'))
 
   return (
