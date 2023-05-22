@@ -31,10 +31,7 @@ const variants: Variants = {
   },
 }
 
-export const Layout = ({
-  children,
-  className,
-}: PropsWithChildren<Props>) => {
+export const Layout = ({ children, className }: PropsWithChildren<Props>) => {
   return (
     <ThemeProvider>
       <Header />

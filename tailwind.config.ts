@@ -41,7 +41,7 @@ const dark = {
 
 export default {
   content: ['./app/**/*.{ts,tsx,js,jsx}', './core/**/*.{ts,tsx,js,jsx}'],
-  darkMode: 'class',
+  darkMode: ['class', '[data-theme="dark"]'],
   theme: {
     extend: {
       spacing: {
