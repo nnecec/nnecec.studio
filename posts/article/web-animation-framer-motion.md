@@ -62,7 +62,7 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 
 ---
 
-## CSS Animations
+### CSS Animations
 
 - transition
 
@@ -90,41 +90,102 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 ### JavaScript Animations
 
 - setInterval
+
+  ```js
+  setInterval(function () {
+    // set element style
+  }, 16)
+  ```
+
 - requestAnimationFrame
+- Web Animations API (WAAPI)
 
 ---
 
-## requestAnimationFrame
+#### [requestAnimationFrame](https://developer.mozilla.org/zh-CN/docs/Web/API/window/requestAnimationFrame)
+
+`requestAnimationFrame(callback: (time: number) => void)`
+
+该方法需要传入 callback 作为参数，该回调函数会在浏览器下一次重绘之前执行。这个 API 在 2012 年之后主流浏览器已基本支持。
+
+```js
+function step() {
+  if (ele.style.left < 200) {
+    // set element style
+    requestAnimationFrame(step)
+  }
+}
+requestAnimationFrame(step)
+```
 
 ---
 
-## Web Animations API
+### [Web Animations API](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Animations_API)
 
 JavaScript 最新的动画支持称为 Web Animations API (WAAPI)。
 
+```ts
+function animate(
+  keyframes: Keyframe[] | PropertyIndexedKeyframes | null,
+  options?: number | KeyframeAnimationOptions,
+): Animation
+```
+
+接受 2 个参数，第一个是关键帧定义，第二个是一些自定义配置。
+
+返回值为 Animation 实例，提供 pause, play, reverse 等方法从而达到控制动画的能力。
+
 ---
 
-## CSS Animation 与 JavaScript Animation 的性能差异
+### CSS Animation 与 JavaScript Animation 的性能差异
 
-根据[CSS 动画与 JavaScript 动画的性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance/CSS_JavaScript_animation_performance)的结论，CSS 与 JavaScript 在动画方面的性能差异
+根据[CSS 动画与 JavaScript 动画的性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance/CSS_JavaScript_animation_performance)的结论，CSS 与 JavaScript 在动画方面的性能差异不大。CSS 动画性能总体上要优于 JavaScript 的动画性能，但其只能定义简单的动画。当需要处理复杂动画时，可能仍需要选择 JavaScript 动画来完成。
 
 ---
 
-## Web Animation 的工作原理
+## Animation 的工作原理
 
 定义动画始终需要定义两个基本状态，即开始和结束状态。通过计算插值状态，实现动画效果。
 
+`Progression = f(Time)`
+
+Time 为从 0 到 1 匀速变化的时间状态，根据时间状态计算动画的完成比例 Progression。
+
 ---
 
-## 流行动画库及基本概念
+- linear: `f = (x) => x`
+- Accelerating from zero velocity: `f = (x) => x * x`
+- [ts-easing](https://github.com/streamich/ts-easing/blob/master/src/index.ts)
+- [easing.net](https://easings.net/zh-cn#)
+
+---
+
+### cubic-bezier()
+
+贝塞尔曲线的概念
+
+---
+
+### 实现一个简单的动画方法 useMotion
+
+```ts
+const useMotion = (duration: number, easing?: string): Percent => {}
+```
+
+---
+
+## 流行动画库
 
 - react-spring
 - framer-motion
 - gsap
+- matter.js
 
 ---
 
-framer-motion
+### framer-motion
+
+能力介绍
 
 ---
 
@@ -132,3 +193,4 @@ framer-motion
 
 - [The History of Web Animation.](https://medium.com/@milberferreira/the-history-of-web-animation-63b106c97fdf)
 - [How Web Animation Works.](https://medium.com/@milberferreira/how-web-animation-works-e133e486d013)
+- [Cubic Bézier: from math to motion](https://blog.maximeheckel.com/posts/cubic-bezier-from-math-to-motion/)
