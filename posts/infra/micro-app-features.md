@@ -42,7 +42,7 @@ description: '探索微前端技术点的实现原理'
 
    该方法由 single-spa 提出，qiankun 和 garfish 都参考了该实现。在主应用配置子应用配置，将主应用的某个路由如 `/user` 配置指向 `https://user.example.com`。当激活路由时，通过 fetch 地址获取目标地址的 HTML 进行解析。
 
-1. 通过 WebComponent 将子应用视为一个组件
+2. 通过 WebComponent 将子应用视为一个组件
 
 ### 沙箱隔离
 
