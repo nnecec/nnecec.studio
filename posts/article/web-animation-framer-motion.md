@@ -1,23 +1,25 @@
 ---
 marp: true
 class: invert
-title: '动画'
+title: 'Web Animation 网页动画'
 date: '2023-05-06'
 tags: ['Introduction']
 description: ''
 ---
 
-# 动画
+# Web Animation 网页动画
 
 ---
 
-## 什么是动画
+## 什么是动画？
 
 动画（Animation）是一种通过定时拍摄一系列多个静止的固态图像（帧）以一定频率连续变化、运动（播放）的速度（如每秒 16 张）而导致肉眼的视觉残象产生的错觉——而误以为图画或物体（画面）活动的作品及其视频技术。
 
 ---
 
-从史前文明到如今的信息时代，在人类文化中几乎都贯穿着动画的身影。现在，我们特别关注动画的一个分支: Web Animation 网页动画。
+从史前文明到如今的信息时代，在人类文化中几乎都贯穿着动画的身影。现在，我们特别关注动画的一个分支:
+
+Web Animation 网页动画
 
 ---
 
@@ -33,7 +35,7 @@ description: ''
 
 ![GIF Demo](https://miro.medium.com/v2/resize:fit:964/1*Ry53XOSQR16hQtKbr5hC1w.gif)
 
-1987 年，CompuServe 推出了图像互换格式(Graphics Interchange Format)，以其首字母缩略词 GIF 而闻名。Netscape Navigator 于 1995 年支持了 GIF 在浏览器中的使用。
+1987 年，CompuServe 公司推出了图像互换格式(Graphics Interchange Format)，以其首字母缩略词 GIF 而闻名。Netscape Navigator 于 1995 年支持了 GIF 在浏览器中的使用。
 
 ---
 
@@ -51,7 +53,7 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 
 ---
 
-随着移动互联网的快速发展，HTML/CSS/JavaScript 的新标准的落地，以及 Flash 慢慢的死亡，使用前端技术开发 Web Animation 成为后来的主流开发方式。
+随着移动互联网的快速发展，HTML/CSS/JavaScript 标准的更新，Flash 的慢性死亡，使用前端技术开发 Web Animation 成为后来的主流开发方式。
 
 ---
 
@@ -106,8 +108,6 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 
 `requestAnimationFrame(callback: (time: number) => void)`
 
-该方法需要传入 callback 作为参数，该回调函数会在浏览器下一次重绘之前执行。这个 API 在 2012 年之后主流浏览器已基本支持。
-
 ```js
 function step() {
   if (ele.style.left < 200) {
@@ -117,6 +117,8 @@ function step() {
 }
 requestAnimationFrame(step)
 ```
+
+<!-- 该方法需要传入 callback 作为参数，该回调函数会在浏览器下一次重绘之前执行。这个 API 在 2012 年之后主流浏览器已基本支持。 -->
 
 ---
 
@@ -131,15 +133,42 @@ function animate(
 ): Animation
 ```
 
-接受 2 个参数，第一个是关键帧定义，第二个是一些自定义配置。
+<!-- 接受 2 个参数，第一个是关键帧定义，第二个是一些自定义配置。
 
-返回值为 Animation 实例，提供 pause, play, reverse 等方法从而达到控制动画的能力。
+返回值为 Animation 实例，提供 pause, play, reverse 等方法从而达到控制动画的能力。 -->
+
+---
+
+```ts
+const cake = document.getElementById('#cake')
+
+const animateCake = cake.animate(
+  [{ transform: 'translateY(0)' }, { transform: 'translateY(-80%)' }],
+  {
+    easing: 'steps(4, end)',
+    duration: aliceChange.effect.timing.duration / 2,
+  },
+)
+
+animateCake.pause()
+animateCake.play()
+animateCake.cancel()
+animateCake.finish()
+```
+
+---
+
+[Demo](https://vueuse.org/core/useAnimate/)
+
+vueuse 基于 WAAPI 实现了 useAnimation 方法
 
 ---
 
 ### CSS Animation 与 JavaScript Animation 的性能差异
 
-根据[CSS 动画与 JavaScript 动画的性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance/CSS_JavaScript_animation_performance)的结论，CSS 与 JavaScript 在动画方面的性能差异不大。CSS 动画性能总体上要优于 JavaScript 的动画性能，但其只能定义简单的动画。当需要处理复杂动画时，可能仍需要选择 JavaScript 动画来完成。
+根据[CSS 动画与 JavaScript 动画的性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance/CSS_JavaScript_animation_performance)的结论，CSS 与 JavaScript 在动画方面的性能差异不大。
+
+CSS 动画性能总体上要优于 JavaScript 的动画性能，但其只能定义简单的动画。当需要处理复杂动画时，可能仍需要选择 JavaScript 动画来完成。
 
 ---
 
@@ -149,14 +178,14 @@ function animate(
 
 `Progression = f(Time)`
 
-Time 为从 0 到 1 匀速变化的时间状态，根据时间状态计算动画的完成比例 Progression。
+<!-- Time 为从 0 到 1 匀速变化的时间状态，根据时间状态计算动画的完成比例 Progression。 -->
 
 ---
 
 - linear: `f = (x) => x`
 - Accelerating from zero velocity: `f = (x) => x * x`
-- [ts-easing](https://github.com/streamich/ts-easing/blob/master/src/index.ts)
-- [easing.net](https://easings.net/zh-cn#)
+
+> [ts-easing](https://github.com/streamich/ts-easing/blob/master/src/index.ts) 查看一些常见的插值动画函数
 
 ---
 
@@ -164,9 +193,11 @@ Time 为从 0 到 1 匀速变化的时间状态，根据时间状态计算动画
 
 贝塞尔曲线的概念
 
+> 访问 [easing.net](https://easings.net/zh-cn#) 查看贝塞尔曲线对应的动画效果
+
 ---
 
-### 实现一个简单的动画方法 useMotion
+### 基于 requestAnimationFrame 实现一个简单的动画方法 useMotion
 
 ```ts
 const useMotion = (duration: number, easing?: string): Percent => {}
@@ -181,11 +212,17 @@ const useMotion = (duration: number, easing?: string): Percent => {}
 - gsap
 - matter.js
 
+<!-- 主要介绍一下 framer-motion -->
+
 ---
 
 ### framer-motion
 
 能力介绍
+
+---
+
+#### 使用 framer-motion 提升用户体验
 
 ---
 

@@ -1,5 +1,5 @@
-# nnecec.github.io
+# nnecec's space
 
-- [Blog](https://nnecec.vercel.app/)
+Talk about JavaScript and React.
 
-  Talk about JavaScript and React.
+- run markdown with marp: `npx @marp-team/marp-cli@latest -w /path/to/marp`
