@@ -5,6 +5,7 @@ mermaid.initialize({
   startOnLoad: false,
   securityLevel: 'loose',
   logLevel: 5,
+  theme: "neutral"
 })
 
 export const Mermaid = ({ children }: { children: string }) => {

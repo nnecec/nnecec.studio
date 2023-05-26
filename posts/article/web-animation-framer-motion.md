@@ -1,7 +1,7 @@
 ---
 marp: true
 class: invert
-title: 'Web Animation 网页动画'
+title: 'Web Animation'
 date: '2023-05-06'
 tags: ['Introduction']
 description: ''
@@ -19,7 +19,7 @@ description: ''
 
 从史前文明到如今的信息时代，在人类文化中几乎都贯穿着动画的身影。现在，我们特别关注动画的一个分支:
 
-Web Animation 网页动画
+**Web Animation 网页动画**
 
 ---
 
@@ -47,9 +47,13 @@ Web Animation 网页动画
 
 在 2010 年的 4 月，当时苹果公司的 CEO 乔布斯发表一篇题为“对 Flash 的思考”的文章，指出随着 HTML5 的发展，观看视频或其它内容时，Adobe Flash 将不再是必须的。
 
+> [iOS 不支持 Flash 的真实原因是什么？](https://www.zhihu.com/question/19609079/answer/60053891)
+
 2014 年 10 月 28 日，W3C 正式发布 HTML5 推荐标准。
 
 CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。在 2009 年发布了与动画相关的 Animations 和 transform 模块公开草案。
+
+<!-- 伴随着 iPhone 的登场，一个即将占领未来大部分市场的移动设备宣布了 flash 的死亡。在2010年前后，HTML/JavaScript 对动画的新标准的发布，也提供了更强的对动画支持的能力。 -->
 
 ---
 
@@ -168,7 +172,7 @@ vueuse 基于 WAAPI 实现了 useAnimation 方法
 
 根据[CSS 动画与 JavaScript 动画的性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance/CSS_JavaScript_animation_performance)的结论，CSS 与 JavaScript 在动画方面的性能差异不大。
 
-CSS 动画性能总体上要优于 JavaScript 的动画性能，但其只能定义简单的动画。当需要处理复杂动画时，可能仍需要选择 JavaScript 动画来完成。
+CSS 动画性能总体上要优于 JavaScript 的动画性能，但其只能定义不复杂的动画，并且缺乏控制能力。当需要处理复杂动画时，可能仍需要选择 JavaScript 动画来完成。
 
 ---
 
@@ -197,11 +201,26 @@ CSS 动画性能总体上要优于 JavaScript 的动画性能，但其只能定�
 
 ---
 
-### 基于 requestAnimationFrame 实现一个简单的动画方法 useMotion
+### useOffsetMotion
 
 ```ts
-const useMotion = (duration: number, easing?: string): Percent => {}
+const useOffsetMotion = (
+  animation: { x: number; y: number },
+  options?: { duration?: number },
+): React.Ref => {
+  // ...
+}
+
+const App = () => {
+  const ref = useOffsetMotion({ x: 200, y: 200 })
+
+  return <div ref={ref} />
+}
 ```
+
+[Demo](https://codesandbox.io/p/sandbox/collections-mi2c3u?file=%2Fhooks%2Fuse-offset-motion.ts%3A17%2C1)
+
+<!-- 了解完动画计算的基本原理后，基于 requestAnimationFrame 实现一个简单的控制 x/y 方向的动画方法 -->
 
 ---
 
