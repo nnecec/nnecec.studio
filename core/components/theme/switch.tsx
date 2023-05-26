@@ -31,7 +31,7 @@ export const ThemeSwitch = () => {
 
   return (
     <div className="dropdown dropdown-end dropdown-hover">
-      <label tabIndex={0} className="btn m-1">
+      <label tabIndex={0} className="btn btn-circle btn-ghost btn-sm">
         {active?.label}
       </label>
       <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box w-52 p-2 shadow">

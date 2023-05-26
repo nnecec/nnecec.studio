@@ -6,6 +6,8 @@ import { Fence } from './fence'
 import { fence } from './fence.markdoc'
 import { Heading } from './heading'
 import { heading } from './heading.markdoc'
+import { Sandpack, SandpackFile } from './sandpack'
+import { sandpack, sandpackFile } from './sandpack.markdoc'
 
 interface PreviewerProps {
   content: string
@@ -37,6 +39,10 @@ export const Previewer = ({ content }: PreviewerProps) => {
       heading,
       fence,
     },
+    tags: {
+      sandpack,
+      sandpackFile,
+    },
   })
   return (
     <div>
@@ -47,6 +53,8 @@ export const Previewer = ({ content }: PreviewerProps) => {
           components: {
             Fence,
             Heading,
+            Sandpack,
+            SandpackFile,
           },
         })}
       </div>
