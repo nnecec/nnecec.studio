@@ -4,7 +4,6 @@ import {
   IconBeach,
   IconCamera,
   IconChefHat,
-  IconChevronLeft,
   IconCode,
   IconMusic,
 } from '@tabler/icons-react'

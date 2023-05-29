@@ -7,6 +7,7 @@ import { Highlight } from 'prism-react-renderer'
 import useTimeoutFn from '~/core/hooks/timeout'
 
 import Mermaid from '../mermaid'
+
 import { theme } from './theme'
 
 export const Fence = ({ children, 'data-language': language }: any) => {

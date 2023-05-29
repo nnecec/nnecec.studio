@@ -5,7 +5,7 @@ import { HoverText } from '~/core/ui/hover-text'
 
 export default function Page() {
   return (
-    <section className="-mt-header pt-header flex h-screen items-center">
+    <section className="-mt-header flex h-screen items-center pt-header">
       <h1 className="max-w-5xl text-5xl md:text-8xl">
         <WavingHand />
         <br />
