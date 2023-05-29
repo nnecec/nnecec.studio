@@ -1,11 +1,11 @@
 'use client'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useRouter,useSearchParams } from 'next/navigation'
 
 export const TagPicker = ({ tags }: { tags: string[] }) => {
   const searchParams = useSearchParams()
   const router = useRouter()
 
-  const tag = searchParams.get('tag') ?? ''
+  const tag = searchParams.get('tag') ?? ""
 
   return (
     <select
@@ -13,7 +13,6 @@ export const TagPicker = ({ tags }: { tags: string[] }) => {
       value={tag}
       onChange={e => {
         const value = e.target.value
-        console.log(value)
         value === '' ? router.replace(`/posts`) : router.replace(`/posts?tag=${e.target.value}`)
       }}
     >
