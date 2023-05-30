@@ -1,3 +1,4 @@
+import { ThemeProvider } from '~/core/components/theme'
 import { SITE_CONFIG } from '~/core/utils/constants'
 
 import '~/core/styles/index.css'
@@ -24,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       <body>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
         {process.env.NODE_ENV === 'development' || !trackingId ? undefined : (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />

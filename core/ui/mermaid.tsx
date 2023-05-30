@@ -5,7 +5,7 @@ mermaid.initialize({
   startOnLoad: false,
   securityLevel: 'loose',
   logLevel: 5,
-  theme: "neutral",
+  theme: 'neutral',
 })
 
 export const Mermaid = ({ children }: { children: string }) => {
@@ -17,5 +17,3 @@ export const Mermaid = ({ children }: { children: string }) => {
 
   return <pre className="mermaid">{children}</pre>
 }
-
-export default Mermaid

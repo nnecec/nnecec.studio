@@ -2,7 +2,6 @@
 
 import React, {
   createContext,
-  Fragment,
   memo,
   useCallback,
   useContext,
@@ -211,7 +210,7 @@ const Theme: React.FC<ThemeProviderProps> = ({
   const [resolvedTheme, setResolvedTheme] = useState(() => getTheme(storageKey))
   const attrs = value ? Object.values(value) : themes
 
-  const applyTheme = useCallback((theme?: string ) => {
+  const applyTheme = useCallback((theme?: string) => {
     let resolved = theme
     if (!resolved) return
 
@@ -342,6 +341,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = props => {
   const context = useContext(ThemeContext)
 
   // Ignore nested context providers, just passthrough children
-  if (context) return <Fragment>{props.children}</Fragment>
+  if (context) return <>{props.children}</>
   return <Theme {...props} />
 }

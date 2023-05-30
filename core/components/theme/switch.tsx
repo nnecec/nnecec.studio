@@ -31,10 +31,10 @@ export const ThemeSwitch = () => {
 
   return (
     <div className="dropdown dropdown-end dropdown-hover">
-      <label tabIndex={0} className="btn btn-circle btn-ghost btn-sm">
+      <label tabIndex={0} className="btn-ghost btn-sm btn-circle btn">
         {active?.label}
       </label>
-      <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box w-52 p-2 shadow">
+      <ul tabIndex={0} className="dropdown-content menu rounded-box w-52 bg-base-200 p-2 shadow">
         {options.map(({ label, value }) => (
           <li key={value} onClick={() => changeTheme(value)}>
             <button className={clsx(active?.value === value && 'active')}>

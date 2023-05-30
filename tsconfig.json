@@ -20,7 +20,7 @@
       }
     ],
     "paths": {
-      "~/core/*": ["./core/*"]
+      "~/*": ["./*"]
     }
   },
   "exclude": ["node_modules"],

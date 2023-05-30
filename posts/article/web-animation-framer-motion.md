@@ -11,6 +11,14 @@ description: ''
 
 ---
 
+1. 什么是动画？
+2. Web Animation 简史
+3. Web Animation 技术
+4. Animation 的工作原理
+5. Framer Motion 简介
+
+---
+
 ## 什么是动画？
 
 动画（Animation）是一种通过定时拍摄一系列多个静止的固态图像（帧）以一定频率连续变化、运动（播放）的速度（如每秒 16 张）而导致肉眼的视觉残象产生的错觉——而误以为图画或物体（画面）活动的作品及其视频技术。
@@ -235,9 +243,13 @@ const App = () => {
 
 ---
 
-### framer-motion
+### Framer Motion
 
-能力介绍
+```tsx
+export const App = () => {
+  return <motion.div initial={{ x: 0 }} animate={{ x: 100 }} transition={{}} />
+}
+```
 
 ---
 
