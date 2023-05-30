@@ -4,8 +4,6 @@ import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import type { PropsWithChildren } from 'react'
 
-import { ThemeProvider } from '../theme'
-
 import { Footer } from './footer'
 import { Header } from './header'
 
@@ -33,18 +31,18 @@ const variants: Variants = {
 
 export const Layout = ({ children, className }: PropsWithChildren<Props>) => {
   return (
-    <ThemeProvider>
+    <div>
       <Header />
       <motion.main
         variants={variants}
         initial="exit"
         animate="enter"
         exit="exit"
-        className={`pt-header container mx-auto min-h-screen px-4 md:px-0`}
+        className={`container mx-auto min-h-screen px-4 pt-header md:px-0`}
       >
         <div className={className}>{children}</div>
       </motion.main>
       <Footer />
-    </ThemeProvider>
+    </div>
   )
 }
