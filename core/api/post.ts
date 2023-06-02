@@ -64,6 +64,7 @@ export async function getPost(slug: string): Promise<Post> {
     ...data,
     slug,
     content,
+    originContent: fileContents,
   }
   return item
 }

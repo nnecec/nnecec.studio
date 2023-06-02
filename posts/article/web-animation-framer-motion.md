@@ -25,7 +25,7 @@ description: ''
 
 ---
 
-从史前文明到如今的信息时代，在人类文化中几乎都贯穿着动画的身影。现在，我们特别关注动画的一个分支:
+从史前文明到如今的信息时代，在人类文化中几乎都贯穿着动画的身影。现在，我们特别关注关于前端的动画:
 
 **Web Animation 网页动画**
 
@@ -65,7 +65,7 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 
 ---
 
-随着移动互联网的快速发展，HTML/CSS/JavaScript 标准的更新，Flash 的慢性死亡，使用前端技术开发 Web Animation 成为后来的主流开发方式。
+随着移动互联网的快速发展，HTML/CSS/JavaScript 标准的更新，Flash 的慢性死亡，使用前端技术开发 Web Animation 越来越成为主流的开发方式。
 
 ---
 
@@ -81,14 +81,19 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 - transition
 
   ```css
-  transition: margin-right 4s ease-in-out 1s;
+  transition: opacity 4s ease-in-out 1s;
+  ele {
+    opacity: 0.5;
+  }
+  ele:hover {
+    opacity: 1;
+  }
   ```
 
 - animation
 
   ```css
   animation: 4s linear 0s infinite alternate move_eye;
-
   @keyframes move_eye {
     from {
       margin-left: -20%;
@@ -98,6 +103,10 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
     }
   }
   ```
+
+<!-- CSS 动画主要有 2 种实现方式，一种是通过 transition 属性编写，需要定义产生动画的属性、动画时长、渐变动画函数、延时属性，当切换 hover active 等伪类状态时，动画将会在定义 transition 的属性上产生响应的动画。
+
+第二种是 通过 @keyframe 定义动画帧，并通过 animation 将页面元素与动画帧建立关联。同时 animation 可以定义 动画循环方式、动画时长、动画方向、结束状态等。 -->
 
 ---
 
@@ -113,6 +122,8 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 
 - requestAnimationFrame
 - Web Animations API (WAAPI)
+
+通过
 
 ---
 
@@ -145,9 +156,11 @@ function animate(
 ): Animation
 ```
 
-<!-- 接受 2 个参数，第一个是关键帧定义，第二个是一些自定义配置。
+<!-- 接受 2 个参数，第一个是关键帧定义，第二个是一些自定义动画配置。
 
-返回值为 Animation 实例，提供 pause, play, reverse 等方法从而达到控制动画的能力。 -->
+关键帧 https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Animations_API/Keyframe_Formats
+
+返回值为 Animation 实例，提供 timeline startTime 等属性， pause, play, reverse 等方法从而达到控制动画的能力。 -->
 
 ---
 
@@ -174,13 +187,16 @@ animateCake.finish()
 
 vueuse 基于 WAAPI 实现了 useAnimation 方法
 
+<!-- 从 Vue 的这个方法 可以大概一览能通过 WAAPI 拿到哪些属性及使用哪些方法 -->
+
 ---
 
-### CSS Animation 与 JavaScript Animation 的性能差异
+### CSS 与 JavaScript 的性能差异
 
-根据[CSS 动画与 JavaScript 动画的性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance/CSS_JavaScript_animation_performance)的结论，CSS 与 JavaScript 在动画方面的性能差异不大。
+根据[CSS 动画与 JavaScript 动画的性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance/CSS_JavaScript_animation_performance)的结论
 
-CSS 动画性能总体上要优于 JavaScript 的动画性能，但其只能定义不复杂的动画，并且缺乏控制能力。当需要处理复杂动画时，可能仍需要选择 JavaScript 动画来完成。
+> 事实上，大多数场景下，基于 CSS 的动画几乎是跟 JavaScript 动画表现一致。一些基于 Javascript 的动画库，甚至声称他们在性能上可以做得比原生 CSS transition/animation 更好。
+> 这是可能的，因为在重绘事件发生之前，CSS transition 和 animation 在 UI 线程仅仅是重新采集元素的样式，这跟通过 requestAnimationFrame() 回调获取重新采集元素样式是一样的，也是在下一次重绘之前触发。假如二者都是在主 UI 线程创建的动画，那它们在性能方面没有差异。
 
 ---
 
@@ -197,7 +213,7 @@ CSS 动画性能总体上要优于 JavaScript 的动画性能，但其只能定�
 - linear: `f = (x) => x`
 - Accelerating from zero velocity: `f = (x) => x * x`
 
-> [ts-easing](https://github.com/streamich/ts-easing/blob/master/src/index.ts) 查看一些常见的插值动画函数
+> 访问 [ts-easing](https://github.com/streamich/ts-easing/blob/master/src/index.ts) 查看一些常见的插值动画函数
 
 ---
 
@@ -245,15 +261,41 @@ const App = () => {
 
 ### Framer Motion
 
-```tsx
-export const App = () => {
-  return <motion.div initial={{ x: 0 }} animate={{ x: 100 }} transition={{}} />
-}
-```
+Framer Motion 提供了一系列基础组件及 hooks 方法供开发者方便地使用动画。
+
+- `motion` 支持动画效果的组件
+- `whileTap` `whileHover` 等，支持动画效果的事件
+- `variants` 支持切换不同的动画帧状态
+- `layout` 支持布局动画，
+
+<!-- Framer Motion 主要概念有如下几个，
+motion 可以为 DOM 元素或自定义组件提供处理动画的能力，如设置动画帧、过渡选项。
+事件方法 如 whileHover 提供在相应手势时
+variants 为开发者提供自定义的动画帧状态，当切换这些状态时，framer motion 会自动通过动画切换到对应的状态
+layout 则是无法通过 css js 实现的一种动画能力，如对于位置相关的样式 flex, position or grid ，framer motion 提供了简单易用的使用方式
+-->
 
 ---
 
-#### 使用 framer-motion 提升用户体验
+#### Layout Animation
+
+```jsx
+<div className="flex" style={{ justifyContent: position }}>
+  <motion.div layout></motion.div>
+</div>
+```
+
+[Demo]()
+
+<!-- 当布局样式 如 flex grid position 或尺寸 width height 会影响 HTML 布局时，为会变动位置或大小的 DOM 元素增加 layout 属性，就会提供动画的能力 -->
+
+---
+
+#### FLIP
+
+FLIP: First, Last, Inverse, Play
+
+[Article](https://www.nan.fyi/magic-motion#introducing-flip)
 
 ---
 
@@ -262,3 +304,6 @@ export const App = () => {
 - [The History of Web Animation.](https://medium.com/@milberferreira/the-history-of-web-animation-63b106c97fdf)
 - [How Web Animation Works.](https://medium.com/@milberferreira/how-web-animation-works-e133e486d013)
 - [Cubic Bézier: from math to motion](https://blog.maximeheckel.com/posts/cubic-bezier-from-math-to-motion/)
+- [Guide to creating animations that spark joy with Framer Motion](https://blog.maximeheckel.com/posts/guide-animations-spark-joy-framer-motion/)
+- [Everything about Framer Motion layout animations](https://blog.maximeheckel.com/posts/framer-motion-layout-animations/)
+- [Inside Framer's Magic Motion](https://www.nan.fyi/magic-motion)
