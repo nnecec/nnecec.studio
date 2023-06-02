@@ -44,7 +44,7 @@ description: 'TypeScript 类型不仅可以声明类型，也能描述任何可�
 
 ## 语句
 
-### 条件判断: `A extends B ? True : False`
+### 条件判断: A extends B ? True : False
 
 通过[条件判断](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html)实现类似三元符的逻辑。
 
@@ -80,7 +80,7 @@ type Example2 = RegExp extends Animal ? number : string
 
 可以看出来，extends 符合类型收敛的情况时判断为 true，对于类型兼容性的问题可以参考[该页面介绍](https://jkchao.github.io/typescript-book-chinese/typings/typeCompatibility.html#%E5%8F%98%E4%BD%93)。
 
-### 类型推断: `A extends infer B ? B : never`
+### 类型推断: A extends infer B ? B : never
 
 结合 extends 和 infer 作为类型推断，可以实现类似 if 判断的逻辑
 
@@ -138,9 +138,9 @@ type Target = GetSecondStr<'Hello World_ME_!'>
 //     ^? type Target = 'ME'
 ```
 
-### 循环/递归：`type Recursive<T, U> = T extends U ? T : Recursive<T, U>`
+### 循环/递归 type Recursive<T, U> = T extends U ? T : Recursive<T, U>
 
-### 数字及操作数字: `T['length']`
+### 数字及操作数字 T['length']
 
 当需要计算数字时，只能通过向数组中添加或减少数组元素，并通过 T[\'length\'] 的方式获取数字类型
 

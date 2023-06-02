@@ -3,13 +3,14 @@ export type Post = {
   slug?: string
   title?: string
   date?: string
-  content?: any
+  content: string
   tags?: string[]
   description?: string
   excerpt?: string
   prev?: Post
   next?: Post
   headings?: Heading[]
+  originContent: string
 }
 
 export type Heading = {

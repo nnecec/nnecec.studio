@@ -10,25 +10,25 @@ type Options = {
 }
 
 // https://github.com/streamich/ts-easing/blob/master/src/index.ts
-const inOutCubic = t => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1)
+const inOutCubic = (t: number) =>
+  t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
 
-export const useOffsetMotion = (animate: Animate, options: Options) => {
-  const ref = useRef(null)
+export const useOffsetMotion = <T extends HTMLElement>(animate: Animate, options?: Options) => {
+  const ref = useRef<T>(null)
 
   const x = animate.x ?? 0
   const y = animate.y ?? 0
   const duration = options?.duration ?? 2500
 
   useEffect(() => {
-    let startTime
-    let lastTime
-    let rAFTimer
+    let startTime: number
+    let rAFTimer: number
 
-    const onStart = () => {
-      startTime = performance.now()
-      loop()
+    function loop() {
+      rAFTimer = requestAnimationFrame(onMotion)
     }
-    const onMotion = (time: DOMHighResTimeStamp) => {
+
+    function onMotion(time: DOMHighResTimeStamp) {
       const deltaTime = (time - startTime) / duration
       const progression = inOutCubic(deltaTime)
       const deltaX = x * progression
@@ -42,8 +42,10 @@ export const useOffsetMotion = (animate: Animate, options: Options) => {
       }
       loop()
     }
-    const loop = () => {
-      rAFTimer = requestAnimationFrame(onMotion)
+
+    const onStart = () => {
+      startTime = performance.now()
+      loop()
     }
 
     onStart()

@@ -1,4 +1,5 @@
 import { IconCopyright, IconExternalLink } from '@tabler/icons-react'
+import clsx from 'clsx'
 
 import { getPost } from '~/core/api/post'
 import { Tag } from '~/core/ui'
@@ -28,9 +29,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PostPage({ params }: Props) {
   const post = await getPost(params.slug.join('/'))
 
+  const isMarp = post.marp
+
   return (
-    <article className="blog-post heti mx-auto">
-      <section className="mb-24">
+    <article className="blog-post">
+      <section className="heti mx-auto mb-24">
         <h1>{post.title}</h1>
         <div className="flex flex-col gap-2 text-sm">
           <div>Last updated: {post.date} </div>
@@ -59,9 +62,9 @@ export default async function PostPage({ params }: Props) {
           </div>
         </div>
       </section>
-      <div className="relative my-8 font-serif">
-        <Previewer content={post.content} />
-      </div>
+      <section className={clsx(!isMarp && 'heti mx-auto', 'relative my-8 font-serif')}>
+        <Previewer post={post} isMarp={isMarp} />
+      </section>
     </article>
   )
 }

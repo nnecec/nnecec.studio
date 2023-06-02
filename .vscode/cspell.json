@@ -9,5 +9,5 @@
     "package-lock.json",
     "report"
   ],
-  "words": ["vite", "wechat"]
+  "words": ["vite", "wechat", "marp"]
 }
