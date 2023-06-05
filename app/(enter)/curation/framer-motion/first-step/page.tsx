@@ -1,11 +1,13 @@
 'use client'
 
 import { useDeferredValue, useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { CodeBlock } from '~/core/ui/code-block'
 
 import type { Variants } from 'framer-motion'
+
+const layoutIdList = ['banana', 'apple', 'strawberry']
 
 export default function FirstStep() {
   const [tweenAnimation, setTweenAnimation] = useState('easeInOut')
@@ -87,11 +89,11 @@ export default function FirstStep() {
 
   const variants: Variants = {
     hover: {
-      scale: 1.5,
-      boxShadow: '0 8px 16px 0px #ffa0ae99',
+      scale: 1.2,
+      boxShadow: '0 8px 16px 0px #fff6',
     },
     pressed: {
-      scale: 0.5,
+      scale: 0.8,
     },
     default: {
       scale: 1,
@@ -100,7 +102,7 @@ export default function FirstStep() {
 
   // Layout Animation
   const [position, setPosition] = useState('start')
-  const [layout, setLayout] = useState(false)
+  const [layout, setLayout] = useState(true)
 
   const layoutFlexCodeString = `
   <div className="grid">
@@ -112,6 +114,9 @@ export default function FirstStep() {
     />
   </div>
   `
+
+  // LayoutId
+  const [layoutId, setLayoutId] = useState<string | null>(null)
 
   return (
     <div>
@@ -152,12 +157,7 @@ export default function FirstStep() {
 
             <motion.div
               key={deferredSpring}
-              style={{
-                background: 'linear-gradient(90deg,#ffa0ae 0%,#aacaef 75%)',
-                height: '100px',
-                width: '100px',
-                borderRadius: '10px',
-              }}
+              className="h-10 w-10 rounded bg-zinc-500"
               initial={{
                 x: 0,
               }}
@@ -201,12 +201,7 @@ export default function FirstStep() {
 
             <motion.div
               key={tweenAnimation}
-              style={{
-                background: 'linear-gradient(90deg,#ffa0ae 0%,#aacaef 75%)',
-                height: '100px',
-                width: '100px',
-                borderRadius: '10px',
-              }}
+              className="h-10 w-10 rounded bg-zinc-500"
               initial={{
                 x: 0,
               }}
@@ -237,12 +232,7 @@ export default function FirstStep() {
 
             <motion.div
               key={deferredInertia}
-              style={{
-                background: 'linear-gradient(90deg, #ffa0ae 0%, #aacaef 75%)',
-                height: '100px',
-                width: '100px',
-                borderRadius: '10px',
-              }}
+              className="h-10 w-10 rounded bg-zinc-500"
               initial={{
                 x: 0,
               }}
@@ -267,14 +257,8 @@ export default function FirstStep() {
               variants={variants}
               whileHover="hover"
               whileTap="pressed"
+              className="h-10 w-full rounded border-none bg-zinc-500 outline-none"
               style={{
-                background: 'linear-gradient(90deg,#ffa0ae 0%,#aacaef 75%)',
-                color: 'black',
-                border: 'none',
-                height: '50px',
-                width: '200px',
-                borderRadius: '10px',
-                outline: 'none',
                 zIndex: 1,
               }}
             >
@@ -290,8 +274,7 @@ export default function FirstStep() {
       <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
         <div className="card bg-base-100 p-2 shadow-xl">
           <div className="flex flex-col gap-2">
-            <div className="card-title">Flex</div>
-            <label htmlFor="tween-type">justice-items</label>
+            <div className="card-title">Basic layout</div>
 
             <label className="label cursor-pointer">
               <span className="label-text">Enable Layout Animation</span>
@@ -319,73 +302,66 @@ export default function FirstStep() {
               ))}
             </div>
 
-            <div className="grid w-full">
+            <div className="grid w-full rounded border p-1">
               <motion.div
+                className="h-10 w-10 rounded bg-zinc-500"
                 layout={!!layout}
                 style={{
-                  background: 'linear-gradient(90deg, #ffa0ae 0%, #aacaef 75%)',
-                  height: '100px',
-                  width: '100px',
-                  borderRadius: '10px',
                   justifySelf: position,
                 }}
               />
             </div>
 
+            <CodeBlock language="jsx">{layoutFlexCodeString}</CodeBlock>
+          </div>
+        </div>
+        <div className="card bg-base-100 p-2 shadow-xl">
+          <div className="flex flex-col">
+            <div className="card-title">LayoutId</div>
+
+            <motion.div
+              style={{
+                position: 'relative',
+                gap: 2,
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+              layoutRoot
+            >
+              {layoutIdList.map(id => (
+                <motion.div
+                  key={id}
+                  layoutId={id}
+                  className="rounded border bg-base-100 p-4 text-2xl"
+                  onClick={() => setLayoutId(id)}
+                  style={{
+                    width: '100%',
+                  }}
+                >
+                  <motion.h2 className="text-2xl">{id}</motion.h2>
+                </motion.div>
+              ))}
+
+              <AnimatePresence>
+                {layoutId && (
+                  <motion.div
+                    layoutId={layoutId}
+                    className="rounded border bg-base-100 p-4 text-2xl"
+                    onClick={() => setLayoutId(null)}
+                    style={{
+                      position: 'absolute',
+                      inset: '0.5rem',
+                    }}
+                  >
+                    <motion.h2 className="text-2xl">{layoutId}</motion.h2>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
             <CodeBlock language="jsx">{layoutFlexCodeString}</CodeBlock>
           </div>
         </div>
       </div>
-
-      {/* <h1 className="my-3 text-3xl font-bold">Framer Motion - LayoutId</h1>
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
-        <div className="card bg-base-100 p-2 shadow-xl">
-          <div className="flex flex-col gap-2">
-            <div className="card-title">Flex</div>
-            <label htmlFor="tween-type">justice-items</label>
-
-            <label className="label cursor-pointer">
-              <span className="label-text">Enable Layout</span>
-              <input
-                type="checkbox"
-                className="toggle"
-                checked={layout}
-                onChange={e => setLayout(e.target.checked)}
-              />
-            </label>
-
-            <div className="flex justify-around">
-              {['start', 'center', 'end'].map(pos => (
-                <label className="label cursor-pointer" key={pos}>
-                  <span className="label-text">{pos}</span>
-                  <input
-                    type="radio"
-                    name="radio"
-                    value={pos}
-                    className="radio-primary radio"
-                    checked={position === pos}
-                    onChange={e => setPosition(e.target.value)}
-                  />
-                </label>
-              ))}
-            </div>
-
-            <div className="grid w-full">
-              <motion.div
-                layout={!!layout}
-                style={{
-                  background: 'linear-gradient(90deg,#ffa0ae 0%,#aacaef 75%)',
-                  height: '100px',
-                  width: '100px',
-                  borderRadius: '10px',
-                  justifySelf: position,
-                }}
-              />
-            </div>
-            <CodeBlock language="jsx">{layoutFlexCodeString}</CodeBlock>
-          </div>
-        </div>
-      </div> */}
     </div>
   )
 }

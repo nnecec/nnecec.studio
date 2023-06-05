@@ -71,8 +71,11 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 
 ## Web Animation 技术
 
-- CSS Animation
-- JavaScript Animation
+- CSS
+- JavaScript
+- WebGL(WebGPU)
+
+<!-- 现在编写网页动画的技术主要有以上三种 CSS JavaScript 和 WebGL。WebGL 太复杂了，本人也不会，这次分享就不介绍了 -->
 
 ---
 
@@ -254,6 +257,7 @@ const App = () => {
 - framer-motion
 - gsap
 - matter.js
+  ...
 
 <!-- 主要介绍一下 framer-motion -->
 
@@ -261,17 +265,17 @@ const App = () => {
 
 ### Framer Motion
 
-Framer Motion 提供了一系列基础组件及 hooks 方法供开发者方便地使用动画。
+Framer Motion 是一个 React 动画库，它提供了一系列支持动画的基础组件、事件方法及 hooks 方法供开发者方便快捷地实现动画效果。
 
-- `motion` 支持动画效果的组件
-- `whileTap` `whileHover` 等，支持动画效果的事件
-- `variants` 支持切换不同的动画帧状态
-- `layout` 支持布局动画，
+- `motion` 支持动画效果的组件，支持定义动画帧，支持通过 transition 定义过渡效果。
+- `whileTap` `whileHover` 等支持动画效果的方法。
+- `variants` 支持在多个不同的动画帧状态之间切换。
+- `layout` 支持布局动画。
 
 <!-- Framer Motion 主要概念有如下几个，
-motion 可以为 DOM 元素或自定义组件提供处理动画的能力，如设置动画帧、过渡选项。
-事件方法 如 whileHover 提供在相应手势时
-variants 为开发者提供自定义的动画帧状态，当切换这些状态时，framer motion 会自动通过动画切换到对应的状态
+motion 为 DOM 元素或自定义的React组件提供处理动画的能力，如设置动画帧、过渡选项。
+通过 whileTap 或 whileHover 等提供在相应交互事件方法
+variants 为开发者提供自定义的动画帧状态，当切换这些状态时，framer motion 会自动计算出动画效果并切换到对应的状态
 layout 则是无法通过 css js 实现的一种动画能力，如对于位置相关的样式 flex, position or grid ，framer motion 提供了简单易用的使用方式
 -->
 
@@ -280,22 +284,43 @@ layout 则是无法通过 css js 实现的一种动画能力，如对于位置�
 #### Layout Animation
 
 ```jsx
-<div className="flex" style={{ justifyContent: position }}>
-  <motion.div layout></motion.div>
+<div className="flex">
+  <motion.div layout style={{ justifySelf: position }}></motion.div>
 </div>
 ```
 
-[Demo]()
-
-<!-- 当布局样式 如 flex grid position 或尺寸 width height 会影响 HTML 布局时，为会变动位置或大小的 DOM 元素增加 layout 属性，就会提供动画的能力 -->
+<!-- 常规的布局变化，修改布局样式 如 flex grid position 或尺寸 width height 会影响 HTML 布局，
+通过为 motion.div 增加 layout 属性，framer motion 就会自动为DOM元素提供布局动画的能力
+当发生布局变化时，framer motion 会提供过渡的动画效果
+ -->
 
 ---
 
-#### FLIP
+#### LayoutId
 
-FLIP: First, Last, Inverse, Play
+[Demo](https://www.framer.com/motion/)
 
-[Article](https://www.nan.fyi/magic-motion#introducing-flip)
+<!-- 通过 LayoutId 可以实现跨组件的动画，动画不再限制在同一个组件上，为不同的组件赋予不同的 layoutId 就能由 framer motion 实现动画效果。 -->
+
+---
+
+[Introducting FLIP](https://www.nan.fyi/magic-motion#introducing-flip)
+
+1. **F**irst: `dom.getBoundingClientRect()` 获取初始位置 `{x: 0}`
+2. **L**ast: 获取终点位置 `{x: 10}`
+3. *I*nverse: 此时已经有了起始点的信息，计算终点状态反转到初始状态需要的转换参数 `{transform: translateX(-10)}`
+4. **P**lay: 将第三步的转换参数归零，并添加动画过渡效果
+
+<!-- Framer motion 通过称为 FLIP 的技术方案实现了布局动画 -->
+
+---
+
+## 总结
+
+1. 网页动画经历了很多年的发展，最终形成了通过 CSS，JavaScript 编写动画的主流方式。
+2. CSS 通过定义动画帧可以快速的实现简单的动画。
+3. 开发者可以通过 `window.requestAnimationFrame` 方法使用 JavaScript 开发高性能的动画效果。同时也有原生的 Web Animations API 可供选择使用，但目前仍需要考虑兼容性问题。
+4. React 开发者可以通过优秀的第三方库如 framer motion 简单快速的构建动画效果。
 
 ---
 

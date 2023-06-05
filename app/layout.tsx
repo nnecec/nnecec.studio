@@ -25,7 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider enableSystem>
+          {children}
+        </ThemeProvider>
         {process.env.NODE_ENV === 'development' || !trackingId ? undefined : (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />
