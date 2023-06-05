@@ -16,7 +16,7 @@ const options = [
   },
   {
     label: <IconDeviceLaptop />,
-    value: 'auto',
+    value: 'system',
   },
 ]
 
@@ -30,7 +30,7 @@ export const ThemeSwitch = () => {
   const active = options.find(option => option.value === theme)
 
   return (
-    <div className="dropdown dropdown-end dropdown-hover">
+    <div className="dropdown-end dropdown-hover dropdown">
       <label tabIndex={0} className="btn-ghost btn-sm btn-circle btn">
         {active?.label}
       </label>

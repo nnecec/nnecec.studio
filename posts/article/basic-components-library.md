@@ -61,6 +61,8 @@ description: ''
 
 NextUI v2 的重构则同样不提供样式代码，但基于 TailwindCSS 提供了样式类，内部通过 `tailwind-variants` 将 class 集成到组件上。
 
+近期非常流行的 shadcn/ui 则基于 radix-ui 提供逻辑能力，自己实现组件样式。它甚至不提供 npm 包，只是提供模版代码让开发者复制到自己的项目中，但这样的设计个人认为非常棒！
+
 ### 5. 代码组织
 
 一般一个组件由源代码、单元测试、文档、Demo 及样式构成。
@@ -69,12 +71,12 @@ NextUI v2 的重构则同样不提供样式代码，但基于 TailwindCSS 提供
 ├── src
 │   ├── components
 │   │   └── User
-│   │        ├── user.test.tsx
-│   │        ├── user.stories.tsx
-│   │        ├── user.tsx
-│   │        ├── index.css
-│   │        ├── types.tsx
-│   │        └── index.ts
+│   │       ├── user.test.tsx
+│   │       ├── user.stories.tsx
+│   │       ├── user.tsx
+│   │       ├── index.css
+│   │       ├── types.tsx
+│   │       └── index.ts
 │   ├── types
 │   └── utils
 └── package.json
@@ -107,6 +109,9 @@ export * from '@n/utils'
 ```
 
 ### 文档
+
+- storybook
+- nextra
 
 ### 单元测试
 
