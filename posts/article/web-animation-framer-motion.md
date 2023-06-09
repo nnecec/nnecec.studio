@@ -9,21 +9,32 @@ description: ''
 
 # Web Animation 网页动画
 
+CSS JS 适用场景
+公司应用
+贝塞尔介绍
+应用在了哪些网站
+
 ---
 
 1. 什么是动画？
-2. Web Animation 简史
-3. Web Animation 技术
-4. Animation 的工作原理
+2. 网页动画简史
+3. 网页动画技术
+4. 网页动画的工作原理
 5. Framer Motion 简介
 
 ---
 
-## 什么是动画？
+## 1. 什么是动画？
 
-动画（Animation）是一种通过定时拍摄一系列多个静止的固态图像（帧）以一定频率连续变化、运动（播放）的速度（如每秒 16 张）而导致肉眼的视觉残象产生的错觉——而误以为图画或物体（画面）活动的作品及其视频技术。
+> 动画
+> 通过定时拍摄多个静止的固态图像（帧），以一定频率连续变化而导致肉眼的视觉残象产生错觉，而误以为图画或物体活动的技术。
+>
+> 视觉暂留
+> 光对视网膜所产生的视觉，在光停止作用后，仍然保留一段时间的现象。原因是由视神经的反应速度造成的，其时值约是 1/16 秒，对于不同频率的光有不同的暂留时间。是现代影视、动画等视觉媒体制作和传播的根据。
 
 ---
+
+![](https://miro.medium.com/v2/resize:fit:1400/format:jpg/1*wMxrGVF3tM_hSysMHJctuQ.png)
 
 从史前文明到如今的信息时代，在人类文化中几乎都贯穿着动画的身影。现在，我们特别关注关于前端的动画:
 
@@ -31,7 +42,7 @@ description: ''
 
 ---
 
-## Web Animation 简史
+## 2. 网页动画简史
 
 ---
 
@@ -39,49 +50,55 @@ description: ''
 
 在能够编写动画之前，网站只是只能链接到其他普通文档的普通文档。这就是有史以来创建的第一个网站的样子，当时甚至缺少 CSS。
 
+<!-- 这是历史上的第一个网站的样子，当时只是文档之间互相连接的页面，甚至没有CSS样式 -->
+
 ---
 
 ![GIF Demo](https://miro.medium.com/v2/resize:fit:964/1*Ry53XOSQR16hQtKbr5hC1w.gif)
 
-1987 年，CompuServe 公司推出了图像互换格式(Graphics Interchange Format)，以其首字母缩略词 GIF 而闻名。Netscape Navigator 于 1995 年支持了 GIF 在浏览器中的使用。
+1987 年，CompuServe 公司推出了图像互换格式(Graphics Interchange Format)，更以其首字母缩略词 GIF 而闻名。Netscape Navigator 于 1995 年支持了 GIF 在浏览器中的使用。
 
 ---
 
 ![Flash demo](https://s3.ifanr.com/wp-content/uploads/2017/08/xiaoxaio.gif)
 
-90 年代后期，Flash 被发明并被逐渐使用，网络上的所有内容都变得动画化。随后 Flash 在网络上流行了很多年。
+90 年代后期，Flash 被发明并被逐渐使用，网络上的几乎所有内容都变得动画化。随后十几年 Flash 在网络上成为流行的动画实现方式。
 
 ---
 
-在 2010 年的 4 月，当时苹果公司的 CEO 乔布斯发表一篇题为“对 Flash 的思考”的文章，指出随着 HTML5 的发展，观看视频或其它内容时，Adobe Flash 将不再是必须的。
+在 2010 年的 4 月，苹果公司的 CEO 乔布斯发表一篇题为“对 Flash 的思考”的文章，指出随着 HTML5 的发展，观看视频或其它内容时，Adobe Flash 将不再是必须的。
 
 > [iOS 不支持 Flash 的真实原因是什么？](https://www.zhihu.com/question/19609079/answer/60053891)
 
 2014 年 10 月 28 日，W3C 正式发布 HTML5 推荐标准。
 
-CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。在 2009 年发布了与动画相关的 Animations 和 transform 模块公开草案。
+CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。在 2009 年发布了与动画相关的 animations 和 transform 模块公开草案。
 
-<!-- 伴随着 iPhone 的登场，一个即将占领未来大部分市场的移动设备宣布了 flash 的死亡。在2010年前后，HTML/JavaScript 对动画的新标准的发布，也提供了更强的对动画支持的能力。 -->
+<!-- 伴随着 iPhone 的登场，一个即将占领未来大部分市场的移动设备宣布了 flash 的死亡。
+TEXT
+这里有一篇知乎的回答，提到 flash 的性能问题以及 Adobe 与 苹果的竞争。有兴趣的可以借此了解一下当年的历史。
+主要观点是 flash 可以流畅的在很多功能机中运行，但在苹果的机器上没有对 flash 开放GPU调用的能力，只能通过CPU进行计算和渲染。同时在 2008-2010年 Adobe 的 Flash 在PC端快速崛起并占领了大量的市场，苹果出于推行自己的应用商业的目的，发起了商业竞争即不支持flash。
+在2010年前后，HTML/JavaScript 对动画的新标准的发布，也提供了更强的对动画支持的能力。 -->
 
 ---
 
-随着移动互联网的快速发展，HTML/CSS/JavaScript 标准的更新，Flash 的慢性死亡，使用前端技术开发 Web Animation 越来越成为主流的开发方式。
+随着移动互联网的快速发展，HTML/CSS/JavaScript 标准的更新，Flash 的慢性死亡，使用前端技术开发网页动画越来越成为主流的开发方式。
 
 ---
 
-## Web Animation 技术
+## 3. 网页动画技术
 
 - CSS
 - JavaScript
 - WebGL(WebGPU)
 
-<!-- 现在编写网页动画的技术主要有以上三种 CSS JavaScript 和 WebGL。WebGL 太复杂了，本人也不会，这次分享就不介绍了 -->
+<!-- 现在编写网页动画的技术主要有以上三种 CSS JavaScript 和 WebGL。WebGL 太复杂了，上手太难了，本人也不会，这次分享就不介绍了 -->
 
 ---
 
 ### CSS Animations
 
-- transition
+- [transition](https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition)
 
   ```css
   transition: opacity 4s ease-in-out 1s;
@@ -93,7 +110,7 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
   }
   ```
 
-- animation
+- [animation](https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation)
 
   ```css
   animation: 4s linear 0s infinite alternate move_eye;
@@ -115,7 +132,7 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 
 ### JavaScript Animations
 
-- setInterval
+- setInterval/setTimeout
 
   ```js
   setInterval(function () {
@@ -126,7 +143,11 @@ CSS3 标准自 1999 年开始制定，采用了模块化的规范制定方式。
 - requestAnimationFrame
 - Web Animations API (WAAPI)
 
-通过
+<!-- JavaScript 最开始的方式是通过定时器，每16ms将元素进行一次样式调整，由于定时器执行的时间不可靠，执行动画的过程因为执行时间不精确的问题出现空帧和重复渲染的情况。
+
+requestAnimationFrame() 告诉浏览器，你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画，该回调函数会在浏览器下一次重绘之前执行。
+requestAnimationFrame(callback) 的作用就是保证 callback 的执行时机，回调函数执行次数通常与浏览器屏幕刷新次数相匹配，既不会出现过度渲染的问题，也不会出现丢帧卡顿的问题。而除此之外，使用 requestAnimationFrame 当我们的页面处于后台或者被隐藏时，浏览器会自动的暂停调用以提升性能。
+-->
 
 ---
 
@@ -150,7 +171,7 @@ requestAnimationFrame(step)
 
 ### [Web Animations API](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Animations_API)
 
-JavaScript 最新的动画支持称为 Web Animations API (WAAPI)。
+JavaScript 将最新的动画支持称为 Web Animations API (WAAPI)。
 
 ```ts
 function animate(
@@ -163,7 +184,9 @@ function animate(
 
 关键帧 https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Animations_API/Keyframe_Formats
 
-返回值为 Animation 实例，提供 timeline startTime 等属性， pause, play, reverse 等方法从而达到控制动画的能力。 -->
+WAAPI 的声明方式类似 CSS ，但为动画实例提供了更多的控制选项
+
+返回值为 Animation 实例，通过 timeline startTime 等属性， pause, play, reverse 等方法从而达到更细腻的控制动画能力。 -->
 
 ---
 
@@ -177,20 +200,24 @@ const animateCake = cake.animate(
     duration: aliceChange.effect.timing.duration / 2,
   },
 )
-
+// 开始/暂停
 animateCake.pause()
 animateCake.play()
+// 结束/中断
 animateCake.cancel()
 animateCake.finish()
+animateCake.reverse()
+// 调整速率
+animateCake.playbackRate *= 1.1
+// ...
 ```
 
 ---
 
+[Using the Web Animations API](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API)
 [Demo](https://vueuse.org/core/useAnimate/)
 
-vueuse 基于 WAAPI 实现了 useAnimation 方法
-
-<!-- 从 Vue 的这个方法 可以大概一览能通过 WAAPI 拿到哪些属性及使用哪些方法 -->
+<!-- vueuse 基于 WAAPI 实现了 useAnimation 方法。 从 Vue 的这个方法 可以大概一览能通过 WAAPI 拿到哪些属性及使用哪些方法 -->
 
 ---
 
@@ -198,12 +225,13 @@ vueuse 基于 WAAPI 实现了 useAnimation 方法
 
 根据[CSS 动画与 JavaScript 动画的性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance/CSS_JavaScript_animation_performance)的结论
 
-> 事实上，大多数场景下，基于 CSS 的动画几乎是跟 JavaScript 动画表现一致。一些基于 Javascript 的动画库，甚至声称他们在性能上可以做得比原生 CSS transition/animation 更好。
+> 事实上，大多数场景下，基于 CSS 的动画几乎是跟 JavaScript 动画表现一致。一些基于 Javascript 的动画库，甚至声称他们在性能上可以做得比原生 CSS 更好。
+>
 > 这是可能的，因为在重绘事件发生之前，CSS transition 和 animation 在 UI 线程仅仅是重新采集元素的样式，这跟通过 requestAnimationFrame() 回调获取重新采集元素样式是一样的，也是在下一次重绘之前触发。假如二者都是在主 UI 线程创建的动画，那它们在性能方面没有差异。
 
 ---
 
-## Animation 的工作原理
+## 网页动画的工作原理
 
 定义动画始终需要定义两个基本状态，即开始和结束状态。通过计算插值状态，实现动画效果。
 
