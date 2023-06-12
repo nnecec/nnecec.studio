@@ -1,7 +1,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-  ignorePatterns: ['./posts/**', '.next', 'public'],
   extends: ['@nnecec/eslint-config/react-universal', 'next'],
+  ignorePatterns: ['/posts/**/**', '.next', 'public', 'node_modules'],
   rules: {
     'unicorn/filename-case': 'off',
   },
