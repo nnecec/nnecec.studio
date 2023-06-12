@@ -1,20 +1,20 @@
 export type Post = {
-  marp?: boolean
-  slug?: string
-  title?: string
-  date?: string
   content: string
-  tags?: string[]
+  date?: string
   description?: string
   excerpt?: string
-  prev?: Post
-  next?: Post
   headings?: Heading[]
+  marp?: boolean
+  next?: Post
   originContent: string
+  prev?: Post
+  slug?: string
+  tags?: string[]
+  title?: string
 }
 
 export type Heading = {
-  title: string
   id: string
   level: number
+  title: string
 }

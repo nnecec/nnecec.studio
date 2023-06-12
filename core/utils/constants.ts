@@ -1,43 +1,43 @@
 import type { Project } from '~/core/types/project'
 
 export const SITE_CONFIG = {
-  title: "nnecec's Blog",
   author: {
     name: 'nnecec',
   },
   description: 'think. try. treasure.',
-  siteUrl: 'https://nnecec.vercel.app',
-  repositoryUrl: 'https://github.com/nnecec/nnecec.github.io',
   email: 'nnecec@outlook.com',
+  repositoryUrl: 'https://github.com/nnecec/nnecec.github.io',
+  siteUrl: 'https://nnecec.vercel.app',
   social: {
     bento: 'https://bento.me/nnecec/',
+    github: 'https://github.com/nnecec/',
     instagram: 'https://www.instagram.com/nnecec/',
     twitter: 'https://twitter.com/nnecec_cn/',
-    github: 'https://github.com/nnecec/',
     zhubai: 'https://nnecec.zhubai.love/',
   },
+  title: "nnecec's Blog",
 }
 
 export const ProjectsList: Project[] = [
   {
-    title: 'decox',
     description: 'Decorate your picture of art.',
     link: 'https://decox.vercel.app/',
+    title: 'decox',
   },
   {
-    title: 'afo',
     description: 'Tools collection, mainly for React developing.',
     link: 'https://github.com/nnecec/afo/',
+    title: 'afo',
   },
   {
-    title: 'config',
     description:
       'Front-end engineering config, includes ESLint, Prettier, TSConfig, Vite. Simple but useful.',
     link: 'https://github.com/nnecec/config/',
+    title: 'config',
   },
   {
-    title: 'blog',
     description: "export * as Blog from 'nnecec'",
     link: 'https://github.com/nnecec/nnecec.github.io/',
+    title: 'blog',
   },
 ]

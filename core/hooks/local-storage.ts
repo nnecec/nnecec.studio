@@ -8,12 +8,12 @@ const noop = () => {}
 
 type parserOptions<T> =
   | {
-      raw: true
-    }
-  | {
+      deserializer: (value: string) => T
       raw: false
       serializer: (value: T) => string
-      deserializer: (value: string) => T
+    }
+  | {
+      raw: true
     }
 
 export const useLocalStorage = <T>(

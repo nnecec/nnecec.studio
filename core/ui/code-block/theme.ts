@@ -28,43 +28,46 @@
 
 export const theme = {
   plain: {
-    color: 'hsl(220, 14%, 71%)',
     backgroundColor: 'hsl(220, 13%, 18%)',
+    color: 'hsl(220, 14%, 71%)',
     fontSize: 13,
   },
   styles: [
     {
-      types: ['comment', 'prolog', 'cdata'],
       style: {
         color: 'hsl(220, 10%, 40%)',
         fontStyle: 'italic',
       },
+      types: ['comment', 'prolog', 'cdata'],
     },
     {
-      types: ['doctype', 'punctuation', 'entity'],
       style: {
         color: 'hsl(220, 14%, 71%)',
       },
+      types: ['doctype', 'punctuation', 'entity'],
     },
     {
-      types: ['namespace'],
       style: {
         opacity: 0.8,
       },
+      types: ['namespace'],
     },
     {
-      types: ['string', 'attr-value'],
       style: {
         color: 'hsl(95, 38%, 62%)',
       },
+      types: ['string', 'attr-value'],
     },
     {
-      types: ['punctuation', 'operator'],
       style: {
         color: 'hsl(207, 82%, 66%)',
       },
+      types: ['punctuation', 'operator'],
     },
     {
+      style: {
+        color: 'hsl(29, 54%, 61%)',
+      },
       types: [
         'attr-name',
         'class-name',
@@ -73,23 +76,23 @@ export const theme = {
         'number',
         'atrules',
       ],
-      style: {
-        color: 'hsl(29, 54%, 61%)',
-      },
     },
     {
-      types: ['keyword'],
       style: {
         color: 'hsl(286, 60%, 67%)',
       },
+      types: ['keyword'],
     },
     {
-      types: ['property', 'tag', 'symbol', 'deleted', 'important'],
       style: {
         color: 'hsl(355, 65%, 65%)',
       },
+      types: ['property', 'tag', 'symbol', 'deleted', 'important'],
     },
     {
+      style: {
+        color: 'hsl(95, 38%, 62%)',
+      },
       types: [
         'selector',
         'string',
@@ -99,85 +102,82 @@ export const theme = {
         'regex',
         'attr-value',
       ],
-      style: {
-        color: 'hsl(95, 38%, 62%)',
-      },
     },
     {
-      types: ['function', 'variable', 'operator'],
       style: {
         color: 'hsl(207, 82%, 66%)',
       },
+      types: ['function', 'variable', 'operator'],
     },
     {
-      types: ['url'],
       style: {
         color: 'hsl(187, 47%, 55%)',
       },
+      types: ['url'],
     },
     // css overrides
     {
-      types: ['selector'],
       style: {
         color: 'hsl(355, 65%, 65%)',
       },
+      types: ['selector'],
     },
     {
-      types: ['property'],
       style: {
         color: 'hsl(220, 14%, 71%)',
       },
+      types: ['property'],
     },
     {
-      types: ['function'],
       style: {
         color: 'hsl(187, 47%, 55%)',
       },
+      types: ['function'],
     },
     {
-      types: ['url'],
       style: {
         color: 'hsl(95, 38%, 62%)',
       },
+      types: ['url'],
     },
     {
-      types: ['important', 'atrule', 'rule'],
       style: {
         color: 'hsl(286, 60%, 67%)',
       },
+      types: ['important', 'atrule', 'rule'],
     },
     // js overrides
     {
-      types: ['operator'],
       style: {
         color: 'hsl(286, 60%, 67%)',
       },
+      types: ['operator'],
     },
     // json overrides
     {
-      types: ['operator'],
       style: {
         color: 'hsl(220, 14%, 71%)',
       },
+      types: ['operator'],
     },
     // general
     {
-      types: ['bold'],
       style: {
         fontWeight: 'bold',
       },
+      types: ['bold'],
     },
     {
-      types: ['comment', 'italic'],
       style: {
         fontStyle: 'italic',
       },
+      types: ['comment', 'italic'],
     },
     {
-      types: ['entity'],
       style: {
         cursor: 'help',
       },
+      types: ['entity'],
     },
   ],
 }

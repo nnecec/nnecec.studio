@@ -13,80 +13,80 @@ import {
 
 const stacks = [
   {
-    name: 'HTML',
     color: '#DC351A',
+    name: 'HTML',
   },
   {
-    name: 'CSS',
     color: '#1D31DC',
+    name: 'CSS',
   },
   {
-    name: 'JavaScript',
     color: '#fcdc00',
+    name: 'JavaScript',
   },
   {
-    name: 'React',
     color: '#61dafb',
+    name: 'React',
   },
   {
-    name: 'Svelte',
     color: 'hsl(15, 100%, 55%)',
+    name: 'Svelte',
   },
   {
-    name: 'Node.js',
     color: '#43853d',
+    name: 'Node.js',
   },
   {
-    name: 'Docker',
     color: '#1F5ADB',
+    name: 'Docker',
   },
   {
-    name: 'Markdown',
     color: '#ffd848',
+    name: 'Markdown',
   },
   {
-    name: 'Git',
     color: '#ef391a',
+    name: 'Git',
   },
   {
-    name: 'Flutter',
     color: '#3BC7FC',
+    name: 'Flutter',
   },
 ]
 
 const libs = [
   {
-    name: 'Next.js',
     color: '#0070f3',
+    name: 'Next.js',
   },
   {
-    name: 'Remix',
     color: '#2E7BFE',
+    name: 'Remix',
   },
   {
-    name: 'Ant Design',
     color: '#1677ff',
+    name: 'Ant Design',
   },
   {
-    name: 'Material UI',
     color: '#0B66FE',
+    name: 'Material UI',
   },
   {
-    name: 'Tailwind CSS',
     color: '#30AEF7',
+    name: 'Tailwind CSS',
   },
   {
-    name: 'Three.js ',
     color: '#049EF4',
+    name: 'Three.js ',
   },
 ]
 
 interface ScrollTextProps {
-  words: any[]
   velocity: number
+  words: any[]
 }
 
-function ScrollText({ words, velocity }: React.PropsWithChildren<ScrollTextProps>) {
+function ScrollText({ velocity, words }: React.PropsWithChildren<ScrollTextProps>) {
   const baseX = useMotionValue(0)
   const { scrollY } = useScroll()
   const scrollVelocity = useVelocity(scrollY)

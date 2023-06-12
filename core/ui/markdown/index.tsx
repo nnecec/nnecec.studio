@@ -8,11 +8,11 @@ import { CommonPreviewer } from './common-previewer'
 import { MarpPreviewer } from './marp-previewer'
 
 interface PreviewerProps {
-  post: Post
   isMarp?: boolean
+  post: Post
 }
 
-export const Previewer = ({ post, isMarp }: PreviewerProps) => {
+export const Previewer = ({ isMarp, post }: PreviewerProps) => {
   if (isMarp) {
     return <MarpPreviewer post={post} />
   }

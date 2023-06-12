@@ -88,15 +88,15 @@ export default function FirstStep() {
   `
 
   const variants: Variants = {
+    default: {
+      scale: 1,
+    },
     hover: {
-      scale: 1.2,
       boxShadow: '0 8px 16px 0px #fff6',
+      scale: 1.2,
     },
     pressed: {
       scale: 0.8,
-    },
-    default: {
-      scale: 1,
     },
   }
 
@@ -116,7 +116,7 @@ export default function FirstStep() {
   `
 
   // LayoutId
-  const [layoutId, setLayoutId] = useState<string | null>(null)
+  const [layoutId, setLayoutId] = useState<null | string>(null)
 
   return (
     <div>
@@ -127,47 +127,47 @@ export default function FirstStep() {
           <div className="flex flex-col gap-2">
             <label htmlFor="spring-mass">Mass</label>
             <input
-              id="spring-mass"
-              type="range"
-              min="1"
-              max="10"
               className="range"
-              value={mass}
+              id="spring-mass"
+              max="10"
+              min="1"
               onChange={e => setMass(e.target.value)}
+              type="range"
+              value={mass}
             />
             <label htmlFor="spring-damping">Damping</label>
             <input
-              type="range"
-              min={0}
-              max={5}
-              step="0.10"
               className="range"
-              value={damping}
+              max={5}
+              min={0}
               onChange={e => setDamping(e.target.value)}
+              step="0.10"
+              type="range"
+              value={damping}
             />
             <label htmlFor="spring-stiffness">Stiffness</label>
             <input
-              type="range"
-              min={1}
-              max={500}
-              value={stiffness}
               className="range"
+              max={500}
+              min={1}
               onChange={e => setStiffness(e.target.value)}
+              type="range"
+              value={stiffness}
             />
 
             <motion.div
-              key={deferredSpring}
-              className="h-10 w-10 rounded bg-zinc-500"
               initial={{
                 x: 0,
               }}
-              animate={{ x: 120 }}
               transition={{
-                type: 'spring',
-                stiffness,
-                mass,
                 damping,
+                mass,
+                stiffness,
+                type: 'spring',
               }}
+              animate={{ x: 120 }}
+              className="h-10 w-10 rounded bg-zinc-500"
+              key={deferredSpring}
             />
           </div>
 
@@ -179,12 +179,12 @@ export default function FirstStep() {
             <div className="card-title">Tween</div>
             <label htmlFor="tween-type">Ease</label>
             <select
-              id="tween-type"
-              className="select w-full max-w-xs"
-              value={tweenAnimation}
               onChange={event => {
                 setTweenAnimation(event.target.value)
               }}
+              className="select w-full max-w-xs"
+              id="tween-type"
+              value={tweenAnimation}
             >
               <option value="linear">linear</option>
               <option value="easeIn">easeIn</option>
@@ -200,19 +200,19 @@ export default function FirstStep() {
             </select>
 
             <motion.div
-              key={tweenAnimation}
-              className="h-10 w-10 rounded bg-zinc-500"
               initial={{
                 x: 0,
               }}
-              animate={{ x: 120 }}
               transition={{
+                duration: 1,
                 ease: tweenAnimation,
                 repeat: Number.POSITIVE_INFINITY,
-                repeatType: 'reverse',
                 repeatDelay: 0.5,
-                duration: 1,
+                repeatType: 'reverse',
               }}
+              animate={{ x: 120 }}
+              className="h-10 w-10 rounded bg-zinc-500"
+              key={tweenAnimation}
             />
             <CodeBlock language="jsx">{tweenCodeString}</CodeBlock>
           </div>
@@ -222,27 +222,27 @@ export default function FirstStep() {
             <div className="card-title">Inertia</div>
             <label htmlFor="tween-type">Velocity</label>
             <input
-              type="range"
-              min="0"
-              max="100"
-              value={velocity}
               className="range"
+              max="100"
+              min="0"
               onChange={e => setVelocity(e.target.value)}
+              type="range"
+              value={velocity}
             />
 
             <motion.div
-              key={deferredInertia}
-              className="h-10 w-10 rounded bg-zinc-500"
               initial={{
                 x: 0,
               }}
-              animate={{ x: 120 }}
               transition={{
-                type: 'inertia',
-                velocity,
                 repeat: Number.POSITIVE_INFINITY,
                 repeatType: 'reverse',
+                type: 'inertia',
+                velocity,
               }}
+              animate={{ x: 120 }}
+              className="h-10 w-10 rounded bg-zinc-500"
+              key={deferredInertia}
             />
             <CodeBlock language="jsx">{inertiaCodeString}</CodeBlock>
           </div>
@@ -254,13 +254,13 @@ export default function FirstStep() {
         <div className="card bg-base-100 p-2 shadow-xl">
           <div className="flex flex-col gap-2">
             <motion.button
-              variants={variants}
-              whileHover="hover"
-              whileTap="pressed"
-              className="h-10 w-full rounded border-none bg-zinc-500 outline-none"
               style={{
                 zIndex: 1,
               }}
+              className="h-10 w-full rounded border-none bg-zinc-500 outline-none"
+              variants={variants}
+              whileHover="hover"
+              whileTap="pressed"
             >
               Click Me
             </motion.button>
@@ -279,10 +279,10 @@ export default function FirstStep() {
             <label className="label cursor-pointer">
               <span className="label-text">Enable Layout Animation</span>
               <input
-                type="checkbox"
-                className="toggle"
                 checked={layout}
+                className="toggle"
                 onChange={e => setLayout(e.target.checked)}
+                type="checkbox"
               />
             </label>
 
@@ -291,12 +291,12 @@ export default function FirstStep() {
                 <label className="label cursor-pointer" key={pos}>
                   <span className="label-text">{pos}</span>
                   <input
-                    type="radio"
-                    name="radio"
-                    value={pos}
-                    className="radio-primary radio"
                     checked={position === pos}
+                    className="radio-primary radio"
+                    name="radio"
                     onChange={e => setPosition(e.target.value)}
+                    type="radio"
+                    value={pos}
                   />
                 </label>
               ))}
@@ -304,11 +304,11 @@ export default function FirstStep() {
 
             <div className="grid w-full rounded border p-1">
               <motion.div
-                className="h-10 w-10 rounded bg-zinc-500"
-                layout={!!layout}
                 style={{
                   justifySelf: position,
                 }}
+                className="h-10 w-10 rounded bg-zinc-500"
+                layout={!!layout}
               />
             </div>
 
@@ -321,41 +321,39 @@ export default function FirstStep() {
 
             <motion.div
               style={{
-                position: 'relative',
-                gap: 2,
                 display: 'flex',
                 flexDirection: 'column',
+                gap: 2,
+                position: 'relative',
               }}
               layoutRoot
             >
               {layoutIdList.map(id => (
                 <motion.div
-                  key={id}
-                  layoutId={id}
-                  className="rounded border bg-base-100 p-4 text-2xl"
-                  onClick={() => setLayoutId(id)}
                   style={{
                     width: '100%',
                   }}
+                  className="rounded border bg-base-100 p-4 text-2xl"
+                  key={id}
+                  layoutId={id}
+                  onClick={() => setLayoutId(id)}
                 >
                   <motion.h2 className="text-2xl">{id}</motion.h2>
                 </motion.div>
               ))}
 
               <AnimatePresence>
-                {layoutId && (
-                  <motion.div
-                    layoutId={layoutId}
-                    className="rounded border bg-base-100 p-4 text-2xl"
-                    onClick={() => setLayoutId(null)}
+                {layoutId ? <motion.div
                     style={{
-                      position: 'absolute',
                       inset: '0.5rem',
+                      position: 'absolute',
                     }}
+                    className="rounded border bg-base-100 p-4 text-2xl"
+                    layoutId={layoutId}
+                    onClick={() => setLayoutId(null)}
                   >
                     <motion.h2 className="text-2xl">{layoutId}</motion.h2>
-                  </motion.div>
-                )}
+                  </motion.div> : null}
               </AnimatePresence>
             </motion.div>
             <CodeBlock language="jsx">{layoutFlexCodeString}</CodeBlock>

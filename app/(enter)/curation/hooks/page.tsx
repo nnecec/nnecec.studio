@@ -5,13 +5,13 @@ export default function HooksPage() {
     <div className="mb-0 grid grid-cols-2">
       <ArrowLink
         href="/curation/hooks/use-timer"
-        title="useTimer"
         subtitle=" A timer with start, pause, restart method."
+        title="useTimer"
       />
       <ArrowLink
         href="/curation/hooks/use-offset-motion"
-        title="useOffsetMotion"
         subtitle="A simple hook to motion element with X or Y."
+        title="useOffsetMotion"
       />
     </div>
   )

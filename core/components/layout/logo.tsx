@@ -14,13 +14,13 @@ export const Logo = () => {
       onMouseLeave={onHoverEnd}
     >
       <motion.div
-        className="h-[30px] w-[30px] bg-current"
-        animate={show ? 'show' : 'hide'}
-        initial="hide"
         variants={{
           hide: { borderRadius: 0 },
           show: { borderRadius: '50%' },
         }}
+        animate={show ? 'show' : 'hide'}
+        className="h-[30px] w-[30px] bg-current"
+        initial="hide"
        />
     </div>
   )

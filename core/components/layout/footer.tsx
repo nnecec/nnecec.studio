@@ -4,23 +4,23 @@ import Image from 'next/image'
 import avatar from '~/core/assets/avatar.webp'
 import { SITE_CONFIG } from '~/core/utils/constants'
 
-const { social, author, description } = SITE_CONFIG
+const { author, description, social } = SITE_CONFIG
 
 const Links = [
   {
-    name: 'github.com/nnecec',
     icon: <IconBrandGithub />,
     link: social.github,
+    name: 'github.com/nnecec',
   },
   {
-    name: 'twitter.com/nnecec_cn',
     icon: <IconBrandTwitter />,
     link: social.twitter,
+    name: 'twitter.com/nnecec_cn',
   },
   {
-    name: 'nnecec.zhubai.love',
     icon: <IconNews />,
     link: social.zhubai,
+    name: 'nnecec.zhubai.love',
   },
 ]
 
@@ -29,11 +29,11 @@ export const Footer = () => {
     <footer className="footer footer-center mt-20 rounded p-10">
       <div className="grid grid-flow-col gap-4">
         <Image
-          className="inline-block rounded-full"
-          src={avatar}
           alt="avatar"
-          width={40}
+          className="inline-block rounded-full"
           height={40}
+          src={avatar}
+          width={40}
         />
         <div className="text-left">
           {author.name}
@@ -45,13 +45,13 @@ export const Footer = () => {
         <div className="grid grid-flow-col gap-4">
           {Links.map(link => (
             <a
-              key={link.name}
+              aria-label={link.name}
               className="link-hover link"
               href={link.link}
-              target="_blank"
+              key={link.name}
               referrerPolicy="no-referrer"
               rel="noreferrer"
-              aria-label={link.name}
+              target="_blank"
             >
               <div className="tooltip" data-tip={link.name}>
                 {link.icon}

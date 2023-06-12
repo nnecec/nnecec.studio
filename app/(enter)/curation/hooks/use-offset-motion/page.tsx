@@ -54,7 +54,7 @@ export default function UseOffsetMotion() {
 
   return (
     <div>
-      <div ref={ref} className="h-10 w-10 rounded-full bg-red-400" />
+      <div className="h-10 w-10 rounded-full bg-red-400" ref={ref} />
 
       <div className="mb-[200px]" />
       <CodeBlock language="ts">{codeString}</CodeBlock>

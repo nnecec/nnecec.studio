@@ -59,12 +59,12 @@ export async function getAllPosts(tag?: string): Promise<{ posts: Post[]; tags: 
 export async function getPost(slug: string): Promise<Post> {
   const fullPath = join(postsDirectory, `${slug}.md`)
   const fileContents = await fs.readFile(fullPath, 'utf8')
-  const { data, content } = matter(fileContents)
+  const { content, data } = matter(fileContents)
   const item: Post = {
     ...data,
-    slug,
     content,
     originContent: fileContents,
+    slug,
   }
   return item
 }

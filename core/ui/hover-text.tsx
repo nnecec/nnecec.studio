@@ -15,12 +15,12 @@ export const HoverText = ({ children, className }: Props) => {
     <motion.span className="relative" whileHover="hovered">
       {children}
       <motion.span
+        style={{
+          height: 3,
+          width: '10%',
+        }}
         className={clsx('absolute bottom-0 left-0 block', className)}
         variants={{ hovered: { width: '100%' } }}
-        style={{
-          width: '10%',
-          height: 3,
-        }}
       />
     </motion.span>
   )

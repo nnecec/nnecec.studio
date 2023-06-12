@@ -7,15 +7,15 @@ export const WavingHand = () => (
     style={{
       display: 'inline-block',
     }}
-    animate={{ rotate: 20 }}
     transition={{
+      delay: 0.5,
+      duration: 0.2,
+      ease: 'easeInOut',
       repeat: 7,
       repeatType: 'mirror',
-      duration: 0.2,
-      delay: 0.5,
-      ease: 'easeInOut',
       type: 'tween',
     }}
+    animate={{ rotate: 20 }}
   >
     👋🏻
   </motion.div>

@@ -45,17 +45,17 @@ export default async function PostPage({ params }: Props) {
           <div className="flex gap-4">
             <a
               href="http://creativecommons.org/licenses/by-nc/4.0/"
-              target="_blank"
               referrerPolicy="no-referrer"
               rel="noreferrer"
+              target="_blank"
             >
               <IconCopyright className="inline" size={14} /> CC BY-NC 4.0
             </a>
             <a
               href={`${SITE_CONFIG.repositoryUrl}/issues`}
-              target="_blank"
               referrerPolicy="no-referrer"
               rel="noreferrer"
+              target="_blank"
             >
               <IconExternalLink className="inline" size={14} /> feedback
             </a>
@@ -63,7 +63,7 @@ export default async function PostPage({ params }: Props) {
         </div>
       </section>
       <section className={clsx(!isMarp && 'heti mx-auto', 'relative my-8 font-serif')}>
-        <Previewer post={post} isMarp={isMarp} />
+        <Previewer isMarp={isMarp} post={post} />
       </section>
     </article>
   )
