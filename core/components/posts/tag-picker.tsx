@@ -9,12 +9,12 @@ export const TagPicker = ({ tags }: { tags: string[] }) => {
 
   return (
     <select
-      className="select-primary select w-full max-w-xs"
-      value={tag}
       onChange={e => {
         const value = e.target.value
         value === '' ? router.replace(`/posts`) : router.replace(`/posts?tag=${e.target.value}`)
       }}
+      className="select-primary select w-full max-w-xs"
+      value={tag}
     >
       <option value=""># All</option>
       {tags.map(tag => (

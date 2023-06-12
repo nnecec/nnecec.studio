@@ -32,7 +32,7 @@ export const Header = () => {
       <div className="container relative mx-auto flex items-center justify-end">
         <div className="flex items-center justify-end gap-4 rounded-full border border-black/10 bg-zinc-100/5 px-6 py-2 text-base backdrop-blur-lg dark:border-white/10 dark:bg-white/5">
           {NAV_LINKS.map(({ label, value }) => (
-            <Link href={value} key={value} className={clsx(isActive(value) && 'text-primary')}>
+            <Link className={clsx(isActive(value) && 'text-primary')} href={value} key={value}>
               <button className="font-bold">{label}</button>
             </Link>
           ))}

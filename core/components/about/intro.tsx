@@ -55,11 +55,11 @@ export const Intro = () => {
         <div className="h-screen">
           <div className="relative h-full">
             <motion.h1
-              className="container absolute top-1/2 text-9xl"
-              variants={titleVariants}
-              initial="hidden"
               animate="show"
+              className="container absolute top-1/2 text-9xl"
+              initial="hidden"
               style={{ opacity: titleOpacity, y: titleY }}
+              variants={titleVariants}
             >
               {[...'About'].map((char, index) => (
                 <motion.span key={index} variants={charVariants}>
@@ -69,52 +69,52 @@ export const Intro = () => {
             </motion.h1>
 
             <motion.div
-              className="top-[15vh] grid h-[70vh] w-full gap-4 md:absolute"
-              variants={titleVariants}
-              initial="hidden"
-              animate={showGrid ? 'show' : undefined}
               style={{
-                y: gridY,
-                opacity: gridOpacity,
-                gridTemplateColumns: '.4fr .3fr .3fr',
-                gridTemplateRows: '1fr .15fr 1fr',
                 gridTemplateAreas: `
                   "feat-0 feat-1 feat-2"
                   "feat-0 feat-1 feat-4"
                   "feat-0 feat-3 feat-4"
                 `,
+                gridTemplateColumns: '.4fr .3fr .3fr',
+                gridTemplateRows: '1fr .15fr 1fr',
+                opacity: gridOpacity,
+                y: gridY,
               }}
+              animate={showGrid ? 'show' : undefined}
+              className="top-[15vh] grid h-[70vh] w-full gap-4 md:absolute"
+              initial="hidden"
+              variants={titleVariants}
             >
               <Poker
-                style={{ gridArea: 'feat-0' }}
-                icon={IconCode}
-                title="Coder"
                 description="Create beautiful and high-performance web applications."
+                icon={IconCode}
+                style={{ gridArea: 'feat-0' }}
+                title="Coder"
               />
               <Poker
-                style={{ gridArea: 'feat-1' }}
-                icon={IconChefHat}
-                title="Chef"
                 description="I'm the family chef, trying to make wonderful food for my family."
+                icon={IconChefHat}
+                style={{ gridArea: 'feat-1' }}
+                title="Chef"
               />
 
               <Poker
-                style={{ gridArea: 'feat-2' }}
-                icon={IconBeach}
-                title="Traveler"
                 description="I like to stay at home, but my wife likes to go out and travel, so I have become a person who loves to travel."
+                icon={IconBeach}
+                style={{ gridArea: 'feat-2' }}
+                title="Traveler"
               />
               <Poker
-                style={{ gridArea: 'feat-3' }}
-                icon={IconCamera}
-                title="Photographer"
                 description="It's a hobby of mine to take great looking photos with my phone or camera."
+                icon={IconCamera}
+                style={{ gridArea: 'feat-3' }}
+                title="Photographer"
               />
               <Poker
-                style={{ gridArea: 'feat-4' }}
-                icon={IconMusic}
-                title="Guitar learner"
                 description="Ready to teach my daughter guitar, but I do not know how to play the guitar yet, is learning to play the guitar."
+                icon={IconMusic}
+                style={{ gridArea: 'feat-4' }}
+                title="Guitar learner"
               />
             </motion.div>
           </div>

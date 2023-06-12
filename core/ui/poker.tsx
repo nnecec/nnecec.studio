@@ -9,11 +9,11 @@ import type { TablerIconsProps } from '@tabler/icons-react'
 const delta = 12
 
 interface PokerProps {
-  style?: React.CSSProperties
-  title: React.ReactNode
+  className?: string
   description: React.ReactNode
   icon?: React.JSXElementConstructor<TablerIconsProps>
-  className?: string
+  style?: React.CSSProperties
+  title: React.ReactNode
 }
 
 const PokerVariants = {
@@ -28,11 +28,11 @@ const PokerVariants = {
 }
 
 export const Poker = ({
-  title,
+  className,
   description,
   icon,
   style,
-  className,
+  title,
 }: React.PropsWithChildren<PokerProps>) => {
   const [hovering, setHovering] = useState(false)
   const Icon = icon
@@ -69,16 +69,16 @@ export const Poker = ({
 
   return (
     <motion.div
-      variants={PokerVariants}
-      onPointerMove={onMove}
-      onPointerLeave={onLeave}
-      className="h-full w-full"
       style={{
         ...style,
-        transition: 'transform .3s ease-out',
-        rotateY,
         rotateX,
+        rotateY,
+        transition: 'transform .3s ease-out',
       }}
+      className="h-full w-full"
+      onPointerLeave={onLeave}
+      onPointerMove={onMove}
+      variants={PokerVariants}
     >
       <div
         className={clsx(
@@ -100,11 +100,11 @@ export const Poker = ({
           </div>
         </div>
         <motion.div
-          className="absolute inset-0 transition-opacity duration-300"
           style={{
-            opacity: hovering ? 0.3 : 0,
             backgroundImage: hovering ? backgroundImage : 'none',
+            opacity: hovering ? 0.3 : 0,
           }}
+          className="absolute inset-0 transition-opacity duration-300"
         />
       </div>
     </motion.div>

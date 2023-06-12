@@ -4,11 +4,11 @@ import { Element } from '@marp-team/marpit'
 import type { Post } from '~/core/types/post'
 
 const marp = new Marp({
-  printable: false,
   container: new Element('div', { class: 'marpit flex flex-col gap-4' }),
+  printable: false,
 })
 export function MarpPreviewer({ post }: { post: Post }) {
-  const { html, css } = marp.render(post.originContent)
+  const { css, html } = marp.render(post.originContent)
 
   return (
     <div>

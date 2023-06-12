@@ -15,43 +15,43 @@ interface ValueObject {
 }
 
 export interface UseThemeProps {
-  /** List of all available theme names */
-  themes: string[]
   /** Forced theme name for the current page */
   forcedTheme?: string
-  /** Update the theme */
-  setTheme: (theme: string) => void
-  /** Active theme name */
-  theme?: string
   /** If `enableSystem` is true and the active theme is "system", this returns whether the system preference resolved to "dark" or "light". Otherwise, identical to `theme` */
   resolvedTheme?: string
+  /** Update the theme */
+  setTheme: (theme: string) => void
   /** If enableSystem is true, returns the System theme preference ("dark" or "light"), regardless what the active theme is */
   systemTheme?: 'dark' | 'light'
+  /** Active theme name */
+  theme?: string
+  /** List of all available theme names */
+  themes: string[]
 }
 
 export interface ThemeProviderProps {
-  /** List of all available theme names */
-  themes?: string[]
-  /** Forced theme name for the current page */
-  forcedTheme?: string
-  /** Whether to switch between dark and light themes based on prefers-color-scheme */
-  enableSystem?: boolean
+  /** HTML attribute modified based on the active theme. Accepts `class` and `data-*` (meaning any data attribute, `data-mode`, `data-color`, etc.) */
+  attribute?: 'class' | string
+  children?: React.ReactNode
+  /** Default theme name (for v0.0.12 and lower the default was light). If `enableSystem` is false, the default theme is light */
+  defaultTheme?: string
   /** Disable all CSS transitions when switching themes */
   disableTransitionOnChange?: boolean
   /** Whether to indicate to browsers which color scheme is used (dark or light) for built-in UI like inputs and buttons */
   enableColorScheme?: boolean
-  /** Key used to store theme setting in localStorage */
-  storageKey?: string
-  /** Default theme name (for v0.0.12 and lower the default was light). If `enableSystem` is false, the default theme is light */
-  defaultTheme?: string
-  /** HTML attribute modified based on the active theme. Accepts `class` and `data-*` (meaning any data attribute, `data-mode`, `data-color`, etc.) */
-  attribute?: string | 'class'
-  /** Mapping of theme name to HTML attribute value. Object where key is the theme name and value is the attribute value */
-  value?: ValueObject
+  /** Whether to switch between dark and light themes based on prefers-color-scheme */
+  enableSystem?: boolean
+  /** Forced theme name for the current page */
+  forcedTheme?: string
   /** Nonce string to pass to the inline script for CSP headers */
   nonce?: string
+  /** Key used to store theme setting in localStorage */
+  storageKey?: string
+  /** List of all available theme names */
+  themes?: string[]
 
-  children?: React.ReactNode
+  /** Mapping of theme name to HTML attribute value. Object where key is the theme name and value is the attribute value */
+  value?: ValueObject
 }
 
 const colorSchemes = new Set(['light', 'dark'])
@@ -105,15 +105,15 @@ const getSystemTheme = (e?: MediaQueryList | MediaQueryListEvent) => {
 
 const ThemeScript = memo(
   function ThemeScriptInternal({
-    forcedTheme,
-    storageKey,
     attribute,
-    enableSystem,
-    enableColorScheme,
-    defaultTheme,
-    value,
     attrs,
+    defaultTheme,
+    enableColorScheme,
+    enableSystem,
+    forcedTheme,
     nonce,
+    storageKey,
+    value,
   }: ThemeProviderProps & { attrs: string[]; defaultTheme: string }) {
     const defaultSystem = defaultTheme === 'system'
 
@@ -187,24 +187,25 @@ const ThemeScript = memo(
       )};}${fallbackColorScheme}}catch(t){}}();`
     })()
 
-    return <script nonce={nonce} dangerouslySetInnerHTML={{ __html: scriptSrc }} />
+    return <script dangerouslySetInnerHTML={{ __html: scriptSrc }} nonce={nonce} />
   },
   // Never re-render this component
   () => true,
 )
 
 const Theme: React.FC<ThemeProviderProps> = ({
-  forcedTheme,
-  disableTransitionOnChange = false,
+  attribute = 'data-theme',
+  children,
   enableSystem = true,
+  // eslint-disable-next-line perfectionist/sort-objects
+  defaultTheme = enableSystem ? 'system' : 'light',
+  disableTransitionOnChange = false,
   enableColorScheme = true,
+  forcedTheme,
+  nonce,
   storageKey = 'theme',
   themes = defaultThemes,
-  defaultTheme = enableSystem ? 'system' : 'light',
-  attribute = 'data-theme',
   value,
-  children,
-  nonce,
 }) => {
   const [theme, setThemeState] = useState(() => getTheme(storageKey, defaultTheme))
   const [resolvedTheme, setResolvedTheme] = useState(() => getTheme(storageKey))
@@ -259,7 +260,7 @@ const Theme: React.FC<ThemeProviderProps> = ({
   )
 
   const handleMediaQuery = useCallback(
-    (e: MediaQueryListEvent | MediaQueryList) => {
+    (e: MediaQueryList | MediaQueryListEvent) => {
       const resolved = getSystemTheme(e)
       setResolvedTheme(resolved)
 
@@ -304,12 +305,12 @@ const Theme: React.FC<ThemeProviderProps> = ({
 
   const providerValue = useMemo(
     () => ({
-      theme,
-      setTheme,
       forcedTheme,
       resolvedTheme: theme === 'system' ? resolvedTheme : theme,
+      setTheme,
+      systemTheme: (enableSystem ? resolvedTheme : undefined) as 'dark' | 'light' | undefined,
+      theme,
       themes: enableSystem ? [...themes, 'system'] : themes,
-      systemTheme: (enableSystem ? resolvedTheme : undefined) as 'light' | 'dark' | undefined,
     }),
     [theme, setTheme, forcedTheme, resolvedTheme, enableSystem, themes],
   )
@@ -318,18 +319,18 @@ const Theme: React.FC<ThemeProviderProps> = ({
     <ThemeContext.Provider value={providerValue}>
       <ThemeScript
         {...{
-          forcedTheme,
+          attribute,
+          attrs,
+          children,
+          defaultTheme,
           disableTransitionOnChange,
-          enableSystem,
           enableColorScheme,
+          enableSystem,
+          forcedTheme,
+          nonce,
           storageKey,
           themes,
-          defaultTheme,
-          attribute,
           value,
-          children,
-          attrs,
-          nonce,
         }}
       />
       {children}

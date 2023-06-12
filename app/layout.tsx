@@ -12,16 +12,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="theme-color" content="#000" />
-        <meta name="msapplication-TileColor" content="#000" />
-        <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <meta content="width=device-width,initial-scale=1" name="viewport" />
+        <meta content="#000" name="theme-color" />
+        <meta content="#000" name="msapplication-TileColor" />
+        <link href="/favicon/favicon.ico" rel="icon" type="image/x-icon" />
+        <link href="/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+        <link href="/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+        <link href="/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+        <link href="/favicon/site.webmanifest" rel="manifest" />
         <meta title={SITE_CONFIG.title} />
-        <meta name="description" content={SITE_CONFIG.description} />
+        <meta content={SITE_CONFIG.description} name="description" />
       </head>
 
       <body>
@@ -32,8 +32,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />
             <script
-              async
-              id="gtag-init"
               dangerouslySetInnerHTML={{
                 __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -42,6 +40,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 gtag('config', '${trackingId}');
               `,
               }}
+              async
+              id="gtag-init"
             />
           </>
         )}

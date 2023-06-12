@@ -3,13 +3,13 @@ import { Tag } from '@markdoc/markdoc'
 import type { Schema } from '@markdoc/markdoc'
 
 export const heading: Schema = {
-  render: 'Heading',
-  children: ['inline'],
   attributes: {
-    id: { type: String },
-    level: { type: Number, required: true, default: 1 },
     className: { type: String },
+    id: { type: String },
+    level: { default: 1, required: true, type: Number },
   },
+  children: ['inline'],
+  render: 'Heading',
   transform(node, config) {
     const attributes = node.transformAttributes(config)
     const children = node.transformChildren(config)

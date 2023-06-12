@@ -17,11 +17,11 @@ export const CodeBlock = ({ children, language }: any) => {
   return (
     <div className="group relative">
       <CopyToClipboard
-        text={children}
         onCopy={() => {
           setCopied(true)
           reset()
         }}
+        text={children}
       >
         <button className="btn-sm btn absolute right-4 top-4 opacity-0 group-hover:opacity-100">
           <label className={clsx(copied && 'swap-active', 'swap')}>
@@ -34,8 +34,8 @@ export const CodeBlock = ({ children, language }: any) => {
           </label>
         </button>
       </CopyToClipboard>
-      <Highlight theme={theme as any} code={children} language={language}>
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+      <Highlight code={children} language={language} theme={theme as any}>
+        {({ className, getLineProps, getTokenProps, style, tokens }) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line })}>

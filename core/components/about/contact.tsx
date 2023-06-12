@@ -23,54 +23,54 @@ export const Contact = () => {
           <div className="">
             <h2 className="mb-8 text-center text-7xl">Find me.</h2>
             <div className="flex flex-wrap justify-center gap-4 text-center">
-              <button className="btn" aria-label="email">
+              <button aria-label="email" className="btn">
                 <Link href={`mailto:${SITE_CONFIG.email}`}>
                   <IconMail />
                 </Link>
               </button>
 
-              <button className="btn" aria-label="github">
+              <button aria-label="github" className="btn">
                 <Link href={SITE_CONFIG.social.github} target="_blank">
                   <IconBrandGithub />
                 </Link>
               </button>
 
-              <label htmlFor="my-modal" className="btn" aria-label="wechat">
+              <label aria-label="wechat" className="btn" htmlFor="my-modal">
                 <IconBrandWechat />
               </label>
-              <input type="checkbox" id="my-modal" className="modal-toggle" />
-              <label htmlFor="my-modal" className="modal cursor-pointer">
+              <input className="modal-toggle" id="my-modal" type="checkbox" />
+              <label className="modal cursor-pointer" htmlFor="my-modal">
                 <label className="modal-box relative w-[200px]" htmlFor="">
-                  <Image src={wechatJPG} alt="wechat_qrcode" width={200} height={200} />
+                  <Image alt="wechat_qrcode" height={200} src={wechatJPG} width={200} />
                 </label>
               </label>
 
-              <button className="btn" aria-label="twitter">
-                <a href={SITE_CONFIG.social.twitter} target="_blank" rel="noreferrer">
+              <button aria-label="twitter" className="btn">
+                <a href={SITE_CONFIG.social.twitter} rel="noreferrer" target="_blank">
                   <IconBrandTwitter />
                 </a>
               </button>
 
-              <button className="btn" aria-label="instagram">
-                <a href={SITE_CONFIG.social.instagram} target="_blank" rel="noreferrer">
+              <button aria-label="instagram" className="btn">
+                <a href={SITE_CONFIG.social.instagram} rel="noreferrer" target="_blank">
                   <IconBrandInstagram />
                 </a>
               </button>
 
-              <label htmlFor="telegram-modal" className="btn" aria-label="telegram">
+              <label aria-label="telegram" className="btn" htmlFor="telegram-modal">
                 <IconBrandTelegram />
               </label>
 
-              <button className="btn" aria-label="bento">
-                <a href={SITE_CONFIG.social.bento} target="_blank" rel="noreferrer">
+              <button aria-label="bento" className="btn">
+                <a href={SITE_CONFIG.social.bento} rel="noreferrer" target="_blank">
                   <IconBookmarks />
                 </a>
               </button>
 
-              <input type="checkbox" id="telegram-modal" className="modal-toggle" />
-              <label htmlFor="telegram-modal" className="modal cursor-pointer">
+              <input className="modal-toggle" id="telegram-modal" type="checkbox" />
+              <label className="modal cursor-pointer" htmlFor="telegram-modal">
                 <label className="modal-box relative w-[200px]" htmlFor="">
-                  <Image src={telegramJPG} alt="telegram_qrcode" width={200} height={200} />
+                  <Image alt="telegram_qrcode" height={200} src={telegramJPG} width={200} />
                 </label>
               </label>
             </div>

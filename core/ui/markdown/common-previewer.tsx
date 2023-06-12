@@ -32,8 +32,8 @@ export const CommonPreviewer = ({ content }: { content: string }) => {
 
   const html = Markdoc.transform(ast, {
     nodes: {
-      heading,
       fence,
+      heading,
     },
     tags: {
       sandpack,

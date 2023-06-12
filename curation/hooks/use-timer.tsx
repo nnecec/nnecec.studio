@@ -34,9 +34,9 @@ export const useTimer = (callback: () => void, millisecond = 0) => {
   }
 
   return {
-    start,
+    isRunning,
     pause,
     restart,
-    isRunning,
+    start,
   }
 }

@@ -7,19 +7,19 @@ type Layout = 'console' | 'preview'
 
 type SandpackProps = {
   files: SandpackFiles
-  template?: SandpackPredefinedTemplate
   layout?: Layout
+  template?: SandpackPredefinedTemplate
 }
 
-export const Sandpack = ({ template = 'react', layout = 'preview', files = {} }: SandpackProps) => {
+export const Sandpack = ({ files = {}, layout = 'preview', template = 'react' }: SandpackProps) => {
 
   return (
     <SandpackBox
-      template={template}
-      files={files}
       options={{
         layout,
       }}
+      files={files}
+      template={template}
     />
   )
 }

@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import mermaid from 'mermaid'
 
 mermaid.initialize({
-  startOnLoad: false,
-  securityLevel: 'loose',
   logLevel: 5,
+  securityLevel: 'loose',
+  startOnLoad: false,
   theme: 'neutral',
 })
 
