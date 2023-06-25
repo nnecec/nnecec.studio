@@ -20,16 +20,16 @@ export const sandpack: Schema = {
   children: ['sandpackFile'],
   render: 'Sandpack',
   transform(node, config) {
-    const files = {}
+    const files: Record<string, string> = {}
 
     node
       .transformChildren(config)
       // .filter(child => child && child.name === '"SandpackFile"')
       // eslint-disable-next-line unicorn/no-array-for-each
-      .forEach(child => {
+      .forEach((child: any) => {
         if (child && typeof child === 'object') {
           const path = child.attributes.path
-          files[path] = child.children.flatMap(p => p.children).join('\n')
+          files[path] = child.children.flatMap((p: any) => p.children).join('\n')
         }
       })
 
