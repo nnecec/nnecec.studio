@@ -25,8 +25,8 @@ function animate(callback: (progression: number) => void, duration = 3000, f = i
   requestAnimationFrame(loop)
 }
 
-export const useOffsetMotion = (pos: Pos, duration?: number) => {
-  const ref = useRef<HTMLElement>(null)
+export const useOffsetMotion = <T extends HTMLElement>(pos: Pos, duration?: number) => {
+  const ref = useRef<T>(null)
 
   const x = pos.x ?? 0
   const y = pos.y ?? 0

@@ -3,6 +3,8 @@
 import { WavingHand } from '~/core/components/home/waving-hand'
 import { HoverText } from '~/core/ui/hover-text'
 
+import type { Metadata } from 'next'
+
 export const metadata: Metadata = {
   title: 'Home',
 }
