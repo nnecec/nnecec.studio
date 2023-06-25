@@ -7,7 +7,7 @@ import { Tag } from '~/core/ui'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Posts list.',
+  title: 'All posts',
 }
 
 export default async function PostsPage({ searchParams }: { searchParams: { tag?: string } }) {

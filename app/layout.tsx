@@ -1,11 +1,20 @@
 import { ThemeProvider } from '~/core/components/theme'
 import { SITE_CONFIG } from '~/core/utils/constants'
 
+import type { Metadata } from 'next'
+
 import '~/core/styles/index.css'
 import '~/core/styles/heti.css'
 import '~/core/styles/custom.css'
 
 const trackingId = process.env.GOOGLE_TRACKING_ID
+
+export const metadata: Metadata = {
+  title: {
+    default: 'nnecec.studio',
+    template: `%s - nnecec.studio`,
+  },
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,9 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       <body>
-        <ThemeProvider enableSystem>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider enableSystem>{children}</ThemeProvider>
         {process.env.NODE_ENV === 'development' || !trackingId ? undefined : (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />

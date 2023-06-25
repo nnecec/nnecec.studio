@@ -13,6 +13,11 @@ export default function HooksPage() {
         subtitle="A simple hook to motion element with X or Y."
         title="useOffsetMotion"
       />
+      <ArrowLink
+        href="/curation/hooks/use-interval"
+        subtitle="A countdown button with motion."
+        title="useInterval"
+      />
     </div>
   )
 }

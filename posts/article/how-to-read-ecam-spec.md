@@ -3,7 +3,7 @@ marp: true
 class: invert
 title: '如何阅读 ECMAScript 标准'
 date: '2022-06-30'
-tags: ['JavaScript']
+tags: ['JavaScript', 'Slides']
 description: '通过例子了解如何阅读 ECMAScript 规范'
 ---
 
@@ -492,5 +492,3 @@ global: 对全局对象的引用
 2. [How to Read the ECMAScript Specification](https://timothygu.me/es-howto/)
 3. [ECMAScript 阅读指南（二）](https://zhuanlan.zhihu.com/p/262265857)
 4. [Understanding ECMAScript](https://v8.dev/blog/tags/understanding-ecmascript)
-
----

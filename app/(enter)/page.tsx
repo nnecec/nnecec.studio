@@ -3,6 +3,10 @@
 import { WavingHand } from '~/core/components/home/waving-hand'
 import { HoverText } from '~/core/ui/hover-text'
 
+export const metadata: Metadata = {
+  title: 'Home',
+}
+
 export default function Page() {
   return (
     <section className="-mt-header flex h-screen items-center pt-header">
