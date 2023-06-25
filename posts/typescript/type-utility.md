@@ -5,13 +5,50 @@ tags: ['Induction', 'TypeScript']
 description: 'TypeScript 类型不仅可以声明类型，也能描述任何可计算逻辑，比如循环、条件判断、计算等语言能力。对此，称之为类型编程。'
 ---
 
+## 概念基础
+
+这些概念都是对于类型安全的设定
+
+- 协变（Covariant）：只在同一个方向；
+
+  比如 Dog 是 Animal 的子类型，子类型可以赋值给父类型的情况称为协变。
+
+  ```ts
+  type Animal = { age: number }
+  type Dog = { name: string; age: number }
+
+  const d: Dog = { age: 1, name: 'didi' }
+  const a: Animal = { age: 2 }
+  const c: Dog = a // error! 父类型不可以给子类型赋值
+  const e: Animal = d // ok! 子类型的值可以赋值给父类型
+  ```
+
+- 逆变（Contravariant）：只在相反的方向；
+
+  与协变相反，例如函数参数具有逆变性质，父类型可以赋值给子类型的情况称为逆变。
+
+  ```ts
+  type PA = (p: Animal) => void
+  type PD = (p: Dog) => void
+  let pa: PA = (p: Dog) => {} // error! 子类型方法不可以赋值给父类型方法
+  let pd: PD = (p: Animal) => {} // ok! 参数为父类型时，父类型方法可以赋值给子类型方法
+  ```
+
+- 双向协变（Bivariant）：包括同一个方向和不同方向；
+
+  函数类型是双向协变，可以通过设置编译选项--strictFunctionTypes true 来保持函数的逆变性而关闭协变性。
+
+- 不变（Invariant）：如果类型不完全相同，则它们是不兼容的。
+
+  类型无父子关系时，类型不同不能互相赋值。
+
 ## 语句
 
 ### 条件判断: A extends B ? True : False
 
 通过[条件判断](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html)实现类似三元符的逻辑。
 
-extends 在语言中是继承的意思，在类型使用中，extends 既可以实现继承功能，也可以通过和三元符号组合实现类型判断的功能。
+extends 在语言中是继承的意思，在类型使用中，A extends B 判断 A 是 B 的子类型时执行 true 逻辑，可以通过和三元符号组合实现类型判断的功能。
 
 ```ts
 interface Animal {
@@ -59,7 +96,27 @@ type B = Flatten<number>
 
 infer 是一个推断，我们不需要已知 infer 后面的具体类型，而是当作假设已知是 infer 后面的类型如何处理。
 
-### 截取字符串: T extends `Hello ${infer S}` ? S : never
+使用 infer 推导数组类型时，例如
+
+```ts
+// 类型推断 Last 时，不确定需要的是 '3' 还是 string 类型
+type TheLast<Arr extends string[]> = Arr extends [...infer Rest, infer Last] ? `${Last}` : never // error!
+type Num = TheLast<'1', '2', '3'>
+```
+
+所以在这种场景下需要增加类型收敛的处理
+
+```ts
+type TheLast<Arr extends string[]> = Arr extends [...infer Rest, infer Last]
+  ? `${Last & string}`
+  : never // success!
+
+type TheLast<Arr extends string[]> = Arr extends [...infer Rest, infer Last]
+  ? infer Last extends string
+  : never // success! recommend!
+```
+
+### 截取字符串: `T extends Hello ${infer S} ? S : never`
 
 结合类型推断与 \`\` 符号，可以截取字符串类型中符合规则的部分。
 
@@ -81,9 +138,9 @@ type Target = GetSecondStr<'Hello World_ME_!'>
 //     ^? type Target = 'ME'
 ```
 
-### 循环/递归：`type Recursive<T, U> = T extends U ? T : Recursive<T, U>`
+### 循环/递归 type Recursive<T, U> = T extends U ? T : Recursive<T, U>
 
-### 数字及操作数字: `T['length']`
+### 数字及操作数字 T['length']
 
 当需要计算数字时，只能通过向数组中添加或减少数组元素，并通过 T[\'length\'] 的方式获取数字类型
 

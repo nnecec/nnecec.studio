@@ -1,0 +1,36 @@
+@import url('./heti.css');
+
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('//github.githubassets.com/static/fonts/github/mona-sans.woff2')
+      format('woff2 supports variations'),
+    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom classes */
+
+.global-wrapper {
+  @apply py-10 px-5;
+  @apply mx-auto;
+  @apply max-w-3xl;
+}
+
+.blog-post {
+  article a {
+    @apply mx-1 text-primary;
+  }
+  svg {
+    @apply align-text-bottom;
+  }
+
+  code {
+    @apply p-0.5 border border-neutral-300/20 bg-neutral-300/30 dark:bg-neutral-600/30 rounded;
+  }
+}

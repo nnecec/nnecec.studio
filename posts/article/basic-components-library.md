@@ -23,7 +23,7 @@ description: ''
 
 对于多端的业务组件库，倒是适合通过 monorepo 的方式组织代码，如下面这种结构
 
-```
+```text
 - ui
   - mobile
   - laptop
@@ -61,20 +61,22 @@ description: ''
 
 NextUI v2 的重构则同样不提供样式代码，但基于 TailwindCSS 提供了样式类，内部通过 `tailwind-variants` 将 class 集成到组件上。
 
+近期非常流行的 shadcn/ui 则基于 radix-ui 提供逻辑能力，自己实现组件样式。它甚至不提供 npm 包，只是提供模版代码让开发者复制到自己的项目中，但这样的设计个人认为非常棒！
+
 ### 5. 代码组织
 
 一般一个组件由源代码、单元测试、文档、Demo 及样式构成。
 
-```
+```text
 ├── src
 │   ├── components
 │   │   └── User
-│   │        ├── user.test.tsx
-│   │        ├── user.stories.tsx
-│   │        ├── user.tsx
-│   │        ├── index.css
-│   │        ├── types.tsx
-│   │        └── index.ts
+│   │       ├── user.test.tsx
+│   │       ├── user.stories.tsx
+│   │       ├── user.tsx
+│   │       ├── index.css
+│   │       ├── types.tsx
+│   │       └── index.ts
 │   ├── types
 │   └── utils
 └── package.json
@@ -82,7 +84,7 @@ NextUI v2 的重构则同样不提供样式代码，但基于 TailwindCSS 提供
 
 如果是 monorepo 的组织方式，往往一个组件作为一个 package，如果组件数量比较大的情况下，也可以有一个 main package 去中转所有的 sub package。这样用户只需要安装这一个 main package 就可以了，并且在 Tree Shaking 的能力下不会对产物体积产生影响。
 
-```
+```text
 ├── packages
 │   ├── business
 │   │   └── package.json
@@ -108,6 +110,9 @@ export * from '@n/utils'
 
 ### 文档
 
+- storybook
+- nextra
+
 ### 单元测试
 
 使用 Jest 编写组件的单元测试，根据组件库的具体落地情况，可能需要添加 `@testing-library/react`, `@testing-library/react-hooks`, `@testing-library/user-event`, `@testing-library/jest-dom` 等来支持不同的需求。
@@ -119,5 +124,3 @@ export * from '@n/utils'
 - 明确需要测试的组件功能，从开发者转变到使用者的思维来衡量需要编写的用例
 - 每一份 test 只用于测试单一功能点
 - 测试内容一般包括：是否正确接受并处理了预期参数、渲染是否正确（是否有关键节点，或快照对比）、用户操作是否符合设定逻辑、边缘情况（如使用预期外的参数）是否处理
-
-### 
