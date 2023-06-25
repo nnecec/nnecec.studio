@@ -1,21 +1,16 @@
 ---
 marp: true
 class: invert
-title: 'Web Animation'
+title: 'Web Animation 网页动画'
 date: '2023-05-06'
-tags: ['Introduction']
+tags: ['Introduction', 'Slides']
 description: '网页动画简史及现代网页动画技术简介'
 ---
 
 # Web Animation 网页动画
 
 <!--
-demos:
-https://www.zhihu.com/question/19609079/answer/60053891
-https://www.bilibili.com/video/BV1Jx411M7G5
-https://codesandbox.io/p/sandbox/collections-mi2c3u?file=%2Fapp%2Fhooks%2Fuse-offset-motion%2Fpage.tsx%3A13%2C1
-https://www.framer.com/motion/layout-animations/
-https://www.nan.fyi/magic-motion#introducing-flip
+本次分享的主题是，Web Animation 网页动画
 -->
 
 ---

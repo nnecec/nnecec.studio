@@ -131,7 +131,7 @@ export default function FirstStep() {
               id="spring-mass"
               max="10"
               min="1"
-              onChange={e => setMass(e.target.value)}
+              onChange={(e: any) => setMass(e.target.value)}
               type="range"
               value={mass}
             />
@@ -140,7 +140,7 @@ export default function FirstStep() {
               className="range"
               max={5}
               min={0}
-              onChange={e => setDamping(e.target.value)}
+              onChange={(e: any) => setDamping(e.target.value)}
               step="0.10"
               type="range"
               value={damping}
@@ -150,7 +150,7 @@ export default function FirstStep() {
               className="range"
               max={500}
               min={1}
-              onChange={e => setStiffness(e.target.value)}
+              onChange={(e: any) => setStiffness(e.target.value)}
               type="range"
               value={stiffness}
             />
@@ -225,7 +225,7 @@ export default function FirstStep() {
               className="range"
               max="100"
               min="0"
-              onChange={e => setVelocity(e.target.value)}
+              onChange={(e: any) => setVelocity(e.target.value)}
               type="range"
               value={velocity}
             />
@@ -343,7 +343,8 @@ export default function FirstStep() {
               ))}
 
               <AnimatePresence>
-                {layoutId ? <motion.div
+                {layoutId ? (
+                  <motion.div
                     style={{
                       inset: '0.5rem',
                       position: 'absolute',
@@ -353,7 +354,8 @@ export default function FirstStep() {
                     onClick={() => setLayoutId(null)}
                   >
                     <motion.h2 className="text-2xl">{layoutId}</motion.h2>
-                  </motion.div> : null}
+                  </motion.div>
+                ) : null}
               </AnimatePresence>
             </motion.div>
             <CodeBlock language="jsx">{layoutFlexCodeString}</CodeBlock>

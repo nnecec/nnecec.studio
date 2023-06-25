@@ -43,7 +43,9 @@ export https_proxy=http://127.0.0.1:7890
 export all_proxy=socks5://127.0.0.1:7890
 ```
 
-> 如果你没有代理，可以通过[这个链接](https://mojie.nl/#/register?code=xzSjSYO6)注册。这个代理是不限时间设备数量，只计算使用流量的，如果不经常看视频会非常省钱。从 2021 年用到现在一直都很稳定，速度也不错，试了一下 youtube 1440p 不会卡。
+> 如果你没有代理，可以通过[这个链接](https://mojie.me/#/register?code=xzSjSYO6)注册。这个代理是不限时间设备数量，只计算使用流量的。
+> 如果不经常看视频会非常省。实测看视频也没有用很多， youtube 1440p 不会卡。
+> 从 2021 年用到现在一直都很稳定，速度也不错。
 
 ### 2. 安装 [Brew](https://brew.sh/)
 
@@ -120,7 +122,7 @@ git config --global user.email "nnecec@outlook.com"
 
 我用的编程字体是 `iosevka`，中文字体是`霞鹜文楷`。
 
-偶尔换一换 `JetBrains Mono`, `Roboto Mono`。
+编程字体在 `JetBrains Mono`, `Roboto Mono` 会互相缓一缓，提升点新鲜感。
 
 ```bash
 brew tap homebrew/cask-fonts
@@ -130,7 +132,7 @@ brew install font-iosevka font-roboto font-roboto-mono font-lxgw-wenkai font-jet
 ### 6. 配置 App
 
 - Edge/Chrome: 设置默认浏览器，登陆 google, github 等账号，其他平台一键登录会很方便
-- Raycase: 配置 Window Management - presets - magnet，配置剪贴板快捷键(我配置的是 `cmd + control + v`)
+- Raycase: 配置 Window Management - presets - magnet，选择自己习惯的预设方案配置剪贴板快捷键
   - magnet 预设方案如果有冲突，可以自定义快捷键，我是改成了 `control + option + cmd + KEY` 组合。
 - Telegram: 配置 Proxy: `127.0.0.1:7890`，走 Clash 的代理。
 - Warp/VSCode: `font: Iosevka, Roboto Mono, LXGW WenKai Mono`，这样配置英文会使用 Iosevka 字体，中文降级为霞骛文楷。

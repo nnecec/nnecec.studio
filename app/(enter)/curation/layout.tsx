@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: "nnecec's collections",
+  title: "Curations",
 }
 
 export default function CurationLayout({ children }: { children: React.ReactNode }) {
