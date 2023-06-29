@@ -3,8 +3,8 @@ import { SITE_CONFIG } from '~/core/utils/constants'
 
 import type { Metadata } from 'next'
 
-import '~/core/styles/index.css'
 import '~/core/styles/heti.css'
+import '~/core/styles/globals.css'
 import '~/core/styles/custom.css'
 
 const trackingId = process.env.GOOGLE_TRACKING_ID
