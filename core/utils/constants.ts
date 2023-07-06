@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   },
   description: 'think. try. treasure.',
   email: 'nnecec@outlook.com',
-  repositoryUrl: 'https://github.com/nnecec/nnecec.github.io',
+  repositoryUrl: 'https://github.com/nnecec/nnecec.studio',
   siteUrl: 'https://nnecec.vercel.app',
   social: {
     bento: 'https://bento.me/nnecec/',
@@ -37,7 +37,7 @@ export const ProjectsList: Project[] = [
   },
   {
     description: "export * as Blog from 'nnecec'",
-    link: 'https://github.com/nnecec/nnecec.github.io/',
+    link: 'https://github.com/nnecec/nnecec.studio/',
     title: 'blog',
   },
 ]

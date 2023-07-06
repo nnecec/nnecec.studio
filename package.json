@@ -1,5 +1,5 @@
 {
-  "name": "nnecec.github.io",
+  "name": "nnecec.studio",
   "version": "0.2023.0",
   "description": "We need to talk about that.",
   "keywords": [
@@ -12,16 +12,16 @@
   "homepage": "http://nnecec.vercel.app/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nnecec/nnecec.github.io.git"
+    "url": "https://github.com/nnecec/nnecec.studio.git"
   },
   "license": "0BSD",
   "author": "nnecec <nnecec@outlook.com>",
   "scripts": {
-    "dev": "next dev -p 3006",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev -p 3006",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "next start"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.6.9",
@@ -30,35 +30,32 @@
     "@motionone/utils": "^10.15.1",
     "@tabler/icons-react": "^2.23.0",
     "clsx": "^1.2.1",
-    "daisyui": "^3.1.7",
-    "dayjs": "^1.11.8",
-    "framer-motion": "^10.12.17",
+    "daisyui": "^3.1.9",
+    "dayjs": "^1.11.9",
+    "framer-motion": "^10.12.18",
     "gray-matter": "4.0.3",
-    "mermaid": "^10.2.3",
-    "next": "^13.4.7",
+    "mermaid": "^10.2.4",
+    "next": "^13.4.8",
     "prism-react-renderer": "^2.0.6",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@nnecec/eslint-config": "^0.4.2",
-    "@nnecec/prettier-config": "^0.2.4",
+    "@nnecec/eslint-config": "^0.5.1",
+    "@nnecec/prettier-config": "^0.3.0",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "^20.3.2",
+    "@types/node": "^20.4.0",
     "@types/prismjs": "^1.26.0",
     "@types/react": "^18.2.14",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.2.6",
     "autoprefixer": "^10.4.14",
     "cssnano": "^6.0.1",
-    "eslint": "^8.43.0",
-    "eslint-config-next": "^13.4.7",
+    "eslint-config-next": "^13.4.8",
     "husky": "^8.0.3",
-    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.24",
     "postcss-import": "^15.1.0",
-    "prettier": "^2.8.8",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.1.6"
   },

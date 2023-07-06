@@ -4,7 +4,7 @@ import { IconCheck, IconCopy } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { Highlight } from 'prism-react-renderer'
 
-import useTimeoutFn from '~/core/hooks/timeout'
+import useTimeoutFn from '~/core/hooks/use-timeout'
 
 import { theme } from './theme'
 
