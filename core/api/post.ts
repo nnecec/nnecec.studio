@@ -41,12 +41,14 @@ export async function getAllPosts(tag?: string): Promise<{ posts: Post[]; tags: 
     if (post?.tags) {
       tags.push(...post.tags)
     }
-    if (tag) {
-      if (post.tags?.includes(tag)) {
+    if (post.status !== 0) {
+      if (tag) {
+        if (post.tags?.includes(tag)) {
+          posts.push(post)
+        }
+      } else {
         posts.push(post)
       }
-    } else {
-      posts.push(post)
     }
   }
 

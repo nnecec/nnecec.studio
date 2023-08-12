@@ -1,14 +1,6 @@
 'use client'
 
-import React, {
-  createContext,
-  memo,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import React, { createContext, memo, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 interface ValueObject {
   [themeName: string]: string
@@ -87,7 +79,7 @@ const disableAnimation = () => {
 
   return () => {
     // Force restyle
-    (() => window.getComputedStyle(document.body))()
+    ;(() => window.getComputedStyle(document.body))()
 
     // Wait for next tick before removing
     setTimeout(() => {
@@ -171,9 +163,10 @@ const ThemeScript = memo(
       if (enableSystem) {
         return `!function(){try{${optimization}var e=localStorage.getItem('${storageKey}');if('system'===e||(!e&&${defaultSystem})){var t='${MEDIA}',m=window.matchMedia(t);if(m.media!==t||m.matches){${updateDOM(
           'dark',
-        )}}else{${updateDOM('light')}}}else if(e){${
-          value ? `var x=${JSON.stringify(value)};` : ''
-        }${updateDOM(value ? `x[e]` : 'e', true)}}${
+        )}}else{${updateDOM('light')}}}else if(e){${value ? `var x=${JSON.stringify(value)};` : ''}${updateDOM(
+          value ? `x[e]` : 'e',
+          true,
+        )}}${
           defaultSystem ? '' : `else{` + updateDOM(defaultTheme, false, false) + '}'
         }${fallbackColorScheme}}catch(e){}}()`
       }

@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   author: {
     name: 'nnecec',
   },
-  description: 'think. try. treasure.',
+  description: '🍉 sugar.',
   email: 'nnecec@outlook.com',
   repositoryUrl: 'https://github.com/nnecec/nnecec.studio',
   siteUrl: 'https://nnecec.vercel.app',

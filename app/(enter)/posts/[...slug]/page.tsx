@@ -37,11 +37,7 @@ export default async function PostPage({ params }: Props) {
         <h1>{post.title}</h1>
         <div className="flex flex-col gap-2 text-sm">
           <div>Last updated: {post.date} </div>
-          <div>
-            {post.tags?.map(tag => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
-          </div>
+          <div>{post.tags?.map(tag => <Tag key={tag}>{tag}</Tag>)}</div>
           <div className="flex gap-4">
             <a
               href="http://creativecommons.org/licenses/by-nc/4.0/"

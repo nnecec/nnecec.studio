@@ -1,7 +1,8 @@
-import { ThemeProvider } from '~/core/components/theme'
 import { SITE_CONFIG } from '~/core/utils/constants'
 
 import type { Metadata } from 'next'
+
+import { Providers } from './providers'
 
 import '~/core/styles/heti.css'
 import '~/core/styles/globals.css'
@@ -44,7 +45,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       <body>
-        <ThemeProvider enableSystem>{children}</ThemeProvider>
+        <Providers>{children}</Providers>
+
         {process.env.NODE_ENV === 'development' || !trackingId ? undefined : (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />

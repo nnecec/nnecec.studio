@@ -1,7 +1,7 @@
+import { Tooltip } from '@nextui-org/react'
 import { IconBrandGithub, IconBrandTwitter, IconNews } from '@tabler/icons-react'
 import Image from 'next/image'
 
-import avatar from '~/core/assets/avatar.webp'
 import { SITE_CONFIG } from '~/core/utils/constants'
 
 const { author, description, social } = SITE_CONFIG
@@ -26,13 +26,13 @@ const Links = [
 
 export const Footer = () => {
   return (
-    <footer className="footer footer-center mt-20 rounded p-10">
+    <footer className="mt-20 grid grid-flow-row-dense place-items-center gap-4 rounded p-10 text-center">
       <div className="grid grid-flow-col gap-4">
         <Image
           alt="avatar"
           className="inline-block rounded-full"
           height={40}
-          src={avatar}
+          src="/assets/avatar.webp"
           width={40}
         />
         <div className="text-left">
@@ -46,16 +46,15 @@ export const Footer = () => {
           {Links.map(link => (
             <a
               aria-label={link.name}
-              className="link-hover link"
               href={link.link}
               key={link.name}
               referrerPolicy="no-referrer"
               rel="noreferrer"
               target="_blank"
             >
-              <div className="tooltip" data-tip={link.name}>
+              <Tooltip content={link.name}>
                 {link.icon}
-              </div>
+              </Tooltip>
             </a>
           ))}
         </div>

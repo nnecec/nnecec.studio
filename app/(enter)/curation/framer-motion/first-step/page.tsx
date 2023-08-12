@@ -127,7 +127,6 @@ export default function FirstStep() {
           <div className="flex flex-col gap-2">
             <label htmlFor="spring-mass">Mass</label>
             <input
-              className="range"
               id="spring-mass"
               max="10"
               min="1"
@@ -137,7 +136,6 @@ export default function FirstStep() {
             />
             <label htmlFor="spring-damping">Damping</label>
             <input
-              className="range"
               max={5}
               min={0}
               onChange={(e: any) => setDamping(e.target.value)}
@@ -147,7 +145,6 @@ export default function FirstStep() {
             />
             <label htmlFor="spring-stiffness">Stiffness</label>
             <input
-              className="range"
               max={500}
               min={1}
               onChange={(e: any) => setStiffness(e.target.value)}
@@ -221,14 +218,7 @@ export default function FirstStep() {
           <div className="flex flex-col gap-2">
             <div className="card-title">Inertia</div>
             <label htmlFor="tween-type">Velocity</label>
-            <input
-              className="range"
-              max="100"
-              min="0"
-              onChange={(e: any) => setVelocity(e.target.value)}
-              type="range"
-              value={velocity}
-            />
+            <input max="100" min="0" onChange={(e: any) => setVelocity(e.target.value)} type="range" value={velocity} />
 
             <motion.div
               initial={{
@@ -278,12 +268,7 @@ export default function FirstStep() {
 
             <label className="label cursor-pointer">
               <span className="label-text">Enable Layout Animation</span>
-              <input
-                checked={layout}
-                className="toggle"
-                onChange={e => setLayout(e.target.checked)}
-                type="checkbox"
-              />
+              <input checked={layout} className="toggle" onChange={e => setLayout(e.target.checked)} type="checkbox" />
             </label>
 
             <div className="flex justify-around">
@@ -333,7 +318,7 @@ export default function FirstStep() {
                   style={{
                     width: '100%',
                   }}
-                  className="rounded border bg-base-100 p-4 text-2xl"
+                  className="bg-base-100 rounded border p-4 text-2xl"
                   key={id}
                   layoutId={id}
                   onClick={() => setLayoutId(id)}
@@ -349,7 +334,7 @@ export default function FirstStep() {
                       inset: '0.5rem',
                       position: 'absolute',
                     }}
-                    className="rounded border bg-base-100 p-4 text-2xl"
+                    className="bg-base-100 rounded border p-4 text-2xl"
                     layoutId={layoutId}
                     onClick={() => setLayoutId(null)}
                   >

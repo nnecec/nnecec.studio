@@ -1,3 +1,6 @@
+'use client'
+import { Fragment } from 'react'
+import { Button, Tooltip } from '@nextui-org/react'
 import {
   IconBookmarks,
   IconBrandGithub,
@@ -10,8 +13,6 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 
-import telegramJPG from '~/core/assets/telegram.webp'
-import wechatJPG from '~/core/assets/wechat.webp'
 import { SITE_CONFIG } from '~/core/utils/constants'
 
 export const Contact = () => {
@@ -22,56 +23,75 @@ export const Contact = () => {
           <div className="">
             <h2 className="mb-8 text-center text-7xl">Find me.</h2>
             <div className="flex flex-wrap justify-center gap-4 text-center">
-              <button aria-label="email" className="btn">
+              <Button aria-label="email" as="a" className="cursor-pointer" isIconOnly variant="light">
                 <Link href={`mailto:${SITE_CONFIG.email}`}>
                   <IconMail />
                 </Link>
-              </button>
+              </Button>
 
-              <button aria-label="github" className="btn">
-                <Link href={SITE_CONFIG.social.github} target="_blank">
-                  <IconBrandGithub />
-                </Link>
-              </button>
+              <Button
+                aria-label="github"
+                as="a"
+                className="cursor-pointer"
+                href={SITE_CONFIG.social.github}
+                isIconOnly
+                rel="noreferrer"
+                target="_blank"
+                variant="light"
+              >
+                <IconBrandGithub />
+              </Button>
 
-              <label aria-label="wechat" className="btn" htmlFor="my-modal">
-                <IconBrandWechat />
-              </label>
-              <input className="modal-toggle" id="my-modal" type="checkbox" />
-              <label className="modal cursor-pointer" htmlFor="my-modal">
-                <label className="modal-box relative w-[200px]" htmlFor="">
-                  <Image alt="wechat_qrcode" height={200} src={wechatJPG} width={200} />
-                </label>
-              </label>
+              <Tooltip content={<Image alt="wechat_qrcode" height={160} src="/assets/wechat.webp" width={160} />}>
+                <Button isIconOnly variant="light">
+                  <IconBrandWechat />
+                </Button>
+              </Tooltip>
 
-              <button aria-label="twitter" className="btn">
-                <a href={SITE_CONFIG.social.twitter} rel="noreferrer" target="_blank">
-                  <IconBrandTwitter />
-                </a>
-              </button>
+              <Button
+                aria-label="twitter"
+                as="a"
+                className="cursor-pointer"
+                href={SITE_CONFIG.social.twitter}
+                isIconOnly
+                rel="noreferrer"
+                target="_blank"
+                variant="light"
+              >
+                <IconBrandTwitter />
+              </Button>
 
-              <button aria-label="instagram" className="btn">
-                <a href={SITE_CONFIG.social.instagram} rel="noreferrer" target="_blank">
-                  <IconBrandInstagram />
-                </a>
-              </button>
+              <Button
+                aria-label="instagram"
+                as="a"
+                className="cursor-pointer"
+                href={SITE_CONFIG.social.instagram}
+                isIconOnly
+                rel="noreferrer"
+                target="_blank"
+                variant="light"
+              >
+                <IconBrandInstagram />
+              </Button>
 
-              <label aria-label="telegram" className="btn" htmlFor="telegram-modal">
-                <IconBrandTelegram />
-              </label>
+              <Tooltip content={<Image alt="telegram_qrcode" height={160} src="/assets/telegram.webp" width={160} />}>
+                <Button isIconOnly variant="light">
+                  <IconBrandTelegram />
+                </Button>
+              </Tooltip>
 
-              <button aria-label="bento" className="btn">
-                <a href={SITE_CONFIG.social.bento} rel="noreferrer" target="_blank">
-                  <IconBookmarks />
-                </a>
-              </button>
-
-              <input className="modal-toggle" id="telegram-modal" type="checkbox" />
-              <label className="modal cursor-pointer" htmlFor="telegram-modal">
-                <label className="modal-box relative w-[200px]" htmlFor="">
-                  <Image alt="telegram_qrcode" height={200} src={telegramJPG} width={200} />
-                </label>
-              </label>
+              <Button
+                aria-label="bento"
+                as="a"
+                className="cursor-pointer"
+                href={SITE_CONFIG.social.bento}
+                isIconOnly
+                rel="noreferrer"
+                target="_blank"
+                variant="light"
+              >
+                <IconBookmarks />
+              </Button>
             </div>
           </div>
         </div>

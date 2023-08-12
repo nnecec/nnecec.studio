@@ -11,6 +11,7 @@ export type Post = {
   slug?: string
   tags?: string[]
   title?: string
+  status?: number
 }
 
 export type Heading = {

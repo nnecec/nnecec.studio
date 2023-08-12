@@ -14,7 +14,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { tag?
   const { posts, tags } = await getAllPosts(searchParams.tag)
 
   return (
-    <div className="prose relative mx-auto py-4">
+    <div className="prose relative mx-auto py-4 dark:prose-invert">
       <TagPicker tags={tags} />
 
       <div>
@@ -22,17 +22,13 @@ export default async function PostsPage({ searchParams }: { searchParams: { tag?
           return (
             <div className="mb-4" key={post.slug}>
               <Link className="no-underline" href={`/posts${post.slug}`}>
-                <h2 className="inline-block bg-current from-pink-500 to-yellow-500 bg-clip-text hover:bg-gradient-to-r hover:text-transparent">
+                <h2 className="inline-block bg-current from-pink-500 to-yellow-500 bg-clip-text text-primary hover:bg-gradient-to-r hover:text-transparent">
                   {post.title}
                 </h2>
               </Link>
 
               <div className="text-sm">{post.date}</div>
-              <div>
-                {post.tags?.map(tag => (
-                  <Tag key={tag}>{tag}</Tag>
-                ))}
-              </div>
+              <div>{post.tags?.map(tag => <Tag key={tag}>{tag}</Tag>)}</div>
             </div>
           )
         })}
