@@ -1,5 +1,3 @@
-@import url('./heti.css');
-
 @font-face {
   font-family: 'Mona Sans';
   src: url('//github.githubassets.com/static/fonts/github/mona-sans.woff2')
@@ -15,13 +13,6 @@ html {
 }
 
 /* Custom classes */
-
-.global-wrapper {
-  @apply py-10 px-5;
-  @apply mx-auto;
-  @apply max-w-3xl;
-}
-
 .blog-post {
   article a {
     @apply mx-1 text-primary;

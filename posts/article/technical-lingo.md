@@ -1,5 +1,5 @@
 ---
-title: '黑话手册参考'
+title: '黑话手册'
 date: '2021-12-09'
 tags: ['Introduction']
 description: '这些看不明白的词都是什么？'
@@ -50,3 +50,7 @@ description: '这些看不明白的词都是什么？'
 ## 句柄
 
 可以理解为内核对象指针，或者内核对象标识或者内核对象引用，英文是 handle，本质是带有引用计数的智能指针，是操作系统内核资源的入口。
+
+## RPC
+
+[RPC是什么，看完你就知道了](https://zhuanlan.zhihu.com/p/187560185)

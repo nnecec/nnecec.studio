@@ -5,7 +5,7 @@ tags: ['React']
 description: ''
 ---
 
-> 本文增加了对 https://overreacted.io/before-you-memo/ 的源码解释，并编写了一份 [Demo](https://nnecec.github.io/before-you-memo/build/) 提供预览。
+> 本文增加了对 https://overreacted.io/before-you-memo/ 的源码解释
 
 ## 原文总结
 

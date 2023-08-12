@@ -1,5 +1,5 @@
 {
-  "name": "nnecec.github.io",
+  "name": "nnecec.studio",
   "version": "0.2023.0",
   "description": "We need to talk about that.",
   "keywords": [
@@ -12,58 +12,62 @@
   "homepage": "http://nnecec.vercel.app/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nnecec/nnecec.github.io.git"
+    "url": "https://github.com/nnecec/nnecec.studio.git"
   },
   "license": "0BSD",
   "author": "nnecec <nnecec@outlook.com>",
   "scripts": {
-    "dev": "next dev -p 3006",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev -p 3006",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "next start"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^2.6.7",
+    "@codesandbox/sandpack-react": "^2.6.9",
     "@markdoc/markdoc": "^0.3.0",
-    "@marp-team/marp-core": "^3.7.0",
+    "@marp-team/marp-core": "^3.8.0",
     "@motionone/utils": "^10.15.1",
-    "@tabler/icons-react": "^2.22.0",
-    "clsx": "^1.2.1",
-    "daisyui": "^3.1.0",
-    "dayjs": "^1.11.8",
-    "framer-motion": "^10.12.16",
+    "@nextui-org/react": "^2.0.14",
+    "@tabler/icons-react": "^2.30.0",
+    "clsx": "^2.0.0",
+    "daisyui": "^3.5.1",
+    "dayjs": "^1.11.9",
+    "framer-motion": "^10.15.1",
     "gray-matter": "4.0.3",
-    "mermaid": "^10.2.3",
-    "next": "^13.4.5",
-    "prism-react-renderer": "^2.0.5",
+    "mermaid": "^10.3.1",
+    "next": "^13.4.13",
+    "prism-react-renderer": "^2.0.6",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@nnecec/eslint-config": "^0.4.1",
-    "@nnecec/prettier-config": "^0.2.3",
+    "@nnecec/eslint-config": "^0.6.2",
+    "@nnecec/prettier-config": "^0.3.1",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "^20.3.0",
+    "@types/node": "^20.4.10",
     "@types/prismjs": "^1.26.0",
-    "@types/react": "^18.2.11",
+    "@types/react": "^18.2.20",
     "@types/react-copy-to-clipboard": "^5.0.4",
-    "@types/react-dom": "^18.2.4",
+    "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.14",
     "cssnano": "^6.0.1",
-    "eslint": "^8.42.0",
-    "eslint-config-next": "^13.4.5",
+    "eslint": "^8.47.0",
+    "eslint-config-next": "^13.4.13",
     "husky": "^8.0.3",
-    "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.24",
+    "postcss": "^8.4.27",
     "postcss-import": "^15.1.0",
-    "prettier": "^2.8.8",
-    "tailwindcss": "^3.3.2",
-    "typescript": "^5.1.3"
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.1.6"
   },
   "packageManager": "pnpm@8.0.0",
   "engines": {
     "node": ">=18"
+  },
+  "pnpm": {
+    "overrides": {
+      "eslint-plugin-react-hooks": "4.6.0"
+    }
   }
 }

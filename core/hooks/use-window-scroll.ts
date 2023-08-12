@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 
-import { useRafState } from './request-animation-state'
+import { useRafState } from './use-request-animation-state'
 
 export interface State {
   x: number

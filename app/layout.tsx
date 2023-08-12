@@ -1,10 +1,11 @@
-import { ThemeProvider } from '~/core/components/theme'
 import { SITE_CONFIG } from '~/core/utils/constants'
 
 import type { Metadata } from 'next'
 
-import '~/core/styles/index.css'
+import { Providers } from './providers'
+
 import '~/core/styles/heti.css'
+import '~/core/styles/globals.css'
 import '~/core/styles/custom.css'
 
 const trackingId = process.env.GOOGLE_TRACKING_ID
@@ -31,10 +32,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="/favicon/site.webmanifest" rel="manifest" />
         <meta title={SITE_CONFIG.title} />
         <meta content={SITE_CONFIG.description} name="description" />
+        {process.env.NODE_ENV === 'production' && (
+          <script
+            data-endpoint="https://datapulse.app/api/v1/event"
+            data-workspace="cljxpa07r0xjb8j37c7woz5fx"
+            defer
+            id="datapulse"
+            src="https://datapulse.app/datapulse.min.js"
+            type="text/javascript"
+          />
+        )}
       </head>
 
       <body>
-        <ThemeProvider enableSystem>{children}</ThemeProvider>
+        <Providers>{children}</Providers>
+
         {process.env.NODE_ENV === 'development' || !trackingId ? undefined : (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />
