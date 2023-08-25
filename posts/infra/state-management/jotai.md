@@ -1,6 +1,6 @@
 ---
 title: 'jotai 源码解析'
-date: '2023-08-205'
+date: '2023-08-25'
 tags: ['Source code']
 description: ''
 status: 0
