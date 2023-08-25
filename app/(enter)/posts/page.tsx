@@ -22,7 +22,7 @@ export default async function PostsPage({ searchParams }: { searchParams: { tag?
           return (
             <div className="mb-4" key={post.slug}>
               <Link className="no-underline" href={`/posts${post.slug}`}>
-                <h2 className="inline-block bg-current from-pink-500 to-yellow-500 bg-clip-text text-primary hover:bg-gradient-to-r hover:text-transparent">
+                <h2 className="inline-block bg-current from-pink-500 to-yellow-500 bg-clip-text hover:bg-gradient-to-r hover:text-transparent">
                   {post.title}
                 </h2>
               </Link>

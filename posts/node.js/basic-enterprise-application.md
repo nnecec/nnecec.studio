@@ -1,25 +1,23 @@
 ---
 title: '企业 Node.js BFF 应用基础架构'
-date: '2022-09-19'
+date: '2023-05-25'
 tags: ['Node.js']
 description: '一个企业 Node.js BFF 应用应当具有哪些特性及能力？'
 ---
 
 ## 前言
 
-当企业应用从 Java 提供接口 + 前端编写页面的模式向 Java 提供微服务 + 前端提供自己需要的接口 + 前端编写页面的模式转变时，这个 BFF 应用 需要具备一定能力之后，便可以逐步将新需求按照该模式开发了。本文则选择主要的应用能力做简单介绍。
+当企业应用从“Java 接口 + 前端页面”的模式向“Java 微服务 + 前端提供聚合接口 + 前端页面”的模式转变时，BFF 应用 需要具备一定能力之后，便可以逐步按照该模式开发了。本文则选择主要的能力做简单介绍。
 
 ## 基础架构
 
-基础架构的代码，可以考虑抽象设计作为底层包提供给每个业务应用作为依赖使用，类似 egg 做的工作。本文将其命名为 `@cop/base`。
+基础架构的代码，可以考虑抽象设计作为底层包提供给每个业务 BFF 应用作为依赖使用，类似 egg 做的工作。本文将其命名为 `@app/base`。
 
-### 应用脚手架：Koa
+### 1. 应用脚手架：Koa
 
-我们选择了 Koa 作为应用最基本的 Web 框架。Koa 提供了非常基础的能力，如启动 http 服务，接受请求，处理请求后返回响应结果，并提供了中间件的能力从而给 Koa 带来非常灵活的拓展能力。
+我们选择了 Koa 作为应用最基本的 Web 框架。Koa 提供了非常基础且易拓展的能力，并提供了丰富的中间件从而给 Koa 带来非常灵活的拓展能力。
 
-app 会在接受到请求后依次从上而下的调用中间件，在前一个中间件遇到 `await next()` 代码时，执行下一个中间件内的 `await next()` 之前的代码，从而实现了依次调用中间件的能力。当最后一个中间件`next()`执行完成，会开始处理响应，再从下而上的依次调用 `next()` 方法后面的代码。
-
-在 `@cop/base` 中，提供方法 `createApp` 来创建应用。方法中实例化一个 `Koa`，对该实例进行通用配置，比如:
+在 `@app/base` 中，提供方法 `createApp` 来创建应用。方法中实例化一个 `Koa`，对该实例进行通用配置，比如:
 
 ```ts
 export const createApp = (options: Options) => {
@@ -33,7 +31,7 @@ export const createApp = (options: Options) => {
     .use(cors(options.cors))
     // 提供代理选项，在企业应用中代理到不同的测试环境、预发环境
     .use(createProxy(options.proxy))
-    // 通用
+    // 处理 body
     .use(bodyParser())
     // 提供给上层应用接入路由
     .use(options.router.routes())
@@ -41,9 +39,9 @@ export const createApp = (options: Options) => {
 }
 ```
 
-### 日志记录
+### 2. 日志记录
 
-日志是接口服务一个基本的能力。通过日志可以记录应用接受及发送的请求数据、应用出现错误时的数据等，为后期人工检查应用状况提供数据支持。
+通过日志可以记录应用接受及发送的请求数据、应用出现错误时的数据等，为后期人工检查应用状况提供数据支持。
 
 生态中有很多日志库，我们选择 `winston` 作为应用的 logger。通常日志库具备以下能力：
 
@@ -55,10 +53,46 @@ export const createApp = (options: Options) => {
 
 ```ts
 import { transports, createLogger, format } from 'winston'
+import DailyRotateFile from 'winston-daily-rotate-file'
 const { combine, colorize, printf, timestamp } = format
 
-export function logger(loggerOptions: LoggerOptions) {
-  const appLogger = createLogger({
+// 日志中间件
+export function logger(appName) {
+  const appLogger = createAppLogger(appName)
+  return async function (context: Context, next: Next) {
+    context.logger = appLogger
+
+    const startTime = Date.now()
+
+    try {
+      await next()
+    } finally {
+      // 打印请求信息， 通过 formatMessage 自定义格式，记录每次请求的上下文日志
+      const message = formatMessage({
+        context,
+        startTime,
+      })
+      appLogger.info(message)
+    }
+  }
+}
+
+// 生成本地/线上不同的日志路径配置
+export function getLoggerConfig(appName: string) {
+  const realConfig = {
+    dir: `/home/admin/logs/${appName}`,
+  }
+  const localConfig = {
+    dir: `./logs/${appName}`,
+  }
+
+  return process.env.NODE_ENV === 'local' ? localConfig : realConfig
+}
+
+// 生成 logger 实例
+export function createAppLogger(appName: string) {
+  const config = createLoggerConfig(appName)
+  return createLogger({
     format: combine(
       timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS' }),
       printf(data => {
@@ -68,24 +102,15 @@ export function logger(loggerOptions: LoggerOptions) {
         return `${timestamp} ${level.toUpperCase()} ${threadName} ${stackInfo} ${message}`
       }),
     ),
+    transports: [
+      new DailyRotateFile({
+        dirname: config.dir,
+        filename: 'log.%DATE%',
+        datePattern: 'YYYYMMDD',
+        extension: '.log',
+      }),
+    ],
   })
-
-  return async function (context: Context, next: Next) {
-    context.logger = appLogger
-
-    const startTime = Date.now()
-
-    try {
-      await next()
-    } finally {
-      // 打印请求信息， 通过 formatMessage 自定义格式
-      const message = formatMessage({
-        context,
-        startTime,
-      })
-      appLogger.info(message)
-    }
-  }
 }
 
 // 组合日志信息
@@ -116,7 +141,7 @@ const formatMessage = (options): string => {
 
 这样就定义好了默认的日志格式及内容，并为 context 提供了 logger 方法。
 
-### 错误处理
+### 3. 错误处理
 
 通常将错误处理放到中间件靠前的位置，通过 `try..catch` 将后续的中间件包裹，从而实现错误处理的能力。同时可以预设几种错误类型，提供给业务应用使用，当抛出预设错误类型后，进入预设的错误处理逻辑。
 
@@ -129,14 +154,15 @@ const errors = () => {
       const level = err.level || 'error'
       const log = ctx.logger[level] || ctx.logger.error
 
-      ctx.logger.error(`${err.message}: ${err.stack || ''}`)
-
-      log(`[${err.traceId}]:${err.message} | ${stackMsg} | ${reasonMsg}`)
+      // 记录报错日志
+      log(`[${err.traceId}]:${err.message} | ${err.stack ?? 'no error stack'} | ${err.reason}`)
 
       // 处理各种报错情况
+      // eg. 校验参数失败
       if (err instanceof joi.ValidationError) {
         e.status = 400
       } else {
+        // eg. 默认报错
         ctx.body = {
           success: false,
           msg: '服务器发生错误，请稍后再试',
@@ -149,17 +175,25 @@ const errors = () => {
 }
 ```
 
-### 代理
+### 4. 代理
 
-### 路由
+### 5. 路由
 
-## 监控
+通过 `@koa/router` 构建 router 实例，并传入给 @app/base 使用。
+
+```ts
+const router = new KoaRouter()
+
+createApp({ router })
+```
+
+### 6. 监控
 
 监控独立于业务应用之外，如独立生成另一个 Koa 实例，在该实例中接入监控能力。
 
-### 探针
+#### 6.1 探针应用
 
-探针其实就是提供了几个约定的接口给容器调用，从而判断应用健康运行。
+探针的能力通过另一个端口实例化一个探针应用，提供了几个约定的接口给容器调用，从而判断应用健康运行。
 
 ```ts
 const app = new Koa()
@@ -181,10 +215,53 @@ actuator
   .use(actuatorRouter.routes())
   .use(actuatorRouter.allowedMethods())
 
-actuator.listen(8888)
+const server = actuator.listen(8888)
+server.headersTimeout = 1000 * 90 + 1000
+server.keepAliveTimeout = 1000 * 90
+
+// 探针接口实现
+// $$state 是与主应用共享的全局变量
+export const getReadiness = ctx => {
+  ctx.status = 200
+  ctx.body = { status: $$state.status }
+}
+
+export const healthCheck = ctx => {
+  ctx.status = getStatusCode()
+  ctx.body = $$state
+}
+
+export const changeStatus = async ctx => {
+  const state2status = {
+    ACCEPTING_TRAFFIC: 'UP',
+    REFUSING_TRAFFIC: 'OUT_OF_SERVICE',
+  }
+  const status = state2status[ctx.query.state]
+
+  if (status) {
+    $$state.status = status
+    ctx.status = 200 // 修改成功
+  } else {
+    ctx.status = 400 // 参数错误
+  }
+  ctx.body = { status: $$state.status }
+}
+
+// 分配一个路由接入 prometheus 性能监控工具
+export async function prometheus(ctx) {
+  try {
+    ctx.set('Content-Type', monitor.register.contentType)
+    ctx.status = 200
+    const metrics = await monitor.register.metrics()
+    ctx.body = metrics
+  } catch (err) {
+    ctx.status = 500
+    ctx.body = { success: false, msg: err.message }
+  }
+}
 ```
 
-### 性能监控
+#### 6.2 性能监控
 
 通过性能监控，我们可以了解应用占用的资源情况。比如 CPU 使用率、内存占用、事件循环、请求量，往往监控会伴随图形化界面如 Grafana 使查看数据时更清晰。
 
@@ -195,18 +272,128 @@ actuator.listen(8888)
 性能监控又是一个庞大的选题，我们主要了解如何将 prometheus 监控接入应用。在 Node.js 中使用 `prom-client` 作为 prometheus 的 js sdk。
 
 ```ts
-import { collectDefaultMetrics, register } from 'prom-client'
+import type { defaultMetrics, DefaultMetricsCollectorConfiguration } from 'prom-client'
+import {
+  collectDefaultMetrics,
+  register,
+  Registry,
+  Counter,
+  Gauge,
+  Histogram,
+  Summary,
+} from 'prom-client'
 
-collectDefaultMetrics({ register })
-
-const app = new Koa()
+export const monitor = {
+  register,
+  start(config?: DefaultMetricsCollectorConfiguration) {
+    collectDefaultMetrics({ register, ...config })
+  },
+  defaultMetricsList: (collectDefaultMetrics as unknown as defaultMetrics).metricsList,
+  // re-export from prom-client
+  Registry,
+  Counter,
+  Gauge,
+  Histogram,
+  Summary,
+  collectDefaultMetrics,
+}
+// 在启动应用时
+monitor.start()
 ```
 
-### 日志告警
+#### 6.3 日志告警
 
 通过固定的报错标记，在阿里云设置告警配置，当出现报错信息后，执行告警通知。
 
-## 业务
+### 7. 工具方法
+
+#### 7.1 启动方法
+
+对于以上的应用能力，提供一个启动方法将实例化服务应用、接入日志、性能监控等能力一键启动。
+
+```ts
+export async function bootstrap(opts) {
+  let actuator = null
+  if (isRealEnv) {
+    actuator = serveActuator()
+  }
+
+  // 在创建应用前可能需要做一些准备工作
+  const app = await createApp(opts)
+  const server = app.listen(opts.meta.port)
+  server.headersTimeout = 1000 * 90 + 1000
+  server.keepAliveTimeout = isLocalEnv() ? 0 : 1000 * 90
+
+  // 服务中止钩子注册
+  process.on(
+    'uncaughtException',
+    error => opts.hooks.onException?.({ actuator, app, server, error, code: 1 }),
+  ) // 异常退出
+  process.on(
+    'unhandledRejection',
+    error => opts.hooks.onException?.({ actuator, app, server, error, code: 2 }),
+  ) // 异常退出
+  process.on('SIGINT', error => opts.hooks.onException?.({ actuator, app, server, error, code: 0 })) // 正常退出
+  process.on(
+    'SIGTERM',
+    error => opts.hooks.onException?.({ actuator, app, server, error, code: 0 }),
+  ) // 正常退出
+
+  return { app, server, actuator }
+}
+```
+
+#### 7.2 接入 nacos
+
+通过 `nacos` 包，根据企业内的 `serverAddr` 和 `namespace` 初始化应用的 nacos 配置，并通过 `yamljs` 将数据转换为 JavaScript 数据类型。
+
+```ts
+import { NacosConfigClient } from 'nacos'
+import yamljs from 'yamljs'
+
+interface NacosConfig {
+  serverAddr: string
+  namespace: string
+  dataId: string
+  group: string
+}
+
+export class NacosClient<T> {
+  #client: NacosConfigClient
+  #dataId: string
+  #group: string
+
+  constructor(config: NacosConfig) {
+    this.#client = new NacosConfigClient({
+      serverAddr: config.serverAddr,
+      namespace: config.namespace,
+    })
+    this.#dataId = config.dataId
+    this.#group = config.group
+  }
+
+  getConfig(): Promise<T> {
+    return new Promise(resolve => {
+      this.#client.getConfig(this.#dataId, this.#group).then(content => {
+        resolve(yamljs.parse(content)) as T
+      })
+    })
+  }
+}
+
+// 使用方法
+interface Config {
+  app: {
+    version: number
+  }
+}
+const nacos = new NacosClient<Config>({
+  /**Options*/
+})
+const { app } = await nacos.getConfig()
+```
+
+## 业务架构
 
 ### Restful API 及路由设计
 
