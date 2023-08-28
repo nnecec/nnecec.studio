@@ -1,4 +1,4 @@
-import { SITE_CONFIG } from '~/core/utils/constants'
+import { DATAPULSE_ID, GOOGLE_ID, isProd, SITE_CONFIG } from '~/core/utils/constants'
 
 import type { Metadata } from 'next'
 
@@ -7,8 +7,6 @@ import { Providers } from './providers'
 import '~/core/styles/heti.css'
 import '~/core/styles/globals.css'
 import '~/core/styles/custom.css'
-
-const trackingId = process.env.GOOGLE_TRACKING_ID
 
 export const metadata: Metadata = {
   title: {
@@ -32,38 +30,38 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="/favicon/site.webmanifest" rel="manifest" />
         <meta title={SITE_CONFIG.title} />
         <meta content={SITE_CONFIG.description} name="description" />
-        {process.env.NODE_ENV === 'production' && (
+        {isProd && !!DATAPULSE_ID ? (
           <script
             data-endpoint="https://datapulse.app/api/v1/event"
-            data-workspace="cljxpa07r0xjb8j37c7woz5fx"
+            data-workspace={DATAPULSE_ID}
             defer
             id="datapulse"
             src="https://datapulse.app/datapulse.min.js"
             type="text/javascript"
           />
-        )}
+        ) : null}
       </head>
 
       <body>
         <Providers>{children}</Providers>
 
-        {process.env.NODE_ENV === 'development' || !trackingId ? undefined : (
+        {isProd && !!GOOGLE_ID ? (
           <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ID}`} />
             <script
               dangerouslySetInnerHTML={{
                 __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${trackingId}');
+                gtag('config', '${GOOGLE_ID}');
               `,
               }}
               async
               id="gtag-init"
             />
           </>
-        )}
+        ) : null}
       </body>
     </html>
   )

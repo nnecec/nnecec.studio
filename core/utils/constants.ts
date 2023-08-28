@@ -30,8 +30,7 @@ export const ProjectsList: Project[] = [
     title: 'afo',
   },
   {
-    description:
-      'Front-end engineering config, includes ESLint, Prettier, TSConfig, Vite. Simple but useful.',
+    description: 'Front-end engineering config, includes ESLint, Prettier, TSConfig, Vite. Simple but useful.',
     link: 'https://github.com/nnecec/config/',
     title: 'config',
   },
@@ -41,3 +40,7 @@ export const ProjectsList: Project[] = [
     title: 'blog',
   },
 ]
+
+export const DATAPULSE_ID = process.env.DATAPULSE_ID
+export const GOOGLE_ID = process.env.GOOGLE_ID
+export const isProd = process.env.NODE_ENV === 'production'
