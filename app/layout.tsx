@@ -40,11 +40,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             type="text/javascript"
           />
         ) : null}
-      </head>
-
-      <body>
-        <Providers>{children}</Providers>
-
         {isProd && !!GOOGLE_ID ? (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ID}`} />
@@ -62,6 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             />
           </>
         ) : null}
+      </head>
+
+      <body>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
