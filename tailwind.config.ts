@@ -18,12 +18,14 @@ export default {
       themes: {
         dark: {
           colors: {
-            primary: colors.red[300],
+            primary: colors.yellow[500],
+            secondary: colors.blue[600],
           },
         },
         light: {
           colors: {
-            primary: colors.red[500],
+            primary: colors.yellow[500],
+            secondary: colors.blue[600],
           },
         },
       },
