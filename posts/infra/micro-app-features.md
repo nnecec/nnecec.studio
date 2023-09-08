@@ -26,7 +26,7 @@ description: '探索微前端技术点的实现原理'
   - iframe 天然的 JavaScript 沙箱机制完美隔离
   - 劫持 iframe 的 history.pushState 和 history.replaceState 与主应用 url 同步，以解决 iframe 刷新丢失 url 状态的问题
   - WebComponents 实现样式隔离
-  - 通过 window.parent ，EventBus，或 props 注入实现通信
+  - 通过 window.parent，EventBus，或 props 注入实现通信
 - [EMP](https://github.com/efoxTeam/emp)
   - Module Federation
 

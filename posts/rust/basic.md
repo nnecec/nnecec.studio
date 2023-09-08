@@ -10,7 +10,7 @@ description: '进入 Rust 的世界'
 - 使用 `curl https://sh.rustup.rs -sSf | sh` 命令安装 rust 工具集。
 - 通过 `rustup update` 更新工具集。
 - 通过 `rustc --version` 检查当前命令行版本。
-- 安装工具集后，可以通过`rustup doc` 查看文档离线版。
+- 安装工具集后，可以通过 `rustup doc` 查看文档离线版。
 - 使用 `cargo new` 创建一个 Rust 项目，在项目路径下可以执行 `cargo build` 编译，执行 `cargo run` 运行，执行 `cargo check` 检查是否有编译错误。
 - 借助 Cargo 的包管理能力，可以向项目添加依赖，并在项目中引用。
   - 通过 `cargo doc --open` 可以查看依赖的文档。
@@ -41,8 +41,8 @@ fn main(){
 ### 数据类型
 
 - 标量类型 scalar
-  - 整数：u 代表无符号，i 代表有符号，usize 取决于运行的平台架构。Rust 对于整数字面量默认推导类型是 i32 ，它是运算最快的整数类型。
-  - 浮点数：f32 f64
+  - 整数：u 代表无符号，i 代表有符号，usize 取决于运行的平台架构。Rust 对于整数字面量默认推导类型是 i32，它是运算最快的整数类型。
+  - 浮点数：f32 f64。避免测试浮点数的相等性。
   - 布尔值：true, false
   - 字符(char 类型): 描述单个字符，使用单引号声明。
 - 复合类型 compound
@@ -84,12 +84,11 @@ fn main(){
     }
     ```
 
-  - 如果使用条件赋值，if 必须返回同一种类型的值。
+  - if 是表达式，可以通过 if 为变量赋值。如果使用条件赋值，if 必须返回同一种类型的值。
 
-- loop
-  - 使用 break 跳出 loop 循环
-- while
-- for
+- loop: 使用 break 跳出 loop 循环
+- `while n < 5`
+- `for item in collections`
 
 ## 03 所有权
 
@@ -98,17 +97,17 @@ fn main(){
 - 同一时间内，值有且仅有一个所有者
 - 当所有者离开自己的作用域时，持有的值会被释放。Rust 在变量离开作用域时，调用 `drop` 函数释放内存。
 - Rust 中对于堆内存值的复制都是复制浅拷贝，同时使上一份拷贝失效。使用术语：移动（move）更适合描述这种行为。
-- 当真的需要复制的时候，调用`s1.clone()` 方法可以深拷贝
+- 当真的需要复制的时候，调用 `s1.clone()` 方法可以深拷贝
 - 复制默认 copy 的类型有：整数、bool、char、浮点数、仅包含以上类型的元组
 
 ### 引用与借用
 
 - 在类型前使用 `&` 将变量标记为引用，允许在不获取所有权的情况下使用该值。
 - 通过引用传递参数给函数的方法称为借用（borrowing），借用的值不允许修改。
-- 通过`&mut String` 的类型声明，标记为可变引用。
+- 通过 `&mut String` 的类型声明，标记为可变引用。
 - 对于同一变量，作用域只允许声明一个可变引用，不允许在存在不可变引用时创建可变引用。
 - Rust 中不会存在悬垂引用的情况，即指针指向的内存地址，Rust 会保证引用被销毁后内存才会被释放。
-- 切片（slice）：`let slice = &s[1..5]` 使 `slice` 保留了对 `s` 的不可变引用，
+- 切片（slice）： `let slice = &s[1..5]` 使 `slice` 保留了对 `s` 的不可变引用，
 
 ## 04 结构体 struct
 
@@ -132,10 +131,10 @@ let user2 = User {
 }
 ```
 
-- struct 的所有字段需要一致是可变的或不可变的。
+- struct 的所有字段可变性需要一致的，一致是可变的或不可变的。
 - 支持字段初始化简写
-- 支持 `..` 将未显式声明的字段展开复用
-- 元组结构体无需声明字段。
+- 支持 `..` 将未显式声明的字段展开复用，需要在末尾位置使用
+- 元组结构体无需声明字段
 
 ### 方法
 
@@ -206,7 +205,7 @@ fn value_in_cents(coin: Coin) -> u32 {
 - Rust 中的函数、方法、struct、enum、mod、常量都是默认私有的。
 - 通过 `pub` 可以标记为公有的。
 - 通过绝对路径 `crate::count::one::one_to()` 从根节点或相对路径 `one::one_to()` 相对于当前文件访问模块，更倾向于使用绝对路径。
-- 模块内子函数使用`super` 关键字如 `super::get_order()` 访问外层函数的方法。
+- 模块内子函数使用 `super` 关键字如 `super::get_order()` 访问外层函数的方法。
 
   ```rust
   fn serve_order() {}
@@ -257,7 +256,7 @@ for i in &mut v {
 ```
 
 - 通过 `Vec::new()` 创建新的 vector，或者通过宏 `vec!` 携带初始值声明，Rust 可以自动推导出类型。
-- 对于可变 vector ，可以通过`.push()` 添加值
+- 对于可变 vector，可以通过 `.push()` 添加值
 - 当发生所有权转移时销毁 vector 时也会销毁内部元素
 - `v.get(2)` 会返回 `Option<&T>` 类型的值，另一种获取元素的方法 `&v[2]` 如果索引超出了边界则会直接触发 `panic`
 - 无法在有对元素的引用时，修改 vec，违反了同一个作用域不能对同一份内存同时拥有可变引用和不可变引用。
@@ -280,7 +279,7 @@ let s = format!("{}-{}-{}", s1, s2, s3);
 
 - `String::new()` 和 `"initial".to_string()` 两种初始化方式没有区别。
 - 可以通过 `push_str` 添加字符串
-- 可以通过 `+` 拼接字符串，或者通过 `format!()` 拼接，`format!` 不会获取所有权。
+- 可以通过 `+` 拼接字符串，或者通过 `format!()` 拼接， `format!` 不会获取所有权。
 - 无法通过索引访问 String 类型的值
 - 可以通过 `for c in "".chars() {}` 或 `for b in "".bytes()` 遍历字符串。
 
@@ -310,7 +309,7 @@ for (key, value) in &scores {
 - 使用 `HashMap::new()` 创建 HashMap，或使用 `collect()` 初始化。
 - HashMap 同样要求所有的键或所有的值拥有同一种类型。
 - 对于有所有权的值来说，HashMap 会获取所有权。如果 insert 的是引用值，则需要保证引用有效。
-- 可以使用`.get()` 方法，同样获取到了 `Option<&V>` 类型
+- 可以使用 `.get()` 方法，同样获取到了 `Option<&V>` 类型
 - 可以使用 `for (key, value) in &h` 遍历。
 
 ```rust
@@ -349,8 +348,8 @@ match f.read_to_string(&mut s) {
 ```
 
 - 使用 `match` 处理可恢复错误 `Result<T, E>`
-- 使用 `unwrap` 在正确时返回值，错误时默认调用 `panic!` 。 `expect` 与 `unwrap` 功能类似，但可以带上一段错误提示信息。
-- 使用 `Err(e)` 包装将错误返回给用户自由处理，使用 `?` 运算符可以简写。`?` 如果遇到错误会提前结束这个函数，并返回 Err 类型给调用者。如果正确则继续向下执行。`?` 只能用于处理返回 Result 的函数
+- 使用 `unwrap` 在正确时返回值，错误时默认调用 `panic!`。 `expect` 与 `unwrap` 功能类似，但可以带上一段错误提示信息。
+- 使用 `Err(e)` 包装将错误返回给用户自由处理，使用 `?` 运算符可以简写。 `?` 如果遇到错误会提前结束这个函数，并返回 Err 类型给调用者。如果正确则继续向下执行。 `?` 只能用于处理返回 Result 的函数
 
 ## 09 泛型
 
@@ -450,9 +449,9 @@ impl<'a> ImportantExcerpt<'a> {
 - 函数或方法的参数的生命周期被称为  **输入生命周期**（_input lifetimes_），而返回值的生命周期被称为  **输出生命周期**（_output lifetimes_）。
   - 编译器采用三条规则来判断引用何时不需要明确的标注
   1.  每一个是引用的参数都有它自己的生命周期参数
-  2.  如果只有一个输入生命周期参数，那么它被赋予所有输出生命周期参数：`fn foo<'a>(x: &'a i32) -> &'a i32`。
-  3.  如果方法有多个输入生命周期参数并且其中一个参数是  `&self`  或  `&mut self`，说明是个对象的方法(method)，那么所有输出生命周期参数被赋予  `self`  的生命周期。
-- 静态生命周期 `'static` ，其生命周期能存活于整个程序期间。
+  2.  如果只有一个输入生命周期参数，那么它被赋予所有输出生命周期参数： `fn foo<'a>(x: &'a i32) -> &'a i32`。
+  3.  如果方法有多个输入生命周期参数并且其中一个参数是   `&self`   或   `&mut self`，说明是个对象的方法(method)，那么所有输出生命周期参数被赋予   `self`   的生命周期。
+- 静态生命周期 `'static`，其生命周期能存活于整个程序期间。
 
 ## 测试
 
@@ -475,7 +474,7 @@ fn main() {}
 - `Result<T, E>` 也可以用于测试函数正确、失败
 - 通过 `cargo test` 运行测试， `cargo test [命令行参数] -- [二进制文件参数]`
 - `cargo test -- --show-output` 显示代码打印内容
-- `cargo test i_am_fn_name` 测试单个函数，`cargo test i_am` 测试 `i_am` 开头的函数
+- `cargo test i_am_fn_name` 测试单个函数， `cargo test i_am` 测试 `i_am` 开头的函数
 - 通过 `#[ignore]` 标记忽略测试该函数，再通过 `cargo test -- --ignored` 可以忽略标记了 ignore 的函数。
 - 通过属性标注 `#[cfg(test)]` 标注函数，只在 `cargo test` 执行函数。
 - 在 tests 目录下编写集成测试，Rust 将 test/common/mod.rs 文件规则不当作测试文件。
@@ -526,7 +525,7 @@ impl<T> Cacher<T>
 
 - 使用 `|a|` 定义闭包。
 - 可以不显式声明类型，但需要保持上下文类型推断一致。
-- 结合`Fn` , `FnMut` , `FnOnce` trait 和 泛型在 struct 中使用闭包
+- 结合 `Fn` , `FnMut` , `FnOnce` trait 和 泛型在 struct 中使用闭包
 - 闭包会捕获其被定义的作用域的变量，使用 move 会强制闭包获取使用环境的所有权。
 
 ### 迭代器
@@ -539,14 +538,14 @@ pub trait Iterator {
 ```
 
 - Rust 中的迭代器是 lazy 的，使用迭代器之前代码并没有执行迭代器逻辑。
-- 迭代器实现了名为 `Iterator` 的 trait， `next` 是唯一被要求定义的方法。`next` 一次返回迭代器中的一个值 `Some<T>` ，结束时返回 `None`
-- `next`  调用中得到的值是 vector 的不可变引用
+- 迭代器实现了名为 `Iterator` 的 trait， `next` 是唯一被要求定义的方法。 `next` 一次返回迭代器中的一个值 `Some<T>`，结束时返回 `None`
+- `next`   调用中得到的值是 vector 的不可变引用
 - **迭代器适配器**（_iterator adaptors_），他们允许我们将当前迭代器变为不同类型的迭代器，迭代器适配器是惰性的，而这里我们需要消费迭代器。
 - 实现 Iterator trait 可以实现自定义迭代器。
 
 ## 11 智能指针
 
-- 智能指针基于 struct 实现，并实现了  `Deref`  和  `Drop` trait。
+- 智能指针基于 struct 实现，并实现了   `Deref`   和   `Drop`  trait。
 
 ```rust
 enum List {
@@ -580,9 +579,9 @@ impl<T> Deref for MyBox<T> {
 ```
 
 - 自定义类型需要通过 `Deref` trait 实现，实现了 `Deref` 的函数可以通过解引用强制转换的能力转换值的类型并返回。
-  - 当  `T: Deref<Target=U>` ：从  `&T`  到  `&U`。
-  - 当  `T: Deref<Target=U>` ：从  `&mut T`  到  `&U`。
-  - 当  `T: DerefMut<Target=U>` ：从  `&mut T`  到  `&mut U`。
+  - 当   `T: Deref<Target=U>` ：从   `&T`   到   `&U`。
+  - 当   `T: Deref<Target=U>` ：从   `&mut T`   到   `&U`。
+  - 当   `T: DerefMut<Target=U>` ：从   `&mut T`   到   `&mut U`。
 
 ```rust
 struct CustomSmartPointer {
@@ -605,7 +604,7 @@ fn main() {
 
 - 在值离开作用域时，可以通过实现 `Drop` trait 来执行一些代码。
 - 使用 `std::mem::drop` 可以提前清理值。
-- 在单线程场景中，通过 `Rc<T>` 分配多所有权，`Rc::new()` 创建引用，`Rc::clone()` 复制引用，当引用计数为 0 时会清理内存并处罚 `Drop` 。
+- 在单线程场景中，通过 `Rc<T>` 分配多所有权， `Rc::new()` 创建引用， `Rc::clone()` 复制引用，当引用计数为 0 时会清理内存并处罚 `Drop` 。
 - 通过 `Rc<T>` 和 `RefCell<T>` 可能使引用计数到不了 0，从而创建循环引用。
 
 ## 12 并发
@@ -613,8 +612,8 @@ fn main() {
 - 通过 `thread::spawn` 创建新线程，返回值可以通过 `.join()` 方法等待所有线程结束。
 - 通过 move 转移所有权。
 
-- 通过 `sync::mpsc::channel` 创建新通道，返回了新元组`(tx, rx)` 分别是发送端和接受端。
-- `tx.send()`  函数获取其参数的所有权并移动这个值归接收者所有。
+- 通过 `sync::mpsc::channel` 创建新通道，返回了新元组 `(tx, rx)` 分别是发送端和接受端。
+- `tx.send()`   函数获取其参数的所有权并移动这个值归接收者所有。
 - `tx.clone()` 可以返回新的发送者， `mpsc` 的是 mutiple producer 的缩写可以有多个发送者。
 
 ```rust
@@ -630,7 +629,7 @@ fn main() {
 }
 ```
 
-- 通过 `Mutex::new()` 创建互斥器，用  `lock`  方法获取锁，以访问互斥器中的数据。这个调用会阻塞当前线程。
+- 通过 `Mutex::new()` 创建互斥器，用   `lock`   方法获取锁，以访问互斥器中的数据。这个调用会阻塞当前线程。
 
 ## 13 面向对象编程
 
