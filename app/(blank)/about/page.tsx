@@ -1,6 +1,6 @@
-import { Contact, Intro, Tech } from '~/core/components/about'
-
 import type { Metadata } from 'next'
+
+import { Contact, Intro, Tech } from '~/core/components/about'
 
 export const metadata: Metadata = {
   title: 'About me.',

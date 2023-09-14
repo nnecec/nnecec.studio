@@ -1,10 +1,10 @@
+import type { Metadata } from 'next'
+
 import Link from 'next/link'
 
 import { getAllPosts } from '~/core/api/post'
 import { TagPicker } from '~/core/components/posts/tag-picker'
 import { Tag } from '~/core/ui'
-
-import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'All posts',

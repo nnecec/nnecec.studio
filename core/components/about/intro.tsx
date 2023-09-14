@@ -1,5 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react'
+
+import { motion, useScroll, useTransform } from 'framer-motion'
+
 import {
   IconBeach,
   IconCamera,
@@ -7,7 +10,6 @@ import {
   IconCode,
   IconMusic,
 } from '@tabler/icons-react'
-import { motion, useScroll, useTransform } from 'framer-motion'
 
 import { Poker } from '~/core/ui/poker'
 
@@ -69,6 +71,9 @@ export const Intro = () => {
             </motion.h1>
 
             <motion.div
+              animate={showGrid ? 'show' : undefined}
+              className="top-[15vh] grid h-[70vh] w-full gap-4 md:absolute"
+              initial="hidden"
               style={{
                 gridTemplateAreas: `
                   "feat-0 feat-1 feat-2"
@@ -80,9 +85,6 @@ export const Intro = () => {
                 opacity: gridOpacity,
                 y: gridY,
               }}
-              animate={showGrid ? 'show' : undefined}
-              className="top-[15vh] grid h-[70vh] w-full gap-4 md:absolute"
-              initial="hidden"
               variants={titleVariants}
             >
               <Poker

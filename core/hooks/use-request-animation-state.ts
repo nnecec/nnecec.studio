@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-
 import type { Dispatch, SetStateAction } from 'react'
 
 // React state hook that only updates state in the callback of requestAnimationFrame.

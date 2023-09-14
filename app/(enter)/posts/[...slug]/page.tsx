@@ -1,12 +1,13 @@
-import { IconCopyright, IconExternalLink } from '@tabler/icons-react'
+import type { Metadata } from 'next'
+
 import clsx from 'clsx'
+
+import { IconCopyright, IconExternalLink } from '@tabler/icons-react'
 
 import { getPost } from '~/core/api/post'
 import { Tag } from '~/core/ui'
 import { Previewer } from '~/core/ui/markdown'
 import { SITE_CONFIG } from '~/core/utils/constants'
-
-import type { Metadata } from 'next'
 
 type Props = {
   params: { slug: string[] }

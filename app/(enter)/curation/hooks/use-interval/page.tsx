@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { useInterval } from '~/curation/hooks/use-interval'
@@ -30,11 +31,11 @@ export default function UseInterval() {
         value={String(counter)}
       />
       <button
+        className="btn relative min-w-[100px] overflow-hidden"
         onClick={() => {
           setCount(counter)
           setRunning(!running)
         }}
-        className="btn relative min-w-[100px] overflow-hidden"
       >
         {running ? (
           <AnimatePresence initial={false}>

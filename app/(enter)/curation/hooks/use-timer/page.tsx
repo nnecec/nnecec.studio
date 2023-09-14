@@ -15,11 +15,11 @@ export default function UseTimer() {
       <div>is running: <span className="badge">{`${isRunning}`}</span></div>
       <div className="flex gap-2">
         <button
+          className="btn"
           onClick={() => {
             setStr('pending.')
             start()
           }}
-          className="btn"
         >
           start timer
         </button>
@@ -27,11 +27,11 @@ export default function UseTimer() {
           pause timer
         </button>
         <button
+          className="btn"
           onClick={() => {
             setStr('pending.')
             restart()
           }}
-          className="btn"
         >
           restart timer
         </button>

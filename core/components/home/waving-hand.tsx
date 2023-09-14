@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 
 export const WavingHand = () => (
   <motion.div
+    animate={{ rotate: 20 }}
     style={{
       display: 'inline-block',
     }}
@@ -15,7 +16,6 @@ export const WavingHand = () => (
       repeatType: 'mirror',
       type: 'tween',
     }}
-    animate={{ rotate: 20 }}
   >
     👋🏻
   </motion.div>

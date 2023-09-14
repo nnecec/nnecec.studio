@@ -1,5 +1,4 @@
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
-
 import type { Dispatch, SetStateAction } from 'react'
 
 const isBrowser = typeof document !== 'undefined'

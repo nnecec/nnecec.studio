@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { motion } from 'framer-motion'
 
 export const Logo = () => {
@@ -14,13 +15,13 @@ export const Logo = () => {
       onMouseLeave={onHoverEnd}
     >
       <motion.div
+        animate={show ? 'show' : 'hide'}
+        className="h-[30px] w-[30px] bg-current"
+        initial="hide"
         variants={{
           hide: { borderRadius: 0 },
           show: { borderRadius: '50%' },
         }}
-        animate={show ? 'show' : 'hide'}
-        className="h-[30px] w-[30px] bg-current"
-        initial="hide"
        />
     </div>
   )

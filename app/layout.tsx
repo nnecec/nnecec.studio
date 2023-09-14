@@ -1,12 +1,11 @@
-import { DATAPULSE_ID, GOOGLE_ID, isProd, SITE_CONFIG } from '~/core/utils/constants'
-
 import type { Metadata } from 'next'
 
-import { Providers } from './providers'
-
-import '~/core/styles/heti.css'
-import '~/core/styles/globals.css'
 import '~/core/styles/custom.css'
+import '~/core/styles/globals.css'
+import '~/core/styles/heti.css'
+import { DATAPULSE_ID, GOOGLE_ID, SITE_CONFIG, isProd } from '~/core/utils/constants'
+
+import { Providers } from './providers'
 
 export const metadata: Metadata = {
   title: {
@@ -44,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ID}`} />
             <script
+              async
               dangerouslySetInnerHTML={{
                 __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -52,7 +52,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 gtag('config', '${GOOGLE_ID}');
               `,
               }}
-              async
               id="gtag-init"
             />
           </>

@@ -1,6 +1,6 @@
 'use client'
 import React, { useMemo } from 'react'
-import { wrap } from '@motionone/utils'
+
 import {
   motion,
   useAnimationFrame,
@@ -10,6 +10,8 @@ import {
   useTransform,
   useVelocity,
 } from 'framer-motion'
+
+import { wrap } from '@motionone/utils'
 
 const stacks = [
   {

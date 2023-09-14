@@ -1,11 +1,12 @@
 'use client'
 
+import type { Variants } from 'framer-motion'
+
 import { useDeferredValue, useState } from 'react'
+
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { CodeBlock } from '~/core/ui/code-block'
-
-import type { Variants } from 'framer-motion'
 
 const layoutIdList = ['banana', 'apple', 'strawberry']
 
@@ -153,18 +154,18 @@ export default function FirstStep() {
             />
 
             <motion.div
+              animate={{ x: 120 }}
+              className="h-10 w-10 rounded bg-zinc-500"
               initial={{
                 x: 0,
               }}
+              key={deferredSpring}
               transition={{
                 damping,
                 mass,
                 stiffness,
                 type: 'spring',
               }}
-              animate={{ x: 120 }}
-              className="h-10 w-10 rounded bg-zinc-500"
-              key={deferredSpring}
             />
           </div>
 
@@ -176,11 +177,11 @@ export default function FirstStep() {
             <div className="card-title">Tween</div>
             <label htmlFor="tween-type">Ease</label>
             <select
+              className="select w-full max-w-xs"
+              id="tween-type"
               onChange={event => {
                 setTweenAnimation(event.target.value)
               }}
-              className="select w-full max-w-xs"
-              id="tween-type"
               value={tweenAnimation}
             >
               <option value="linear">linear</option>
@@ -197,9 +198,12 @@ export default function FirstStep() {
             </select>
 
             <motion.div
+              animate={{ x: 120 }}
+              className="h-10 w-10 rounded bg-zinc-500"
               initial={{
                 x: 0,
               }}
+              key={tweenAnimation}
               transition={{
                 duration: 1,
                 ease: tweenAnimation,
@@ -207,9 +211,6 @@ export default function FirstStep() {
                 repeatDelay: 0.5,
                 repeatType: 'reverse',
               }}
-              animate={{ x: 120 }}
-              className="h-10 w-10 rounded bg-zinc-500"
-              key={tweenAnimation}
             />
             <CodeBlock language="jsx">{tweenCodeString}</CodeBlock>
           </div>
@@ -221,18 +222,18 @@ export default function FirstStep() {
             <input max="100" min="0" onChange={(e: any) => setVelocity(e.target.value)} type="range" value={velocity} />
 
             <motion.div
+              animate={{ x: 120 }}
+              className="h-10 w-10 rounded bg-zinc-500"
               initial={{
                 x: 0,
               }}
+              key={deferredInertia}
               transition={{
                 repeat: Number.POSITIVE_INFINITY,
                 repeatType: 'reverse',
                 type: 'inertia',
                 velocity,
               }}
-              animate={{ x: 120 }}
-              className="h-10 w-10 rounded bg-zinc-500"
-              key={deferredInertia}
             />
             <CodeBlock language="jsx">{inertiaCodeString}</CodeBlock>
           </div>
@@ -244,10 +245,10 @@ export default function FirstStep() {
         <div className="card bg-base-100 p-2 shadow-xl">
           <div className="flex flex-col gap-2">
             <motion.button
+              className="h-10 w-full rounded border-none bg-zinc-500 outline-none"
               style={{
                 zIndex: 1,
               }}
-              className="h-10 w-full rounded border-none bg-zinc-500 outline-none"
               variants={variants}
               whileHover="hover"
               whileTap="pressed"
@@ -289,11 +290,11 @@ export default function FirstStep() {
 
             <div className="grid w-full rounded border p-1">
               <motion.div
+                className="h-10 w-10 rounded bg-zinc-500"
+                layout={!!layout}
                 style={{
                   justifySelf: position,
                 }}
-                className="h-10 w-10 rounded bg-zinc-500"
-                layout={!!layout}
               />
             </div>
 
@@ -305,23 +306,23 @@ export default function FirstStep() {
             <div className="card-title">LayoutId</div>
 
             <motion.div
+              layoutRoot
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 2,
                 position: 'relative',
               }}
-              layoutRoot
             >
               {layoutIdList.map(id => (
                 <motion.div
-                  style={{
-                    width: '100%',
-                  }}
                   className="bg-base-100 rounded border p-4 text-2xl"
                   key={id}
                   layoutId={id}
                   onClick={() => setLayoutId(id)}
+                  style={{
+                    width: '100%',
+                  }}
                 >
                   <motion.h2 className="text-2xl">{id}</motion.h2>
                 </motion.div>
@@ -330,13 +331,13 @@ export default function FirstStep() {
               <AnimatePresence>
                 {layoutId ? (
                   <motion.div
+                    className="bg-base-100 rounded border p-4 text-2xl"
+                    layoutId={layoutId}
+                    onClick={() => setLayoutId(null)}
                     style={{
                       inset: '0.5rem',
                       position: 'absolute',
                     }}
-                    className="bg-base-100 rounded border p-4 text-2xl"
-                    layoutId={layoutId}
-                    onClick={() => setLayoutId(null)}
                   >
                     <motion.h2 className="text-2xl">{layoutId}</motion.h2>
                   </motion.div>

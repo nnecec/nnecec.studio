@@ -1,6 +1,7 @@
+import Image from 'next/image'
+
 import { Tooltip } from '@nextui-org/react'
 import { IconBrandGithub, IconBrandTwitter, IconNews } from '@tabler/icons-react'
-import Image from 'next/image'
 
 import { SITE_CONFIG } from '~/core/utils/constants'
 

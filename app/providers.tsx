@@ -1,10 +1,10 @@
 'use client'
 
+import type { ReactNode } from 'react'
+
 import { NextUIProvider } from '@nextui-org/react'
 
 import { ThemeProvider } from '~/core/components/theme'
-
-import type { ReactNode } from 'react'
 
 export function Providers({ children }: { children: ReactNode }) {
   return (

@@ -1,6 +1,6 @@
-import { Tag } from '@markdoc/markdoc'
-
 import type { Schema } from '@markdoc/markdoc'
+
+import { Tag } from '@markdoc/markdoc'
 
 export const heading: Schema = {
   attributes: {

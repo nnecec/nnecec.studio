@@ -1,8 +1,9 @@
 'use client'
-import { motion } from 'framer-motion'
-
 import type { Variants } from 'framer-motion'
+
 import type { PropsWithChildren } from 'react'
+
+import { motion } from 'framer-motion'
 
 import { Footer } from './footer'
 import { Header } from './header'

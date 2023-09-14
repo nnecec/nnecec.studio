@@ -24,7 +24,7 @@ description: '进入 Rust 的世界'
 - 通过为变量添加 `mut` 关键字可以使其可变。
 - 通过 `const` 声明常量，通常约定使用下划线分隔的全大写字母来命名一个常量。
 - Rust 中可以通过再次声明同名变量的方式，隐藏（shadow）之前已经声明的变量，以最后一次声明的变量为变量的值。
-- 使用`_`开头的变量名，使 rust 忽略未使用变量的警告
+- 使用 `_` 开头的变量名，使 rust 忽略未使用变量的警告
 
 ```rust
 fn main(){
@@ -139,16 +139,23 @@ let user2 = User {
 ### 方法
 
 ```rust
+struct User {
+    username: String
+}
+
 impl User {
     fn get_name(&self) {
         self.username
+    }
+    fn hello() {
+        println!("hello");
     }
 }
 ```
 
 - 定义在 struct 中，使用 `fn` 及方法名称声明，第一个参数永远是 `self`，通常一般定义为 `&self`。
 - 在 struct 上下文中定义方法，需要将方法在 `impl` 中定义。
-- 定义在 `impl` 中不需要定义 `self` 参数的函数称为关联函数，通过 `Rect::square()` 调用。
+- 定义在 `impl` 中不需要定义 `&self` 参数的函数称为关联函数，通过 `User::hello()` 调用。
 - 可以分布在多个同名 `impl` 中 定义
 
 ## 05 枚举与模式匹配
@@ -261,7 +268,7 @@ for i in &mut v {
 - `v.get(2)` 会返回 `Option<&T>` 类型的值，另一种获取元素的方法 `&v[2]` 如果索引超出了边界则会直接触发 `panic`
 - 无法在有对元素的引用时，修改 vec，违反了同一个作用域不能对同一份内存同时拥有可变引用和不可变引用。
 - 可以通过 `for in` 遍历 vector。
-- 可以通过 enum 使 vector 支持更多类型。
+- 可以通过 enum 或特征对象使 vector 支持更多类型。
 
 ```rust
 // 初始化方法

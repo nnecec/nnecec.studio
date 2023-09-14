@@ -1,10 +1,11 @@
 'use client'
+import type { TablerIconsProps } from '@tabler/icons-react'
+
 import React, { useState } from 'react'
+
 import clsx from 'clsx'
 import { motion, useMotionTemplate, useMotionValue, useTransform } from 'framer-motion'
 import colors from 'tailwindcss/colors'
-
-import type { TablerIconsProps } from '@tabler/icons-react'
 
 const delta = 12
 
@@ -69,15 +70,15 @@ export const Poker = ({
 
   return (
     <motion.div
+      className="h-full w-full"
+      onPointerLeave={onLeave}
+      onPointerMove={onMove}
       style={{
         ...style,
         rotateX,
         rotateY,
         transition: 'transform .3s ease-out',
       }}
-      className="h-full w-full"
-      onPointerLeave={onLeave}
-      onPointerMove={onMove}
       variants={PokerVariants}
     >
       <div
@@ -100,11 +101,11 @@ export const Poker = ({
           </div>
         </div>
         <motion.div
+          className="absolute inset-0 transition-opacity duration-300"
           style={{
             backgroundImage: hovering ? backgroundImage : 'none',
             opacity: hovering ? 0.3 : 0,
           }}
-          className="absolute inset-0 transition-opacity duration-300"
         />
       </div>
     </motion.div>

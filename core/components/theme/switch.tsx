@@ -6,7 +6,7 @@ import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useTheme } from '.'
 
 export const ThemeSwitch = () => {
-  const { setTheme, theme } = useTheme()
+  const { setTheme } = useTheme()
 
   const changeTheme = (value: string) => {
     setTheme(value)
@@ -18,6 +18,6 @@ export const ThemeSwitch = () => {
       endContent={<IconSun />}
       onValueChange={isSelected => changeTheme(isSelected ? 'dark' : 'light')}
       startContent={<IconMoon />}
-     />
+    />
   )
 }

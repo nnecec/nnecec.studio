@@ -9,9 +9,9 @@ export type Post = {
   originContent: string
   prev?: Post
   slug?: string
+  status?: number
   tags?: string[]
   title?: string
-  status?: number
 }
 
 export type Heading = {

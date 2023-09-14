@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { useSwitch, VisuallyHidden } from '@nextui-org/react'
-import { IconCheck, IconCopy } from '@tabler/icons-react'
+
 import { Highlight } from 'prism-react-renderer'
+
+import { VisuallyHidden, useSwitch } from '@nextui-org/react'
+import { IconCheck, IconCopy } from '@tabler/icons-react'
 
 import useTimeoutFn from '~/core/hooks/use-timeout'
 

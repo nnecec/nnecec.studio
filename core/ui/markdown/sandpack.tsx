@@ -1,7 +1,8 @@
-import { Sandpack as SandpackBox } from '@codesandbox/sandpack-react'
-
 import type { SandpackFiles, SandpackPredefinedTemplate } from '@codesandbox/sandpack-react'
+
 import type { ReactNode } from 'react'
+
+import { Sandpack as SandpackBox } from '@codesandbox/sandpack-react'
 
 type Layout = 'console' | 'preview'
 
@@ -15,10 +16,10 @@ export const Sandpack = ({ files = {}, layout = 'preview', template = 'react' }:
 
   return (
     <SandpackBox
+      files={files}
       options={{
         layout,
       }}
-      files={files}
       template={template}
     />
   )

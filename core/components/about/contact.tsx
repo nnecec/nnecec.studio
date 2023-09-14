@@ -1,5 +1,8 @@
 'use client'
-import { Fragment } from 'react'
+
+import Image from 'next/image'
+import Link from 'next/link'
+
 import { Button, Tooltip } from '@nextui-org/react'
 import {
   IconBookmarks,
@@ -10,8 +13,6 @@ import {
   IconBrandWechat,
   IconMail,
 } from '@tabler/icons-react'
-import Image from 'next/image'
-import Link from 'next/link'
 
 import { SITE_CONFIG } from '~/core/utils/constants'
 
