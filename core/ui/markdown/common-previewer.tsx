@@ -17,7 +17,7 @@ export const TableOfContents = ({ headings }: { headings?: any[] }) => {
   const items = headings.filter(item => [2, 3, 4].includes(item.level))
   return (
     <nav className="fixed inset-y-1/3 left-0 hidden overflow-auto text-sm lg:block">
-      <ul className="!list-none">
+      <ul className="max-w-xs !list-none">
         {items.map(item => (
           <li key={item.title} style={{ marginLeft: `${item.level - 2}rem` }}>
             <a href={`#${item.id}`}>{item.title}</a>

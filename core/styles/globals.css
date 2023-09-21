@@ -54,6 +54,9 @@
   blockquote > ol {
     list-style-position: inside;
   }
+  a {
+    @apply no-underline hover:no-underline hover:text-primary;
+  }
 }
 
 @layer utilities {

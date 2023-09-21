@@ -1,7 +1,5 @@
 import { createElement } from 'react'
 
-import clsx from 'clsx'
-
 type HeadingProps = {
   children: React.ReactNode
   className?: string
@@ -13,7 +11,7 @@ export const Heading = ({ children, className, id = '', level = 1 }: HeadingProp
   const link = createElement(
     `h${level}`,
     {
-      className: clsx('heading', className),
+      className,
     },
     [<div className="target:pt-header" id={id} key={id} />, children],
   )

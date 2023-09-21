@@ -172,7 +172,9 @@
 @font-face {
   font-family: 'Heti Kai Bold Fallback';
   font-weight: 600;
-  src: local('STKaiti'), local('Kaiti') local('BiauKai');
+  src:
+    local('STKaiti'),
+    local('Kaiti') local('BiauKai');
 }
 @font-face {
   font-family: 'Heti Kai Black';
@@ -436,8 +438,6 @@
   text-decoration: none;
 }
 .heti a:hover {
-  padding-block-end: 1px;
-  border-block-end: 1px solid currentColor;
   text-decoration: none;
 }
 .heti abbr[title] {
