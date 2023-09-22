@@ -18,11 +18,6 @@ const Links = [
     link: social.twitter,
     name: 'twitter.com/nnecec_cn',
   },
-  {
-    icon: <IconNews />,
-    link: social.zhubai,
-    name: 'nnecec.zhubai.love',
-  },
 ]
 
 export const Footer = () => {

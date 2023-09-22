@@ -13,7 +13,6 @@ export const SITE_CONFIG = {
     github: 'https://github.com/nnecec/',
     instagram: 'https://www.instagram.com/nnecec/',
     twitter: 'https://twitter.com/nnecec_cn/',
-    zhubai: 'https://nnecec.zhubai.love/',
   },
   title: "nnecec's Blog",
 }
