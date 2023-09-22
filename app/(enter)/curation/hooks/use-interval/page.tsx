@@ -3,6 +3,8 @@ import { useState } from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
+import { Button, Input } from '@nextui-org/react'
+
 import { useInterval } from '~/curation/hooks/use-interval'
 
 export default function UseInterval() {
@@ -23,15 +25,14 @@ export default function UseInterval() {
 
   return (
     <div className="flex gap-4">
-      <input
-        className="input"
+      <Input
         min={0}
-        onChange={e => setCounter(Number(e.target.value))}
+        onValueChange={value => setCounter(Number(value))}
         type="number"
         value={String(counter)}
       />
-      <button
-        className="btn relative min-w-[100px] overflow-hidden"
+      <Button
+        className="relative min-w-[100px] overflow-hidden"
         onClick={() => {
           setCount(counter)
           setRunning(!running)
@@ -55,7 +56,7 @@ export default function UseInterval() {
         ) : (
           'Click to start!'
         )}
-      </button>
+      </Button>
     </div>
   )
 }

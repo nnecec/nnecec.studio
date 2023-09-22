@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react'
 
+import { Button, Chip } from '@nextui-org/react'
+
 import { useTimer } from '~/curation/hooks/use-timer'
 
 export default function UseTimer() {
@@ -11,30 +13,30 @@ export default function UseTimer() {
 
   return (
     <div>
-      <div>Click start button, it&apos;ll be finished after 3 seconds: <span className="badge">{str}</span></div>
-      <div>is running: <span className="badge">{`${isRunning}`}</span></div>
+      <div>Click start button, it&apos;ll be finished after 3 seconds: <Chip>{str}</Chip></div>
+      <div>is running: <Chip>{`${isRunning}`}</Chip></div>
       <div className="flex gap-2">
-        <button
-          className="btn"
+        <Button
+
           onClick={() => {
             setStr('pending.')
             start()
           }}
         >
           start timer
-        </button>
-        <button className="btn" onClick={pause}>
+        </Button>
+        <Button onClick={pause}>
           pause timer
-        </button>
-        <button
-          className="btn"
+        </Button>
+        <Button
+
           onClick={() => {
             setStr('pending.')
             restart()
           }}
         >
           restart timer
-        </button>
+        </Button>
       </div>
     </div>
   )
