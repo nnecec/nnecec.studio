@@ -7,7 +7,7 @@ description: '介绍如何从零配置 Macbook Pro。最终配置完成时是前
 
 ## 前言
 
-一些系统及 App 配置可以参考[Mac Setup for Web Development [2023]](https://www.robinwieruch.de/mac-setup-web-development/)。
+一些系统及 App 配置可以参考 [Mac Setup for Web Development [2023]](https://www.robinwieruch.de/mac-setup-web-development/)。
 
 这位作者自定义了很多配置，并且安装了很多不一定用得上的 App。所以别人的配置最好作为参考，自己从中取需要的部分。不要照搬配置，配置了一大堆用不着的。
 
@@ -27,7 +27,7 @@ description: '介绍如何从零配置 Macbook Pro。最终配置完成时是前
 
 ### 1. 配置代理
 
-从[Clash Premium 图形用户界面版](https://github.com/Loyalsoldier/clash-rules#clash-premium-%E5%90%84%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80)下载 Clash X Pro。并安装配置 config，该链接同时有 rule 配置，按需使用。
+从 [Clash Premium 图形用户界面版](https://github.com/Loyalsoldier/clash-rules#clash-premium-%E5%90%84%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80) 下载 Clash X Pro。并安装配置 config，该链接同时有 rule 配置，按需使用。
 
 在控制台执行:
 
@@ -35,7 +35,7 @@ description: '介绍如何从零配置 Macbook Pro。最终配置完成时是前
 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 ```
 
-或配置`.zshrc`
+或配置 `.zshrc`
 
 ```shell
 export http_proxy=http://127.0.0.1:7890
@@ -43,9 +43,7 @@ export https_proxy=http://127.0.0.1:7890
 export all_proxy=socks5://127.0.0.1:7890
 ```
 
-> 如果你没有代理，可以通过[这个链接](https://mojie.me/#/register?code=xzSjSYO6)注册。这个代理是不限时间设备数量，只计算使用流量的。
-> 如果不经常看视频会非常省。实测看视频也没有用很多， youtube 1440p 不会卡。
-> 从 2021 年用到现在一直都很稳定，速度也不错。
+> 如果你没有代理，可以通过 [这个链接](https://mojie.me/#/register?code=xzSjSYO6) 注册。这个代理是不限时间设备数量，只计算使用流量的。如果不经常看视频会非常省。实测看视频也没有用很多，youtube 1440p 不会卡。从 2021 年用到现在一直都很稳定，速度也不错。
 
 ### 2. 安装 [Brew](https://brew.sh/)
 
@@ -64,7 +62,7 @@ sudo spctl--master-disable
 ```bash
 brew install fnm git pnpm starship
 
-brew install --cask appcleaner arc bitwarden docker figma google-chrome iina microsoft-edge notion obsidian raycast sourcetree telegram visual-studio-code warp wechat
+brew install --cask appcleaner arc bitwarden docker figma google-chrome iina microsoft-edge notion obsidian raycast telegram visual-studio-code warp wechat
 
 # optional
 brew install --case item2 firefox licecap
@@ -107,7 +105,7 @@ export PNPM_HOME="/Users/nnecec/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 ```
 
-我的最终 .zshrc 可以在[该链接](https://gist.github.com/nnecec/254eef8da4df74d5c577983accd82747)查看
+我的最终 .zshrc 可以在 [该链接](https://gist.github.com/nnecec/254eef8da4df74d5c577983accd82747) 查看
 
 ### 4. 配置 git 及 ssh
 
@@ -116,17 +114,17 @@ git config --global user.name "nnecec"
 git config --global user.email "nnecec@outlook.com"
 ```
 
-参考[该链接](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)配置 ssh，或者把老的 ssh 复制过来，这样就不用重新配置了。复制过来之后还需要执行一下 `ssh-add --apple-use-keychain ~/.ssh/{your file}`
+参考 [该链接](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) 配置 ssh，或者把老的 ssh 复制过来，这样就不用重新配置了。复制过来之后还需要执行一下 `ssh-add --apple-use-keychain ~/.ssh/{your file}`
 
 ### 5. 安装字体
 
-我用的编程字体是 `iosevka`，中文字体是`霞鹜文楷`。
+我用的编程字体是 `Iosevka`，中文字体是 `霞鹜文楷`。
 
-编程字体在 `JetBrains Mono`, `Roboto Mono` 会互相缓一缓，提升点新鲜感。
+编程字体在 `Monaspace` , `JetBrains Mono` , `Roboto Mono` 会互相换一换，提升点新鲜感。
 
 ```bash
 brew tap homebrew/cask-fonts
-brew install font-iosevka font-roboto font-roboto-mono font-lxgw-wenkai font-jetbrains-mono
+brew install font-monaspace font-iosevka font-roboto font-roboto-mono font-lxgw-wenkai font-jetbrains-mono
 ```
 
 ### 6. 配置 App
