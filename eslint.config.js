@@ -4,6 +4,7 @@ import nnecec from '@nnecec/eslint-config'
 /** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   ...nnecec({
+    react: true,
     tailwindcss: true,
     typescript: true,
   }),
@@ -22,6 +23,6 @@ export default [
     },
   },
   {
-    ignorePatterns: ['/posts/**/**', '.next', 'public', 'node_modules'],
+    ignores: ['/posts/**/**', '.next', 'public', 'node_modules'],
   },
 ]

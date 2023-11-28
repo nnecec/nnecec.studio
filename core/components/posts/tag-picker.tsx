@@ -12,7 +12,7 @@ export const TagPicker = ({ tags }: { tags: string[] }) => {
       className="block w-full max-w-xs border-separate rounded-lg border bg-background p-2.5 text-sm text-foreground"
       onChange={e => {
         const value = e.target.value
-        value === '' ? router.replace(`/posts`) : router.replace(`/posts?tag=${e.target.value}`)
+        value === '' ? router.replace('/posts') : router.replace(`/posts?tag=${e.target.value}`)
       }}
       value={tag}
     >

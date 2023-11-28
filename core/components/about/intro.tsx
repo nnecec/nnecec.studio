@@ -3,13 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 
-import {
-  IconBeach,
-  IconCamera,
-  IconChefHat,
-  IconCode,
-  IconMusic,
-} from '@tabler/icons-react'
+import { IconBeach, IconCamera, IconChefHat, IconCode, IconMusic } from '@tabler/icons-react'
 
 import { Poker } from '~/core/ui/poker'
 

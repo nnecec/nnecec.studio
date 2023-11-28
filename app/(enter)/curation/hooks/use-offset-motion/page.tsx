@@ -1,8 +1,7 @@
 'use client'
 import { useOffsetMotion } from '~/curation/hooks/use-offset-motion'
 
-const elastic = (t: number) =>
-  t * (33 * t * t * t * t - 106 * t * t * t + 126 * t * t - 67 * t + 15)
+const elastic = (t: number) => t * (33 * t * t * t * t - 106 * t * t * t + 126 * t * t - 67 * t + 15)
 
 const inOutCirc = (t: number) => {
   t /= 0.5
@@ -11,8 +10,7 @@ const inOutCirc = (t: number) => {
   return (Math.sqrt(1 - t * t) + 1) / 2
 }
 
-const inOutCubic = (t: number) =>
-  t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+const inOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1)
 
 export default function UseOffsetMotion() {
   const [ref, start] = useOffsetMotion<HTMLDivElement>({ x: 200, y: 300 })

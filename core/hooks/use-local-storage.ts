@@ -2,7 +2,7 @@ import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
 
 const isBrowser = typeof document !== 'undefined'
-// eslint-disable-next-line @typescript-eslint/no-empty-function
+
 const noop = () => {}
 
 type parserOptions<T> =
@@ -27,11 +27,7 @@ export const useLocalStorage = <T>(
     throw new Error('useLocalStorage key may not be falsy')
   }
 
-  const deserializer = options
-    ? (options.raw
-      ? (value: any) => value
-      : options.deserializer)
-    : JSON.parse
+  const deserializer = options ? (options.raw ? (value: any) => value : options.deserializer) : JSON.parse
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const initializer = useRef((key: string) => {
@@ -63,17 +59,16 @@ export const useLocalStorage = <T>(
   const set: Dispatch<SetStateAction<T | undefined>> = useCallback(
     valOrFunc => {
       try {
-        const newState =
-          typeof valOrFunc === 'function' ? (valOrFunc as (...args: any[])=> any)(state) : valOrFunc
+        const newState = typeof valOrFunc === 'function' ? (valOrFunc as (...args: any[]) => any)(state) : valOrFunc
         if (newState === undefined) return
         let value: string
 
-        if (options)
-          if (options.raw)
+        if (options) {
+          if (options.raw) {
             value = typeof newState === 'string' ? newState : JSON.stringify(newState)
-          else if (options.serializer) value = options.serializer(newState)
+          } else if (options.serializer) value = options.serializer(newState)
           else value = JSON.stringify(newState)
-        else value = JSON.stringify(newState)
+        } else value = JSON.stringify(newState)
 
         localStorage.setItem(key, value)
         setState(deserializer(value))

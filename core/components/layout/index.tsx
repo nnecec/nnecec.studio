@@ -36,7 +36,7 @@ export const Layout = ({ children, className }: PropsWithChildren<Props>) => {
       <Header />
       <motion.main
         animate="enter"
-        className={`container mx-auto min-h-screen px-4 pt-header md:px-0`}
+        className={'container mx-auto min-h-screen px-4 pt-header md:px-0'}
         exit="exit"
         initial="exit"
         variants={variants}

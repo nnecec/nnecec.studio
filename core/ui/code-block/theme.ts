@@ -68,14 +68,7 @@ export const theme = {
       style: {
         color: 'hsl(29, 54%, 61%)',
       },
-      types: [
-        'attr-name',
-        'class-name',
-        'boolean',
-        'constant',
-        'number',
-        'atrules',
-      ],
+      types: ['attr-name', 'class-name', 'boolean', 'constant', 'number', 'atrules'],
     },
     {
       style: {
@@ -93,15 +86,7 @@ export const theme = {
       style: {
         color: 'hsl(95, 38%, 62%)',
       },
-      types: [
-        'selector',
-        'string',
-        'char',
-        'builtin',
-        'inserted',
-        'regex',
-        'attr-value',
-      ],
+      types: ['selector', 'string', 'char', 'builtin', 'inserted', 'regex', 'attr-value'],
     },
     {
       style: {

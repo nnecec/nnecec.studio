@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import { Tooltip } from '@nextui-org/react'
-import { IconBrandGithub, IconBrandTwitter, IconNews } from '@tabler/icons-react'
+import { IconBrandGithub, IconBrandTwitter } from '@tabler/icons-react'
 
 import { SITE_CONFIG } from '~/core/utils/constants'
 
@@ -24,13 +24,7 @@ export const Footer = () => {
   return (
     <footer className="mt-20 grid grid-flow-row-dense place-items-center gap-4 rounded p-10 text-center">
       <div className="grid grid-flow-col gap-4">
-        <Image
-          alt="avatar"
-          className="inline-block rounded-full"
-          height={40}
-          src="/assets/avatar.webp"
-          width={40}
-        />
+        <Image alt="avatar" className="inline-block rounded-full" height={40} src="/assets/avatar.webp" width={40} />
         <div className="text-left">
           {author.name}
           <br />
@@ -48,9 +42,7 @@ export const Footer = () => {
               rel="noreferrer"
               target="_blank"
             >
-              <Tooltip content={link.name}>
-                {link.icon}
-              </Tooltip>
+              <Tooltip content={link.name}>{link.icon}</Tooltip>
             </a>
           ))}
         </div>

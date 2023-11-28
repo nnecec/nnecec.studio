@@ -25,12 +25,7 @@ export default function UseInterval() {
 
   return (
     <div className="flex gap-4">
-      <Input
-        min={0}
-        onValueChange={value => setCounter(Number(value))}
-        type="number"
-        value={String(counter)}
-      />
+      <Input min={0} onValueChange={value => setCounter(Number(value))} type="number" value={String(counter)} />
       <Button
         className="relative min-w-[100px] overflow-hidden"
         onClick={() => {

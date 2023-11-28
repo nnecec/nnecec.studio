@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 
-import '~/core/styles/custom.css'
-import '~/core/styles/globals.css'
-import '~/core/styles/heti.css'
 import { DATAPULSE_ID, GOOGLE_ID, SITE_CONFIG, isProd } from '~/core/utils/constants'
 
 import { Providers } from './providers'
 
+import '~/core/styles/custom.css'
+import '~/core/styles/globals.css'
+import '~/core/styles/heti.css'
+
 export const metadata: Metadata = {
   title: {
     default: 'nnecec.studio',
-    template: `%s - nnecec.studio`,
+    template: '%s - nnecec.studio',
   },
 }
 

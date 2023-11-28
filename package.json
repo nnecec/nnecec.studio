@@ -16,6 +16,7 @@
   },
   "license": "0BSD",
   "author": "nnecec <nnecec@outlook.com>",
+  "type": "module",
   "scripts": {
     "build": "next build",
     "dev": "next dev -p 3006",
@@ -64,7 +65,7 @@
   },
   "packageManager": "pnpm@8.0.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "pnpm": {
     "overrides": {

@@ -24,8 +24,7 @@ const NAV_LINKS = [
 export const Header = () => {
   const pathname = usePathname()
 
-  const isActive = (path: string) =>
-    (path === '/' && pathname === path) || (path !== '/' && pathname.startsWith(path))
+  const isActive = (path: string) => (path === '/' && pathname === path) || (path !== '/' && pathname.startsWith(path))
 
   return (
     <motion.header className="fixed top-0 z-[999] flex h-header w-screen">

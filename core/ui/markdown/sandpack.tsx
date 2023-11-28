@@ -13,7 +13,6 @@ type SandpackProps = {
 }
 
 export const Sandpack = ({ files = {}, layout = 'preview', template = 'react' }: SandpackProps) => {
-
   return (
     <SandpackBox
       files={files}

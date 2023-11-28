@@ -10,7 +10,12 @@ import useTimeoutFn from '~/core/hooks/use-timeout'
 
 import { theme } from './theme'
 
-export const CodeBlock = ({ children, language }) => {
+type CodeBlockProps = {
+  children: string
+  language: string
+}
+
+export const CodeBlock = ({ children, language }: CodeBlockProps) => {
   const [copied, setCopied] = useState(false)
   const reset = useTimeoutFn(() => {
     setCopied(false)

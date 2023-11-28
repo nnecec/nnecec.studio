@@ -50,7 +50,7 @@ const colorSchemes = new Set(['light', 'dark'])
 const MEDIA = '(prefers-color-scheme: dark)'
 const isServer = typeof window === 'undefined'
 const ThemeContext = createContext<UseThemeProps | undefined>(undefined)
-// eslint-disable-next-line @typescript-eslint/no-empty-function
+
 const defaultContext: UseThemeProps = { setTheme: _ => {}, themes: [] }
 const defaultThemes = ['light', 'dark']
 
@@ -72,7 +72,7 @@ const disableAnimation = () => {
   const css = document.createElement('style')
   css.append(
     document.createTextNode(
-      `*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}`,
+      '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}',
     ),
   )
   document.head.append(css)
@@ -129,12 +129,12 @@ const ThemeScript = memo(
 
       return fallback
         ? `if(e==='light'||e==='dark'||!e)d.style.colorScheme=e||'${defaultTheme}'`
-        : `if(e==='light'||e==='dark')d.style.colorScheme=e`
+        : "if(e==='light'||e==='dark')d.style.colorScheme=e"
     })()
 
     const updateDOM = (name: string, literal = false, setColorScheme = true) => {
       const resolvedName = value ? value[name] : name
-      const val = literal ? name + `|| ''` : `'${resolvedName}'`
+      const val = literal ? name + "|| ''" : `'${resolvedName}'`
       let text = ''
 
       // MUCH faster to set colorScheme alongside HTML attribute/class
@@ -145,7 +145,7 @@ const ThemeScript = memo(
       }
 
       if (attribute === 'class') {
-        text += literal || resolvedName ? `c.add(${val})` : `null`
+        text += literal || resolvedName ? `c.add(${val})` : 'null'
       } else {
         if (resolvedName) {
           text += `d[s](n,${val})`
@@ -164,16 +164,16 @@ const ThemeScript = memo(
         return `!function(){try{${optimization}var e=localStorage.getItem('${storageKey}');if('system'===e||(!e&&${defaultSystem})){var t='${MEDIA}',m=window.matchMedia(t);if(m.media!==t||m.matches){${updateDOM(
           'dark',
         )}}else{${updateDOM('light')}}}else if(e){${value ? `var x=${JSON.stringify(value)};` : ''}${updateDOM(
-          value ? `x[e]` : 'e',
+          value ? 'x[e]' : 'e',
           true,
         )}}${
-          defaultSystem ? '' : `else{` + updateDOM(defaultTheme, false, false) + '}'
+          defaultSystem ? '' : 'else{' + updateDOM(defaultTheme, false, false) + '}'
         }${fallbackColorScheme}}catch(e){}}()`
       }
 
       return `!function(){try{${optimization}var e=localStorage.getItem('${storageKey}');if(e){${
         value ? `var x=${JSON.stringify(value)};` : ''
-      }${updateDOM(value ? `x[e]` : 'e', true)}}else{${updateDOM(
+      }${updateDOM(value ? 'x[e]' : 'e', true)}}else{${updateDOM(
         defaultTheme,
         false,
         false,
