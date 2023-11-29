@@ -1,9 +1,8 @@
-import prettierConfig from '@nnecec/prettier-config'
 /**
  * @type {import('prettier').Config&import('prettier-plugin-zh').ZhOptions}
  */
-export default {
-  ...prettierConfig,
+module.exports = {
+  ...require('@nnecec/prettier-config'),
   plugins: ['prettier-plugin-zh'],
   spaceAroundCode: true,
   spaceAroundLink: true,

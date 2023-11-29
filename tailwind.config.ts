@@ -9,7 +9,6 @@ export default {
   content: [
     './app/**/*.{ts,tsx,js,jsx}',
     './core/**/*.{ts,tsx,js,jsx}',
-    './curation/**/*.{ts,tsx,js,jsx}',
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: 'class',
