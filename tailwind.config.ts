@@ -1,45 +1,83 @@
 import type { Config } from 'tailwindcss'
 
 import { fontFamily } from 'tailwindcss/defaultTheme'
+import tailwindAnimate from 'tailwindcss-animate'
 
-import { colors, nextui } from '@nextui-org/react'
 import typography from '@tailwindcss/typography'
 
 export default {
-  content: [
-    './app/**/*.{ts,tsx,js,jsx}',
-    './core/**/*.{ts,tsx,js,jsx}',
-    './curation/**/*.{ts,tsx,js,jsx}',
-    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./app/**/*.{ts,tsx,js,jsx}', './libs/**/*.{ts,tsx,js,jsx}', './posts/**/*.{md,mdx}'],
   darkMode: 'class',
-  plugins: [
-    typography,
-    nextui({
-      themes: {
-        dark: {
-          colors: {
-            primary: colors.yellow[500],
-            secondary: colors.blue[600],
-          },
+  plugins: [typography, tailwindAnimate],
+  theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
+    extend: {
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      borderRadius: {
+        lg: `var(--radius)`,
+        md: `calc(var(--radius) - 2px)`,
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      colors: {
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
-        light: {
-          colors: {
-            primary: colors.yellow[500],
-            secondary: colors.blue[600],
-          },
+        background: 'hsl(var(--background))',
+        border: 'hsl(var(--border))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        foreground: 'hsl(var(--foreground))',
+        input: 'hsl(var(--input))',
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        ring: 'hsl(var(--ring))',
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
         },
       },
-    }),
-  ],
-  theme: {
-    extend: {
       fontFamily: {
         mono: ['Roboto Mono', 'Source Code Pro', ...fontFamily.mono],
         sans: ['Mona Sans', 'Inter', 'SF Pro SC', 'PingFang SC', ...fontFamily.sans],
       },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+      },
       spacing: {
-        header: '96px',
+        header: '120px',
       },
     },
   },

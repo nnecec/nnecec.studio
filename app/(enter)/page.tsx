@@ -1,9 +1,7 @@
-/* eslint-disable react/no-unescaped-entities */
-
 import type { Metadata } from 'next'
 
-import { WavingHand } from '~/core/components/home/waving-hand'
-import { HoverText } from '~/core/ui/hover-text'
+import { WavingHand } from '~/libs/components/home/waving-hand'
+import { HoverText } from '~/libs/ui/hover-text'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -16,9 +14,10 @@ export default function Page() {
         <WavingHand />
         <br />
         Hi, I'm nnecec.
-        <span className="text-4xl opacity-70 md:text-6xl">
-          This is my blog about the understanding of <HoverText className="bg-[#FFE70B]">JavaScript</HoverText>,{' '}
-          <HoverText className="bg-[rgb(20,158,202)]">React</HoverText> and more.
+        <span className="text-4xl opacity-90 md:text-6xl">
+          This is my blog about the understanding of{' '}
+          <HoverText color="#FFE70B">JavaScript</HoverText>,{' '}
+          <HoverText color="rgb(20,158,202)">React</HoverText> and more.
         </span>
       </h1>
     </section>

@@ -1,0 +1,66 @@
+@font-face {
+  font-family: 'Mona Sans';
+  src:
+    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2')
+      format('woff2 supports variations'),
+    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom classes */
+.blog-post {
+  article a {
+    @apply mx-1 text-primary;
+  }
+  svg {
+    @apply align-text-bottom;
+  }
+}
+
+:root {
+  .shiki {
+    @apply p-4;
+    @apply border border-neutral-900/10 dark:border-neutral-100/10;
+
+    code {
+      display: block;
+    }
+
+    span.highlighted {
+      display: inline-block;
+      width: calc(100% + 2rem);
+      @apply bg-neutral-200/80;
+      @apply -mx-4 pl-4;
+    }
+  }
+}
+
+:root.dark {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-dark);
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+    text-decoration: var(--shiki-dark-text-decoration);
+  }
+
+  .shiki {
+    background-color: var(--shiki-dark-bg);
+
+    span.highlighted {
+      @apply bg-neutral-800/80;
+    }
+  }
+}
+
+.heti {
+  a:hover {
+    @apply underline;
+  }
+}

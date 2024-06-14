@@ -4,10 +4,10 @@ import clsx from 'clsx'
 
 import { IconCopyright, IconExternalLink } from '@tabler/icons-react'
 
-import { getPost } from '~/core/api/post'
-import { Tag } from '~/core/ui'
-import { Previewer } from '~/core/ui/markdown'
-import { SITE_CONFIG } from '~/core/utils/constants'
+import { getPost } from '~/libs/api/post'
+import { Badge } from '~/libs/ui'
+import { SITE_CONFIG } from '~/libs/utils/constants'
+import { Previewer } from '~/libs/components/posts/previewer'
 
 type Props = {
   params: { slug: string[] }
@@ -37,8 +37,14 @@ export default async function PostPage({ params }: Props) {
       <section className="heti mx-auto mb-24">
         <h1>{post.title}</h1>
         <div className="flex flex-col gap-2 text-sm">
-          <div>Last updated: {post.date} </div>
-          <div>{post.tags?.map(tag => <Tag key={tag}>{tag}</Tag>)}</div>
+          <div>Last updated: {post.date}</div>
+          <div>
+            {post.tags?.map(tag => (
+              <Badge variant="secondary" key={tag}>
+                {tag}
+              </Badge>
+            ))}
+          </div>
           <div className="flex gap-4">
             <a
               href="http://creativecommons.org/licenses/by-nc/4.0/"

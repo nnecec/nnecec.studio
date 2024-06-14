@@ -7,7 +7,9 @@ description: 'useState, useReducer 和它的一切。'
 
 ## 定义
 
-你可以在[useState](https://reactjs.org/docs/hooks-reference.html#usestate)和[useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)中看到 `useState` 和 `useReducer` 的说明。
+你可以在 [useState](https://reactjs.org/docs/hooks-reference.html#usestate) 和
+[useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer) 中看到 `useState` 和
+`useReducer` 的说明。
 
 本文不对文档已有的基本内容做说明，你可以访问官网查看官方的说明。
 
@@ -19,22 +21,24 @@ const [count, setCount] = useState(0)
 const [count, dispatchCount] = useReducer(countReducer, 0)
 ```
 
-在后面的源码分析中也可以看到， `useState` 相对于 `useReducer` 来说，是赋值了一个默认的 `reducer` 方法。
+在后面的源码分析中也可以看到， `useState` 相对于 `useReducer` 来说，是赋值了一个默认的 `reducer` 方
+法。
 
-通过 `useState` 以及 `useReducer` 返回的 `setState` 方法，可以设置 `state` 的值，并触发刷新。在其他的 `hooks` 中, `useRef` 也可以起到储存值的作用，但不同的是，`useRef` 不会触发页面的重新渲染。
+通过 `useState` 以及 `useReducer` 返回的 `setState` 方法，可以设置 `state` 的值，并触发刷新。在其他
+的 `hooks` 中, `useRef` 也可以起到储存值的作用，但不同的是， `useRef` 不会触发页面的重新渲染。
 
 ## 源码
 
-在我们对[hooks](/posts/react/hooks/basic)的解读中，解释了 hooks 的状态是如何记录并获取的。
+在我们对 [hooks](/posts/react/hooks/basic) 的解读中，解释了 hooks 的状态是如何记录并获取的。
 
 在看这部分源码前，我们带着几个问题：
 
-- 为什么说 `useState` 是 `useReducer` 的语法糖
-- 为什么通过 `setState` 方法更新值才会触发渲染
+- 为什么说 `useState` 是 `useReducer` 的语法糖？
+- 为什么通过 `setState` 方法更新值才会触发渲染？
 
-### `mount` 阶段
+### mount 阶段
 
-```ts
+```ts {14,49}
 function mountState<S>(
   initialState: (() => S) | S,
 ): [S, Dispatch<BasicStateAction<S>>] {
@@ -62,7 +66,6 @@ function mountState<S>(
 }
 
 function basicStateReducer<S>(state: S, action: BasicStateAction<S>): S {
-  // $FlowFixMe: Flow doesn't like mixed types
   return typeof action === 'function' ? action(state) : action;
 }
 
@@ -96,21 +99,20 @@ function mountReducer<S, I, A>(
 }
 ```
 
-对比 `mountState` 和 `mountReducer` 可以看到，区别仅仅是 `计算 initialState` 和 `reducer`。根据 `useState` 的文档，它的参数是一个值或者方法，在源码的处理中，遇到值则直接返回，遇到方法则返回执行结果。
+对比 `mountState` 和 `mountReducer` 可以看到，区别仅仅是 `计算 initialState` 和 `reducer`。根据
+`useState` 的文档，它的参数是一个值或者方法，在源码的处理中，遇到值则直接返回，遇到方法则返回执行结
+果。
 
-对于 <使用 useReducer 实现 useState> 这种问题，可以给出如下答案:
-
->
+对于“使用 useReducer 实现 useState”这类问题，可以给出如下答案:
 
 ```ts
 function useMyState(initialState) {
-  const reducer = ((state, action) =
-    typeof action === 'function' ? action(state) : action)
+  const reducer = ((state, action) = typeof action === 'function' ? action(state) : action)
   return useReducer(reducer, initialState)
 }
 ```
 
-### `update` 阶段
+### update 阶段
 
 ```ts
 function updateState<S>(
@@ -136,4 +138,5 @@ function updateReducer<S, I, A>(
 }
 ```
 
-先忽略对于有未处理的更新队列这种情况，对于 `useState` 和 `useReducer` 来说，两者都是获取了已经存在的 `hook.memoizedState` 和 `dispatch` 并返回。
+先忽略对于有未处理的更新队列这种情况，对于 `useState` 和 `useReducer` 来说，两者都是获取了已经存在的
+`hook.memoizedState` 和 `dispatch` 并返回。

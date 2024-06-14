@@ -16,12 +16,6 @@ export default [
     },
   },
   {
-    files: ['**/*.ts', '**/*.tsx'],
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-    },
-  },
-  {
-    ignorePatterns: ['/posts/**/**', '.next', 'public', 'node_modules'],
+    ignores: ['/posts/**/**', '.next', 'public', 'node_modules'],
   },
 ]
