@@ -1,11 +1,11 @@
-import type { LinkProps } from 'next/link';
+import type { LinkProps } from 'next/link'
 
 import Link from 'next/link'
 
-type Props = LinkProps & {
+type Props = {
   subtitle?: string
   title: string
-}
+} & LinkProps
 
 export const ArrowLink = ({ subtitle, title, ...props }: Props) => {
   return (

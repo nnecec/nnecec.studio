@@ -38,7 +38,7 @@ export default function UseInterval() {
           setRunning(!running)
         }}
       >
-        {running ? (
+        {running ?
           <AnimatePresence initial={false}>
             {[...String(count)].map((num, i) => (
               <motion.span
@@ -53,9 +53,7 @@ export default function UseInterval() {
               </motion.span>
             ))}
           </AnimatePresence>
-        ) : (
-          'Click to start!'
-        )}
+        : 'Click to start!'}
       </Button>
     </div>
   )

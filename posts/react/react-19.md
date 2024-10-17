@@ -13,6 +13,8 @@ description:
 - [React 19 RC – React](https://react.dev/blog/2024/04/25/react-19)
 - [React Compiler – React](https://react.dev/learn/react-compiler)
 - [Basic Theoretical Concepts](https://github.com/reactjs/react-basic)
+- [聊聊代数效应](https://mongkii.com/blog/2021-05-08-talk-about-algebraic-effects)。
+- [A description of React's new core algorithm, React Fiber](https://github.com/acdlite/react-fiber-architecture)
 
 > 本文通过基于 React 的设计思想并结合 React 19 新 API 的设计，来加强对 React 编程哲学的理解。
 
@@ -197,7 +199,7 @@ Dan 在
 
 Algebraic Effects 优点：
 
-1. 避免了类似 [Generator](https://github.com/facebook/react/issues/7942) 或 async/await 导致对调用函
+1. 避免了使用类似 [Generator](https://github.com/facebook/react/issues/7942) 或 async/await 导致对调用函
    数的污染
 2. 简单易用的跨层级调用，避免由外而内参数的层层传递
 
@@ -280,7 +282,7 @@ export default function App() {
 
 ---
 
-## Fiber Architecture - Scheduler
+## 可中断更新
 
 在之前的代数效应章节中提到了代数效应的一个能力：中断当前程序，去执行另一个指定的效应（effects）。
 

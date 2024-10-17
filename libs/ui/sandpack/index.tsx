@@ -1,46 +1,47 @@
 'use client'
 
+import type { SandpackProviderProps, SandpackSetup } from '@codesandbox/sandpack-react'
+
 import {
-  SandpackProvider,
-  SandpackPreview,
   SandpackCodeEditor,
+  SandpackConsole,
   SandpackLayout,
   SandpackPredefinedTemplate,
-  SandpackConsole,
-  SandpackProviderProps,
-  SandpackSetup,
+  SandpackPreview,
+  SandpackProvider,
 } from '@codesandbox/sandpack-react'
+
 import { useFiles } from './utils'
 
 export const Sandpack = ({
-  template = 'react',
-  theme = 'auto',
+  dependencies,
   files: _files,
   options,
-  dependencies,
-}: SandpackProviderProps & {
+  template = 'react',
+  theme = 'auto',
+}: {
   dependencies: SandpackSetup['dependencies']
-}) => {
+} & SandpackProviderProps) => {
   const files = useFiles({ files: _files, template })
 
   return (
     <div className="md:-mx-16">
       <SandpackProvider
-        template={template}
-        theme={theme}
-        files={files}
         customSetup={{
           dependencies: dependencies || {},
         }}
+        files={files}
         options={{ autorun: true, ...options }}
+        template={template}
+        theme={theme}
       >
         <SandpackLayout>
           <SandpackCodeEditor
-            showTabs
-            showLineNumbers={false}
-            showInlineErrors
-            wrapContent
             closableTabs
+            showInlineErrors
+            showLineNumbers={false}
+            showTabs
+            wrapContent
           />
           <SandpackPreview />
         </SandpackLayout>

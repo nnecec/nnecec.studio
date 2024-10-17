@@ -1,12 +1,23 @@
 'use client'
 
-import { HTMLMotionProps, motion } from 'framer-motion'
+import type { HTMLMotionProps } from 'framer-motion'
+
 import { useState } from 'react'
 
-export const DynamicIsland = ({ children, ...props }: HTMLMotionProps<'div'> & { children: any }) => {
+import { motion } from 'framer-motion'
+
+export const DynamicIsland = ({
+  children,
+  ...props
+}: { children: any } & HTMLMotionProps<'div'>) => {
   const [isHover, setIsHover] = useState(false)
   return (
-    <motion.div layout onPointerOver={() => setIsHover(true)} onPointerLeave={() => setIsHover(false)} {...props}>
+    <motion.div
+      layout
+      onPointerLeave={() => setIsHover(false)}
+      onPointerOver={() => setIsHover(true)}
+      {...props}
+    >
       {children({ isHover })}
     </motion.div>
   )

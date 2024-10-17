@@ -20,9 +20,9 @@ export const useWindowScroll = (): State => {
   useEffect(() => {
     const handler = () => {
       setState(state => {
-        const { pageXOffset, pageYOffset } = window
-        return state.x !== pageXOffset || state.y !== pageYOffset
-          ? {
+        const { pageXOffset, pageYOffset } = globalThis
+        return state.x !== pageXOffset || state.y !== pageYOffset ?
+            {
               x: pageXOffset,
               y: pageYOffset,
             }

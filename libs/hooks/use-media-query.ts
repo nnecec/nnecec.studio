@@ -9,7 +9,7 @@ const getInitialState = <T = any>(query: string, defaultState?: T) => {
   }
 
   if (isBrowser) {
-    return window.matchMedia(query).matches
+    return globalThis.matchMedia(query).matches
   }
 
   // A default value has not been provided, and you are rendering on the server, warn of a possible hydration mismatch when defaulting to false.
@@ -28,7 +28,7 @@ export const useMediaQuery = <T = any>(query: string, defaultState?: T) => {
 
   useEffect(() => {
     let mounted = true
-    const mql = window.matchMedia(query)
+    const mql = globalThis.matchMedia(query)
     const onChange = () => {
       if (!mounted) {
         return

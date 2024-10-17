@@ -29,7 +29,8 @@ export const ProjectsList: Project[] = [
     title: 'afo',
   },
   {
-    description: 'Front-end engineering config, includes ESLint, Prettier, TSConfig, Vite. Simple but useful.',
+    description:
+      'Front-end engineering config, includes ESLint, Prettier, TSConfig, Vite. Simple but useful.',
     link: 'https://github.com/nnecec/config/',
     title: 'config',
   },

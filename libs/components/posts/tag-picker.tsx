@@ -12,7 +12,9 @@ export const TagPicker = ({ tags }: { tags: string[] }) => {
 
   return (
     <Select
-      onValueChange={value => (value === 'all' ? router.replace('/posts') : router.replace(`/posts?tag=${value}`))}
+      onValueChange={value =>
+        value === 'all' ? router.replace('/posts') : router.replace(`/posts?tag=${value}`)
+      }
       value={tag}
     >
       <SelectTrigger className="w-[300px]">

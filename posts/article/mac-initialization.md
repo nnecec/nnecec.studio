@@ -27,7 +27,7 @@ description: '介绍如何从零配置 Macbook Pro。最终配置完成时是前
 
 ### 1. 配置代理
 
-从 [Clash Premium 图形用户界面版](https://github.com/Loyalsoldier/clash-rules#clash-premium-%E5%90%84%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80) 下载 Clash X Pro。并安装配置 config，该链接同时有 rule 配置，按需使用。
+从 [Clash Verge rev](https://github.com/clash-verge-rev/clash-verge-rev) 下载 Clash 应用。现在大多数订阅附带了规则配置，如果有其他需要可以通过 Github 搜索 `clash rules` 探索更多个性化配置。
 
 在控制台执行:
 
@@ -41,6 +41,8 @@ export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_pr
 export http_proxy=http://127.0.0.1:7890
 export https_proxy=http://127.0.0.1:7890
 export all_proxy=socks5://127.0.0.1:7890
+# or
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 ```
 
 > 如果你没有代理，可以通过 [这个链接](https://mojie.me/#/register?code=xzSjSYO6) 注册。这个代理是不限时间设备数量，只计算使用流量的。如果不经常看视频会非常省。实测看视频也没有用很多，youtube 1440p 不会卡。从 2021 年用到现在一直都很稳定，速度也不错。
@@ -57,17 +59,17 @@ sudo spctl--master-disable
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-安装完成后，可以安装应用了。
+安装完成后，可以安装应用了。推荐安装以下应用：
 
 ```bash
 brew install fnm git pnpm starship
 
-brew install --cask appcleaner arc bitwarden docker figma google-chrome iina microsoft-edge notion obsidian raycast telegram visual-studio-code warp wechat
+brew install --cask appcleaner arc bitwarden docker figma google-chrome iina microsoft-edge notion raycast telegram visual-studio-code warp wechat
 
 # optional
 brew install --case item2 firefox licecap
 
-fnm install 18
+fnm install --lts
 ```
 
 ### 3. 配置 zsh
@@ -92,10 +94,7 @@ git clone --depth=1 https://github.com/ntnyq/omz-plugin-pnpm.git ${ZSH_CUSTOM:-$
 plugins=(
   git z vscode
   node yarn pnpm
-  zsh-autosuggestions
-  zsh-completions
 )
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 eval "$(starship init zsh)"
 eval "$(fnm env)"
@@ -120,7 +119,7 @@ git config --global user.email "nnecec@outlook.com"
 
 我用的编程字体是 `Iosevka`，中文字体是 `霞鹜文楷`。
 
-编程字体在 `Monaspace` , `JetBrains Mono` , `Roboto Mono` 会互相换一换，提升点新鲜感。
+编程字体在 `Monaspace` , `JetBrains Mono` , `Roboto Mono` 会偶尔缓一缓增加新鲜感。
 
 ```bash
 brew tap homebrew/cask-fonts

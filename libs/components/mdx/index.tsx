@@ -6,8 +6,8 @@ const UseDeferredValueSandpack = dynamic(() => import('./react-19/use-sandpack')
 const UseSandpack = dynamic(() => import('./react-19/use-sandpack'))
 
 export const MDXComponents = {
-  UseOptimisticSandpack,
   UseActionStateSandpack,
   UseDeferredValueSandpack,
+  UseOptimisticSandpack,
   UseSandpack,
 }

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 
-import { DATAPULSE_ID, GOOGLE_ID, SITE_CONFIG, isProd } from '~/libs/utils/constants'
+import { DATAPULSE_ID, GOOGLE_ID, isProd, SITE_CONFIG } from '~/libs/utils/constants'
 
 import { Providers } from './providers'
 
-import '~/libs/styles/custom.css'
 import '~/libs/styles/globals.css'
+import '~/libs/styles/custom.css'
 import '~/libs/styles/heti.css'
 
 export const metadata: Metadata = {

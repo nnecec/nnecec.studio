@@ -1,9 +1,14 @@
+import type { RehypeShikiOptions } from '@shikijs/rehype'
+import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
+
 import React, { Suspense } from 'react'
+
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { Skeleton } from '.'
-import { MDXRemoteProps } from 'next-mdx-remote/rsc'
-import rehypeShiki, { RehypeShikiOptions } from '@shikijs/rehype'
+
+import rehypeShiki from '@shikijs/rehype'
 import { transformerMetaHighlight, transformerNotationHighlight } from '@shikijs/transformers'
+
+import { Skeleton } from '.'
 
 export const TableOfContents = ({ headings }: { headings?: any[] }) => {
   if (!headings) {
@@ -23,7 +28,7 @@ export const TableOfContents = ({ headings }: { headings?: any[] }) => {
   )
 }
 
-export const MDXPreviewer = ({ source, components = {}, ...props }: MDXRemoteProps) => {
+export const MDXPreviewer = ({ components = {}, source, ...props }: MDXRemoteProps) => {
   return (
     <Suspense
       fallback={
@@ -42,26 +47,26 @@ export const MDXPreviewer = ({ source, components = {}, ...props }: MDXRemotePro
       }
     >
       <MDXRemote
+        components={components}
         options={{
           mdxOptions: {
-            remarkPlugins: [],
             rehypePlugins: [
               [
                 rehypeShiki,
                 {
+                  defaultColor: false,
                   themes: {
-                    light: 'github-light-default',
                     dark: 'github-dark-default',
+                    light: 'github-light-default',
                   },
                   transformers: [transformerMetaHighlight(), transformerNotationHighlight()],
-                  defaultColor: false,
                 } as RehypeShikiOptions,
               ],
             ],
+            remarkPlugins: [],
           },
         }}
         source={source}
-        components={components}
         {...props}
       />
     </Suspense>

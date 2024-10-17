@@ -7,7 +7,13 @@ import { useTheme } from 'next-themes'
 import {} from '@radix-ui/react-icons'
 import { IconMoon, IconSun } from '@tabler/icons-react'
 
-import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '~/libs/ui'
+import {
+  Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '~/libs/ui'
 
 export function ThemeSwitch() {
   const { setTheme } = useTheme()

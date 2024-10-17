@@ -25,7 +25,7 @@ export default function UseOffsetMotion() {
         <button onClick={() => start(inOutCirc)}>inOutCirc</button>
         <button onClick={() => start(inOutCubic)}>inOutCubic</button>
       </div>
-      <div className="h-10 w-10 rounded-full bg-red-400" ref={ref} />
+      <div className="size-10 rounded-full bg-red-400" ref={ref} />
     </div>
   )
 }

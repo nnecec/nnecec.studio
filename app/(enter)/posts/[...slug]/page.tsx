@@ -5,9 +5,9 @@ import clsx from 'clsx'
 import { IconCopyright, IconExternalLink } from '@tabler/icons-react'
 
 import { getPost } from '~/libs/api/post'
+import { Previewer } from '~/libs/components/posts/previewer'
 import { Badge } from '~/libs/ui'
 import { SITE_CONFIG } from '~/libs/utils/constants'
-import { Previewer } from '~/libs/components/posts/previewer'
 
 type Props = {
   params: { slug: string[] }
@@ -40,7 +40,7 @@ export default async function PostPage({ params }: Props) {
           <div>Last updated: {post.date}</div>
           <div>
             {post.tags?.map(tag => (
-              <Badge variant="secondary" key={tag}>
+              <Badge key={tag} variant="secondary">
                 {tag}
               </Badge>
             ))}

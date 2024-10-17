@@ -3,16 +3,16 @@ import type { Variants } from 'framer-motion'
 
 import type { PropsWithChildren } from 'react'
 
+import clsx from 'clsx'
 import { motion } from 'framer-motion'
 
 import { Footer } from './footer'
 import { Header } from './header'
-import clsx from 'clsx'
 
 type Props = {
   className?: string
-  title?: string
   fullwidth?: boolean
+  title?: string
 }
 
 const variants: Variants = {

@@ -1,9 +1,6 @@
-import {
-  SandpackFile,
-  SandpackFiles,
-  SandpackPredefinedTemplate,
-  SandpackProviderProps,
-} from '@codesandbox/sandpack-react/types'
+import type { SandpackFiles, SandpackPredefinedTemplate } from '@codesandbox/sandpack-react/types'
+
+import { SandpackFile, SandpackProviderProps } from '@codesandbox/sandpack-react/types'
 
 import { reactFiles } from './default-files'
 

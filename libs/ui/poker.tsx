@@ -70,7 +70,7 @@ export const Poker = ({
 
   return (
     <motion.div
-      className="h-full w-full"
+      className="size-full"
       onPointerLeave={onLeave}
       onPointerMove={onMove}
       style={{
@@ -84,7 +84,7 @@ export const Poker = ({
       <div
         className={clsx(
           className,
-          'bg-base-200 relative h-full w-full cursor-pointer overflow-hidden rounded-2xl shadow',
+          'bg-base-200 relative size-full cursor-pointer overflow-hidden rounded-2xl shadow',
         )}
       >
         <div className="absolute top-[50%] flex w-full items-center p-8">

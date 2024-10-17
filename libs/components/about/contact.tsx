@@ -25,7 +25,13 @@ export const Contact = () => {
             <h2 className="mb-8 text-center text-7xl">Find me.</h2>
             <div className="flex flex-wrap justify-center gap-4 text-center">
               <TooltipProvider delayDuration={0}>
-                <Button aria-label="email" asChild className="cursor-pointer" size="icon" variant="ghost">
+                <Button
+                  aria-label="email"
+                  asChild
+                  className="cursor-pointer"
+                  size="icon"
+                  variant="ghost"
+                >
                   <Link href={`mailto:${SITE_CONFIG.email}`}>
                     <IconMail />
                   </Link>
@@ -67,7 +73,12 @@ export const Contact = () => {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <Image alt="telegram_qrcode" height={160} src="/assets/telegram.webp" width={160} />
+                    <Image
+                      alt="telegram_qrcode"
+                      height={160}
+                      src="/assets/telegram.webp"
+                      width={160}
+                    />
                   </TooltipContent>
                 </Tooltip>
 

@@ -1,4 +1,4 @@
-import { SandpackFiles } from '@codesandbox/sandpack-react/types'
+import type { SandpackFiles } from '@codesandbox/sandpack-react/types'
 
 const IndexJs = `import React, { StrictMode } from "react";
 import { createRoot } from 'react-dom/client';
@@ -47,12 +47,12 @@ export const reactFiles: SandpackFiles = {
     code: IndexJs,
     hidden: true,
   },
-  '/styles.css': {
-    code: StylesCss,
-    hidden: true,
-  },
   '/public/index.html': {
     code: IndexHtml,
+    hidden: true,
+  },
+  '/styles.css': {
+    code: StylesCss,
     hidden: true,
   },
 }

@@ -16,13 +16,13 @@ export const Logo = () => {
     >
       <motion.div
         animate={show ? 'show' : 'hide'}
-        className="h-[30px] w-[30px] bg-current"
+        className="size-[30px] bg-current"
         initial="hide"
         variants={{
           hide: { borderRadius: 0 },
           show: { borderRadius: '50%' },
         }}
-       />
+      />
     </div>
   )
 }
