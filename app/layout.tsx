@@ -11,7 +11,7 @@ import '~/libs/styles/heti.css'
 export const metadata: Metadata = {
   title: {
     default: 'nnecec.studio',
-    template: `%s - nnecec.studio`,
+    template: '%s - nnecec.studio',
   },
 }
 

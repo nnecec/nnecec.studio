@@ -9,11 +9,7 @@ export const Logo = () => {
   const onHoverEnd = () => setShow(false)
 
   return (
-    <div
-      className="flex cursor-pointer items-center"
-      onMouseEnter={onHoverStart}
-      onMouseLeave={onHoverEnd}
-    >
+    <div className="flex cursor-pointer items-center" onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}>
       <motion.div
         animate={show ? 'show' : 'hide'}
         className="size-[30px] bg-current"

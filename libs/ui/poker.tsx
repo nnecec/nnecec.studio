@@ -28,13 +28,7 @@ const PokerVariants = {
   },
 }
 
-export const Poker = ({
-  className,
-  description,
-  icon,
-  style,
-  title,
-}: React.PropsWithChildren<PokerProps>) => {
+export const Poker = ({ className, description, icon, style, title }: React.PropsWithChildren<PokerProps>) => {
   const [hovering, setHovering] = useState(false)
   const Icon = icon
 

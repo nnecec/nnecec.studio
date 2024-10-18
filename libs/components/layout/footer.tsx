@@ -24,13 +24,7 @@ export const Footer = () => {
   return (
     <footer className="mt-20 grid grid-flow-row-dense place-items-center gap-4 rounded p-10 text-center">
       <div className="grid grid-flow-col gap-4">
-        <Image
-          alt="avatar"
-          className="inline-block rounded-full"
-          height={40}
-          src="/assets/avatar.webp"
-          width={40}
-        />
+        <Image alt="avatar" className="inline-block rounded-full" height={40} src="/assets/avatar.webp" width={40} />
         <div className="text-left">
           {author.name}
           <br />

@@ -76,12 +76,12 @@ export const useLocalStorage = <T>(
         if (newState === undefined) return
         let value: string
 
-        if (options)
-          if (options.raw)
+        if (options) {
+          if (options.raw) {
             value = typeof newState === 'string' ? newState : JSON.stringify(newState)
-          else if (options.serializer) value = options.serializer(newState)
+          } else if (options.serializer) value = options.serializer(newState)
           else value = JSON.stringify(newState)
-        else value = JSON.stringify(newState)
+        } else value = JSON.stringify(newState)
 
         localStorage.setItem(key, value)
         setState(deserializer(value))
