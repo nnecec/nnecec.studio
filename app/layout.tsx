@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import { DATAPULSE_ID, GOOGLE_ID, isProd, SITE_CONFIG } from '~/libs/utils/constants'
 
@@ -9,27 +9,39 @@ import '~/libs/styles/custom.css'
 import '~/libs/styles/heti.css'
 
 export const metadata: Metadata = {
+  description: SITE_CONFIG.description,
+  icons: {
+    apple: [{ sizes: '180x180', type: 'image/png', url: '/favicon/apple-touch-icon.png' }],
+    icon: [
+      { type: 'image/x-icon', url: '/favicon/favicon.ico' },
+      { sizes: '16x16', type: 'image/png', url: '/favicon/favicon-16x16.png' },
+      { sizes: '32x32', type: 'image/png', url: '/favicon/favicon-32x32.png' },
+    ],
+  },
+  manifest: '/favicon/site.webmanifest',
+  metadataBase: new URL('https://nnecec.studio'),
+  other: {
+    'msapplication-TileColor': '#000',
+  },
+  themeColor: '#000',
   title: {
-    default: 'nnecec.studio',
+    default: SITE_CONFIG.title,
     template: '%s - nnecec.studio',
   },
+}
+
+export const viewport: Viewport = {
+  initialScale: 1,
+  maximumScale: 1,
+  minimumScale: 1,
+  userScalable: false,
+  width: 'device-width',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta charSet="utf-8" />
-        <meta content="width=device-width,initial-scale=1" name="viewport" />
-        <meta content="#000" name="theme-color" />
-        <meta content="#000" name="msapplication-TileColor" />
-        <link href="/favicon/favicon.ico" rel="icon" type="image/x-icon" />
-        <link href="/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
-        <link href="/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
-        <link href="/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
-        <link href="/favicon/site.webmanifest" rel="manifest" />
-        <meta title={SITE_CONFIG.title} />
-        <meta content={SITE_CONFIG.description} name="description" />
         {isProd && !!DATAPULSE_ID ?
           <script
             data-endpoint="https://datapulse.app/api/v1/event"

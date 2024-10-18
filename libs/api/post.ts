@@ -1,12 +1,12 @@
 import fs from 'node:fs/promises'
-import { join } from 'node:path'
+import path from 'node:path'
 
 import dayjs from 'dayjs'
 import matter from 'gray-matter'
 
 import type { Post } from '~/libs/types/post'
 
-const postsDirectory = join(process.cwd(), 'posts')
+const postsDirectory = path.join(process.cwd(), 'posts')
 
 export async function getPostSlugs(directoryPath: string) {
   const slugs: string[] = []
@@ -15,11 +15,11 @@ export async function getPostSlugs(directoryPath: string) {
     const files = await fs.readdir(directoryPath)
     for (const file of files) {
       if (!/(^|\/)\.[^./]/g.test(file)) {
-        const filePath = join(directoryPath, file)
+        const filePath = path.join(directoryPath, file)
         const stats = await fs.stat(filePath)
         const slug = `${baseURL}/${file}`
         if (stats.isDirectory()) {
-          map(filePath, slug)
+          await map(filePath, slug)
         } else if (stats.isFile() && slug.endsWith('.md')) {
           slugs.push(slug.replace(/\.md$/, ''))
         }
@@ -59,7 +59,7 @@ export async function getAllPosts(tag?: string): Promise<{ posts: Post[]; tags: 
 }
 
 export async function getPost(slug: string): Promise<Post> {
-  const fullPath = join(postsDirectory, `${slug}.md`)
+  const fullPath = path.join(postsDirectory, `${slug}.md`)
   const fileContents = await fs.readFile(fullPath, 'utf8')
   const { content, data } = matter(fileContents)
   const item: Post = {

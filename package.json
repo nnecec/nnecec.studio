@@ -45,6 +45,7 @@
     "next": "rc",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.3.0",
+    "next-view-transitions": "^0.3.2",
     "react": "rc",
     "react-dom": "rc",
     "tailwind-merge": "^2.5.4",

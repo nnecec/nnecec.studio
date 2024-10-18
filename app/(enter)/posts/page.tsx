@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 
 import { ChevronRightIcon } from '@radix-ui/react-icons'
 
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   title: 'All posts',
 }
 
-export default async function PostsPage({ searchParams }: { searchParams: { tag?: string } }) {
+export default async function PostsPage(props: { searchParams: Promise<{ tag?: string }> }) {
+  const searchParams = await props.searchParams
   const { posts, tags } = await getAllPosts(searchParams.tag)
 
   return (

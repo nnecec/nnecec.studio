@@ -10,11 +10,12 @@ import { Badge } from '~/libs/ui'
 import { SITE_CONFIG } from '~/libs/utils/constants'
 
 type Props = {
-  params: { slug: string[] }
+  params: Promise<{ slug: string[] }>
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
   if (!params) {
     return {
       title: 'Missing post',
@@ -28,7 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PostPage({ params }: Props) {
-  const post = await getPost(params.slug.join('/'))
+  const { slug } = await params
+  const post = await getPost(slug.join('/'))
 
   const isMarp = post.marp
 

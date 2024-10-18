@@ -14,7 +14,7 @@ export const SITE_CONFIG = {
     instagram: 'https://www.instagram.com/nnecec/',
     twitter: 'https://twitter.com/nnecec_cn/',
   },
-  title: "nnecec's Blog",
+  title: 'nnecec studio',
 }
 
 export const ProjectsList: Project[] = [
