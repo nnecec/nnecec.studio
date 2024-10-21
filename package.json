@@ -41,6 +41,7 @@
     "dayjs": "^1.11.13",
     "framer-motion": "^11.11.9",
     "gray-matter": "4.0.3",
+    "lenis": "^1.1.14",
     "mermaid": "^11.3.0",
     "next": "rc",
     "next-mdx-remote": "^5.0.0",
