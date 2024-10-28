@@ -1,7 +1,7 @@
 import pluginNext from '@next/eslint-plugin-next'
 import nnecec from '@nnecec/eslint-config'
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
+/** @type {import('eslint').Linter.Config[]} */
 export default [
   ...nnecec({
     react: true,
