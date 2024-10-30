@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   other: {
     'msapplication-TileColor': '#000',
   },
-  themeColor: '#000',
   title: {
     default: SITE_CONFIG.title,
     template: '%s - nnecec.studio',
@@ -34,6 +33,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   minimumScale: 1,
+  themeColor: '#000',
   userScalable: false,
   width: 'device-width',
 }

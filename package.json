@@ -59,6 +59,7 @@
     "@shikijs/rehype": "^1.22.1",
     "@shikijs/transformers": "^1.22.1",
     "@tailwindcss/typography": "^0.5.15",
+    "@tsconfig/next": "^2.0.3",
     "@types/node": "^22.8.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

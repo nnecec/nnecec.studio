@@ -1,4 +1,4 @@
-import type { SandpackFiles } from '@codesandbox/sandpack-react/types'
+import type { SandpackFiles } from '@codesandbox/sandpack-react'
 
 const IndexJs = `import React, { StrictMode } from "react";
 import { createRoot } from 'react-dom/client';

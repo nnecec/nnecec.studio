@@ -13,7 +13,7 @@ export default function Page() {
       <h1 className="max-w-5xl text-5xl md:text-8xl">
         <WavingHand />
         <br />
-        Hi, I'm nnecec.
+        Hi, I&apos;m nnecec.
         <span className="text-4xl opacity-90 md:text-6xl">
           This is my blog about the understanding of{' '}
           <HoverText color="#FFE70B">JavaScript</HoverText>,{' '}

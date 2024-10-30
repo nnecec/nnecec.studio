@@ -108,6 +108,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.15
         version: 0.5.15(tailwindcss@3.4.14)
+      '@tsconfig/next':
+        specifier: ^2.0.3
+        version: 2.0.3
       '@types/node':
         specifier: ^22.8.1
         version: 22.8.1
@@ -1043,6 +1046,9 @@ packages:
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
+
+  '@tsconfig/next@2.0.3':
+    resolution: {integrity: sha512-b4aKvmdWnv9aUy+NStUFlefirk3SItW20OJtbi5/ue9oMRaQtUYbN5zsr7OmV3rlx6Gp6h7A82gPoCXhrNGVPQ==}
 
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
@@ -5166,6 +5172,8 @@ snapshots:
       tailwindcss: 3.4.14
 
   '@trysound/sax@0.2.0': {}
+
+  '@tsconfig/next@2.0.3': {}
 
   '@types/acorn@4.0.6':
     dependencies:

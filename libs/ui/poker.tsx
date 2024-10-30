@@ -1,5 +1,5 @@
 'use client'
-import type { TablerIconsProps } from '@tabler/icons-react'
+import type { IconProps } from '@tabler/icons-react'
 
 import React, { useState } from 'react'
 
@@ -12,7 +12,7 @@ const delta = 12
 interface PokerProps {
   className?: string
   description: React.ReactNode
-  icon?: React.JSXElementConstructor<TablerIconsProps>
+  icon?: React.JSXElementConstructor<IconProps>
   style?: React.CSSProperties
   title: React.ReactNode
 }
@@ -28,7 +28,13 @@ const PokerVariants = {
   },
 }
 
-export const Poker = ({ className, description, icon, style, title }: React.PropsWithChildren<PokerProps>) => {
+export const Poker = ({
+  className,
+  description,
+  icon,
+  style,
+  title,
+}: React.PropsWithChildren<PokerProps>) => {
   const [hovering, setHovering] = useState(false)
   const Icon = icon
 
@@ -78,10 +84,10 @@ export const Poker = ({ className, description, icon, style, title }: React.Prop
       <div
         className={clsx(
           className,
-          'bg-base-200 relative size-full cursor-pointer overflow-hidden rounded-2xl shadow',
+          'relative size-full cursor-pointer overflow-hidden rounded-2xl shadow',
         )}
       >
-        <div className="absolute top-[50%] flex w-full items-center p-8">
+        <div className="absolute top-1/2 flex w-full items-center p-8">
           <div className="flex gap-2">
             {!!Icon && (
               <div>
