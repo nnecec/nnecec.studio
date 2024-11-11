@@ -42,8 +42,8 @@ importers:
         specifier: ^1.1.3
         version: 1.1.3(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017)
       '@tabler/icons-react':
-        specifier: ^3.20.0
-        version: 3.20.0(react@19.0.0-rc-bf7e210c-20241017)
+        specifier: ^3.21.0
+        version: 3.21.0(react@19.0.0-rc-bf7e210c-20241017)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -66,8 +66,8 @@ importers:
         specifier: ^11.3.0
         version: 11.3.0
       next:
-        specifier: ^15.0.1
-        version: 15.0.1(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017)
+        specifier: ^15.0.2
+        version: 15.0.2(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017)
       next-mdx-remote:
         specifier: ^5.0.0
         version: 5.0.0(@types/react@18.3.12)(react@19.0.0-rc-bf7e210c-20241017)
@@ -76,7 +76,7 @@ importers:
         version: 0.3.0(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017)
       next-view-transitions:
         specifier: ^0.3.2
-        version: 0.3.2(next@15.0.1(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017))(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017)
+        version: 0.3.2(next@15.0.2(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017))(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017)
       react:
         specifier: rc
         version: 19.0.0-rc-bf7e210c-20241017
@@ -100,11 +100,11 @@ importers:
         specifier: ^0.2.3
         version: 0.2.3
       '@shikijs/rehype':
-        specifier: ^1.22.1
-        version: 1.22.1
+        specifier: ^1.22.2
+        version: 1.22.2
       '@shikijs/transformers':
-        specifier: ^1.22.1
-        version: 1.22.1
+        specifier: ^1.22.2
+        version: 1.22.2
       '@tailwindcss/typography':
         specifier: ^0.5.15
         version: 0.5.15(tailwindcss@3.4.14)
@@ -112,8 +112,8 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3
       '@types/node':
-        specifier: ^22.8.1
-        version: 22.8.1
+        specifier: ^22.8.4
+        version: 22.8.4
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -133,8 +133,8 @@ importers:
         specifier: ^9.13.0
         version: 9.13.0(jiti@1.21.6)
       eslint-config-next:
-        specifier: ^15.0.1
-        version: 15.0.1(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3)
+        specifier: ^15.0.2
+        version: 15.0.2(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3)
       husky:
         specifier: ^9.1.6
         version: 9.1.6
@@ -151,8 +151,8 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0(prettier@3.3.3)
       shiki:
-        specifier: ^1.22.1
-        version: 1.22.1
+        specifier: ^1.22.2
+        version: 1.22.2
       tailwindcss:
         specifier: ^3.4.14
         version: 3.4.14
@@ -559,56 +559,56 @@ packages:
   '@motionone/utils@10.18.0':
     resolution: {integrity: sha512-3XVF7sgyTSI2KWvTf6uLlBJ5iAgRgmvp3bpuOiQJvInd4nZ19ET8lX5unn30SlmRH7hXbBbH+Gxd0m0klJ3Xtw==}
 
-  '@next/env@15.0.1':
-    resolution: {integrity: sha512-lc4HeDUKO9gxxlM5G2knTRifqhsY6yYpwuHspBZdboZe0Gp+rZHBNNSIjmQKDJIdRXiXGyVnSD6gafrbQPvILQ==}
+  '@next/env@15.0.2':
+    resolution: {integrity: sha512-c0Zr0ModK5OX7D4ZV8Jt/wqoXtitLNPwUfG9zElCZztdaZyNVnN40rDXVZ/+FGuR4CcNV5AEfM6N8f+Ener7Dg==}
 
-  '@next/eslint-plugin-next@15.0.1':
-    resolution: {integrity: sha512-bKWsMaGPbiFAaGqrDJvbE8b4Z0uKicGVcgOI77YM2ui3UfjHMr4emFPrZTLeZVchi7fT1mooG2LxREfUUClIKw==}
+  '@next/eslint-plugin-next@15.0.2':
+    resolution: {integrity: sha512-R9Jc7T6Ge0txjmqpPwqD8vx6onQjynO9JT73ArCYiYPvSrwYXepH/UY/WdKDY8JPWJl72sAE4iGMHPeQ5xdEWg==}
 
-  '@next/swc-darwin-arm64@15.0.1':
-    resolution: {integrity: sha512-C9k/Xv4sxkQRTA37Z6MzNq3Yb1BJMmSqjmwowoWEpbXTkAdfOwnoKOpAb71ItSzoA26yUTIo6ZhN8rKGu4ExQw==}
+  '@next/swc-darwin-arm64@15.0.2':
+    resolution: {integrity: sha512-GK+8w88z+AFlmt+ondytZo2xpwlfAR8U6CRwXancHImh6EdGfHMIrTSCcx5sOSBei00GyLVL0ioo1JLKTfprgg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@15.0.1':
-    resolution: {integrity: sha512-uHl13HXOuq1G7ovWFxCACDJHTSDVbn/sbLv8V1p+7KIvTrYQ5HNoSmKBdYeEKRRCbEmd+OohOgg9YOp8Ux3MBg==}
+  '@next/swc-darwin-x64@15.0.2':
+    resolution: {integrity: sha512-KUpBVxIbjzFiUZhiLIpJiBoelqzQtVZbdNNsehhUn36e2YzKHphnK8eTUW1s/4aPy5kH/UTid8IuVbaOpedhpw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@15.0.1':
-    resolution: {integrity: sha512-LvyhvxHOihFTEIbb35KxOc3q8w8G4xAAAH/AQnsYDEnOvwawjL2eawsB59AX02ki6LJdgDaHoTEnC54Gw+82xw==}
+  '@next/swc-linux-arm64-gnu@15.0.2':
+    resolution: {integrity: sha512-9J7TPEcHNAZvwxXRzOtiUvwtTD+fmuY0l7RErf8Yyc7kMpE47MIQakl+3jecmkhOoIyi/Rp+ddq7j4wG6JDskQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@15.0.1':
-    resolution: {integrity: sha512-vFmCGUFNyk/A5/BYcQNhAQqPIw01RJaK6dRO+ZEhz0DncoW+hJW1kZ8aH2UvTX27zPq3m85zN5waMSbZEmANcQ==}
+  '@next/swc-linux-arm64-musl@15.0.2':
+    resolution: {integrity: sha512-BjH4ZSzJIoTTZRh6rG+a/Ry4SW0HlizcPorqNBixBWc3wtQtj4Sn9FnRZe22QqrPnzoaW0ctvSz4FaH4eGKMww==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@15.0.1':
-    resolution: {integrity: sha512-5by7IYq0NCF8rouz6Qg9T97jYU68kaClHPfGpQG2lCZpSYHtSPQF1kjnqBTd34RIqPKMbCa4DqCufirgr8HM5w==}
+  '@next/swc-linux-x64-gnu@15.0.2':
+    resolution: {integrity: sha512-i3U2TcHgo26sIhcwX/Rshz6avM6nizrZPvrDVDY1bXcLH1ndjbO8zuC7RoHp0NSK7wjJMPYzm7NYL1ksSKFreA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@15.0.1':
-    resolution: {integrity: sha512-lmYr6H3JyDNBJLzklGXLfbehU3ay78a+b6UmBGlHls4xhDXBNZfgb0aI67sflrX+cGBnv1LgmWzFlYrAYxS1Qw==}
+  '@next/swc-linux-x64-musl@15.0.2':
+    resolution: {integrity: sha512-AMfZfSVOIR8fa+TXlAooByEF4OB00wqnms1sJ1v+iu8ivwvtPvnkwdzzFMpsK5jA2S9oNeeQ04egIWVb4QWmtQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@15.0.1':
-    resolution: {integrity: sha512-DS8wQtl6diAj0eZTdH0sefykm4iXMbHT4MOvLwqZiIkeezKpkgPFcEdFlz3vKvXa2R/2UEgMh48z1nEpNhjeOQ==}
+  '@next/swc-win32-arm64-msvc@15.0.2':
+    resolution: {integrity: sha512-JkXysDT0/hEY47O+Hvs8PbZAeiCQVxKfGtr4GUpNAhlG2E0Mkjibuo8ryGD29Qb5a3IOnKYNoZlh/MyKd2Nbww==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@15.0.1':
-    resolution: {integrity: sha512-4Ho2ggvDdMKlZ/0e9HNdZ9ngeaBwtc+2VS5oCeqrbXqOgutX6I4U2X/42VBw0o+M5evn4/7v3zKgGHo+9v/VjA==}
+  '@next/swc-win32-x64-msvc@15.0.2':
+    resolution: {integrity: sha512-foaUL0NqJY/dX0Pi/UcZm5zsmSk5MtP/gxx3xOPyREkMFN+CTjctPfu3QaqrQHinaKdPnMWPJDKt4VjDfTBe/Q==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -1000,23 +1000,23 @@ packages:
   '@rushstack/eslint-patch@1.10.4':
     resolution: {integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==}
 
-  '@shikijs/core@1.22.1':
-    resolution: {integrity: sha512-bqAhT/Ri5ixV4oYsvJNH8UJjpjbINWlWyXY6tBTsP4OmD6XnFv43nRJ+lTdxd2rmG5pgam/x+zGR6kLRXrpEKA==}
+  '@shikijs/core@1.22.2':
+    resolution: {integrity: sha512-bvIQcd8BEeR1yFvOYv6HDiyta2FFVePbzeowf5pPS1avczrPK+cjmaxxh0nx5QzbON7+Sv0sQfQVciO7bN72sg==}
 
-  '@shikijs/engine-javascript@1.22.1':
-    resolution: {integrity: sha512-540pyoy0LWe4jj2BVbgELwOFu1uFvRI7lg4hdsExrSXA9x7gqfzZ/Nnh4RfX86aDAgJ647gx4TCmRwACbnQSvw==}
+  '@shikijs/engine-javascript@1.22.2':
+    resolution: {integrity: sha512-iOvql09ql6m+3d1vtvP8fLCVCK7BQD1pJFmHIECsujB0V32BJ0Ab6hxk1ewVSMFA58FI0pR2Had9BKZdyQrxTw==}
 
-  '@shikijs/engine-oniguruma@1.22.1':
-    resolution: {integrity: sha512-L+1Vmd+a2kk8HtogUFymQS6BjUfJnzcWoUp1BUgxoDiklbKSMvrsMuLZGevTOP1m0rEjgnC5MsDmsr8lX1lC+Q==}
+  '@shikijs/engine-oniguruma@1.22.2':
+    resolution: {integrity: sha512-GIZPAGzQOy56mGvWMoZRPggn0dTlBf1gutV5TdceLCZlFNqWmuc7u+CzD0Gd9vQUTgLbrt0KLzz6FNprqYAxlA==}
 
-  '@shikijs/rehype@1.22.1':
-    resolution: {integrity: sha512-Uuuqj/poMLj1Z02sJsS1qEqpfUNp2hV2YFVt/SY5+Ielo5Ms1bRfYQHs3hTbsEDB6FmYuOu5ieqNumPlWBmrng==}
+  '@shikijs/rehype@1.22.2':
+    resolution: {integrity: sha512-A0RHgiYR5uiHvddwHehBN9j8PhOvfT6/GebSTWrapur6M+fD/4i3mlfUv7aFK4b+4GQ1R42L8fC5N98whZjNcg==}
 
-  '@shikijs/transformers@1.22.1':
-    resolution: {integrity: sha512-KvG49YFV6gV116sC4L3Sn1Rp6HXsioMKBBG373j088rw849440hm8s2r+/dgjsGLvT4p+QB7newev+5a3ARM6w==}
+  '@shikijs/transformers@1.22.2':
+    resolution: {integrity: sha512-8f78OiBa6pZDoZ53lYTmuvpFPlWtevn23bzG+azpPVvZg7ITax57o/K3TC91eYL3OMJOO0onPbgnQyZjRos8XQ==}
 
-  '@shikijs/types@1.22.1':
-    resolution: {integrity: sha512-+45f8mu/Hxqs6Kyhfm98Nld5n7Q7lwhjU8UtdQwrOPs7BnM4VAb929O3IQ2ce+4D7SlNFlZGd8CnKRSnwbQreQ==}
+  '@shikijs/types@1.22.2':
+    resolution: {integrity: sha512-NCWDa6LGZqTuzjsGfXOBWfjS/fDIbDdmVDug+7ykVe1IKT4c1gakrvlfFYp5NhAXH/lyqLM8wsAPo5wNy73Feg==}
 
   '@shikijs/vscode-textmate@9.3.0':
     resolution: {integrity: sha512-jn7/7ky30idSkd/O5yDBfAnVt+JJpepofP/POZ1iMOxK59cOfqIgg/Dj0eFsjOTMw+4ycJN0uhZH/Eb0bs/EUA==}
@@ -1030,13 +1030,13 @@ packages:
   '@swc/helpers@0.5.13':
     resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
 
-  '@tabler/icons-react@3.20.0':
-    resolution: {integrity: sha512-a47oaL48bb5Cx/WUVfg/NZrsWwFExrcDQO8thUZ7S6h/OQYFu7sm4E5pZsmUtGCjikB3lRzjtmMD+C4s7mr9yw==}
+  '@tabler/icons-react@3.21.0':
+    resolution: {integrity: sha512-Qq0GnZzzccbv/zuMyXAUUPlogNAqx9KsF8cr/ev3bxs+GMObqNEjXv1eZl9GFzxyQTS435siJNU8A1BaIYhX8g==}
     peerDependencies:
       react: '>= 16'
 
-  '@tabler/icons@3.20.0':
-    resolution: {integrity: sha512-nXSeUzsCOxX/Of+kdUVQfxL9bG+ck8XCWNf9dGSpE+nhVexRwk/4HiDQDxFDysfT7vfgSut6GXnrZsU5M5dSlA==}
+  '@tabler/icons@3.21.0':
+    resolution: {integrity: sha512-5+GkkmWCr1wgMor5cOF1/YYflTQdc15y10FUikJ3HW8hDiFjfbuoAHJi17FT1vwsr1sA78rkJMn+fDoOOjnnPA==}
 
   '@tailwindcss/typography@0.5.15':
     resolution: {integrity: sha512-AqhlCXl+8grUz8uqExv5OTtgpjuVIwFTSXTrh8y9/pw6q2ek7fJ+Y8ZEVw7EB2DCcuCOtEjf9w3+J3rzts01uA==}
@@ -1098,8 +1098,8 @@ packages:
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
-  '@types/node@22.8.1':
-    resolution: {integrity: sha512-k6Gi8Yyo8EtrNtkHXutUu2corfDf9su95VYVP10aGYMMROM6SAItZi0w1XszA6RtWTHSVp5OeFof37w0IEqCQg==}
+  '@types/node@22.8.4':
+    resolution: {integrity: sha512-SpNNxkftTJOPk0oN+y2bIqurEXHTA2AOZ3EJDDKeJ5VzkvvORSvmQXGQarcOzWV1ac7DCaPBEdMDxBsM+d8jWw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -1942,8 +1942,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  eslint-config-next@15.0.1:
-    resolution: {integrity: sha512-3cYCrgbH6GS/ufApza7XCKz92vtq4dAdYhx++rMFNlH2cAV+/GsAKkrr4+bohYOACmzG2nAOR+uWprKC1Uld6A==}
+  eslint-config-next@15.0.2:
+    resolution: {integrity: sha512-N8o6cyUXzlMmQbdc2Kc83g1qomFi3ITqrAZfubipVKET2uR2mCStyGRcx/r8WiAIVMul2KfwRiCHBkTpBvGBmA==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0 || ^9.0.0
       typescript: '>=3.3.1'
@@ -3048,16 +3048,16 @@ packages:
       react: ^18.2.0
       react-dom: ^18.2.0
 
-  next@15.0.1:
-    resolution: {integrity: sha512-PSkFkr/w7UnFWm+EP8y/QpHrJXMqpZzAXpergB/EqLPOh4SGPJXv1wj4mslr2hUZBAS9pX7/9YLIdxTv6fwytw==}
+  next@15.0.2:
+    resolution: {integrity: sha512-rxIWHcAu4gGSDmwsELXacqAPUk+j8dV/A9cDF5fsiCMpkBDYkO2AEaL1dfD+nNmDiU6QMCFN8Q30VEKapT9UHQ==}
     engines: {node: '>=18.18.0'}
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
       '@playwright/test': ^1.41.2
       babel-plugin-react-compiler: '*'
-      react: ^18.2.0 || 19.0.0-rc-69d4b800-20241021
-      react-dom: ^18.2.0 || 19.0.0-rc-69d4b800-20241021
+      react: ^18.2.0 || 19.0.0-rc-02c0e824-20241028
+      react-dom: ^18.2.0 || 19.0.0-rc-02c0e824-20241028
       sass: ^1.3.0
     peerDependenciesMeta:
       '@opentelemetry/api':
@@ -3687,8 +3687,8 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  shiki@1.22.1:
-    resolution: {integrity: sha512-PbJ6XxrWLMwB2rm3qdjIHNm3zq4SfFnOx0B3rEoi4AN8AUngsdyZ1tRe5slMPtn6jQkbUURLNZPpLR7Do3k78g==}
+  shiki@1.22.2:
+    resolution: {integrity: sha512-3IZau0NdGKXhH2bBlUk4w1IHNxPh6A5B2sUpyY+8utLu2j/h1QpFkAaUA1bAMxOWWGtTWcAh531vnS4NJKS/lA==}
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -4675,34 +4675,34 @@ snapshots:
       hey-listen: 1.0.8
       tslib: 2.8.0
 
-  '@next/env@15.0.1': {}
+  '@next/env@15.0.2': {}
 
-  '@next/eslint-plugin-next@15.0.1':
+  '@next/eslint-plugin-next@15.0.2':
     dependencies:
       fast-glob: 3.3.1
 
-  '@next/swc-darwin-arm64@15.0.1':
+  '@next/swc-darwin-arm64@15.0.2':
     optional: true
 
-  '@next/swc-darwin-x64@15.0.1':
+  '@next/swc-darwin-x64@15.0.2':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@15.0.1':
+  '@next/swc-linux-arm64-gnu@15.0.2':
     optional: true
 
-  '@next/swc-linux-arm64-musl@15.0.1':
+  '@next/swc-linux-arm64-musl@15.0.2':
     optional: true
 
-  '@next/swc-linux-x64-gnu@15.0.1':
+  '@next/swc-linux-x64-gnu@15.0.2':
     optional: true
 
-  '@next/swc-linux-x64-musl@15.0.1':
+  '@next/swc-linux-x64-musl@15.0.2':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@15.0.1':
+  '@next/swc-win32-arm64-msvc@15.0.2':
     optional: true
 
-  '@next/swc-win32-x64-msvc@15.0.1':
+  '@next/swc-win32-x64-msvc@15.0.2':
     optional: true
 
   '@nnecec/eslint-config@0.11.0(@types/eslint@8.56.10)(jiti@1.21.6)(prettier@3.3.3)(tailwindcss@3.4.14)(typescript@5.6.3)':
@@ -5108,40 +5108,40 @@ snapshots:
 
   '@rushstack/eslint-patch@1.10.4': {}
 
-  '@shikijs/core@1.22.1':
+  '@shikijs/core@1.22.2':
     dependencies:
-      '@shikijs/engine-javascript': 1.22.1
-      '@shikijs/engine-oniguruma': 1.22.1
-      '@shikijs/types': 1.22.1
+      '@shikijs/engine-javascript': 1.22.2
+      '@shikijs/engine-oniguruma': 1.22.2
+      '@shikijs/types': 1.22.2
       '@shikijs/vscode-textmate': 9.3.0
       '@types/hast': 3.0.4
       hast-util-to-html: 9.0.3
 
-  '@shikijs/engine-javascript@1.22.1':
+  '@shikijs/engine-javascript@1.22.2':
     dependencies:
-      '@shikijs/types': 1.22.1
+      '@shikijs/types': 1.22.2
       '@shikijs/vscode-textmate': 9.3.0
       oniguruma-to-js: 0.4.3
 
-  '@shikijs/engine-oniguruma@1.22.1':
+  '@shikijs/engine-oniguruma@1.22.2':
     dependencies:
-      '@shikijs/types': 1.22.1
+      '@shikijs/types': 1.22.2
       '@shikijs/vscode-textmate': 9.3.0
 
-  '@shikijs/rehype@1.22.1':
+  '@shikijs/rehype@1.22.2':
     dependencies:
-      '@shikijs/types': 1.22.1
+      '@shikijs/types': 1.22.2
       '@types/hast': 3.0.4
       hast-util-to-string: 3.0.1
-      shiki: 1.22.1
+      shiki: 1.22.2
       unified: 11.0.5
       unist-util-visit: 5.0.0
 
-  '@shikijs/transformers@1.22.1':
+  '@shikijs/transformers@1.22.2':
     dependencies:
-      shiki: 1.22.1
+      shiki: 1.22.2
 
-  '@shikijs/types@1.22.1':
+  '@shikijs/types@1.22.2':
     dependencies:
       '@shikijs/vscode-textmate': 9.3.0
       '@types/hast': 3.0.4
@@ -5156,12 +5156,12 @@ snapshots:
     dependencies:
       tslib: 2.8.0
 
-  '@tabler/icons-react@3.20.0(react@19.0.0-rc-bf7e210c-20241017)':
+  '@tabler/icons-react@3.21.0(react@19.0.0-rc-bf7e210c-20241017)':
     dependencies:
-      '@tabler/icons': 3.20.0
+      '@tabler/icons': 3.21.0
       react: 19.0.0-rc-bf7e210c-20241017
 
-  '@tabler/icons@3.20.0': {}
+  '@tabler/icons@3.21.0': {}
 
   '@tailwindcss/typography@0.5.15(tailwindcss@3.4.14)':
     dependencies:
@@ -5198,7 +5198,7 @@ snapshots:
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 22.8.1
+      '@types/node': 22.8.4
 
   '@types/hast@3.0.4':
     dependencies:
@@ -5229,7 +5229,7 @@ snapshots:
 
   '@types/ms@0.7.34': {}
 
-  '@types/node@22.8.1':
+  '@types/node@22.8.4':
     dependencies:
       undici-types: 6.19.8
 
@@ -6252,9 +6252,9 @@ snapshots:
       eslint: 9.13.0(jiti@1.21.6)
       semver: 7.6.3
 
-  eslint-config-next@15.0.1(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3):
+  eslint-config-next@15.0.2(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3):
     dependencies:
-      '@next/eslint-plugin-next': 15.0.1
+      '@next/eslint-plugin-next': 15.0.2
       '@rushstack/eslint-patch': 1.10.4
       '@typescript-eslint/eslint-plugin': 8.9.0(@typescript-eslint/parser@8.9.0(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3))(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3)
       '@typescript-eslint/parser': 8.9.0(eslint@9.13.0(jiti@1.21.6))(typescript@5.6.3)
@@ -7691,15 +7691,15 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  next-view-transitions@0.3.2(next@15.0.1(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017))(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017):
+  next-view-transitions@0.3.2(next@15.0.2(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017))(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017):
     dependencies:
-      next: 15.0.1(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017)
+      next: 15.0.2(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017)
       react: 19.0.0-rc-bf7e210c-20241017
       react-dom: 19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017)
 
-  next@15.0.1(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017):
+  next@15.0.2(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017))(react@19.0.0-rc-bf7e210c-20241017):
     dependencies:
-      '@next/env': 15.0.1
+      '@next/env': 15.0.2
       '@swc/counter': 0.1.3
       '@swc/helpers': 0.5.13
       busboy: 1.6.0
@@ -7709,14 +7709,14 @@ snapshots:
       react-dom: 19.0.0-rc-bf7e210c-20241017(react@19.0.0-rc-bf7e210c-20241017)
       styled-jsx: 5.1.6(react@19.0.0-rc-bf7e210c-20241017)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 15.0.1
-      '@next/swc-darwin-x64': 15.0.1
-      '@next/swc-linux-arm64-gnu': 15.0.1
-      '@next/swc-linux-arm64-musl': 15.0.1
-      '@next/swc-linux-x64-gnu': 15.0.1
-      '@next/swc-linux-x64-musl': 15.0.1
-      '@next/swc-win32-arm64-msvc': 15.0.1
-      '@next/swc-win32-x64-msvc': 15.0.1
+      '@next/swc-darwin-arm64': 15.0.2
+      '@next/swc-darwin-x64': 15.0.2
+      '@next/swc-linux-arm64-gnu': 15.0.2
+      '@next/swc-linux-arm64-musl': 15.0.2
+      '@next/swc-linux-x64-gnu': 15.0.2
+      '@next/swc-linux-x64-musl': 15.0.2
+      '@next/swc-win32-arm64-msvc': 15.0.2
+      '@next/swc-win32-x64-msvc': 15.0.2
       babel-plugin-react-compiler: 19.0.0-beta-8a03594-20241020
       sharp: 0.33.5
     transitivePeerDependencies:
@@ -8374,12 +8374,12 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
-  shiki@1.22.1:
+  shiki@1.22.2:
     dependencies:
-      '@shikijs/core': 1.22.1
-      '@shikijs/engine-javascript': 1.22.1
-      '@shikijs/engine-oniguruma': 1.22.1
-      '@shikijs/types': 1.22.1
+      '@shikijs/core': 1.22.2
+      '@shikijs/engine-javascript': 1.22.2
+      '@shikijs/engine-oniguruma': 1.22.2
+      '@shikijs/types': 1.22.2
       '@shikijs/vscode-textmate': 9.3.0
       '@types/hast': 3.0.4
 
