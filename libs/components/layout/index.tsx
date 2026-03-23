@@ -9,27 +9,11 @@ import { motion } from 'framer-motion'
 import { Footer } from './footer'
 import { Header } from './header'
 
-type Props = {
-  className?: string
-  fullwidth?: boolean
-  title?: string
-}
+type Props = { className?: string; fullwidth?: boolean; title?: string }
 
 const variants: Variants = {
-  enter: {
-    opacity: 1,
-    transition: {
-      ease: 'easeInOut',
-    },
-    y: 0,
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      ease: 'easeInOut',
-    },
-    y: 8,
-  },
+  enter: { opacity: 1, transition: { ease: 'easeInOut' }, y: 0 },
+  exit: { opacity: 0, transition: { ease: 'easeInOut' }, y: 8 },
 }
 
 export const Layout = ({ children, className, fullwidth = false }: PropsWithChildren<Props>) => {
@@ -38,7 +22,10 @@ export const Layout = ({ children, className, fullwidth = false }: PropsWithChil
       <Header />
       <motion.main
         animate="enter"
-        className={clsx(`mx-auto min-h-screen px-4 pt-header md:px-0`, !fullwidth && 'container')}
+        className={clsx(
+          'mx-auto min-h-screen px-4 pt-header sm:px-6 lg:px-8',
+          !fullwidth && 'container',
+        )}
         exit="exit"
         initial="exit"
         variants={variants}

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react'
 
 export default function useTimeoutFn(fn: (...args: any[]) => any, ms = 0) {
   const ready = useRef<boolean | null>(false)
-  const timeout = useRef<ReturnType<typeof setTimeout>>()
+  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null)
   const callback = useRef(fn)
 
   const isReady = useCallback(() => ready.current, [])

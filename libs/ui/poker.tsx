@@ -57,14 +57,14 @@ export const Poker = ({
     const xValue = (e.clientX - bounds.x) / e.currentTarget.clientWidth
     const yValue = (e.clientY - bounds.y) / e.currentTarget.clientHeight
 
-    x.set(xValue, true)
-    y.set(yValue, true)
+    x.set(xValue)
+    y.set(yValue)
     setHovering(true)
   }
 
   const onLeave = () => {
-    x.set(0.5, true)
-    y.set(0.5, true)
+    x.set(0.5)
+    y.set(0.5)
     setHovering(false)
   }
 
@@ -84,7 +84,7 @@ export const Poker = ({
       <div
         className={clsx(
           className,
-          'relative size-full cursor-pointer overflow-hidden rounded-2xl shadow',
+          'relative size-full cursor-pointer overflow-hidden rounded-2xl shadow-sm',
         )}
       >
         <div className="absolute top-1/2 flex w-full items-center p-8">
