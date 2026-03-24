@@ -103,16 +103,16 @@ export function EditorialSignalField() {
 
         <div className="absolute bottom-5 left-5 max-w-[14rem] rounded-[1.25rem] border border-black/10 bg-white/68 p-4 backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.04]">
           <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/46 dark:text-white/42">
-            System surface
+            Frontend scope
           </div>
           <p className="text-sm leading-6 text-black/66 dark:text-white/62">
-            A visual shorthand for the work: layered state, controlled motion, and interface
-            behavior that stays predictable under change.
+            Component architecture, rendering behavior, and interface systems designed to stay
+            clear as products scale.
           </p>
         </div>
 
         <div className="absolute right-5 top-5 rounded-full border border-black/10 bg-white/64 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/48 backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.04] dark:text-white/48">
-          01 / frontend systems
+          01 / frontend scope
         </div>
       </div>
     </div>

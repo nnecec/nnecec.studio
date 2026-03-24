@@ -33,31 +33,31 @@ export function EditorialNotes() {
 
   return (
     <section
-      className="border-t border-black/10 px-5 py-12 sm:px-6 md:px-8 dark:border-white/12"
+      className="border-t border-black/10 px-5 py-14 sm:px-6 md:px-8 md:py-16 dark:border-white/12"
       ref={rootRef}
     >
-      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div className="space-y-3" data-notes-reveal>
+      <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div className="space-y-4" data-notes-reveal>
           <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/48 dark:text-white/44">
             Engineering principles
           </div>
-          <h2 className="max-w-xl text-2xl font-semibold tracking-[-0.03em] md:text-3xl">
-            The value of a senior frontend engineer is judgment: where to keep flexibility, where
-            to add structure, and where to reduce complexity before it spreads.
+          <h2 className="max-w-lg text-2xl font-semibold tracking-[-0.03em] md:text-3xl">
+            Senior frontend work is mostly judgment: what to simplify, what to standardize, and
+            what to leave flexible.
           </h2>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           {editorialNotes.map(note => (
             <div
-              className="border-l border-black/12 pl-4 md:pl-5 dark:border-white/16"
+              className="border-l border-black/12 pl-5 md:pl-6 dark:border-white/16"
               data-notes-reveal
               key={note.label}
             >
               <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-black/50 dark:text-white/46">
                 {note.label}
               </div>
-              <p className="max-w-2xl text-sm leading-6 text-black/66 dark:text-white/62">
+              <p className="max-w-xl text-sm leading-7 text-black/66 dark:text-white/62">
                 {note.body}
               </p>
             </div>
@@ -65,11 +65,11 @@ export function EditorialNotes() {
         </div>
       </div>
 
-      <div className="mt-8 border-t border-black/10 pt-6 dark:border-white/12" data-notes-reveal>
+      <div className="mt-12 border-t border-black/10 pt-8 dark:border-white/12" data-notes-reveal>
         <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-black/46 dark:text-white/44">
-          Broader technical surface area
+          Adjacent tools
         </div>
-        <div className="flex flex-wrap gap-2.5">
+        <div className="flex flex-wrap gap-3">
           {editorialExtendedPractice.map(item => (
             <span
               className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1.5 text-xs font-medium tracking-[0.02em] text-black/74 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/72"

@@ -33,23 +33,22 @@ export function EditorialCapabilities() {
 
   return (
     <section
-      className="border-t border-black/10 px-5 py-10 sm:px-6 md:px-8 dark:border-white/12"
+      className="border-t border-black/10 px-5 py-14 sm:px-6 md:px-8 md:py-16 dark:border-white/12"
       ref={rootRef}
     >
-      <div className="mb-7 space-y-2">
+      <div className="mb-10 space-y-3">
         <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/48 dark:text-white/45">
           Capability areas
         </div>
-        <h2 className="max-w-3xl text-2xl font-semibold tracking-[-0.03em] md:text-3xl">
-          Senior frontend work is not just shipping screens. It is shaping the system behind them
-          so teams can move fast without losing clarity.
+        <h2 className="max-w-2xl text-2xl font-semibold tracking-[-0.03em] md:text-3xl">
+          Senior frontend ownership includes architecture, performance, and delivery quality.
         </h2>
       </div>
 
       <div className="space-y-0 border-y border-black/10 dark:border-white/12">
         {editorialCapabilities.map((group, index) => (
           <article
-            className="grid gap-5 border-b border-black/10 py-6 last:border-b-0 md:grid-cols-[13rem_1fr] md:gap-7 md:py-7 lg:grid-cols-[15rem_1fr]"
+            className="grid gap-6 border-b border-black/10 py-8 last:border-b-0 md:grid-cols-[13rem_1fr] md:gap-10 md:py-10 lg:grid-cols-[15rem_1fr]"
             data-capability-row
             key={group.title}
           >
@@ -63,10 +62,10 @@ export function EditorialCapabilities() {
             </div>
 
             <div className="space-y-4">
-              <p className="max-w-3xl text-sm leading-6 text-black/66 dark:text-white/64">
+              <p className="max-w-2xl text-sm leading-7 text-black/66 dark:text-white/64">
                 {group.description}
               </p>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-3">
                 {group.items.map(item => (
                   <span
                     className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1.5 text-xs font-medium tracking-[0.02em] text-black/74 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/74"

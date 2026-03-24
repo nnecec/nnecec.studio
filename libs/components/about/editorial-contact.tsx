@@ -91,13 +91,13 @@ export function EditorialContact() {
 
   return (
     <section
-      className="relative overflow-hidden border-t border-black/10 px-5 pb-12 pt-14 sm:px-6 md:px-8 md:pb-16 dark:border-white/12"
+      className="relative overflow-hidden border-t border-black/10 px-5 pb-14 pt-16 sm:px-6 md:px-8 md:pb-20 dark:border-white/12"
       ref={rootRef}
     >
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_10%_18%,rgba(235,184,77,0.14),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.28),transparent_60%)] dark:bg-[radial-gradient(circle_at_10%_18%,rgba(183,136,58,0.16),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_60%)]" />
 
       <div
-        className="mb-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-end"
+        className="mb-10 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end"
         data-contact-reveal
       >
         <div className="space-y-4">
@@ -105,12 +105,11 @@ export function EditorialContact() {
             Contact / collaboration
           </div>
           <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] md:text-5xl">
-            Open to senior frontend roles, platform-heavy product work, and teams that care about
-            engineering quality.
+            Open to senior frontend roles and product teams that care about engineering quality.
           </h2>
-          <p className="max-w-2xl text-sm leading-7 text-black/66 md:text-base dark:text-white/62">
-            Email is the best channel for roles or collaboration involving frontend architecture,
-            design systems, performance, or complex UI delivery.
+          <p className="max-w-xl text-sm leading-7 text-black/66 md:text-base dark:text-white/62">
+            Best channel for roles or collaboration around frontend architecture, design systems,
+            and performance.
           </p>
         </div>
 
@@ -134,10 +133,10 @@ export function EditorialContact() {
         </div>
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_1fr_1fr_1.06fr]">
+      <div className="grid gap-5 xl:grid-cols-[1fr_1fr_1fr_1.06fr]">
         {socialLinks.map(({ accentClass, highlightClass, href, icon: Icon, iconClass, label, meta, metaClass }) => (
           <a
-            className={`group relative overflow-hidden rounded-[1.3rem] border p-4 opacity-100 shadow-[0_18px_40px_rgba(17,17,17,0.06)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 dark:shadow-[0_18px_44px_rgba(0,0,0,0.32)] ${accentClass}`}
+            className={`group relative overflow-hidden rounded-[1.3rem] border p-5 opacity-100 shadow-[0_18px_40px_rgba(17,17,17,0.06)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 dark:shadow-[0_18px_44px_rgba(0,0,0,0.32)] ${accentClass}`}
             data-contact-reveal
             href={href}
             key={label}
@@ -162,7 +161,7 @@ export function EditorialContact() {
         ))}
 
         <div
-          className="rounded-[1.4rem] border border-black/10 bg-[#fffdf8] p-4 dark:border-white/10 dark:bg-[#141416]"
+          className="rounded-[1.4rem] border border-black/10 bg-[#fffdf8] p-5 dark:border-white/10 dark:bg-[#141416]"
           data-contact-reveal
         >
           <div className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-black/52 dark:text-white/48">
@@ -179,8 +178,7 @@ export function EditorialContact() {
               />
             </div>
             <p className="text-xs leading-6 text-black/62 dark:text-white/62">
-              Use WeChat if that is easier for async discussion about roles, projects, or technical
-              collaboration.
+              Use WeChat for async discussion about roles, projects, or technical collaboration.
             </p>
           </div>
         </div>

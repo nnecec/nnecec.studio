@@ -4,16 +4,16 @@ export type EditorialNote = { body: string; label: string }
 
 export const editorialHero = {
   description:
-    'I build frontend systems for products that need more than polished screens: clear component architecture, predictable rendering, measurable performance, and delivery practices that hold up as teams and codebases grow.',
+    'I build frontend systems that keep product interfaces clear, fast, and maintainable as teams and complexity grow.',
   label: 'About / Senior Frontend Engineer',
-  pills: ['React and Next.js architecture', 'Performance and rendering', 'Design systems and DX'],
-  title: 'Senior frontend engineer building fast, scalable, maintainable product interfaces.',
+  pills: ['Frontend architecture', 'Performance', 'Design systems'],
+  title: 'Senior frontend engineer for scalable product interfaces.',
 } as const
 
 export const editorialCapabilities: EditorialCapabilityGroup[] = [
   {
     description:
-      'Own component boundaries, state flow, rendering strategy, and reusable UI patterns so large product surfaces stay coherent under constant change.',
+      'Design component boundaries, state flow, and reusable patterns that keep large interfaces understandable.',
     items: [
       'HTML',
       'CSS',
@@ -29,7 +29,7 @@ export const editorialCapabilities: EditorialCapabilityGroup[] = [
   },
   {
     description:
-      'Improve build pipelines, testing, linting, and developer workflow so teams ship with more confidence and less friction.',
+      'Strengthen build, test, lint, and workflow foundations so teams ship faster with fewer regressions.',
     items: [
       'Node.js',
       'Webpack',
@@ -46,7 +46,7 @@ export const editorialCapabilities: EditorialCapabilityGroup[] = [
   },
   {
     description:
-      'Translate product requirements and design intent into accessible, high-quality UI behavior without sacrificing performance or implementation clarity.',
+      'Turn product and design requirements into accessible UI without adding unnecessary complexity.',
     items: ['HTTP', 'Figma', 'Headless UI', 'Ant Design', 'Markdown'],
     title: 'Product execution',
   },
@@ -65,15 +65,15 @@ export const editorialExtendedPractice = [
 
 export const editorialNotes: EditorialNote[] = [
   {
-    body: 'Prefer explicit boundaries, stable component APIs, and state models that stay understandable after the fifth feature request, not just the first release.',
+    body: 'Prefer stable APIs, explicit boundaries, and state models that remain clear as features accumulate.',
     label: 'System design',
   },
   {
-    body: 'Treat bundle size, rendering cost, and interaction latency as core product constraints. Fast feedback and responsive interfaces are part of the job.',
+    body: 'Treat rendering cost, bundle size, and interaction latency as product constraints, not cleanup work.',
     label: 'Performance',
   },
   {
-    body: 'Use incremental changes, readable diffs, and practical tooling to reduce regressions and keep teams shipping steadily.',
+    body: 'Ship in small, readable increments so teams can move quickly without losing confidence.',
     label: 'Delivery discipline',
   },
 ]
