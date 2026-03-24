@@ -1,17 +1,7 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "arrowParens": "avoid",
-  "jsxSingleQuote": false,
-  "printWidth": 100,
-  "proseWrap": "always",
-  "quoteProps": "as-needed",
+  "ignorePatterns": [],
   "semi": false,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "objectWrap": "collapse",
-  "spaceAroundCode": true,
-  "spaceAroundLink": true,
-  "sortPackageJson": false,
-  "ignorePatterns": []
+  "sortImports": { "type": "natural" },
+  "trailingComma": "none"
 }
