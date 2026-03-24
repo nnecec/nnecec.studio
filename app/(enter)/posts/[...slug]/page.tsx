@@ -17,15 +17,11 @@ type Props = {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params
   if (!params) {
-    return {
-      title: 'Missing post',
-    }
+    return { title: 'Missing post' }
   }
 
   const post = await getPost(params.slug.join('/'))
-  return {
-    title: post.title,
-  }
+  return { title: post.title }
 }
 
 export default async function PostPage({ params }: Props) {

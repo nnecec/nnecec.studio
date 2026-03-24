@@ -21,13 +21,15 @@ description: '了解 Webpack 的基本原理及特性实现'
 
 ### 建立依赖关系图
 
-通过声明的入口文件进行 ast 解析，并在解析过程中遇到 `importDeclaration` 时，即意味着遇到了一份新的依赖，将依赖的信息添加到 dependencies 中。从而得到这份入口文件的内容，以及与该入口相关的依赖信息。
+通过声明的入口文件进行 ast 解析，并在解析过程中遇到 `importDeclaration`
+时，即意味着遇到了一份新的依赖，将依赖的信息添加到 dependencies 中。从而得到这份入口文件的内容，以及与该入口相关的依赖信息。
 
 接着递归按照类似的方式来处理依赖，将每一份依赖当作一个新的入口继续处理下去，从而得到了全部的模块信息，以及模块相关的依赖关系，构成依赖关系图。
 
 最终利用这些信息，生成输出文件的内容，写入输出地址。
 
-代码实现可以参考 [github/minipack](https://github.com/ronami/minipack)，代码解读可以参考[github/imrich/minipack](https://github.com/nnecec/imrich/blob/master/source-code/minipack/README.md)
+代码实现可以参考
+[github/minipack](https://github.com/ronami/minipack)，代码解读可以参考[github/imrich/minipack](https://github.com/nnecec/imrich/blob/master/source-code/minipack/README.md)
 
 ### 钩子与插件
 

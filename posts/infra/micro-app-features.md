@@ -40,15 +40,20 @@ description: '探索微前端技术点的实现原理'
 
 1. 通过劫持路由实现对路由的控制，从而控制子应用展示
 
-   该方法由 single-spa 提出，qiankun 和 garfish 都参考了该实现。在主应用配置子应用配置，将主应用的某个路由如 `/user` 配置指向 `https://user.example.com`。当激活路由时，通过 fetch 地址获取目标地址的 HTML 进行解析。
+   该方法由 single-spa 提出，qiankun 和 garfish 都参考了该实现。在主应用配置子应用配置，将主应用的某个路由如
+   `/user` 配置指向
+   `https://user.example.com`。当激活路由时，通过 fetch 地址获取目标地址的 HTML 进行解析。
 
 2. 通过 WebComponent 将子应用视为一个组件
 
 ### 沙箱隔离
 
 1. 将 window 通过 Proxy 包装生成新的 ProxyWindow 提供给子应用，激活应用时将 global 指向新的 ProxyWindow
-2. 通过 [使用 shadow DOM](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_shadow_DOM) 提供沙箱能力
-3. [\<iframe> - HTML（超文本标记语言）](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/iframe) 提供了天然的 JavaScript 沙箱机制
+2. 通过
+   [使用 shadow DOM](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_shadow_DOM)
+   提供沙箱能力
+3. [\<iframe> - HTML（超文本标记语言）](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/iframe)
+   提供了天然的 JavaScript 沙箱机制
 
 ### 样式隔离
 
@@ -60,4 +65,5 @@ description: '探索微前端技术点的实现原理'
 1. 通过 window 设置全局变量
 2. 通过 window 实现发布订阅模式
 3. 通过 iframe 的 window.frames 和 window.parent 获取父子应用实例进行通信
-4. 借助 [CustomEvent()](https://developer.mozilla.org/zh-CN/docs/Web/API/CustomEvent/CustomEvent) 实现自定义事件
+4. 借助 [CustomEvent()](https://developer.mozilla.org/zh-CN/docs/Web/API/CustomEvent/CustomEvent)
+   实现自定义事件

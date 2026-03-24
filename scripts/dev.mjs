@@ -8,10 +8,10 @@ const MAX_PORT_ATTEMPTS = 20
 const DEV_LOCK_PATH = path.join(process.cwd(), '.next', 'dev', 'lock')
 
 function canListen(port, host) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const server = net.createServer()
 
-    server.once('error', (error) => {
+    server.once('error', error => {
       resolve(error.code !== 'EADDRINUSE')
     })
 
@@ -40,7 +40,9 @@ async function findAvailablePort(startPort) {
     }
   }
 
-  throw new Error(`No available port found between ${startPort} and ${startPort + MAX_PORT_ATTEMPTS - 1}.`)
+  throw new Error(
+    `No available port found between ${startPort} and ${startPort + MAX_PORT_ATTEMPTS - 1}.`,
+  )
 }
 
 async function readDevLock() {
@@ -48,8 +50,7 @@ async function readDevLock() {
     await access(DEV_LOCK_PATH)
     const content = await readFile(DEV_LOCK_PATH, 'utf8')
     return JSON.parse(content)
-  }
-  catch {
+  } catch {
     return null
   }
 }
@@ -58,8 +59,7 @@ function isProcessRunning(pid) {
   try {
     process.kill(pid, 0)
     return true
-  }
-  catch {
+  } catch {
     return false
   }
 }
@@ -91,16 +91,12 @@ async function main() {
     console.warn(`Port ${preferredPort} is in use, starting dev server on ${port} instead.`)
   }
 
-  const child = spawn(
-    'pnpm',
-    ['exec', 'next', 'dev', '--turbo', '-p', `${port}`],
-    {
-      stdio: 'inherit',
-      shell: process.platform === 'win32',
-    },
-  )
+  const child = spawn('pnpm', ['exec', 'next', 'dev', '--turbo', '-p', `${port}`], {
+    stdio: 'inherit',
+    shell: process.platform === 'win32',
+  })
 
-  const stopChild = (signal) => {
+  const stopChild = signal => {
     if (!child.killed) {
       child.kill(signal)
     }
@@ -119,7 +115,7 @@ async function main() {
   })
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(error instanceof Error ? error.message : error)
   process.exit(1)
 })

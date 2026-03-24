@@ -14,8 +14,4 @@ export type Post = {
   title?: string
 }
 
-export type Heading = {
-  id: string
-  level: number
-  title: string
-}
+export type Heading = { id: string; level: number; title: string }

@@ -7,11 +7,13 @@ description: 'Fiber 的理解及源码浅析'
 
 ## 概念
 
-官方在 React 16 引出 Fiber 的概念，并在 2016 年由核心成员发表了一篇介绍 Fiber 架构的[文章](https://github.com/acdlite/react-fiber-architecture)。
+官方在 React
+16 引出 Fiber 的概念，并在 2016 年由核心成员发表了一篇介绍 Fiber 架构的[文章](https://github.com/acdlite/react-fiber-architecture)。
 
 > [非官方中文翻译](https://github.com/xxn520/react-fiber-architecture-cn)
 
-在介绍中可以了解什么是 Fiber 架构，以及其中的一些技术名词，如 `child`, `sibling`, `return`, `pendingProps`, `memoizedProps` 等。
+在介绍中可以了解什么是 Fiber 架构，以及其中的一些技术名词，如 `child`, `sibling`, `return`,
+`pendingProps`, `memoizedProps` 等。
 
 ## 理解
 
@@ -91,13 +93,14 @@ export type Fiber = {
 }
 ```
 
-fiber 的 `tag` 等属性记录了该 fiber 的节点信息，然后通过 `return`, `child`, `sibling` 将各个 fiber 连接起来，形成了页面的节点树的结构。
+fiber 的 `tag` 等属性记录了该 fiber 的节点信息，然后通过 `return`, `child`, `sibling`
+将各个 fiber 连接起来，形成了页面的节点树的结构。
 
-在 fiber 的状态属性 `memoizedProps`, `memoizedState`, `updateQueue` 记录了节点当前的状态数据，从结构上看也是大量使用链表这种数据结构。
+在 fiber 的状态属性 `memoizedProps`, `memoizedState`, `updateQueue`
+记录了节点当前的状态数据，从结构上看也是大量使用链表这种数据结构。
 
 链表的数据结构在 Fiber 中使用的好处是，链表可以方便的在任意节点插入/删除，也可以很好的支持异步特性。同时，不会像数组一样需要大量连续的内存空间，对性能友好。
 
 ### React 如何使用 Fiber 结构
 
 每个 React 应用的入口都有唯一的一个 FiberRootNode。
-

@@ -1,9 +1,7 @@
 import type { Project } from '~/libs/types/project'
 
 export const SITE_CONFIG = {
-  author: {
-    name: 'nnecec',
-  },
+  author: { name: 'nnecec' },
   description: '🍉 .',
   email: 'nnecec@outlook.com',
   repositoryUrl: 'https://github.com/nnecec/nnecec.studio',

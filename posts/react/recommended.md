@@ -24,7 +24,6 @@ description: '深入 React 源码阅读推荐'
 3. [synthetic-event](/posts/react/synthetic-event): React 合成事件实现
 4. [位运算](/posts/react/bitwise-operator): 位运算在 React 中的实践
 5. [hooks](/posts/react/hooks/basic): React Hooks 简要入门
-
    1. [useState, useReducer](/posts/react/hooks/use-state-reducer)
    2. [useMemo](/posts/react/hooks/use-memo)
    3. [useCallback](/posts/react/hooks/use-callback)

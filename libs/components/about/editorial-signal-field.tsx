@@ -34,12 +34,7 @@ export function EditorialSignalField() {
         yoyo: true,
       })
 
-      gsap.to('[data-field-ring]', {
-        duration: 10,
-        ease: 'none',
-        repeat: -1,
-        rotate: 360,
-      })
+      gsap.to('[data-field-ring]', { duration: 10, ease: 'none', repeat: -1, rotate: 360 })
 
       gsap.to('[data-field-sweep="left"]', {
         duration: 7.5,
@@ -62,12 +57,7 @@ export function EditorialSignalField() {
         ease: 'sine.inOut',
         opacity: 0.26,
         repeat: -1,
-        stagger: {
-          each: 0.22,
-          from: 'random',
-          repeat: -1,
-          yoyo: true,
-        },
+        stagger: { each: 0.22, from: 'random', repeat: -1, yoyo: true },
         scale: 1.4,
         yoyo: true,
       })
@@ -92,7 +82,10 @@ export function EditorialSignalField() {
           className="absolute inset-x-[18%] top-[58%] h-px bg-[linear-gradient(90deg,transparent,rgba(17,17,17,0.26),transparent)] dark:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent)]"
           data-field-sweep="right"
         />
-        <div className="absolute inset-[16%] rounded-full border border-black/10 dark:border-white/10" data-field-ring />
+        <div
+          className="absolute inset-[16%] rounded-full border border-black/10 dark:border-white/10"
+          data-field-ring
+        />
         <div className="absolute inset-[28%] rounded-full border border-black/8 dark:border-white/8" />
 
         <div
@@ -110,15 +103,16 @@ export function EditorialSignalField() {
 
         <div className="absolute bottom-5 left-5 max-w-[14rem] rounded-[1.25rem] border border-black/10 bg-white/68 p-4 backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.04]">
           <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/46 dark:text-white/42">
-            Visual field
+            System surface
           </div>
           <p className="text-sm leading-6 text-black/66 dark:text-white/62">
-            A restrained displacement surface: grid, orbit, drift, and low-noise motion.
+            A visual shorthand for the work: layered state, controlled motion, and interface
+            behavior that stays predictable under change.
           </p>
         </div>
 
         <div className="absolute right-5 top-5 rounded-full border border-black/10 bg-white/64 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/48 backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.04] dark:text-white/48">
-          01 / signal field
+          01 / frontend systems
         </div>
       </div>
     </div>

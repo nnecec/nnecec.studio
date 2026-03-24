@@ -25,23 +25,24 @@ export function EditorialCapabilities() {
         opacity: 0,
         stagger: 0.12,
         x: 24,
-        scrollTrigger: {
-          start: 'top 82%',
-          trigger: rootRef.current,
-        },
+        scrollTrigger: { start: 'top 82%', trigger: rootRef.current },
       })
     },
     { scope: rootRef },
   )
 
   return (
-    <section className="border-t border-black/10 px-5 py-10 sm:px-6 md:px-8 dark:border-white/12" ref={rootRef}>
+    <section
+      className="border-t border-black/10 px-5 py-10 sm:px-6 md:px-8 dark:border-white/12"
+      ref={rootRef}
+    >
       <div className="mb-7 space-y-2">
         <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/48 dark:text-white/45">
-          Capability map
+          Capability areas
         </div>
         <h2 className="max-w-3xl text-2xl font-semibold tracking-[-0.03em] md:text-3xl">
-          Tools matter, but the system-level decisions around those tools matter more.
+          Senior frontend work is not just shipping screens. It is shaping the system behind them
+          so teams can move fast without losing clarity.
         </h2>
       </div>
 
@@ -66,7 +67,7 @@ export function EditorialCapabilities() {
                 {group.description}
               </p>
               <div className="flex flex-wrap gap-2.5">
-                {group.items.map((item) => (
+                {group.items.map(item => (
                   <span
                     className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1.5 text-xs font-medium tracking-[0.02em] text-black/74 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/74"
                     key={item}

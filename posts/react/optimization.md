@@ -9,7 +9,8 @@ description: 'React 函数式组件的性能优化的手段与相关原理'
 
 ## React.memo
 
-memo 使组件检查 props 是否发生变动的逻辑，由 `oldProps === newProps` 变为 `map(oldProps).prop === map(newProps).prop`。
+memo 使组件检查 props 是否发生变动的逻辑，由 `oldProps === newProps` 变为
+`map(oldProps).prop === map(newProps).prop`。
 
 这样对于 props 没有发生改变的组件，将不会像之前一样校验 props 时 `{} === {}` 进入 false 的逻辑。
 
@@ -21,7 +22,8 @@ memo 使组件检查 props 是否发生变动的逻辑，由 `oldProps === newPr
 
 ## useCallback 与 useMemo
 
-由于 `function (){} !== function (){}` 所以需要对方法使用 useCallback 包装，对于某些引用类型变量使用 useMemo 包装。但对于这两个 API，存在闭包陷阱的问题。
+由于 `function (){} !== function (){}`
+所以需要对方法使用 useCallback 包装，对于某些引用类型变量使用 useMemo 包装。但对于这两个 API，存在闭包陷阱的问题。
 
 什么是闭包陷阱？
 

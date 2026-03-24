@@ -51,7 +51,8 @@ class Observable {
 
 ### Proxy Pattern 代理模式
 
-通过与代理对象交互，实现通用的属性或方法抽象。如代理了对象的 `get` , `set` 方法实现值变化时的日志打印功能。
+通过与代理对象交互，实现通用的属性或方法抽象。如代理了对象的 `get` , `set`
+方法实现值变化时的日志打印功能。
 
 ```js
 const personProxy = new Proxy(person, {

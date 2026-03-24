@@ -9,15 +9,18 @@ description: 'hooks 以什么样的形态存在于 React 中？'
 
 在[官方文档](https://zh-hans.reactjs.org/docs/hooks-intro.html)中可以查阅 hooks 的介绍和规则。
 
-在 16.8 之前，其实 React 已经有了 `FunctionComponent` ，不过在之前的 `FunctionComponent` 中，无法使用类似 `ClassComponent` 中的 `state`，`Lifecycle`等特性，使用场景有限。
+在 16.8 之前，其实 React 已经有了 `FunctionComponent` ，不过在之前的 `FunctionComponent`
+中，无法使用类似 `ClassComponent` 中的 `state`，`Lifecycle`等特性，使用场景有限。
 
-在 `ClassComponent` 中，可以将 `state` 挂载到实例上，可是在 `FunctionComponent` 执行完后，就退出了当前执行的作用域，那么 hooks 是如何做到保存状态的呢？
+在 `ClassComponent` 中，可以将 `state` 挂载到实例上，可是在 `FunctionComponent`
+执行完后，就退出了当前执行的作用域，那么 hooks 是如何做到保存状态的呢？
 
 提及缓存 function 中的值，常见的有两种方式，一种是使用全局变量存储值，另一种是使用闭包存储。
 
 ## hooks 调用过程
 
-在调度节点渲染的方法中，当遇到节点类型为 `FunctionComponent` 时，会通过 `renderWithHooks` 方法计算得出新节点的页面信息。
+在调度节点渲染的方法中，当遇到节点类型为 `FunctionComponent` 时，会通过 `renderWithHooks`
+方法计算得出新节点的页面信息。
 
 ```mermaid
 graph TD;
@@ -64,7 +67,10 @@ function mountWorkInProgressHook(): Hook {
 }
 ```
 
-在 `mount` 阶段，通过 `mountWorkInProgressHook` 构建了一个初始状态的 hook ，如果指向当前 fiber 的 `workInProgressHook` 为 `null` 时，意味着当前 fiber 没有 hook 队列。所以创建一个新的 hook 将 `fiber.memoizedState` 指向刚创建的新的 hook。当 `workInProgressHook` 不为 `null` 时，意味着新创建的 hook 需要插入的已经存在的 hook 队列的尾部。
+在 `mount` 阶段，通过 `mountWorkInProgressHook` 构建了一个初始状态的 hook ，如果指向当前 fiber 的
+`workInProgressHook` 为 `null` 时，意味着当前 fiber 没有 hook 队列。所以创建一个新的 hook 将
+`fiber.memoizedState` 指向刚创建的新的 hook。当 `workInProgressHook` 不为 `null`
+时，意味着新创建的 hook 需要插入的已经存在的 hook 队列的尾部。
 
 ```ts
 function updateWorkInProgressHook(): Hook {
@@ -105,7 +111,7 @@ function updateWorkInProgressHook(): Hook {
       baseQueue: currentHook.baseQueue,
       queue: currentHook.queue,
 
-      next: null
+      next: null,
     }
 
     if (workInProgressHook === null) {
@@ -120,4 +126,5 @@ function updateWorkInProgressHook(): Hook {
 }
 ```
 
-在 `update` 阶段，通过 `updateWorkInProgressHook` 获取当前 hook 并返回该 hook 的值 `hook.memoizedState`。在这个方法里，通过判断区分出是由用户触发的更新还是由更新触发的更新<sup>待补充</sup>，并返回最终正确的 hook。
+在 `update` 阶段，通过 `updateWorkInProgressHook` 获取当前 hook 并返回该 hook 的值
+`hook.memoizedState`。在这个方法里，通过判断区分出是由用户触发的更新还是由更新触发的更新<sup>待补充</sup>，并返回最终正确的 hook。

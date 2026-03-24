@@ -1,6 +1,3 @@
-type Author = {
-  name: string
-  picture: string
-}
+type Author = { name: string; picture: string }
 
 export default Author

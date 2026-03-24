@@ -21,11 +21,12 @@ const [count, setCount] = useState(0)
 const [count, dispatchCount] = useReducer(countReducer, 0)
 ```
 
-在后面的源码分析中也可以看到， `useState` 相对于 `useReducer` 来说，是赋值了一个默认的 `reducer` 方
-法。
+在后面的源码分析中也可以看到， `useState` 相对于 `useReducer` 来说，是赋值了一个默认的 `reducer`
+方法。
 
-通过 `useState` 以及 `useReducer` 返回的 `setState` 方法，可以设置 `state` 的值，并触发刷新。在其他
-的 `hooks` 中, `useRef` 也可以起到储存值的作用，但不同的是， `useRef` 不会触发页面的重新渲染。
+通过 `useState` 以及 `useReducer` 返回的 `setState` 方法，可以设置 `state`
+的值，并触发刷新。在其他的 `hooks` 中, `useRef` 也可以起到储存值的作用，但不同的是， `useRef`
+不会触发页面的重新渲染。
 
 ## 源码
 
@@ -100,8 +101,8 @@ function mountReducer<S, I, A>(
 ```
 
 对比 `mountState` 和 `mountReducer` 可以看到，区别仅仅是 `计算 initialState` 和 `reducer`。根据
-`useState` 的文档，它的参数是一个值或者方法，在源码的处理中，遇到值则直接返回，遇到方法则返回执行结
-果。
+`useState`
+的文档，它的参数是一个值或者方法，在源码的处理中，遇到值则直接返回，遇到方法则返回执行结果。
 
 对于“使用 useReducer 实现 useState”这类问题，可以给出如下答案:
 

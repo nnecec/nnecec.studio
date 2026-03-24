@@ -6,14 +6,8 @@ const isBrowser = typeof document !== 'undefined'
 const noop = () => {}
 
 type parserOptions<T> =
-  | {
-      deserializer: (value: string) => T
-      raw: false
-      serializer: (value: T) => string
-    }
-  | {
-      raw: true
-    }
+  | { deserializer: (value: string) => T; raw: false; serializer: (value: T) => string }
+  | { raw: true }
 
 export const useLocalStorage = <T>(
   key: string,
@@ -27,22 +21,16 @@ export const useLocalStorage = <T>(
     throw new Error('useLocalStorage key may not be falsy')
   }
 
-  const deserializer =
-    options ?
-      options.raw ?
-        (value: any) => value
+  const deserializer = options
+    ? options.raw
+      ? (value: any) => value
       : options.deserializer
     : JSON.parse
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const initializer = useRef((key: string) => {
     try {
-      const serializer =
-        options ?
-          options.raw ?
-            String
-          : options.serializer
-        : JSON.stringify
+      const serializer = options ? (options.raw ? String : options.serializer) : JSON.stringify
 
       const localStorageValue = localStorage.getItem(key)
       if (localStorageValue === null) {
@@ -70,9 +58,9 @@ export const useLocalStorage = <T>(
     valOrFunc => {
       try {
         const newState =
-          typeof valOrFunc === 'function' ?
-            (valOrFunc as (...args: any[]) => any)(state)
-          : valOrFunc
+          typeof valOrFunc === 'function'
+            ? (valOrFunc as (...args: any[]) => any)(state)
+            : valOrFunc
         if (newState === undefined) return
         let value: string
 

@@ -20,13 +20,8 @@ export const metadata: Metadata = {
   },
   manifest: '/favicon/site.webmanifest',
   metadataBase: new URL('https://nnecec.studio'),
-  other: {
-    'msapplication-TileColor': '#000',
-  },
-  title: {
-    default: SITE_CONFIG.title,
-    template: '%s - nnecec.studio',
-  },
+  other: { 'msapplication-TileColor': '#000' },
+  title: { default: SITE_CONFIG.title, template: '%s - nnecec.studio' },
 }
 
 export const viewport: Viewport = {
@@ -42,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {isProd && !!DATAPULSE_ID ?
+        {isProd && !!DATAPULSE_ID ? (
           <script
             data-endpoint="https://datapulse.app/api/v1/event"
             data-workspace={DATAPULSE_ID}
@@ -51,8 +46,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             src="https://datapulse.app/datapulse.min.js"
             type="text/javascript"
           />
-        : null}
-        {isProd && !!GOOGLE_ID ?
+        ) : null}
+        {isProd && !!GOOGLE_ID ? (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ID}`} />
             <script
@@ -68,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               id="gtag-init"
             />
           </>
-        : null}
+        ) : null}
       </head>
 
       <body>

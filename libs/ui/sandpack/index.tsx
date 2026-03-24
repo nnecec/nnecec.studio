@@ -19,17 +19,13 @@ export const Sandpack = ({
   options,
   template = 'react',
   theme = 'auto',
-}: {
-  dependencies: SandpackSetup['dependencies']
-} & SandpackProviderProps) => {
+}: { dependencies: SandpackSetup['dependencies'] } & SandpackProviderProps) => {
   const files = useFiles({ files: _files, template })
 
   return (
     <div className="md:-mx-16">
       <SandpackProvider
-        customSetup={{
-          dependencies: dependencies || {},
-        }}
+        customSetup={{ dependencies: dependencies || {} }}
         files={files}
         options={{ autorun: true, ...options }}
         template={template}

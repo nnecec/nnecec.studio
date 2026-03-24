@@ -62,11 +62,6 @@ export async function getPost(slug: string): Promise<Post> {
   const fullPath = path.join(postsDirectory, `${slug}.md`)
   const fileContents = await fs.readFile(fullPath, 'utf8')
   const { content, data } = matter(fileContents)
-  const item: Post = {
-    ...data,
-    content,
-    originContent: fileContents,
-    slug,
-  }
+  const item: Post = { ...data, content, originContent: fileContents, slug }
   return item
 }

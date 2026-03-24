@@ -14,10 +14,7 @@ description: 'useMemo 和它的一切。'
 ## 源码
 
 ```ts
-function mountMemo<T>(
-  nextCreate: () => T,
-  deps: Array<mixed> | void | null
-): T {
+function mountMemo<T>(nextCreate: () => T, deps: Array<mixed> | void | null): T {
   const hook = mountWorkInProgressHook()
   const nextDeps = deps === undefined ? null : deps
   const nextValue = nextCreate()
@@ -25,10 +22,7 @@ function mountMemo<T>(
   return nextValue
 }
 
-function updateMemo<T>(
-  nextCreate: () => T,
-  deps: Array<mixed> | void | null
-): T {
+function updateMemo<T>(nextCreate: () => T, deps: Array<mixed> | void | null): T {
   const hook = updateWorkInProgressHook()
   const nextDeps = deps === undefined ? null : deps
   const prevState = hook.memoizedState
@@ -47,8 +41,11 @@ function updateMemo<T>(
 }
 ```
 
-`useMemo` 在 `mount` 阶段调用第一个参数方法生成计算结果，并缓存到 `fiber.memoizedState` 上。在 `update` 阶段，对比是否有 `deps` 且 `deps` 是否变化，如果没有变化则使用缓存的值，如果变化了则重新计算。
+`useMemo` 在 `mount` 阶段调用第一个参数方法生成计算结果，并缓存到 `fiber.memoizedState` 上。在
+`update` 阶段，对比是否有 `deps` 且 `deps`
+是否变化，如果没有变化则使用缓存的值，如果变化了则重新计算。
 
 ## 用法
 
-其实类似 `useCallback`，同样不应该将简单的变量声明用 `useMemo` 包装，这样反而会使性能变差。对于复杂的变量计算，使用 `useMemo` 包装是一个更好的选择。
+其实类似 `useCallback`，同样不应该将简单的变量声明用 `useMemo`
+包装，这样反而会使性能变差。对于复杂的变量计算，使用 `useMemo` 包装是一个更好的选择。

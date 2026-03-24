@@ -2,9 +2,10 @@ import type { SandpackFiles, SandpackPredefinedTemplate } from '@codesandbox/san
 
 import { reactFiles } from './default-files'
 
-export const defaultFilesByTemplate = {
-  react: reactFiles,
-} as Record<SandpackPredefinedTemplate, SandpackFiles>
+export const defaultFilesByTemplate = { react: reactFiles } as Record<
+  SandpackPredefinedTemplate,
+  SandpackFiles
+>
 
 export const useFiles = ({
   files,
@@ -13,8 +14,5 @@ export const useFiles = ({
   files?: SandpackFiles
   template?: SandpackPredefinedTemplate
 }) => {
-  return {
-    ...files,
-    ...(template && defaultFilesByTemplate[template]),
-  }
+  return { ...files, ...(template && defaultFilesByTemplate[template]) }
 }

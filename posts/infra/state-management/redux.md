@@ -50,13 +50,16 @@ store.dispatch({ type: 'counter/decremented' }) // {value: 1}
 
 在 Redux 中，只能通过 `dispatch` 修改内部的 currentState。
 
-`dispatch` 首先判断了 action 的合法性，并通过 action 对应的 reducer 逻辑计算出最新的 currentState，并通过 listeners 通知已添加的监听方法。
+`dispatch`
+首先判断了 action 的合法性，并通过 action 对应的 reducer 逻辑计算出最新的 currentState，并通过 listeners 通知已添加的监听方法。
 
 #### store.subscribe(listener)
 
 在 dispatch 中提到的 listeners 就是通过 `subscribe` 添加到 store 实例中的。
 
-`subscribe` 首先判断了 listener 参数的合法性，然后直接 push 到 listeners 数组中，并返回取消订阅的方法 `unsubscribe`。取消方法实际就是在数组中 splice 该 listener 的闭包方法。
+`subscribe`
+首先判断了 listener 参数的合法性，然后直接 push 到 listeners 数组中，并返回取消订阅的方法
+`unsubscribe`。取消方法实际就是在数组中 splice 该 listener 的闭包方法。
 
 #### store.getState()
 
@@ -64,7 +67,8 @@ store.dispatch({ type: 'counter/decremented' }) // {value: 1}
 
 ### middleware
 
-Redux 接入插件的方式是通过 `applyMiddleware` 方法。在 `createStore` 时如果有 `enhancer` 参数，则返回经过 enhancer 处理的 store 实例。
+Redux 接入插件的方式是通过 `applyMiddleware` 方法。在 `createStore` 时如果有 `enhancer`
+参数，则返回经过 enhancer 处理的 store 实例。
 
 ```js
 if (typeof enhancer !== 'undefined') {
@@ -76,11 +80,13 @@ enhancer 是由 `applyMiddleware` 返回的参数，那么，再来看一下 `ap
 
 applyMiddleware 劫持了原始的 createStore 方法，并在内部调用 createStore 生成 store，同时根据 middlewares 改写 store.dispatch 方法。
 
-其实 Redux 中间件的本质，就是包装了 dispatch 方法，从而使在调用 `dispatch(action)` 时，会逐层调用 middleware 方法，最终调用到原始 dispatch。
+其实 Redux 中间件的本质，就是包装了 dispatch 方法，从而使在调用 `dispatch(action)`
+时，会逐层调用 middleware 方法，最终调用到原始 dispatch。
 
 ### compose
 
-在 middleware 一节中，改写 `store.dispatch` 是通过 `compose` 方法，将传入的 `middleware` 和原始 `store.dispatch` 一起生成一个新的方法。
+在 middleware 一节中，改写 `store.dispatch` 是通过 `compose` 方法，将传入的 `middleware` 和原始
+`store.dispatch` 一起生成一个新的方法。
 
 先看一个 middleware 的示例
 
@@ -100,7 +106,7 @@ function logger({ getState }) {
 ```js
 const middlewareAPI = {
   getState: store.getState,
-  dispatch: (action, ...args) => dispatch(action, ...args)
+  dispatch: (action, ...args) => dispatch(action, ...args),
 }
 const chain = middlewares.map(middleware => middleware(middlewareAPI))
 dispatch = compose(...chain)(store.dispatch)
@@ -126,13 +132,19 @@ export default function compose(...funcs) {
 }
 ```
 
-对于 a 来说，`next` 则为 b 方法。所以 middleware 通过内部的 next 达到了链式调用的目的。最后一个 `middleware` 的 `next` 则为 `store.dispatch`。
+对于 a 来说，`next` 则为 b 方法。所以 middleware 通过内部的 next 达到了链式调用的目的。最后一个
+`middleware` 的 `next` 则为 `store.dispatch`。
 
 ### combineReducers
 
-在 `createStore` 中接受一个 reducer 参数，而在现实应用中，往往不太可能将所有的 reducer 放到一起。`Redux`提供了 `combineReducers` 方法，从而将多个分散的 reducer 组合在一起，并提供给 `createStore` 使用。如`combineReducers({potato: potatoReducer, tomato: tomatoReducer})`。
+在 `createStore`
+中接受一个 reducer 参数，而在现实应用中，往往不太可能将所有的 reducer 放到一起。`Redux`提供了
+`combineReducers` 方法，从而将多个分散的 reducer 组合在一起，并提供给 `createStore`
+使用。如`combineReducers({potato: potatoReducer, tomato: tomatoReducer})`。
 
-在调用 `dispatch` 时，`combineReducers` 通过遍历获取 reducers 的键名 key 和 对应的 reducer，计算出 state 并赋值给 `rootState[key]`，从而达到合并多个 reducers 的目的。
+在调用 `dispatch` 时，`combineReducers`
+通过遍历获取 reducers 的键名 key 和 对应的 reducer，计算出 state 并赋值给
+`rootState[key]`，从而达到合并多个 reducers 的目的。
 
 ### bindActionCreators
 

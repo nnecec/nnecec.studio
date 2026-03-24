@@ -94,7 +94,9 @@ function dispatchAction<S, A>(
 }
 ```
 
-可以看到，所有的状态更新方法，有一个一样的过程是：创建 `update`，根据不同方法打上不同的标记，然后调用 `scheduleUpdateOnFiber` 进入调度更新，即进入 `reconciliation` 和 `commit` 的流程。
+可以看到，所有的状态更新方法，有一个一样的过程是：创建
+`update`，根据不同方法打上不同的标记，然后调用 `scheduleUpdateOnFiber` 进入调度更新，即进入
+`reconciliation` 和 `commit` 的流程。
 
 #### scheduleUpdateOnFiber
 
@@ -126,11 +128,14 @@ export function scheduleUpdateOnFiber(
 }
 ```
 
-`scheduleUpdateOnFiber` 根据任务[优先级](/react/lane)，决定本次调度使用 `concurrent` 模式还是 `sync`，然后通过 `performSyncWorkOnRoot/ensureRootIsScheduled` 方法循环调用 [beginWork](/react/conciliation) 开始 `conciliation` 的工作。
+`scheduleUpdateOnFiber` 根据任务[优先级](/react/lane)，决定本次调度使用 `concurrent` 模式还是
+`sync`，然后通过 `performSyncWorkOnRoot/ensureRootIsScheduled` 方法循环调用
+[beginWork](/react/conciliation) 开始 `conciliation` 的工作。
 
 ### 2. 处理更新(updateQueue)
 
-通过上述步骤，确定了待更新实例 `Update`。在后续的 `beginWork` 中，在 `ClassComponent`, `HostRoot`, `FunctionComponent` 的情况下才会出现以上 5 种产生 `Update` 的方法。
+通过上述步骤，确定了待更新实例 `Update`。在后续的 `beginWork` 中，在 `ClassComponent`, `HostRoot`,
+`FunctionComponent` 的情况下才会出现以上 5 种产生 `Update` 的方法。
 
 #### 2.1 对于 ClassComponent 和 HostRoot
 

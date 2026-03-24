@@ -9,10 +9,7 @@ import { cn } from '~/libs/utils'
 const buttonVariants = cva(
   'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50',
   {
-    defaultVariants: {
-      size: 'default',
-      variant: 'default',
-    },
+    defaultVariants: { size: 'default', variant: 'default' },
     variants: {
       size: {
         default: 'h-9 px-4 py-2',
@@ -34,8 +31,7 @@ const buttonVariants = cva(
 )
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean
 }
 

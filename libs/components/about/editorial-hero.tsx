@@ -14,16 +14,19 @@ gsap.registerPlugin(useGSAP)
 
 const heroFragments = [
   {
-    label: 'Current posture',
-    value: 'Frontend systems that stay legible as products and teams grow.',
+    label: 'Primary focus',
+    value:
+      'Scalable frontend architecture for products with evolving requirements, multiple contributors, and real production traffic.',
   },
   {
-    label: 'Main surface area',
-    value: 'React, Next.js, TypeScript, Tailwind CSS, Motion, and developer tooling.',
+    label: 'Core stack',
+    value:
+      'TypeScript, React, Next.js, Tailwind CSS, testing, and the tooling needed to keep delivery predictable.',
   },
   {
-    label: 'Why this page exists',
-    value: 'To make technical judgment visible through interface work, writing, and motion.',
+    label: 'What teams rely on',
+    value:
+      'Clear abstractions, measurable performance, reliable UI behavior, and codebases that remain workable over time.',
   },
 ] as const
 
@@ -59,7 +62,7 @@ export function EditorialHero() {
 
   return (
     <section
-      className="page-bleed relative overflow-hidden border-b border-black/8 dark:border-white/10"
+      className="page-bleed relative overflow-hidden border-black/8 dark:border-white/10"
       ref={rootRef}
     >
       <div className="absolute inset-0 -z-30 bg-[radial-gradient(circle_at_12%_16%,rgba(250,204,21,0.2),transparent_24%),radial-gradient(circle_at_84%_12%,rgba(180,138,78,0.18),transparent_22%),linear-gradient(180deg,#fff8ec_0%,#fffdf8_42%,#ffffff_100%)] dark:bg-[radial-gradient(circle_at_12%_16%,rgba(250,204,21,0.12),transparent_25%),radial-gradient(circle_at_84%_12%,rgba(161,118,67,0.18),transparent_22%),linear-gradient(180deg,#171718_0%,#101012_46%,#0a0a0c_100%)]" />
@@ -92,7 +95,7 @@ export function EditorialHero() {
             </div>
 
             <div className="flex flex-wrap gap-2.5" data-hero-reveal>
-              {editorialHero.pills.map((pill) => (
+              {editorialHero.pills.map(pill => (
                 <span
                   className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1.5 text-xs font-medium tracking-[0.02em] text-black/72 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/74"
                   key={pill}
@@ -106,7 +109,7 @@ export function EditorialHero() {
               className="max-w-xl text-sm leading-6 text-black/58 dark:text-white/56"
               data-hero-reveal
             >
-              {SITE_CONFIG.author.name} / frontend engineering notes / editorial about page
+              {SITE_CONFIG.author.name} / senior frontend engineer / architecture, performance, delivery
             </div>
           </div>
 
@@ -115,7 +118,7 @@ export function EditorialHero() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-black/8 dark:border-white/10">
+        <div className="mt-8 border border-black/8 dark:border-white/10">
           <div className="grid gap-0 md:grid-cols-[1.12fr_1fr_0.88fr]">
             {heroFragments.map(({ label, value }) => (
               <div

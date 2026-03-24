@@ -11,7 +11,9 @@ description: '关于 Ref 的一切'
 
 ### 1. 使用 Ref 控制 DOM
 
-通过 `createRef` 或 `useRef` 创建 ref 实例，将 ref 与 DOM 进行绑定获取 DOM 实例，或者与 ClassComponent 绑定获取组件实例。而由于 FunctionComponent 没有实例，ref 获取的是通过 `useImperativeHandle` 方法返回的值，或者通过 `forwardRef` 将 ref 转发到有 ref 的组件。
+通过 `createRef` 或 `useRef`
+创建 ref 实例，将 ref 与 DOM 进行绑定获取 DOM 实例，或者与 ClassComponent 绑定获取组件实例。而由于 FunctionComponent 没有实例，ref 获取的是通过
+`useImperativeHandle` 方法返回的值，或者通过 `forwardRef` 将 ref 转发到有 ref 的组件。
 
 在 mount 过程中，访问 ref 获取到的是 null，在构建完成后，才能获取到对应的引用。通过 flushSync 可以解决部分无法立即获取 ref 的问题。
 

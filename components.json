@@ -1,9 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "aliases": {
-    "components": "~/libs",
-    "utils": "~/libs/utils"
-  },
+  "aliases": { "components": "~/libs", "utils": "~/libs/utils" },
   "rsc": true,
   "style": "new-york",
   "tailwind": {

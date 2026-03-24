@@ -8,9 +8,7 @@ import { getAllPosts } from '~/libs/api/post'
 import { TagPicker } from '~/libs/components/posts/tag-picker'
 import { Badge, Button } from '~/libs/ui'
 
-export const metadata: Metadata = {
-  title: 'All posts',
-}
+export const metadata: Metadata = { title: 'All posts' }
 
 export default async function PostsPage(props: { searchParams: Promise<{ tag?: string }> }) {
   const searchParams = await props.searchParams

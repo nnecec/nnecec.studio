@@ -9,7 +9,8 @@ description: 'designable'
 
 ## 状态管理
 
-Core 的入口，将 Core 赋值 `globalThis.Designable.Core = Core`，Designable 将所有编辑器状态通过 globalThis 储存了下来。
+Core 的入口，将 Core 赋值
+`globalThis.Designable.Core = Core`，Designable 将所有编辑器状态通过 globalThis 储存了下来。
 
 作者认为 Core 应当与框架无关，且在 Designable 应用中，数据源、鼠标位置、拖拽对象等又有非常重要，需要记录当前状态，所以将 Core 中涉及的状态通过 globalThis 记录。
 
@@ -21,11 +22,14 @@ Designable 由事件驱动，所有的用户操作都通过事件发布，然后
 
 在 Core 中 drivers 中的方法负责注册事件订阅，如鼠标事件、键盘事件，并计算与之相关的数据。
 
-比如在 DragDropDriver 中，在初始化时会添加对 mousedown 的监听，在 mousedown 中会添加 mousemove, mouseup 等监听，并计算当前的 dragging, moveEvent, onMouseDownAt, startEvent 更新给 GlobalState，并通过事件发出 GlobalState 等数据。
+比如在 DragDropDriver 中，在初始化时会添加对 mousedown 的监听，在 mousedown 中会添加 mousemove,
+mouseup 等监听，并计算当前的 dragging, moveEvent, onMouseDownAt,
+startEvent 更新给 GlobalState，并通过事件发出 GlobalState 等数据。
 
 events 负责定义事件名称及内部数据。
 
-事件驱动的核心实现在 `@designable/shared/event` 中，在基础的发布订阅模式之上，作者增加了许多在低代码编辑器场景下的特殊逻辑。
+事件驱动的核心实现在 `@designable/shared/event`
+中，在基础的发布订阅模式之上，作者增加了许多在低代码编辑器场景下的特殊逻辑。
 
 ## Drag Drop
 

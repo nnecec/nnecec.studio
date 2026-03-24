@@ -54,16 +54,10 @@ export default function UseDeferredValueSandpack() {
   return (
     <div>
       <Sandpack
-        dependencies={{
-          react: '^19.0.0-rc.0',
-          'react-dom': '^19.0.0-rc.0',
-        }}
+        dependencies={{ react: '^19.0.0-rc.0', 'react-dom': '^19.0.0-rc.0' }}
         files={{
           'App.js': CODE,
-          'sandbox.config.json': {
-            code: `{ "infiniteLoopProtection": false }`,
-            hidden: true,
-          },
+          'sandbox.config.json': { code: `{ "infiniteLoopProtection": false }`, hidden: true },
         }}
       />
     </div>

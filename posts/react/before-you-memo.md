@@ -13,9 +13,12 @@ description: ''
 
 在 before you memo 这篇文章中，作者提供了几个解决没有耦合的组件之间如何避免重复渲染的方法。
 
-1. memo。使用 memo 包装组件，使组件进行浅比较，由于 A, B 组件之间无耦合关系，所以 B 的 Props 不会因上层状态改变而改变，从而避免了渲染。
-2. move state down。如果状态仅与 A 组件有关，则将状态降低到 A 组件内部，这样修改 A 状态则不会影响 B 的渲染。
-3. lift content up。将 B 通过 A 的 children 进行连接，虽然两者 DOM 结构耦合到了一起，但从代码来看，B 的 Props 来自于 A 和 B 的父组件，而 A 的状态变化不会影响父组件状态变化，从而不会导致 B 重新渲染。
+1. memo。使用 memo 包装组件，使组件进行浅比较，由于 A,
+   B 组件之间无耦合关系，所以 B 的 Props 不会因上层状态改变而改变，从而避免了渲染。
+2. move state
+   down。如果状态仅与 A 组件有关，则将状态降低到 A 组件内部，这样修改 A 状态则不会影响 B 的渲染。
+3. lift content
+   up。将 B 通过 A 的 children 进行连接，虽然两者 DOM 结构耦合到了一起，但从代码来看，B 的 Props 来自于 A 和 B 的父组件，而 A 的状态变化不会影响父组件状态变化，从而不会导致 B 重新渲染。
 
 ## 有哪些优化 React 代码的手段？
 
@@ -86,15 +89,18 @@ export function createElement(type, config, children) {
 }
 ```
 
-config 为 null，最后生成的 props 是 `{}`，由于 `{}==={}` 的判断结果是 `false`，所以`条件1: oldProps === newProps`不符合，无法进入 bailout 逻辑，会触发渲染。
+config 为 null，最后生成的 props 是 `{}`，由于 `{}==={}` 的判断结果是
+`false`，所以`条件1: oldProps === newProps`不符合，无法进入 bailout 逻辑，会触发渲染。
 
 ### 使用 memo
 
-`memo` 方法会将 `$$typeof` 标记为 `REACT_MEMO_TYPE`，在构建 fiber 过程中，会根据 `$$typeof` 将 tag 赋值为 `MemoComponent`。
+`memo` 方法会将 `$$typeof` 标记为 `REACT_MEMO_TYPE`，在构建 fiber 过程中，会根据 `$$typeof`
+将 tag 赋值为 `MemoComponent`。
 
 在 `beginWork` 的条件里，其实是不符合 `条件1` 跳过了第一次的 bailout。
 
-但在接下来 `reconcileChildren` 的阶段中，根据 `workInProgress.tag` 进入`updateMemoComponent`方法中，可以看到一个类似`beginWork`的过程：
+但在接下来 `reconcileChildren` 的阶段中，根据 `workInProgress.tag`
+进入`updateMemoComponent`方法中，可以看到一个类似`beginWork`的过程：
 
 ```js
 function updateMemoComponent() {
@@ -115,19 +121,23 @@ function updateMemoComponent() {
 }
 ```
 
-同样检查是否有同一优先级的更新后，通过 `shallowEqual` 浅比较前后 props 如果没有变化则符合 bailout 条件。
+同样检查是否有同一优先级的更新后，通过 `shallowEqual`
+浅比较前后 props 如果没有变化则符合 bailout 条件。
 
-> 浅比较：将对象的相同的 key 的值依次对比，而不是对象整个对比, 在浅比较的情况下 `{} === {}` 返回 true
+> 浅比较：将对象的相同的 key 的值依次对比，而不是对象整个对比, 在浅比较的情况下 `{} === {}`
+> 返回 true
 
 ### move state down
 
-这种情况下，`ColorPicker`和`ExpensiveTree`已经分别属于两个组件了，修改 `ColorPicker` 不会影响到 `ExpensiveTree`，所以 `ExpensiveTree` 可以一直复用。
+这种情况下，`ColorPicker`和`ExpensiveTree`已经分别属于两个组件了，修改 `ColorPicker` 不会影响到
+`ExpensiveTree`，所以 `ExpensiveTree` 可以一直复用。
 
 ### lift content up
 
 在 `LiftContentUp` 中，对于 `ExpensiveTree` 来说，它在 `ColorPicker` 中意味着是 `props.children`。
 
-对于 `ColorPicker` 来说，它的 `props.children` 在 App 中 props 也没有改变。在 `setState` 也没有发生变化。
+对于 `ColorPicker` 来说，它的 `props.children` 在 App 中 props 也没有改变。在 `setState`
+也没有发生变化。
 
 所以，在调度到 ExpensiveTree 也符合 bailout 的条件。
 

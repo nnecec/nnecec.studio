@@ -5,9 +5,7 @@ import { motion } from 'framer-motion'
 export const WavingHand = () => {
   return (
     <motion.div
-      style={{
-        display: 'inline-block',
-      }}
+      style={{ display: 'inline-block' }}
       transition={{
         duration: 0.2,
         ease: 'easeInOut',

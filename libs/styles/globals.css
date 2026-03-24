@@ -54,12 +54,11 @@
   --color-secondary-foreground: hsl(var(--secondary-foreground));
 
   --font-mono:
-    Roboto Mono, Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, 'Liberation Mono', 'Courier New', monospace;
+    Roboto Mono, Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
   --font-sans:
-    Mona Sans, Inter, SF Pro SC, PingFang SC, ui-sans-serif, system-ui,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
+    Mona Sans, Inter, SF Pro SC, PingFang SC, ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --spacing-header: 120px;
 

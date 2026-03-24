@@ -17,16 +17,7 @@ interface PokerProps {
   title: React.ReactNode
 }
 
-const PokerVariants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-  },
-}
+const PokerVariants = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }
 
 export const Poker = ({
   className,
@@ -45,12 +36,8 @@ export const Poker = ({
   const AccentColor = useMotionValue(colors.zinc[600])
   const backgroundImage = useMotionTemplate`radial-gradient(circle at ${xp}% ${yp}%, ${AccentColor}, #0000000f)`
 
-  const rotateY = useTransform(x, [0, 1], [-delta, delta], {
-    clamp: true,
-  })
-  const rotateX = useTransform(y, [0, 1], [delta, -delta], {
-    clamp: true,
-  })
+  const rotateY = useTransform(x, [0, 1], [-delta, delta], { clamp: true })
+  const rotateX = useTransform(y, [0, 1], [delta, -delta], { clamp: true })
 
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const bounds = e.currentTarget.getBoundingClientRect()
@@ -73,12 +60,7 @@ export const Poker = ({
       className="size-full"
       onPointerLeave={onLeave}
       onPointerMove={onMove}
-      style={{
-        ...style,
-        rotateX,
-        rotateY,
-        transition: 'transform .3s ease-out',
-      }}
+      style={{ ...style, rotateX, rotateY, transition: 'transform .3s ease-out' }}
       variants={PokerVariants}
     >
       <div

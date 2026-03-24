@@ -77,7 +77,8 @@ description: '网页动画简史及现代网页动画技术简介'
 
 ---
 
-在 2010 年的 4 月，苹果公司的 CEO 乔布斯发表一篇题为“对 Flash 的思考”的文章，指出随着 HTML5 的发展，观看视频或其它内容时，Adobe Flash 将不再是必须的。
+在 2010 年的 4 月，苹果公司的 CEO 乔布斯发表一篇题为“对 Flash 的思考”的文章，指出随着 HTML5 的发展，观看视频或其它内容时，Adobe
+Flash 将不再是必须的。
 
 > [iOS 不支持 Flash 的真实原因是什么？](https://www.zhihu.com/question/19609079/answer/60053891)
 
@@ -166,7 +167,8 @@ TEXT
 
 ![bezier](https://brettdewoody.com/content/images/2017/09/cubicbeziereditor2.gif)
 
-CSS 中的`cubic-bezier()` 由 4 个控制点构成。并且默认第 1 个和第 4 个固定坐标为 `(0, 0)` 和 `(1, 1)`。`cubic-bezier(x2, y2, x3, y3)` 定义的是第 2、3 个控制点的坐标。
+CSS 中的`cubic-bezier()` 由 4 个控制点构成。并且默认第 1 个和第 4 个固定坐标为 `(0, 0)` 和
+`(1, 1)`。`cubic-bezier(x2, y2, x3, y3)` 定义的是第 2、3 个控制点的坐标。
 
 <!-- 在 css 中如果在devtools查看带有 transition 属性的元素时，浏览器会提供一个动画函数的选择题。这个选择器就是 cubic-bezier() 的配置器。贝塞尔曲线至少有2个控制点构成，依次 从第0个点到最后一个点，计算出经过所有控制点拟合的曲线。
 
@@ -240,10 +242,7 @@ const cake = document.getElementById('#cake')
 
 const animateCake = cake.animate(
   [{ transform: 'translateY(0)' }, { transform: 'translateY(-80%)' }],
-  {
-    easing: 'steps(4, end)',
-    duration: aliceChange.effect.timing.duration / 2,
-  },
+  { easing: 'steps(4, end)', duration: aliceChange.effect.timing.duration / 2 },
 )
 // 开始/暂停
 animateCake.pause()
@@ -275,7 +274,8 @@ WAAPI 的声明方式类似 CSS 需要声明关键帧和动画时间等，但 an
 
 > 事实上，大多数场景下，基于 CSS 的动画几乎是跟 JavaScript 动画表现一致。一些基于 Javascript 的动画库，甚至声称他们在性能上可以做得比原生 CSS 更好。
 >
-> 这是可能的，因为在重绘事件发生之前，CSS transition 和 animation 在 UI 线程仅仅是重新采集元素的样式，这跟通过 requestAnimationFrame() 回调获取重新采集元素样式是一样的，也是在下一次重绘之前触发。假如二者都是在主 UI 线程创建的动画，那它们在性能方面没有差异。
+> 这是可能的，因为在重绘事件发生之前，CSS
+> transition 和 animation 在 UI 线程仅仅是重新采集元素的样式，这跟通过 requestAnimationFrame() 回调获取重新采集元素样式是一样的，也是在下一次重绘之前触发。假如二者都是在主 UI 线程创建的动画，那它们在性能方面没有差异。
 
 ---
 
@@ -296,7 +296,8 @@ WAAPI 的声明方式类似 CSS 需要声明关键帧和动画时间等，但 an
 - 线性: `f = (x) => x`
 - 速率从 0 开始的 n 次幂加速: `f = (x) => Math.pow(x, n)`
 
-> 访问 [ts-easing](https://github.com/streamich/ts-easing/blob/master/src/index.ts) 查看一些常见的插值动画函数
+> 访问 [ts-easing](https://github.com/streamich/ts-easing/blob/master/src/index.ts)
+> 查看一些常见的插值动画函数
 
 <!--
 网页动画的工作原理简单来说是 进行时间与完成率的关系。将 Time 从 0 - 100% 匀速变化，根据时间实时计算出动画在那个时刻的完成比例 Progression。 -->
@@ -343,8 +344,7 @@ https://codesandbox.io/p/sandbox/collections-mi2c3u?file=%2Fapp%2Fhooks%2Fuse-of
 - react-spring
 - **framer-motion**
 - gsap
-- matter.js
-  ...
+- matter.js ...
 
 <!-- 有很多更方便开发者实现动画的开源库，本次主要介绍一下 framer-motion -->
 
@@ -352,7 +352,8 @@ https://codesandbox.io/p/sandbox/collections-mi2c3u?file=%2Fapp%2Fhooks%2Fuse-of
 
 ### Framer Motion 基本概念
 
-Framer Motion 是一个 React 动画库，它提供了一系列支持动画的基础组件、事件方法及 hooks 方法供开发者方便快捷地实现动画效果。
+Framer
+Motion 是一个 React 动画库，它提供了一系列支持动画的基础组件、事件方法及 hooks 方法供开发者方便快捷地实现动画效果。
 
 ```jsx
 <motion.div animate={{ x: 100 }} whileTap={{ y: 10 }} />
@@ -405,7 +406,8 @@ Demo
 
 1. **F**irst: `ele.getBoundingClientRect()` 获取初始位置 `{x: 0}`
 2. **L**ast: 获取终点位置 `{x: 10}`
-3. **I**nverse: 此时已经有了起始点的信息，计算终点状态反转到初始状态需要的转换参数 `{transform: translateX(-10)}`
+3. **I**nverse: 此时已经有了起始点的信息，计算终点状态反转到初始状态需要的转换参数
+   `{transform: translateX(-10)}`
 4. **P**lay: 将第三步的转换参数归零，并添加动画过渡效果 `translateX(-10) -> translateX(0)`
 
 <!-- Framer motion 通过称为 FLIP 的技术方案实现了布局动画 -->
@@ -416,7 +418,9 @@ Demo
 
 1. 网页动画经历了很多年的发展，最终形成了通过 CSS，JavaScript 编写动画的主流方式。
 2. CSS 通过定义动画帧可以快速的实现简单的动画。
-3. 开发者可以通过 `window.requestAnimationFrame` 方法使用 JavaScript 开发高性能的动画效果。同时也有原生的 Web Animations API 可供选择使用，但目前仍需要考虑兼容性问题。
+3. 开发者可以通过 `window.requestAnimationFrame`
+   方法使用 JavaScript 开发高性能的动画效果。同时也有原生的 Web Animations
+   API 可供选择使用，但目前仍需要考虑兼容性问题。
 4. React 开发者可以通过优秀的第三方库如 framer motion 简单快速的构建动画效果。
 
 ---

@@ -66,13 +66,8 @@ export default function UseSandpack() {
   return (
     <div>
       <Sandpack
-        dependencies={{
-          react: '^19.0.0-rc.0',
-          'react-dom': '^19.0.0-rc.0',
-        }}
-        files={{
-          'App.js': CODE,
-        }}
+        dependencies={{ react: '^19.0.0-rc.0', 'react-dom': '^19.0.0-rc.0' }}
+        files={{ 'App.js': CODE }}
       />
     </div>
   )

@@ -25,10 +25,7 @@ export function EditorialNotes() {
         opacity: 0,
         stagger: 0.12,
         y: 24,
-        scrollTrigger: {
-          start: 'top 82%',
-          trigger: rootRef.current,
-        },
+        scrollTrigger: { start: 'top 82%', trigger: rootRef.current },
       })
     },
     { scope: rootRef },
@@ -42,10 +39,11 @@ export function EditorialNotes() {
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div className="space-y-3" data-notes-reveal>
           <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/48 dark:text-white/44">
-            Working notes
+            Engineering principles
           </div>
           <h2 className="max-w-xl text-2xl font-semibold tracking-[-0.03em] md:text-3xl">
-            Shipping fast is useful. Keeping systems understandable later is non-negotiable.
+            The value of a senior frontend engineer is judgment: where to keep flexibility, where
+            to add structure, and where to reduce complexity before it spreads.
           </h2>
         </div>
 
@@ -67,12 +65,9 @@ export function EditorialNotes() {
         </div>
       </div>
 
-      <div
-        className="mt-8 border-t border-black/10 pt-6 dark:border-white/12"
-        data-notes-reveal
-      >
+      <div className="mt-8 border-t border-black/10 pt-6 dark:border-white/12" data-notes-reveal>
         <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-black/46 dark:text-white/44">
-          Extended practice
+          Broader technical surface area
         </div>
         <div className="flex flex-wrap gap-2.5">
           {editorialExtendedPractice.map(item => (

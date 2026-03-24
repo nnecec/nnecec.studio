@@ -32,7 +32,8 @@ description: ''
 
 由于移动端和桌面端的样式和用户操作逻辑往往差异比较大，将移动和 PC 的页面逻辑单独实现，通用方法共用，通过 monorepo 的方式组织可以更方便的共用代码，并将代码合理的分类管理。
 
-在 monorepo 的技术选型方面，可以参考 [monorepo.tools](https://monorepo.tools/) 对 monorepo 的概念及技术框架有比较详细的说明。
+在 monorepo 的技术选型方面，可以参考 [monorepo.tools](https://monorepo.tools/)
+对 monorepo 的概念及技术框架有比较详细的说明。
 
 ### 2. 构建方案
 
@@ -55,15 +56,21 @@ description: ''
 
 ### 4. 样式方案
 
-样式方案发展经历了 CSS, Less/SCSS, CSS Module, CSS-in-JS, Atomic CSS 等等。如今每个方案仍然有各自适合的场景。
+样式方案发展经历了 CSS, Less/SCSS, CSS Module, CSS-in-JS, Atomic
+CSS 等等。如今每个方案仍然有各自适合的场景。
 
-2022 年流行起来一股 Headless UI 风潮，组件库只提供功能，样式由用户编写。个人认为这是未来的一个趋势，类似 Radix UI 默认只提供了组件的能力，也提供了样式代码供用户拷贝到自己的项目中使用。
+2022 年流行起来一股 Headless
+UI 风潮，组件库只提供功能，样式由用户编写。个人认为这是未来的一个趋势，类似 Radix
+UI 默认只提供了组件的能力，也提供了样式代码供用户拷贝到自己的项目中使用。
 
-NextUI v2 的重构则同样不提供样式代码，但基于 TailwindCSS 提供了样式类，内部通过 `tailwind-variants` 将需要的 TailwindCSS 类集成到组件上。
+NextUI v2 的重构则同样不提供样式代码，但基于 TailwindCSS 提供了样式类，内部通过 `tailwind-variants`
+将需要的 TailwindCSS 类集成到组件上。
 
-近期非常流行的 shadcn/ui 则基于 radix-ui 提供逻辑能力，自己实现组件样式。它甚至不提供 npm 包，只是提供模版代码让开发者复制到自己的项目中，但这样的设计个人认为非常棒！这种方式其实就是 Headless UI 的延伸。
+近期非常流行的 shadcn/ui 则基于 radix-ui 提供逻辑能力，自己实现组件样式。它甚至不提供 npm 包，只是提供模版代码让开发者复制到自己的项目中，但这样的设计个人认为非常棒！这种方式其实就是 Headless
+UI 的延伸。
 
-开源的组件库也需要考虑主题调整的灵活性，Ant.Design@5 引入了 token 来提供更易用的主题切换能力，本质上是通过 css-in-js 将用户定义的 tokens 通过运行时 `ConfigProvider` 或编译时 `ConfigProvider.Config()` 提供给组件实现自定义样式。
+开源的组件库也需要考虑主题调整的灵活性，Ant.Design@5 引入了 token 来提供更易用的主题切换能力，本质上是通过 css-in-js 将用户定义的 tokens 通过运行时
+`ConfigProvider` 或编译时 `ConfigProvider.Config()` 提供给组件实现自定义样式。
 
 ### 5. 代码组织
 
@@ -84,7 +91,9 @@ NextUI v2 的重构则同样不提供样式代码，但基于 TailwindCSS 提供
 └── package.json
 ```
 
-如果是 monorepo 的组织方式，往往一个组件作为一个 package，如果组件数量比较大的情况下，也可以有一个 main package 去中转所有的 sub package。这样用户只需要安装这一个 main package 就可以了，并且在 Tree Shaking 的能力下不会对产物体积产生影响。
+如果是 monorepo 的组织方式，往往一个组件作为一个 package，如果组件数量比较大的情况下，也可以有一个 main
+package 去中转所有的 sub package。这样用户只需要安装这一个 main package 就可以了，并且在 Tree
+Shaking 的能力下不会对产物体积产生影响。
 
 ```text
 ├── packages
@@ -117,7 +126,9 @@ export * from '@n/utils'
 
 ### 单元测试
 
-使用 Jest 编写组件的单元测试，根据组件库的具体落地情况，可能需要添加 `@testing-library/react`, `@testing-library/react-hooks`, `@testing-library/user-event`, `@testing-library/jest-dom` 等来支持不同的需求。
+使用 Jest 编写组件的单元测试，根据组件库的具体落地情况，可能需要添加 `@testing-library/react`,
+`@testing-library/react-hooks`, `@testing-library/user-event`, `@testing-library/jest-dom`
+等来支持不同的需求。
 
 编写单元测试不难但是繁琐，有的代码逻辑不知道怎么编写，可能就需要去开源仓库找符合自己需求的示例参考。
 

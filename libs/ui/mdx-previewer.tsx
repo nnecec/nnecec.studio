@@ -55,10 +55,7 @@ export const MDXPreviewer = ({ components = {}, source, ...props }: MDXRemotePro
                 rehypeShiki,
                 {
                   defaultColor: false,
-                  themes: {
-                    dark: 'github-dark-default',
-                    light: 'github-light-default',
-                  },
+                  themes: { dark: 'github-dark-default', light: 'github-light-default' },
                   transformers: [transformerMetaHighlight(), transformerNotationHighlight()],
                 } as RehypeShikiOptions,
               ],
@@ -79,10 +76,7 @@ export function collectHeadings(node: any, sections: any[] = []) {
       const title = node.children[0]
 
       if (typeof title === 'string') {
-        sections.push({
-          ...node.attributes,
-          title,
-        })
+        sections.push({ ...node.attributes, title })
       }
     }
 

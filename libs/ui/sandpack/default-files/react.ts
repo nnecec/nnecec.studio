@@ -43,16 +43,7 @@ const IndexHtml = `<!DOCTYPE html>
 `
 
 export const reactFiles: SandpackFiles = {
-  '/index.js': {
-    code: IndexJs,
-    hidden: true,
-  },
-  '/public/index.html': {
-    code: IndexHtml,
-    hidden: true,
-  },
-  '/styles.css': {
-    code: StylesCss,
-    hidden: true,
-  },
+  '/index.js': { code: IndexJs, hidden: true },
+  '/public/index.html': { code: IndexHtml, hidden: true },
+  '/styles.css': { code: StylesCss, hidden: true },
 }

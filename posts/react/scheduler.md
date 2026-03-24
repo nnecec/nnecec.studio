@@ -7,7 +7,8 @@ description: 'React 如何控制不同优先级的调度'
 
 ## 时间切片
 
-要实现优先级调度，则必须在渲染流程中，React 需要增加时机去检查有没有更高优先级的任务出现，这种功能称为时间切片(time slicing)。
+要实现优先级调度，则必须在渲染流程中，React 需要增加时机去检查有没有更高优先级的任务出现，这种功能称为时间切片(time
+slicing)。
 
 ```ts
 function workLoopConcurrent() {
@@ -28,7 +29,8 @@ function shouldYield() {
 
 当处于 `Concurrent` 渲染模式下，React Scheduler 可以通过 shouldYield 干预 React 的渲染过程。
 
-在每 5ms 的渲染过程中，React 会暂停 `performUnitOfWork`，给浏览器一个检查是否有更高优先级任务的机会。这个方法实现了常说的 fiber 架构下的`时间切片`功能，即停下正在执行的任务然后检查任务队列中是否有高优先级的任务以实现优先级调度。
+在每 5ms 的渲染过程中，React 会暂停
+`performUnitOfWork`，给浏览器一个检查是否有更高优先级任务的机会。这个方法实现了常说的 fiber 架构下的`时间切片`功能，即停下正在执行的任务然后检查任务队列中是否有高优先级的任务以实现优先级调度。
 
 React 会根据设备的 fps 来调整 frameInterval(forceFrameRate 方法)
 
@@ -51,13 +53,15 @@ function forceFrameRate(fps) {
 
 React 可以通过 `ReactDOM.createRoot` 开启异步渲染模式，React 18 之后默认使用 Concurrent 模式。
 
-Scheduler 是 React 自己实现的在类似 `requestIdleCallback` 执行时机去检查是否有更高优先级的任务被加入到了执行队列中，从而实现了异步渲染的概念。
+Scheduler 是 React 自己实现的在类似 `requestIdleCallback`
+执行时机去检查是否有更高优先级的任务被加入到了执行队列中，从而实现了异步渲染的概念。
 
 不使用原生 requestIdleCallback 原因有：
 
 - requestIdleCallback 浏览器支持程度差（safari 及 老版本的 webkit 浏览器都没有支持）
 
-由于 React 将 Scheduler 设计为独立的一套调度系统，有其自己的一套优先级机制。而 React 也有一套自己的优先级机制 `lane`，针对两者优先级机制的不同，在 React 中定义了两套机制优先级的映射关系，以支持 React 使用 Scheduler 调度。
+由于 React 将 Scheduler 设计为独立的一套调度系统，有其自己的一套优先级机制。而 React 也有一套自己的优先级机制
+`lane`，针对两者优先级机制的不同，在 React 中定义了两套机制优先级的映射关系，以支持 React 使用 Scheduler 调度。
 
 ```ts
 // React
@@ -80,7 +84,8 @@ export const IdlePriority = 5
 
 React 通过 scheduleCallback 将调度方法与优先级相关联。
 
-在[状态更新](/posts/react/rerender)中，React 的更新最后都通过 `scheduleUpdateOnFiber` 方法调度更新，在方法中调用了 `ensureRootIsScheduled`
+在[状态更新](/posts/react/rerender)中，React 的更新最后都通过 `scheduleUpdateOnFiber`
+方法调度更新，在方法中调用了 `ensureRootIsScheduled`
 
 ```ts
 function ensureRootIsScheduled(root: FiberRoot, currentTime: number) {
@@ -124,7 +129,8 @@ function ensureRootIsScheduled(root: FiberRoot, currentTime: number) {
 }
 ```
 
-`ensureRootIsScheduled` 中通过 React 优先级映射到 Scheduler 优先级，并通过 `scheduleCallback` 将任务接入到 Scheduler 的调度机制进行调度工作。
+`ensureRootIsScheduled` 中通过 React 优先级映射到 Scheduler 优先级，并通过 `scheduleCallback`
+将任务接入到 Scheduler 的调度机制进行调度工作。
 
 接下来我们会说到如何根据优先级调度方法。
 

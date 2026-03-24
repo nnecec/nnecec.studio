@@ -21,11 +21,8 @@ export const useWindowScroll = (): State => {
     const handler = () => {
       setState(state => {
         const { pageXOffset, pageYOffset } = globalThis
-        return state.x !== pageXOffset || state.y !== pageYOffset ?
-            {
-              x: pageXOffset,
-              y: pageYOffset,
-            }
+        return state.x !== pageXOffset || state.y !== pageYOffset
+          ? { x: pageXOffset, y: pageYOffset }
           : state
       })
     }
@@ -34,10 +31,7 @@ export const useWindowScroll = (): State => {
     // Window scroll may be changed between render and effect handler.
     handler()
 
-    window.addEventListener('scroll', handler, {
-      capture: false,
-      passive: true,
-    })
+    window.addEventListener('scroll', handler, { capture: false, passive: true })
 
     return () => {
       window.removeEventListener('scroll', handler)
