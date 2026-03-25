@@ -1,12 +1,12 @@
-@import 'lenis/dist/lenis.css';
+@import "lenis/dist/lenis.css";
 @reference './globals.css';
 
 @font-face {
-  font-family: 'Mona Sans';
+  font-family: "Mona Sans";
   src:
-    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2')
-      format('woff2 supports variations'),
-    url('//github.githubassets.com/static/fonts/github/mona-sans.woff2') format('woff2-variations');
+    url("//github.githubassets.com/static/fonts/github/mona-sans.woff2")
+      format("woff2 supports variations"),
+    url("//github.githubassets.com/static/fonts/github/mona-sans.woff2") format("woff2-variations");
   font-weight: 200 900;
   font-stretch: 75% 125%;
 }
@@ -32,6 +32,102 @@ html {
   }
   svg {
     @apply align-text-bottom;
+  }
+}
+
+.signal-ledger-body.heti {
+  @apply text-[1.02rem] text-black/80 dark:text-white/78;
+
+  .signal-ledger-article {
+    @apply space-y-6;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans;
+  }
+
+  h2 {
+    @apply mt-16 border-t border-black/10 pt-6 text-[clamp(2rem,4vw,3rem)] font-black leading-[1] tracking-[-0.05em] text-black/94 dark:border-white/10 dark:text-white/94;
+  }
+
+  h3 {
+    @apply mt-12 text-[1.65rem] font-black leading-[1.08] tracking-[-0.04em] text-black/92 dark:text-white/92;
+  }
+
+  h4 {
+    @apply mt-10 text-xl font-bold leading-tight tracking-[-0.03em] text-black/88 dark:text-white/88;
+  }
+
+  p,
+  ul,
+  ol,
+  dl {
+    @apply my-7 text-base leading-8 text-black/72 dark:text-white/70;
+  }
+
+  li {
+    @apply my-2;
+  }
+
+  blockquote {
+    @apply my-10 border-l-2 border-black/18 bg-black/[0.03] px-5 py-4 text-black/70 dark:border-white/18 dark:bg-white/[0.05] dark:text-white/70;
+  }
+
+  hr {
+    @apply my-12 border-0 border-t border-black/10 dark:border-white/10;
+  }
+
+  a {
+    @apply text-black decoration-black/28 underline-offset-4 transition-colors hover:text-primary hover:decoration-primary dark:text-white dark:decoration-white/24;
+  }
+
+  pre {
+    @apply my-8 overflow-x-auto rounded-[1.25rem] bg-transparent p-0;
+  }
+
+  .shiki {
+    @apply overflow-x-auto rounded-[1.25rem] border-black/10 bg-[#f7f1e8]! dark:border-white/10 dark:bg-[#111216]!;
+  }
+
+  :not(pre) > code {
+    @apply rounded-md bg-black/[0.06] px-1.5 py-0.5 text-[0.92em] text-black/84 dark:bg-white/[0.08] dark:text-white/82;
+  }
+
+  table {
+    @apply my-10 w-full border-collapse text-left text-sm;
+  }
+
+  th,
+  td {
+    @apply border-b border-black/10 px-3 py-3 dark:border-white/10;
+  }
+
+  figure,
+  img {
+    @apply my-10;
+  }
+
+  img {
+    @apply rounded-[1.5rem] border border-black/8 dark:border-white/10;
+  }
+
+  figcaption {
+    @apply mt-3 text-sm leading-6 text-black/54 dark:text-white/52;
+  }
+}
+
+.signal-ledger-marp {
+  .marpit {
+    @apply gap-6;
+  }
+
+  .marpit > svg,
+  .marpit > section {
+    @apply rounded-[1.5rem] border border-black/10 shadow-[0_20px_60px_rgba(15,15,15,0.08)] dark:border-white/10 dark:shadow-none;
   }
 }
 

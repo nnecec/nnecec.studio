@@ -11,7 +11,7 @@ export function AboutEditorialPage() {
       <div className="page-bleed relative overflow-hidden">
         <div className="absolute inset-0 -z-20" />
         <div className="container relative px-4 sm:px-6 lg:px-8">
-          <div className="border border-black/10 bg-white/38 backdrop-blur-[2px] dark:border-white/12">
+          <div className="border border-black/10 backdrop-blur-[2px] dark:border-white/12">
             <EditorialCapabilities />
 
             <EditorialNotes />
