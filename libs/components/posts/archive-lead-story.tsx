@@ -1,3 +1,5 @@
+"use client";
+
 import { IconArrowUpRight } from "@tabler/icons-react";
 import { Link } from "next-view-transitions";
 
@@ -5,7 +7,7 @@ import {
   MotionStagger,
   MotionStaggerItem,
 } from "~/libs/components/motion/reveal";
-import type { Post } from "~/libs/types/post";
+import type { PostPreview } from "~/libs/types/post";
 import { Badge } from "~/libs/ui";
 
 import {
@@ -14,7 +16,7 @@ import {
   getVisibleTags,
 } from "./archive-summary";
 
-export function ArchiveLeadStory({ post }: { post: Post }) {
+export function ArchiveLeadStory({ post }: { post: PostPreview }) {
   const summary = getPostSummary(post, 220);
   const sectionLabel = getPostSectionLabel(post.slug);
   const visibleTags = getVisibleTags(post);

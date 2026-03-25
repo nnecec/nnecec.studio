@@ -16,6 +16,7 @@ import {
   MotionStagger,
   MotionStaggerItem,
 } from "~/libs/components/motion/reveal";
+import { getPostSummary } from "~/libs/components/posts/archive-summary";
 import { Badge, Button } from "~/libs/ui";
 import { ProjectsList } from "~/libs/utils/constants";
 
@@ -49,31 +50,6 @@ const engineeringSignals = [
   "Developer tooling",
   "Frontend delivery",
 ];
-
-function stripMarkdown(content: string) {
-  return content
-    .replace(/^---[\s\S]*?---/, "")
-    .replace(/<[^>]*>/g, " ")
-    .replace(/`{1,3}[^`]*`{1,3}/g, " ")
-    .replace(/\!\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/[#>*_\-]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function getPostSummary(description?: string, content?: string) {
-  if (description?.trim()) {
-    return description.trim();
-  }
-
-  if (!content) {
-    return "Implementation notes from recent frontend engineering work.";
-  }
-
-  const plainText = stripMarkdown(content);
-  return plainText.slice(0, 132) + (plainText.length > 132 ? "..." : "");
-}
 
 export default async function Page() {
   const { posts } = await getAllPosts();
@@ -231,7 +207,11 @@ export default async function Page() {
                           {post.title}
                         </h3>
                         <p className="text-sm leading-7 text-black/62 dark:text-white/62">
-                          {getPostSummary(post.description, post.content)}
+                          {getPostSummary(
+                            post,
+                            132,
+                            "Implementation notes from recent frontend engineering work.",
+                          )}
                         </p>
                       </div>
 

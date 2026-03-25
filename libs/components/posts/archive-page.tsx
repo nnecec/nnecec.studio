@@ -1,4 +1,9 @@
-import type { Post } from "~/libs/types/post";
+"use client";
+
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+
+import type { PostPreview } from "~/libs/types/post";
 import {
   MotionSection,
   MotionStagger,
@@ -10,12 +15,15 @@ import { ArchiveLedgerList } from "./archive-ledger-list";
 import { TagPicker } from "./tag-picker";
 
 type ArchivePageProps = {
-  currentTag?: string;
-  posts: Post[];
+  posts: PostPreview[];
   tags: string[];
 };
 
-export function ArchivePage({ currentTag, posts, tags }: ArchivePageProps) {
+function ArchivePageContent({
+  currentTag,
+  posts,
+  tags,
+}: ArchivePageProps & { currentTag?: string }) {
   const leadPost = posts[0];
   const ledgerPosts = posts.slice(1);
 
@@ -154,5 +162,31 @@ export function ArchivePage({ currentTag, posts, tags }: ArchivePageProps) {
         </MotionSection>
       </section>
     </div>
+  );
+}
+
+function ArchivePageClient(props: ArchivePageProps) {
+  const searchParams = useSearchParams();
+  const currentTag = searchParams.get("tag") ?? undefined;
+  const visiblePosts = currentTag
+    ? props.posts.filter((post) => post.tags?.includes(currentTag))
+    : props.posts;
+
+  return (
+    <ArchivePageContent
+      currentTag={currentTag}
+      posts={visiblePosts}
+      tags={props.tags}
+    />
+  );
+}
+
+export function ArchivePage(props: ArchivePageProps) {
+  return (
+    <Suspense
+      fallback={<ArchivePageContent posts={props.posts} tags={props.tags} />}
+    >
+      <ArchivePageClient {...props} />
+    </Suspense>
   );
 }

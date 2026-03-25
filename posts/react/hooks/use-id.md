@@ -1,8 +1,8 @@
 ---
-title: 'Hooks 源码：useId'
-date: '2022-12-07'
-tags: ['React']
-description: 'useId 和它的一切。'
+title: "Hooks 源码：useId"
+date: "2022-12-07"
+tags: ["React"]
+description: "useId 和它的一切。"
 ---
 
 ## 概念
@@ -48,13 +48,11 @@ incrementing counter? 》 中，解释道使用 `useId`
 通过 `getTreeId`
 生成唯一 ID，treeId 是从根节点到当前组件节点的编号，通过算法生成，节点的层级结构不论在 SSR 还是 CSR 都是一致的，所以计算出来的 ID 也是一致的。React 团队在[这里](https://github.com/facebook/react/pull/22644)阐述了 ID 生成算法。
 
-<!-- TODO: 算法解读（算法好复杂看不懂） -->
-
 ```ts
 function updateId(): string {
-  const hook = updateWorkInProgressHook()
-  const id: string = hook.memoizedState
-  return id
+  const hook = updateWorkInProgressHook();
+  const id: string = hook.memoizedState;
+  return id;
 }
 ```
 

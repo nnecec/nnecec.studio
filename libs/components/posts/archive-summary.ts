@@ -1,55 +1,51 @@
-import type { Post } from "~/libs/types/post"
+import type { Post, PostPreview } from "~/libs/types/post";
 
-function stripMarkdown(content: string) {
-  return content
-    .replace(/^---[\s\S]*?---/, "")
-    .replace(/<[^>]*>/g, " ")
-    .replace(/`{1,3}[^`]*`{1,3}/g, " ")
-    .replace(/\!\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/[#>*_\-]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-}
+import { createPostSummary } from "~/libs/utils/post-summary";
 
-function truncate(value: string, maxLength: number) {
-  if (value.length <= maxLength) {
-    return value
-  }
-
-  return `${value.slice(0, maxLength).trimEnd()}...`
-}
+type PostSummarySource = {
+  content?: string;
+  description?: string;
+  summary?: string;
+};
 
 export function getPostSummary(
-  post: Pick<Post, "content" | "description">,
+  post: PostSummarySource,
   maxLength = 168,
-  fallback = "Notes on frontend systems, rendering, and implementation tradeoffs."
+  fallback = "Notes on frontend systems, rendering, and implementation tradeoffs.",
 ) {
-  if (post.description?.trim()) {
-    return truncate(post.description.trim(), maxLength)
+  if (post.summary) {
+    return createPostSummary({
+      description: post.summary,
+      fallback,
+      maxLength,
+    });
   }
 
-  if (!post.content) {
-    return fallback
-  }
-
-  return truncate(stripMarkdown(post.content), maxLength)
+  return createPostSummary({
+    content: post.content,
+    description: post.description,
+    fallback,
+    maxLength,
+  });
 }
 
 export function getPostSectionLabel(slug?: string) {
-  const rawSection = slug?.split("/").filter(Boolean)[0]
+  const rawSection = slug?.split("/").filter(Boolean)[0];
 
   if (!rawSection) {
-    return "Ledger"
+    return "Ledger";
   }
 
   return rawSection
     .split(/[-.]/g)
     .filter(Boolean)
     .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
-    .join(" ")
+    .join(" ");
 }
 
-export function getVisibleTags(post: Pick<Post, "tags">, limit = 3) {
-  return post.tags?.slice(0, limit) ?? []
+export function getVisibleTags(
+  post: Pick<Post | PostPreview, "tags">,
+  limit = 3,
+) {
+  return post.tags?.slice(0, limit) ?? [];
 }

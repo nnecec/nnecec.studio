@@ -1,13 +1,22 @@
-import { IconArrowRight } from "@tabler/icons-react"
-import { Link } from "next-view-transitions"
+"use client";
 
-import { MotionStagger, MotionStaggerItem } from "~/libs/components/motion/reveal"
-import type { Post } from "~/libs/types/post"
-import { Badge } from "~/libs/ui"
+import { IconArrowRight } from "@tabler/icons-react";
+import { Link } from "next-view-transitions";
 
-import { getPostSectionLabel, getPostSummary, getVisibleTags } from "./archive-summary"
+import {
+  MotionStagger,
+  MotionStaggerItem,
+} from "~/libs/components/motion/reveal";
+import type { PostPreview } from "~/libs/types/post";
+import { Badge } from "~/libs/ui";
 
-export function ArchiveLedgerList({ posts }: { posts: Post[] }) {
+import {
+  getPostSectionLabel,
+  getPostSummary,
+  getVisibleTags,
+} from "./archive-summary";
+
+export function ArchiveLedgerList({ posts }: { posts: PostPreview[] }) {
   return (
     <MotionStagger
       amount={0.04}
@@ -16,13 +25,16 @@ export function ArchiveLedgerList({ posts }: { posts: Post[] }) {
       stagger={0.06}
     >
       {posts.map((post, index) => {
-        const visibleTags = getVisibleTags(post)
-        const sectionLabel = getPostSectionLabel(post.slug)
-        const summary = getPostSummary(post, 154)
+        const visibleTags = getVisibleTags(post);
+        const sectionLabel = getPostSectionLabel(post.slug);
+        const summary = getPostSummary(post, 154);
 
         return (
           <MotionStaggerItem distance={12} key={post.slug}>
-            <Link className="group block no-underline" href={`/posts${post.slug}`}>
+            <Link
+              className="group block no-underline"
+              href={`/posts${post.slug}`}
+            >
               <article className="grid gap-4 border-b border-black/10 py-6 transition duration-200 last:border-b-0 hover:bg-black/[0.015] dark:border-white/10 dark:hover:bg-white/[0.025] md:grid-cols-[3.75rem_minmax(0,1fr)_12.5rem] md:items-start md:gap-6 md:px-2">
                 <div className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-black/42 dark:text-white/40">
                   <span>{String(index + 2).padStart(2, "0")}</span>
@@ -74,8 +86,8 @@ export function ArchiveLedgerList({ posts }: { posts: Post[] }) {
               </article>
             </Link>
           </MotionStaggerItem>
-        )
+        );
       })}
     </MotionStagger>
-  )
+  );
 }

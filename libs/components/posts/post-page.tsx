@@ -1,17 +1,17 @@
-import type { Post } from "~/libs/types/post"
+import type { Post, PostPreview } from "~/libs/types/post";
 
-import { PostContinuation } from "./post-continuation"
-import { PostOpeningPanel } from "./post-opening-panel"
-import { Previewer } from "./previewer"
+import { PostContinuation } from "./post-continuation";
+import { PostOpeningPanel } from "./post-opening-panel";
+import { Previewer } from "./previewer";
 
 type PostPageProps = {
-  newerPost?: Post
-  olderPost?: Post
-  post: Post
-}
+  newerPost?: PostPreview;
+  olderPost?: PostPreview;
+  post: Post;
+};
 
 export function PostPage({ newerPost, olderPost, post }: PostPageProps) {
-  const isMarp = post.marp
+  const isMarp = post.marp;
 
   return (
     <article className="-mt-header pb-16 md:pb-24">
@@ -51,8 +51,8 @@ export function PostPage({ newerPost, olderPost, post }: PostPageProps) {
                   Reading note
                 </div>
                 <p>
-                  The opening panel carries the visual weight. The body tightens into a quieter
-                  field so the long-form note stays legible.
+                  The opening panel carries the visual weight. The body tightens
+                  into a quieter field so the long-form note stays legible.
                 </p>
               </div>
             </aside>
@@ -62,5 +62,5 @@ export function PostPage({ newerPost, olderPost, post }: PostPageProps) {
 
       <PostContinuation newerPost={newerPost} olderPost={olderPost} />
     </article>
-  )
+  );
 }

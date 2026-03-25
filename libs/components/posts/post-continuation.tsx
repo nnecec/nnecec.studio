@@ -1,26 +1,26 @@
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react"
-import { Link } from "next-view-transitions"
-import type { ReactNode } from "react"
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { Link } from "next-view-transitions";
+import type { ReactNode } from "react";
 
-import type { Post } from "~/libs/types/post"
+import type { PostPreview } from "~/libs/types/post";
 
-import { getPostSummary } from "./archive-summary"
+import { getPostSummary } from "./archive-summary";
 
 type PostContinuationProps = {
-  newerPost?: Post
-  olderPost?: Post
-}
+  newerPost?: PostPreview;
+  olderPost?: PostPreview;
+};
 
 function ContinuationLink({
   direction,
   icon,
   label,
-  post
+  post,
 }: {
-  direction: "left" | "right"
-  icon: ReactNode
-  label: string
-  post: Post
+  direction: "left" | "right";
+  icon: ReactNode;
+  label: string;
+  post: PostPreview;
 }) {
   return (
     <Link className="group block no-underline" href={`/posts${post.slug}`}>
@@ -33,7 +33,9 @@ function ContinuationLink({
           {direction === "right" ? icon : null}
         </div>
 
-        <div className={`space-y-3 ${direction === "right" ? "text-right" : ""}`}>
+        <div
+          className={`space-y-3 ${direction === "right" ? "text-right" : ""}`}
+        >
           <h3 className="text-[1.35rem] font-black leading-tight tracking-[-0.04em] text-black/92 transition group-hover:text-primary dark:text-white/92">
             {post.title}
           </h3>
@@ -43,12 +45,15 @@ function ContinuationLink({
         </div>
       </article>
     </Link>
-  )
+  );
 }
 
-export function PostContinuation({ newerPost, olderPost }: PostContinuationProps) {
+export function PostContinuation({
+  newerPost,
+  olderPost,
+}: PostContinuationProps) {
   if (!newerPost && !olderPost) {
-    return null
+    return null;
   }
 
   return (
@@ -60,7 +65,8 @@ export function PostContinuation({ newerPost, olderPost }: PostContinuationProps
               Continue through the ledger
             </div>
             <h2 className="max-w-2xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
-              Move to the next note without dropping back into a generic post footer.
+              Move to the next note without dropping back into a generic post
+              footer.
             </h2>
           </div>
         </div>
@@ -87,5 +93,5 @@ export function PostContinuation({ newerPost, olderPost }: PostContinuationProps
         </div>
       </div>
     </section>
-  )
+  );
 }
