@@ -9,6 +9,7 @@
     url("//github.githubassets.com/static/fonts/github/mona-sans.woff2") format("woff2-variations");
   font-weight: 200 900;
   font-stretch: 75% 125%;
+  font-display: swap;
 }
 
 html {
@@ -51,7 +52,7 @@ html {
   }
 
   h2 {
-    @apply mt-16 border-t border-black/10 pt-6 text-[clamp(2rem,4vw,3rem)] font-black leading-[1] tracking-[-0.05em] text-black/94 dark:border-white/10 dark:text-white/94;
+    @apply mt-16 pt-6 text-[clamp(2rem,4vw,3rem)] font-black leading-[1] tracking-[-0.05em] text-black/94 dark:text-white/94;
   }
 
   h3 {
@@ -90,7 +91,7 @@ html {
   }
 
   .shiki {
-    @apply overflow-x-auto rounded-[1.25rem] border-black/10 bg-[#f7f1e8]! dark:border-white/10 dark:bg-[#111216]!;
+    @apply p-4 overflow-x-auto rounded-[1.25rem] border-black/10 bg-[#f7f1e8]! dark:border-white/10 dark:bg-[#111216]!;
   }
 
   :not(pre) > code {

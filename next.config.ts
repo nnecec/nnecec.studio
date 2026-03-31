@@ -1,9 +1,7 @@
-import type { NextConfig } from 'next'
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactCompiler: true,
-  images: { formats: ['image/webp'] },
-  transpilePackages: ['next-mdx-remote'],
-}
+  images: { formats: ["image/webp"] },
+};
 
-export default nextConfig
+export default nextConfig;
