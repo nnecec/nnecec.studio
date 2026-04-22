@@ -24,7 +24,7 @@ function ContinuationLink({
 }) {
   return (
     <Link className="group block no-underline" href={`/posts${post.slug}`}>
-      <article className="flex h-full flex-col gap-4 rounded-[1.5rem] border border-black/10 bg-black/[0.02] p-5 transition duration-300 hover:-translate-y-1 hover:border-black/16 hover:bg-black/[0.035] dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/16 dark:hover:bg-white/[0.05]">
+      <article className="flex h-full flex-col gap-4 rounded-[1.5rem] border border-black/10 bg-black/[0.02] p-5 transition-transform duration-300 hover:-translate-y-1 hover:border-black/16 hover:bg-black/[0.035] dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/16 dark:hover:bg-white/[0.05]">
         <div
           className={`inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.26em] text-black/42 dark:text-white/40 ${direction === "right" ? "justify-end text-right" : ""}`}
         >
@@ -36,7 +36,7 @@ function ContinuationLink({
         <div
           className={`space-y-3 ${direction === "right" ? "text-right" : ""}`}
         >
-          <h3 className="text-[1.35rem] font-black leading-tight tracking-[-0.04em] text-black/92 transition group-hover:text-primary dark:text-white/92">
+          <h3 className="text-[1.35rem] font-black leading-tight tracking-[-0.04em] text-black/92 transition-colors duration-200 group-hover:text-primary dark:text-white/92">
             {post.title}
           </h3>
           <p className="text-sm leading-7 text-black/62 dark:text-white/60">

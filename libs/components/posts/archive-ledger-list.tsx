@@ -35,7 +35,7 @@ export function ArchiveLedgerList({ posts }: { posts: PostPreview[] }) {
               className="group block no-underline"
               href={`/posts${post.slug}`}
             >
-              <article className="grid gap-4 border-b border-black/10 py-6 transition duration-200 last:border-b-0 hover:bg-black/[0.015] dark:border-white/10 dark:hover:bg-white/[0.025] md:grid-cols-[3.75rem_minmax(0,1fr)_12.5rem] md:items-start md:gap-6 md:px-2">
+              <article className="grid gap-4 border-b border-black/10 py-6 transition-colors duration-200 last:border-b-0 hover:bg-black/[0.015] dark:border-white/10 dark:hover:bg-white/[0.025] md:grid-cols-[3.75rem_minmax(0,1fr)_12.5rem] md:items-start md:gap-6 md:px-2">
                 <div className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.26em] text-black/42 dark:text-white/40">
                   <span>{String(index + 2).padStart(2, "0")}</span>
                   <span className="hidden h-px w-6 bg-current/35 md:block" />
@@ -51,7 +51,7 @@ export function ArchiveLedgerList({ posts }: { posts: PostPreview[] }) {
                     <span>{sectionLabel}</span>
                   </div>
 
-                  <h3 className="max-w-3xl text-[1.45rem] font-black leading-tight tracking-[-0.04em] text-black/92 transition group-hover:text-primary md:text-[1.55rem] dark:text-white/92">
+                  <h3 className="max-w-3xl text-[1.45rem] font-black leading-tight tracking-[-0.04em] text-black/92 transition-colors duration-200 group-hover:text-primary md:text-[1.55rem] dark:text-white/92">
                     {post.title}
                   </h3>
 
@@ -79,7 +79,7 @@ export function ArchiveLedgerList({ posts }: { posts: PostPreview[] }) {
                     </div>
                   ) : null}
 
-                  <div className="inline-flex size-9 items-center justify-center rounded-full text-black/66 transition duration-200 group-hover:translate-x-1 group-hover:border-black/18 group-hover:text-black/84 dark:border-white/10 dark:text-white/62 dark:group-hover:border-white/16 dark:group-hover:text-white/84">
+                  <div className="inline-flex size-9 items-center justify-center rounded-full text-black/66 transition-colors duration-200 group-hover:translate-x-1 group-hover:border-black/18 group-hover:text-black/84 dark:border-white/10 dark:text-white/62 dark:group-hover:border-white/16 dark:group-hover:text-white/84">
                     <IconArrowRight size={16} />
                   </div>
                 </div>

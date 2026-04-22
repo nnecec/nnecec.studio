@@ -136,7 +136,7 @@ export function EditorialContact() {
       <div className="grid gap-5 xl:grid-cols-[1fr_1fr_1fr_1.06fr]">
         {socialLinks.map(({ accentClass, highlightClass, href, icon: Icon, iconClass, label, meta, metaClass }) => (
           <a
-            className={`group relative overflow-hidden rounded-[1.3rem] border p-5 opacity-100 shadow-[0_18px_40px_rgba(17,17,17,0.06)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 dark:shadow-[0_18px_44px_rgba(0,0,0,0.32)] ${accentClass}`}
+            className={`group relative overflow-hidden rounded-[1.3rem] border p-5 opacity-100 shadow-[0_18px_40px_rgba(17,17,17,0.06)] backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 dark:shadow-[0_18px_44px_rgba(0,0,0,0.32)] ${accentClass}`}
             data-contact-reveal
             href={href}
             key={label}
@@ -149,7 +149,7 @@ export function EditorialContact() {
                 <Icon size={18} />
               </div>
               <IconArrowRight
-                className="text-black/58 transition group-hover:translate-x-1 dark:text-white/58"
+                className="text-black/58 transition-transform duration-150 ease-out group-hover:translate-x-1 dark:text-white/58"
                 size={15}
               />
             </div>

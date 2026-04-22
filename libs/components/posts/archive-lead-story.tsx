@@ -24,7 +24,7 @@ export function ArchiveLeadStory({ post }: { post: PostPreview }) {
   return (
     <MotionStagger delayChildren={0.12} stagger={0.08}>
       <Link className="group block no-underline" href={`/posts${post.slug}`}>
-        <article className="grid gap-8 rounded-[2rem] border border-black/10 bg-[#171716] p-6 text-[#f7efdf] transition duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_20px_60px_rgba(23,23,22,0.14)] dark:border-white/10 dark:bg-[#141416] dark:text-[#f5efe1] md:p-8 lg:grid-cols-[minmax(0,1.2fr)_16rem] lg:gap-10">
+        <article className="grid gap-8 rounded-[2rem] border border-black/10 bg-[#171716] p-6 text-[#f7efdf] transition-transform duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_20px_60px_rgba(23,23,22,0.14)] dark:border-white/10 dark:bg-[#141416] dark:text-[#f5efe1] md:p-8 lg:grid-cols-[minmax(0,1.2fr)_16rem] lg:gap-10">
           <MotionStaggerItem distance={18}>
             <div className="space-y-6">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#f7efdf]/60 dark:text-white/52">
@@ -34,7 +34,7 @@ export function ArchiveLeadStory({ post }: { post: PostPreview }) {
               </div>
 
               <div className="space-y-4">
-                <h2 className="max-w-4xl text-[clamp(2.5rem,5vw,4.9rem)] font-black leading-[0.92] tracking-[-0.055em] text-balance transition group-hover:text-[#ffd39a]">
+                <h2 className="max-w-4xl text-[clamp(2.5rem,5vw,4.9rem)] font-black leading-[0.92] tracking-[-0.055em] text-balance transition-colors duration-200 group-hover:text-[#ffd39a]">
                   {post.title}
                 </h2>
                 <p className="max-w-2xl text-base leading-8 text-[#f7efdf]/72 sm:text-[1.0625rem]">
@@ -76,7 +76,7 @@ export function ArchiveLeadStory({ post }: { post: PostPreview }) {
                 ) : null}
               </div>
 
-              <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#f7efdf] transition group-hover:gap-3 dark:text-white">
+              <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#f7efdf] transition-all duration-150 ease-out group-hover:gap-3 dark:text-white">
                 Enter article
                 <IconArrowUpRight size={18} />
               </div>

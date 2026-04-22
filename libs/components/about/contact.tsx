@@ -118,7 +118,7 @@ export const Contact = () => {
         <div className="grid gap-4 lg:grid-cols-2">
           {socialLinks.map(({ href, icon: Icon, label, meta }) => (
             <a
-              className="group rounded-[1.6rem] border border-black/8 bg-black/[0.02] p-5 transition hover:-translate-y-1 hover:border-black/15 hover:bg-black/[0.04] dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/18 dark:hover:bg-white/[0.05]"
+              className="group rounded-[1.6rem] border border-black/8 bg-black/[0.02] p-5 transition-transform duration-200 hover:-translate-y-1 hover:border-black/15 hover:bg-black/[0.04] dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/18 dark:hover:bg-white/[0.05]"
               data-contact-card
               href={href}
               key={label}
@@ -130,7 +130,7 @@ export const Contact = () => {
                   <Icon size={20} />
                 </div>
                 <IconArrowRight
-                  className="transition group-hover:translate-x-1 group-hover:-translate-y-1"
+                  className="transition-transform duration-150 ease-out group-hover:translate-x-1 group-hover:-translate-y-1"
                   size={16}
                 />
               </div>
